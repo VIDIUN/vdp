@@ -1,10 +1,10 @@
-package com.kaltura.kdpfl.plugin.component {
-	import com.kaltura.commands.widget.WidgetAdd;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.types.KalturaWidgetSecurityType;
-	import com.kaltura.vo.KalturaWidget;
+package com.vidiun.vdpfl.plugin.component {
+	import com.vidiun.commands.widget.WidgetAdd;
+	import com.vidiun.events.VidiunEvent;
+	import com.vidiun.vdpfl.model.type.EnableType;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.types.VidiunWidgetSecurityType;
+	import com.vidiun.vo.VidiunWidget;
 	
 	import flash.display.DisplayObject;
 	import flash.system.Security;
@@ -119,7 +119,7 @@ package com.kaltura.kdpfl.plugin.component {
 		}
 
 
-		private function _getShareCode(kc:Object):void {
+		private function _getShareCode(vc:Object):void {
 			var media:Object = facade.retrieveProxy("mediaProxy");
 			var config:Object = facade.retrieveProxy("configProxy");
 			_flashvars = config.getData().flashvars;
@@ -129,19 +129,19 @@ package com.kaltura.kdpfl.plugin.component {
 			// build client instacr
 			//if there are more places to use this - make this global 	
 			//configuration 
-			var kw:KalturaWidget = new KalturaWidget();
-			kw.entryId = media["vo"]["entry"]["id"];
+			var vw:VidiunWidget = new VidiunWidget();
+			vw.entryId = media["vo"]["entry"]["id"];
 			// the uiconf that will be the new widget uiconf
-			kw.uiConfId = int(uiconfId); //kw.uiConfId = int(uiconfId);  
-			kw.sourceWidgetId = config["vo"]["kw"]["id"]; //"_1";// 
-			kw.partnerData = createWidgetPartnerData(_flashvars);
-			kw.securityType = KalturaWidgetSecurityType.NONE;
+			vw.uiConfId = int(uiconfId); //vw.uiConfId = int(uiconfId);  
+			vw.sourceWidgetId = config["vo"]["vw"]["id"]; //"_1";// 
+			vw.partnerData = createWidgetPartnerData(_flashvars);
+			vw.securityType = VidiunWidgetSecurityType.NONE;
 
 			//add widget			
-			var addWidget:WidgetAdd = new WidgetAdd(kw);
-			addWidget.addEventListener(KalturaEvent.COMPLETE, onWidgetComplete);
-			addWidget.addEventListener(KalturaEvent.FAILED, onWidgetFailed);
-			kc.post(addWidget);
+			var addWidget:WidgetAdd = new WidgetAdd(vw);
+			addWidget.addEventListener(VidiunEvent.COMPLETE, onWidgetComplete);
+			addWidget.addEventListener(VidiunEvent.FAILED, onWidgetFailed);
+			vc.post(addWidget);
 		}
 
 
@@ -166,7 +166,7 @@ package com.kaltura.kdpfl.plugin.component {
 		 * @inheritDocs 
 		 */
 		override public function handleNotification(note:INotification):void {
-			var kc:Object = facade.retrieveProxy("servicesProxy")["kalturaClient"];
+			var vc:Object = facade.retrieveProxy("servicesProxy")["vidiunClient"];
 			var media:Object = facade.retrieveProxy("mediaProxy");
 			var entry:String = media["vo"]["entry"]["id"];
 			switch (note.getName()) {
@@ -185,7 +185,7 @@ package com.kaltura.kdpfl.plugin.component {
 					if (entry != _currentEntry) {
 						_loadWithNewConfig = true;
 						_currentEntry = entry;
-						_getShareCode(kc);
+						_getShareCode(vc);
 					}
 					else {
 						(view as Gigya).showGigya();

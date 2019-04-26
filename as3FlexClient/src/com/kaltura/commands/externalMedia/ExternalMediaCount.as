@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.externalMedia
+package com.vidiun.commands.externalMedia
 {
-		import com.kaltura.vo.KalturaExternalMediaEntryFilter;
-	import com.kaltura.delegates.externalMedia.ExternalMediaCountDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunExternalMediaEntryFilter;
+	import com.vidiun.delegates.externalMedia.ExternalMediaCountDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Count media entries by filter.
 	* 
 	**/
-	public class ExternalMediaCount extends KalturaCall
+	public class ExternalMediaCount extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param filter KalturaExternalMediaEntryFilter
+		* @param filter VidiunExternalMediaEntryFilter
 		**/
-		public function ExternalMediaCount( filter : KalturaExternalMediaEntryFilter=null )
+		public function ExternalMediaCount( filter : VidiunExternalMediaEntryFilter=null )
 		{
 			service= 'externalmedia_externalmedia';
 			action= 'count';
@@ -51,7 +51,7 @@ package com.kaltura.commands.externalMedia
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
 			if (filter) { 
-				keyValArr = kalturaObject2Arrays(filter, 'filter');
+				keyValArr = vidiunObject2Arrays(filter, 'filter');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

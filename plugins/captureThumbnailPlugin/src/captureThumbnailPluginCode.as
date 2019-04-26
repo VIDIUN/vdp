@@ -1,6 +1,6 @@
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.CaptureThumbnailMediator;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.CaptureThumbnailMediator;
 	
 	import flash.display.Sprite;
 	

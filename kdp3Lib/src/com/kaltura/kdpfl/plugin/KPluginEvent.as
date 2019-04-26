@@ -1,21 +1,21 @@
-package com.kaltura.kdpfl.plugin
+package com.vidiun.vdpfl.plugin
 {
 	import flash.events.Event;
 	/**
-	 * New class for unique events fired by the KDP plug-ins 
+	 * New class for unique events fired by the VDP plug-ins 
 	 * @author Hila
 	 * 
 	 */	
-	public class KPluginEvent extends Event
+	public class VPluginEvent extends Event
 	{
 		/**
 		 * Constant signifying plugin initialize complete.
 		 */		
-		public static const KPLUGIN_INIT_COMPLETE : String = "kPluginInitComplete";
+		public static const VPLUGIN_INIT_COMPLETE : String = "vPluginInitComplete";
 		/**
 		 * Constant signifying plugin initialize failed.
 		 */		
-		public static const KPLUGIN_INIT_FAILED : String = "kPluginInitFailed";
+		public static const VPLUGIN_INIT_FAILED : String = "vPluginInitFailed";
 		/**
 		 *  
 		 * @param type
@@ -23,7 +23,7 @@ package com.kaltura.kdpfl.plugin
 		 * @param cancelable
 		 * 
 		 */		
-		public function KPluginEvent(type:String, bubbles:Boolean=true, cancelable:Boolean=false)
+		public function VPluginEvent(type:String, bubbles:Boolean=true, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);
 		}

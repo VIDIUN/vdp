@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.plugin.component.tile.KTile;
-	import com.kaltura.kdpfl.plugin.component.tile.KTileItem;
+	import com.vidiun.vdpfl.plugin.component.tile.VTile;
+	import com.vidiun.vdpfl.plugin.component.tile.VTileItem;
 	
 	import fl.data.DataProvider;
 	import fl.events.ListEvent;
@@ -18,7 +18,7 @@ package com.kaltura.kdpfl.plugin.component
 		/**
 		 * The tile 
 		 */		
-		private var _kTile:KTile;
+		private var _vTile:VTile;
 		private var _rowCount:int = DEFAULT_TILE_ROW_COUNT;
 		private var _colCount:int = DEFAULT_TILE_COL_COUNT;
 		private var _rowHeight:int = DEFAULT_TILE_ROW_HEIGHT;
@@ -26,19 +26,19 @@ package com.kaltura.kdpfl.plugin.component
 		
 		public function TileView()
 		{
-			_kTile = new KTile();
-			_kTile.setStyle('cellRenderer', KTileItem ); 
-			_kTile.rowCount = _rowCount;
-			_kTile.columnCount = _colCount;
-			_kTile.rowHeight = _rowHeight;
-			_kTile.columnWidth = _colWidth;
+			_vTile = new VTile();
+			_vTile.setStyle('cellRenderer', VTileItem ); 
+			_vTile.rowCount = _rowCount;
+			_vTile.columnCount = _colCount;
+			_vTile.rowHeight = _rowHeight;
+			_vTile.columnWidth = _colWidth;
 			if (dataProvider)
 			{
-				_kTile.dataProvider = dataProvider;				
+				_vTile.dataProvider = dataProvider;				
 			}
-			_kTile.addEventListener(ListEvent.ITEM_CLICK , onTileItemClick, false, 0, true );
-			_kTile.addEventListener( Event.CHANGE, onTileChange, false, 0, true );
-			addChild( _kTile );	
+			_vTile.addEventListener(ListEvent.ITEM_CLICK , onTileItemClick, false, 0, true );
+			_vTile.addEventListener( Event.CHANGE, onTileChange, false, 0, true );
+			addChild( _vTile );	
 			
 		}
 		
@@ -50,7 +50,7 @@ package com.kaltura.kdpfl.plugin.component
 		public function set colWidth(value:int):void
 		{
 			_colWidth = value;
-			_kTile.columnWidth = _colWidth;
+			_vTile.columnWidth = _colWidth;
 		}
 
 		public function get rowHeight():int
@@ -61,7 +61,7 @@ package com.kaltura.kdpfl.plugin.component
 		public function set rowHeight(value:int):void
 		{
 			_rowHeight = value;
-			_kTile.rowHeight = _rowHeight;
+			_vTile.rowHeight = _rowHeight;
 		}
 
 		public function get colCount():int
@@ -72,7 +72,7 @@ package com.kaltura.kdpfl.plugin.component
 		public function set colCount(value:int):void
 		{
 			_colCount = value;
-			_kTile.columnCount = _colCount;
+			_vTile.columnCount = _colCount;
 		}
 
 		public function get rowCount():int
@@ -83,23 +83,23 @@ package com.kaltura.kdpfl.plugin.component
 		public function set rowCount(value:int):void
 		{
 			_rowCount = value;
-			_kTile.rowCount = _rowCount;
+			_vTile.rowCount = _rowCount;
 		}
 		public function set rowWidth(value:int):void
 		{
 			_rowCount = value;
-			_kTile.rowCount = _rowCount;
+			_vTile.rowCount = _rowCount;
 		}
 
 		override public function set itemRendererXML(value:XML):void 
 		{
-			_kTile.itemContentLayout = value;
+			_vTile.itemContentLayout = value;
 			super.itemRendererXML = value;
 		}
 		
 		override public function set itemRendererFactory(value:Function):void
 		{
-			_kTile.itemContentFactory = value;
+			_vTile.itemContentFactory = value;
 			super.itemRendererFactory = value;
 		}
 		
@@ -111,18 +111,18 @@ package com.kaltura.kdpfl.plugin.component
 				if (maxEntries < value.length)
 				{
 					var limitedDP:DataProvider = new DataProvider(value.toArray().slice(0, maxEntries));
-					super.dataProvider = _kTile.dataProvider = limitedDP;
+					super.dataProvider = _vTile.dataProvider = limitedDP;
 				}
 				else
 				{
-					super.dataProvider = _kTile.dataProvider = value;
+					super.dataProvider = _vTile.dataProvider = value;
 				}
 			}
 		}
 		
 		override public function set width( value:Number ):void
 		{
-			_kTile.width = super.width = value;	
+			_vTile.width = super.width = value;	
 			if (colCount)
 			{
 				colWidth = value / colCount;
@@ -131,7 +131,7 @@ package com.kaltura.kdpfl.plugin.component
 		
 		override public function set height( value:Number ):void
 		{
-			_kTile.height = super.height = value;
+			_vTile.height = super.height = value;
 			if (rowCount)
 			{
 				rowHeight = value / rowCount;
@@ -146,7 +146,7 @@ package com.kaltura.kdpfl.plugin.component
 
 		private function onTileChange(event:Event):void 
 		{
-			selectedIndex = _kTile.selectedIndex;
+			selectedIndex = _vTile.selectedIndex;
 			dispatchEvent(new Event(AbstractView.ITEM_CHANGED));
 		}
 	}

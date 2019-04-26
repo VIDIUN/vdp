@@ -1,6 +1,6 @@
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.IPluginFactory;
 	
 	import fl.core.UIComponent;
 	

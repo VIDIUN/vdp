@@ -1,10 +1,10 @@
 package
 {
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.kdpfl.plugin.component.NielsenVideoCensusMediator;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.IPluginFactory;
+	import com.vidiun.vdpfl.plugin.component.NielsenVideoCensusMediator;
 	import com.yahoo.astra.fl.controls.AbstractButtonRow;
 	
 	import flash.display.Sprite;
@@ -148,7 +148,7 @@ package
 			//3. Length in seconds of this segment/chapter. Set to 0 if not known
 			//4. Anticipated total number of segments/chapters for this episode. Set to 0 if not known
 			
-			// NOTE: total length can only be determined.  unable to determine length of segments with current KDP3 libraries
+			// NOTE: total length can only be determined.  unable to determine length of segments with current VDP3 libraries
 			if(lp)
 				url=createQueryString(url,_paramsMap.lp,getLongPlayIndicator());
 
@@ -204,7 +204,7 @@ package
 		//Four sub parameters:
 		//1. LF & SF Short form/long form override. The publisher can explicitly state this is a short form or long form clip. If set to SF then parameters 2 and 4 will be ignored.
 		//2. LF Current segment/chapter number. Set to 0 if not known
-		//3. LF & SF Length in seconds of this segment/chapter. Set to 0 if not known. currently no way to get this information from kdp libs
+		//3. LF & SF Length in seconds of this segment/chapter. Set to 0 if not known. currently no way to get this information from vdp libs
 		//4. LF Anticipated total number of segments/chapters for this episode. Set to 0 if not known
 		//lp=LF,3,582,6
 		private function getLongPlayIndicator():String{

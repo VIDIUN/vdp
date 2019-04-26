@@ -1,8 +1,8 @@
 package
 {
-	import com.kaltura.cuePointPluginCode;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
+	import com.vidiun.cuePointPluginCode;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.IPluginFactory;
 	
 	import flash.display.Sprite;
 	

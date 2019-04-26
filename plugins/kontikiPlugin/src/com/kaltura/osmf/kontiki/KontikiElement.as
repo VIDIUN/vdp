@@ -1,4 +1,4 @@
-package com.kaltura.osmf.kontiki
+package com.vidiun.osmf.kontiki
 {
 	
 	import flash.events.NetStatusEvent;

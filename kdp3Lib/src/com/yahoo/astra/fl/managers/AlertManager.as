@@ -4,7 +4,7 @@ The copyrights embodied in the content of this file are licensed under the BSD (
 */
 ﻿package com.yahoo.astra.fl.managers
 {
-	import com.kaltura.kdpfl.view.controls.AlertMediator;
+	import com.vidiun.vdpfl.view.controls.AlertMediator;
 	import com.yahoo.astra.fl.controls.containerClasses.DialogBox;
 	import com.yahoo.astra.fl.events.AlertEvent;
 	import com.yahoo.astra.utils.TextUtil;

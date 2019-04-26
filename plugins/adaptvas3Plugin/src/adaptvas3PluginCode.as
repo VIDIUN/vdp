@@ -1,11 +1,11 @@
 package {
-	//import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.ISequencePlugin;
-	import com.kaltura.kdpfl.plugin.KPluginEvent;
-	import com.kaltura.kdpfl.plugin.component.AdaptvAS3Mediator;
-	import com.kaltura.kdpfl.plugin.component.AdaptvAS3Player;
+	//import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.ISequencePlugin;
+	import com.vidiun.vdpfl.plugin.VPluginEvent;
+	import com.vidiun.vdpfl.plugin.component.AdaptvAS3Mediator;
+	import com.vidiun.vdpfl.plugin.component.AdaptvAS3Player;
 	
 	import fl.core.UIComponent;
 	import fl.managers.*;
@@ -82,7 +82,7 @@ package {
 			_facade.registerMediator( _adaptvas3Mediator);
 			addChild( _adaptvas3Mediator.view );
 			
-			dispatchEvent( new KPluginEvent( KPluginEvent.KPLUGIN_INIT_COMPLETE) );
+			dispatchEvent( new VPluginEvent( VPluginEvent.VPLUGIN_INIT_COMPLETE) );
 			
 		}
 		
@@ -90,7 +90,7 @@ package {
 		{
 			removeAdaptvListeners();
 			_loadError = true;
-			dispatchEvent( new KPluginEvent( KPluginEvent.KPLUGIN_INIT_FAILED) );
+			dispatchEvent( new VPluginEvent( VPluginEvent.VPLUGIN_INIT_FAILED) );
 		}
 		
 		

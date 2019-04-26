@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project name="KDP Builder" basedir=".">        
+<project name="VDP Builder" basedir=".">        
 	
 	<property file="build.properties" description="Load project build properties"/>
 	
@@ -17,11 +17,11 @@
 
 	
 	<target name="build" depends="clean, init, compile">
-		<echo>KDP built successfully</echo>					
+		<echo>VDP built successfully</echo>					
 	</target>
 	
 	<target name="clean">		
-		<echo>Cleaning the KDP solution</echo>			
+		<echo>Cleaning the VDP solution</echo>			
 		<echo>Deleting ${solution.bin}</echo>
         <delete dir="${solution.bin}" failonerror="false"/>	
         <mkdir dir="${solution.bin}" description="Make sure there is a bin directory"/>
@@ -34,13 +34,13 @@
 		<mkdir dir="${solution.binvendors}" description="Make sure the plugins dir exists"/>
 	</target>
 	
-	<target name="compile" description="Compile the whole KDP solution" depends="clean, setPropsLinux">
-		<echo>Compiling the KDP</echo>			
+	<target name="compile" description="Compile the whole VDP solution" depends="clean, setPropsLinux">
+		<echo>Compiling the VDP</echo>			
 						
 		<ant dir="vendors" inheritAll="true" target="build"/>
 		<ant dir="as3FlexClient" inheritAll="true" target="build"/>	
-		<ant dir="kdp3Lib" inheritAll="true" target="build"/>		
-		<ant dir="KDP3" inheritAll="true" target="build"/>	
+		<ant dir="vdp3Lib" inheritAll="true" target="build"/>		
+		<ant dir="VDP3" inheritAll="true" target="build"/>	
 		<ant dir="FlashRoughcutLib" inheritAll="true" target="build"/>		
 		<ant dir="plugins" inheritAll="true" target="build"/>			
 	</target>	

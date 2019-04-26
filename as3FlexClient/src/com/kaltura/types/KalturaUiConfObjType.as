@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,9 +25,9 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.types
+package com.vidiun.types
 {
-	public class KalturaUiConfObjType
+	public class VidiunUiConfObjType
 	{
 		public static const PLAYER : int = 1;
 		public static const CONTRIBUTION_WIZARD : int = 2;
@@ -35,19 +35,19 @@ package com.kaltura.types
 		public static const ADVANCED_EDITOR : int = 4;
 		public static const PLAYLIST : int = 5;
 		public static const APP_STUDIO : int = 6;
-		public static const KRECORD : int = 7;
+		public static const VRECORD : int = 7;
 		public static const PLAYER_V3 : int = 8;
-		public static const KMC_ACCOUNT : int = 9;
-		public static const KMC_ANALYTICS : int = 10;
-		public static const KMC_CONTENT : int = 11;
-		public static const KMC_DASHBOARD : int = 12;
-		public static const KMC_LOGIN : int = 13;
+		public static const VMC_ACCOUNT : int = 9;
+		public static const VMC_ANALYTICS : int = 10;
+		public static const VMC_CONTENT : int = 11;
+		public static const VMC_DASHBOARD : int = 12;
+		public static const VMC_LOGIN : int = 13;
 		public static const PLAYER_SL : int = 14;
 		public static const CLIENTSIDE_ENCODER : int = 15;
-		public static const KMC_GENERAL : int = 16;
-		public static const KMC_ROLES_AND_PERMISSIONS : int = 17;
+		public static const VMC_GENERAL : int = 16;
+		public static const VMC_ROLES_AND_PERMISSIONS : int = 17;
 		public static const CLIPPER : int = 18;
-		public static const KSR : int = 19;
-		public static const KUPLOAD : int = 20;
+		public static const VSR : int = 19;
+		public static const VUPLOAD : int = 20;
 	}
 }

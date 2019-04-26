@@ -1,8 +1,8 @@
 package
 {
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.CDNSwitchingMediator;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.CDNSwitchingMediator;
 	
 	import fl.core.UIComponent;
 	

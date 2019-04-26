@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,14 +25,14 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.KalturaBaseEntryFilter;
+	import com.vidiun.vo.VidiunBaseEntryFilter;
 
-	import com.kaltura.vo.BaseFlexVo;
+	import com.vidiun.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaSystemPartnerConfiguration extends BaseFlexVo
+	public dynamic class VidiunSystemPartnerConfiguration extends BaseFlexVo
 	{
 		/**
 		**/
@@ -75,7 +75,7 @@ package com.kaltura.vo
 		public var monitorUsage : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var moderateContent : Boolean;
 
@@ -84,25 +84,25 @@ package com.kaltura.vo
 		public var rtmpUrl : String = null;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
-		public var storageDeleteFromKaltura : Boolean;
+		public var storageDeleteFromVidiun : Boolean;
 
 		/**
-		* @see com.kaltura.types.KalturaStorageServePriority
+		* @see com.vidiun.types.VidiunStorageServePriority
 		**/
 		public var storageServePriority : int = int.MIN_VALUE;
 
 		/**
 		**/
-		public var kmcVersion : int = int.MIN_VALUE;
+		public var vmcVersion : int = int.MIN_VALUE;
 
 		/**
 		**/
-		public var restrictThumbnailByKs : int = int.MIN_VALUE;
+		public var restrictThumbnailByVs : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var supportAnimatedThumbnails : Boolean;
 
@@ -127,7 +127,7 @@ package com.kaltura.vo
 		public var alwaysAllowedPermissionNames : String = null;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var importRemoteSourceForConvert : Boolean;
 
@@ -140,7 +140,7 @@ package com.kaltura.vo
 		public var notificationsConfig : String = null;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var allowMultiNotification : Boolean;
 
@@ -157,12 +157,12 @@ package com.kaltura.vo
 		public var passReplaceFreq : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var isFirstLogin : Boolean;
 
 		/**
-		* @see com.kaltura.types.KalturaPartnerGroupType
+		* @see com.vidiun.types.VidiunPartnerGroupType
 		**/
 		public var partnerGroupType : int = int.MIN_VALUE;
 
@@ -217,7 +217,7 @@ package com.kaltura.vo
 		public var partnerPackageClassOfService : String = null;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var enableBulkUploadNotificationsEmails : Boolean;
 
@@ -230,12 +230,12 @@ package com.kaltura.vo
 		public var bulkUploadNotificationsEmail : String = null;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var internalUse : Boolean;
 
 		/**
-		* @see com.kaltura.types.KalturaSourceType
+		* @see com.vidiun.types.VidiunSourceType
 		**/
 		public var defaultLiveStreamEntrySourceType : String = null;
 
@@ -245,14 +245,14 @@ package com.kaltura.vo
 
 		/**
 		**/
-		public var autoModerateEntryFilter : KalturaBaseEntryFilter;
+		public var autoModerateEntryFilter : VidiunBaseEntryFilter;
 
 		/**
 		**/
 		public var logoutUrl : String = null;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var defaultEntitlementEnforcement : Boolean;
 
@@ -277,12 +277,12 @@ package com.kaltura.vo
 		public var disabledDeliveryTypes : Array = null;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var restrictEntryByMetadata : Boolean;
 
 		/**
-		* @see com.kaltura.types.KalturaLanguageCode
+		* @see com.vidiun.types.VidiunLanguageCode
 		**/
 		public var language : String = null;
 
@@ -304,10 +304,10 @@ package com.kaltura.vo
 			arr.push('monitorUsage');
 			arr.push('moderateContent');
 			arr.push('rtmpUrl');
-			arr.push('storageDeleteFromKaltura');
+			arr.push('storageDeleteFromVidiun');
 			arr.push('storageServePriority');
-			arr.push('kmcVersion');
-			arr.push('restrictThumbnailByKs');
+			arr.push('vmcVersion');
+			arr.push('restrictThumbnailByVs');
 			arr.push('supportAnimatedThumbnails');
 			arr.push('defThumbOffset');
 			arr.push('defThumbDensity');
@@ -373,16 +373,16 @@ package com.kaltura.vo
 			var result:String = '';
 			switch (arrayName) {
 				case 'permissions':
-					result = 'KalturaPermission';
+					result = 'VidiunPermission';
 					break;
 				case 'limits':
-					result = 'KalturaSystemPartnerLimit';
+					result = 'VidiunSystemPartnerLimit';
 					break;
 				case 'autoModerateEntryFilter':
 					result = '';
 					break;
 				case 'disabledDeliveryTypes':
-					result = 'KalturaString';
+					result = 'VidiunString';
 					break;
 			}
 			return result;

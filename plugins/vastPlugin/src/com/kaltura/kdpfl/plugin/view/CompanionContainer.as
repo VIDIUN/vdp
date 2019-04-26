@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin.view
+package com.vidiun.vdpfl.plugin.view
 {
-	import com.kaltura.kdpfl.plugin.model.UniformCompanionAd;
+	import com.vidiun.vdpfl.plugin.model.UniformCompanionAd;
 	import org.osmf.utils.HTTPLoader;
 	import flash.display.Loader;
 	import flash.display.Sprite;

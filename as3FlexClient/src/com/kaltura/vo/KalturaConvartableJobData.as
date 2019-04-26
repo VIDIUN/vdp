@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,14 +25,14 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.KalturaFlavorParamsOutput;
+	import com.vidiun.vo.VidiunFlavorParamsOutput;
 
-	import com.kaltura.vo.KalturaJobData;
+	import com.vidiun.vo.VidiunJobData;
 
 	[Bindable]
-	public dynamic class KalturaConvartableJobData extends KalturaJobData
+	public dynamic class VidiunConvartableJobData extends VidiunJobData
 	{
 		/**
 		**/
@@ -62,7 +62,7 @@ package com.kaltura.vo
 
 		/**
 		**/
-		public var flavorParamsOutput : KalturaFlavorParamsOutput;
+		public var flavorParamsOutput : VidiunFlavorParamsOutput;
 
 		/**
 		**/
@@ -110,13 +110,13 @@ package com.kaltura.vo
 			var result:String = '';
 			switch (arrayName) {
 				case 'srcFileSyncs':
-					result = 'KalturaSourceFileSyncDescriptor';
+					result = 'VidiunSourceFileSyncDescriptor';
 					break;
 				case 'flavorParamsOutput':
 					result = '';
 					break;
 				case 'pluginData':
-					result = 'KalturaKeyValue';
+					result = 'VidiunKeyValue';
 					break;
 				default:
 					result = super.getElementType(arrayName);

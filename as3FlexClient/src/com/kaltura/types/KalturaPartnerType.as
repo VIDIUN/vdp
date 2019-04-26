@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,11 +25,11 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.types
+package com.vidiun.types
 {
-	public class KalturaPartnerType
+	public class VidiunPartnerType
 	{
-		public static const KMC : int = 1;
+		public static const VMC : int = 1;
 		public static const WIKI : int = 100;
 		public static const WORDPRESS : int = 101;
 		public static const DRUPAL : int = 102;

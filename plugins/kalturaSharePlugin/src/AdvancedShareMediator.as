@@ -1,11 +1,11 @@
 package
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.vo.KalturaBaseEntry;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.EnableType;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vo.VidiunBaseEntry;
 	
 	import org.osmf.media.MediaPlayer;
 	import org.puremvc.as3.interfaces.INotification;
@@ -15,13 +15,13 @@ package
 	{
 		public static const NAME:String = "advancedShareMediator";
 		
-		private var _advancedSharePlugin:kalturaSharePlugin; 
+		private var _advancedSharePlugin:vidiunSharePlugin; 
 		
-		public var entry:KalturaBaseEntry;
+		public var entry:VidiunBaseEntry;
 		public var metadata:Object;
 		public var mediaProxy:MediaProxy
 		
-		public function AdvancedShareMediator(asp:kalturaSharePlugin=null)
+		public function AdvancedShareMediator(asp:vidiunSharePlugin=null)
 		{
 			_advancedSharePlugin = asp;
 			
@@ -30,7 +30,7 @@ package
 		public function init():void
 		{
 			mediaProxy = facade.retrieveProxy("mediaProxy") as MediaProxy;
-			_advancedSharePlugin.kc = facade.retrieveProxy("servicesProxy")["kalturaClient"] as KalturaClient;
+			_advancedSharePlugin.vc = facade.retrieveProxy("servicesProxy")["vidiunClient"] as VidiunClient;
 		}
 		
 		override public function listNotificationInterests():Array

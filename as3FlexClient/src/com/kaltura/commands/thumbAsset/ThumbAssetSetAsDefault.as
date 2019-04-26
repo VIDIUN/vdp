@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,17 +25,17 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.thumbAsset
+package com.vidiun.commands.thumbAsset
 {
-	import com.kaltura.delegates.thumbAsset.ThumbAssetSetAsDefaultDelegate;
-	import com.kaltura.net.KalturaCall;
+	import com.vidiun.delegates.thumbAsset.ThumbAssetSetAsDefaultDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Tags the thumbnail as DEFAULT_THUMB and removes that tag from all other thumbnail assets of the entry.
 	* Create a new file sync link on the entry thumbnail that points to the thumbnail asset file sync.
 	* 
 	**/
-	public class ThumbAssetSetAsDefault extends KalturaCall
+	public class ThumbAssetSetAsDefault extends VidiunCall
 	{
 		public var filterFields : String;
 		

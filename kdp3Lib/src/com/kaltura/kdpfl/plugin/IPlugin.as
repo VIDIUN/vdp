@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.plugin
+package com.vidiun.vdpfl.plugin
 {
 	import org.puremvc.as3.interfaces.IFacade;
 	/**
-	 * Interface for the KDP plugins. 
+	 * Interface for the VDP plugins. 
 	 * @author Hila
 	 * 
 	 */	

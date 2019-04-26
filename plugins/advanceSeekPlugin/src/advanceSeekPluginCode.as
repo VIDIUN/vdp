@@ -1,7 +1,7 @@
 package 
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.AdvancePluginMediator;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.AdvancePluginMediator;
 	
 	import flash.display.Sprite;
 	

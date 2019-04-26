@@ -1,13 +1,13 @@
-package com.kaltura.kdpfl.view
+package com.vidiun.vdpfl.view
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.AdsNotificationTypes;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.types.KalturaAdType;
-	import com.kaltura.vo.KalturaAdCuePoint;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.AdsNotificationTypes;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.SequenceContextType;
+	import com.vidiun.types.VidiunAdType;
+	import com.vidiun.vo.VidiunAdCuePoint;
 	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -127,9 +127,9 @@ package com.kaltura.kdpfl.view
 							//whether this start time was already saved to _startTimeArray
 							var startTimeSaved:Boolean = false;
 							for (var i:int = 0; i<cpArray.length; i++) {
-								if (cpArray[i] is KalturaAdCuePoint) {
-									var curCp:KalturaAdCuePoint = cpArray[i] as KalturaAdCuePoint;
-									if (curCp.adType == KalturaAdType.VIDEO && !startTimeSaved) {
+								if (cpArray[i] is VidiunAdCuePoint) {
+									var curCp:VidiunAdCuePoint = cpArray[i] as VidiunAdCuePoint;
+									if (curCp.adType == VidiunAdType.VIDEO && !startTimeSaved) {
 										_startTimeArray.push(inTime);
 										startTimeSaved = true;
 										_numOfSegments++;	
@@ -144,8 +144,8 @@ package com.kaltura.kdpfl.view
 				
 				case NotificationType.AD_OPPORTUNITY:
 					var msDuration:int = (facade.retrieveProxy(MediaProxy.NAME) as MediaProxy).vo.entry.msDuration;
-					var cp:KalturaAdCuePoint = notification.getBody().cuePoint as KalturaAdCuePoint;
-					if (cp.startTime!=0 && cp.startTime!=msDuration && cp.adType == KalturaAdType.VIDEO) {
+					var cp:VidiunAdCuePoint = notification.getBody().cuePoint as VidiunAdCuePoint;
+					if (cp.startTime!=0 && cp.startTime!=msDuration && cp.adType == VidiunAdType.VIDEO) {
 						for (var j:int =0 ; j<_startTimeArray.length; j++) {
 							if (_startTimeArray[j]==cp.startTime) {
 								//add 1 since array is zero based and segment is 1 based, 

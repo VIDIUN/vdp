@@ -1,68 +1,68 @@
-package com.kaltura.kdpfl.controller
+package com.vidiun.vdpfl.controller
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.MultiRequest;
-	import com.kaltura.commands.session.SessionStartWidgetSession;
-	import com.kaltura.commands.uiConf.UiConfGet;
-	import com.kaltura.commands.widget.WidgetGet;
-	import com.kaltura.delegates.uiConf.UiConfGetDelegate;
-	import com.kaltura.delegates.widget.WidgetGetDelegate;
-	import com.kaltura.errors.KalturaError;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.type.SourceType;
-	import com.kaltura.vo.KalturaLiveStreamBitrate;
-	import com.kaltura.vo.KalturaStartWidgetSessionResponse;
-	import com.kaltura.vo.KalturaUiConf;
-	import com.kaltura.vo.KalturaWidget;KalturaLiveStreamBitrate;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.commands.MultiRequest;
+	import com.vidiun.commands.session.SessionStartWidgetSession;
+	import com.vidiun.commands.uiConf.UiConfGet;
+	import com.vidiun.commands.widget.WidgetGet;
+	import com.vidiun.delegates.uiConf.UiConfGetDelegate;
+	import com.vidiun.delegates.widget.WidgetGetDelegate;
+	import com.vidiun.errors.VidiunError;
+	import com.vidiun.events.VidiunEvent;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.LayoutProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.ServicesProxy;
+	import com.vidiun.vdpfl.model.type.SourceType;
+	import com.vidiun.vo.VidiunLiveStreamBitrate;
+	import com.vidiun.vo.VidiunStartWidgetSessionResponse;
+	import com.vidiun.vo.VidiunUiConf;
+	import com.vidiun.vo.VidiunWidget;VidiunLiveStreamBitrate;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
-	import com.kaltura.vo.KalturaLiveStreamEntry;KalturaLiveStreamEntry;
-	import com.kaltura.vo.KalturaLiveStreamBitrate; KalturaLiveStreamBitrate;
+	import com.vidiun.vo.VidiunLiveStreamEntry;VidiunLiveStreamEntry;
+	import com.vidiun.vo.VidiunLiveStreamBitrate; VidiunLiveStreamBitrate;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.AsyncCommand;
 	import org.puremvc.as3.patterns.proxy.Proxy;
-	import com.kaltura.vo.KalturaFlavorAsset;
+	import com.vidiun.vo.VidiunFlavorAsset;
 	import mx.utils.UIDUtil;
 	import fl.core.UIComponent;
 	import flash.events.ErrorEvent;
-	import com.kaltura.kdpfl.util.URLUtils;
-	import com.kaltura.kdpfl.plugin.PluginManager;
+	import com.vidiun.vdpfl.util.URLUtils;
+	import com.vidiun.vdpfl.plugin.PluginManager;
 	import flash.sampler.DeleteObjectSample;
-	import com.kaltura.vo.KalturaMetadataFilter;
-	import com.kaltura.types.KalturaMetadataObjectType;
-	import com.kaltura.commands.metadata.MetadataList;
-	import com.kaltura.vo.KalturaMetadataListResponse;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.vo.KalturaMetadata;
-	import com.kaltura.types.KalturaMetadataStatus;
-	import com.kaltura.vo.KalturaMetadataProfile;
-	import com.kaltura.types.KalturaMetadataProfileStatus;
-	import com.kaltura.net.KalturaCall;
-	import com.kaltura.commands.metadata.MetadataGet;
-	import com.kaltura.vo.KalturaFilter;
-	import com.kaltura.types.KalturaMetadataOrderBy;
-	import com.kaltura.vo.KalturaFilterPager;
-	import com.kaltura.kdpfl.view.controls.ToolTipManager;
+	import com.vidiun.vo.VidiunMetadataFilter;
+	import com.vidiun.types.VidiunMetadataObjectType;
+	import com.vidiun.commands.metadata.MetadataList;
+	import com.vidiun.vo.VidiunMetadataListResponse;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vo.VidiunMetadata;
+	import com.vidiun.types.VidiunMetadataStatus;
+	import com.vidiun.vo.VidiunMetadataProfile;
+	import com.vidiun.types.VidiunMetadataProfileStatus;
+	import com.vidiun.net.VidiunCall;
+	import com.vidiun.commands.metadata.MetadataGet;
+	import com.vidiun.vo.VidiunFilter;
+	import com.vidiun.types.VidiunMetadataOrderBy;
+	import com.vidiun.vo.VidiunFilterPager;
+	import com.vidiun.vdpfl.view.controls.ToolTipManager;
 	import com.yahoo.astra.fl.managers.AlertManager;
-	import com.kaltura.kdpfl.view.controls.AlertMediator;
-	import com.kaltura.kdpfl.model.strings.MessageStrings;
+	import com.vidiun.vdpfl.view.controls.AlertMediator;
+	import com.vidiun.vdpfl.model.strings.MessageStrings;
 	import flash.utils.getQualifiedClassName;
 	import com.yahoo.astra.containers.formClasses.RequiredIndicator;
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.vidiun.vdpfl.view.controls.VTrace;
 	import org.osmf.utils.OSMFSettings;
-	import com.kaltura.kdpfl.model.ExternalInterfaceProxy;
+	import com.vidiun.vdpfl.model.ExternalInterfaceProxy;
 	import flash.external.ExternalInterface;
 	import flash.net.SharedObject;
-	import com.kaltura.kdpfl.model.type.StreamerType;
+	import com.vidiun.vdpfl.model.type.StreamerType;
 
 	/**
-	 * This class handles the retrieval of the player groundwork - the KS (Kaltura Session),KWidget and the uiConf.xml
+	 * This class handles the retrieval of the player groundwork - the VS (Vidiun Session),VWidget and the uiConf.xml
 	 * @author Hila
 	 * 
 	 */
@@ -78,11 +78,11 @@ package com.kaltura.kdpfl.controller
 		private var _layoutProxy : LayoutProxy;
 		private var _mediaProxy : MediaProxy;
 		private var _flashvars : Object;
-		private var _kc : KalturaClient;
+		private var _vc : VidiunClient;
 		private var _numPreInitPlugins : Number;
 		
 		/**
-		 * Function tries to retrieve the uiconf from the KDP embedded data.
+		 * Function tries to retrieve the uiconf from the VDP embedded data.
 		 * @return true if embedded data was used and we can skip requesting the widget and uiconf from the server 
 		 * 
 		 */
@@ -97,19 +97,19 @@ package com.kaltura.kdpfl.controller
 				var getUiconfXml:XML = new XML(xml);
 				var getUiconfDelegate:UiConfGetDelegate = new UiConfGetDelegate(null, null);
 					 
-				var uiConf:KalturaUiConf = getUiconfDelegate.parse(getUiconfXml);
+				var uiConf:VidiunUiConf = getUiconfDelegate.parse(getUiconfXml);
 					
 				// if flashvars requested a uiconf different from the one embedded check if need to fetch uiconf from server
 				if (_flashvars.uiConfId && _flashvars.uiConfId != uiConf.id)
 					return false;
 					
-				_configProxy.vo.kuiConf = uiConf;
+				_configProxy.vo.vuiConf = uiConf;
 					
 				xml = "<result>" + embeddedXML.result[0].toString() + "</result>";
 				var getWidgetXml:XML = new XML(xml);
 				var getWidgetDelegate:WidgetGetDelegate = new WidgetGetDelegate(null, null);
-				var kw:KalturaWidget = getWidgetDelegate.parse(getWidgetXml);
-				_configProxy.vo.kw = kw;
+				var vw:VidiunWidget = getWidgetDelegate.parse(getWidgetXml);
+				_configProxy.vo.vw = vw;
 		
 				return true;
 			}
@@ -118,7 +118,7 @@ package com.kaltura.kdpfl.controller
 		}
 		
 		/**
-		 * This function uses the Kaltura Client to retrieve the KS, Widget data and UIConf from the Kaltura CMS.
+		 * This function uses the Vidiun Client to retrieve the VS, Widget data and UIConf from the Vidiun CMS.
 		 * @param notification
 		 * 
 		 */		
@@ -142,14 +142,14 @@ package com.kaltura.kdpfl.controller
 				if (_flashvars.entryId && _flashvars.entryId != "-1")					
 					_mediaProxy.vo.entry.id = _flashvars.entryId;
 					
-				_flashvars.widgetId = _configProxy.vo.kw.id;
+				_flashvars.widgetId = _configProxy.vo.vw.id;
 				fetchLayout();
 				return;
 			}
 			
 			if(_flashvars.widgetId == null)
 			{
-				_configProxy.vo.kw = new KalturaWidget();
+				_configProxy.vo.vw = new VidiunWidget();
 				fetchLayout();
 				return;
 			}	
@@ -160,26 +160,26 @@ package com.kaltura.kdpfl.controller
 				return;
 			} 
 			
-			//get a hold on the kaltura client
-			_kc = ( facade.retrieveProxy( ServicesProxy.NAME ) as ServicesProxy ).kalturaClient;
+			//get a hold on the vidiun client
+			_vc = ( facade.retrieveProxy( ServicesProxy.NAME ) as ServicesProxy ).vidiunClient;
 			
 			//start a multi request to get session if needed widget and uiconf
 			var mr : MultiRequest = new MultiRequest();
 				
-			//if there is no ks we need to call first to create widget session
-			if(!_flashvars.ks)
+			//if there is no vs we need to call first to create widget session
+			if(!_flashvars.vs)
 			{
 				var ssws : SessionStartWidgetSession = new SessionStartWidgetSession( _flashvars.widgetId );
 				mr.addAction( ssws );
 				
-				//use the ks result in Start Widget Session in the next 2 calls
-				mr.addRequestParam("2:ks","{1:result:ks}");
-				mr.addRequestParam("3:ks","{1:result:ks}");
+				//use the vs result in Start Widget Session in the next 2 calls
+				mr.addRequestParam("2:vs","{1:result:vs}");
+				mr.addRequestParam("3:vs","{1:result:vs}");
 				
 			}
 			else
 			{
-				_kc.ks = _flashvars.ks;
+				_vc.vs = _flashvars.vs;
 			}
 
 			//Get Widget 
@@ -191,7 +191,7 @@ package com.kaltura.kdpfl.controller
 			if (_flashvars.uiConfId == undefined)
 			{
 				uiconfGet = new UiConfGet(NaN);
-				if(!_flashvars.ks)
+				if(!_flashvars.vs)
 					mr.mapMultiRequestParam(2,"uiConfId",3,"id");
 				else
 					mr.mapMultiRequestParam(1,"uiConfId",2,"id");
@@ -205,15 +205,15 @@ package com.kaltura.kdpfl.controller
  	
 			
            
-			mr.addEventListener( KalturaEvent.COMPLETE , result );
-			mr.addEventListener( KalturaEvent.FAILED , fault );
+			mr.addEventListener( VidiunEvent.COMPLETE , result );
+			mr.addEventListener( VidiunEvent.FAILED , fault );
 		
-			_kc.post( mr );
+			_vc.post( mr );
 			/////////////////////////////////////////////	
 		}
 		
 		/**
-		 * Response to successful call to the Kaltura CMS. This function assigns the result to the value objects used
+		 * Response to successful call to the Vidiun CMS. This function assigns the result to the value objects used
 		 * by the PureMVC components comprising the player.
 		 * @param data - object returned by the server.
 		 * 
@@ -225,24 +225,24 @@ package com.kaltura.kdpfl.controller
 			
 			var flashvars : Object = (facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy).vo.flashvars;
 			
-			//ifd we didn't got the ks from the flashvars we have a result on start widger session
-			if(!_kc.ks)
+			//ifd we didn't got the vs from the flashvars we have a result on start widger session
+			if(!_vc.vs)
 			{
-				if(arr[i] is KalturaError || (arr[i].hasOwnProperty("error")))
+				if(arr[i] is VidiunError || (arr[i].hasOwnProperty("error")))
 				{
 					++i; //procced anyway
 					//TODO: Trace, Report, and notify the user
-					KTrace.getInstance().log("Error in Start Widget Session");
+					VTrace.getInstance().log("Error in Start Widget Session");
 					sendNotification( NotificationType.ALERT , {message: MessageStrings.getString("SERVICE_START_WIDGET_ERROR"), title: MessageStrings.getString("SERVICE_ERROR")} );
 				}
 				else
 				{	
-					var kws : KalturaStartWidgetSessionResponse = arr[i++];
-					_kc.ks = kws.ks;
+					var vws : VidiunStartWidgetSessionResponse = arr[i++];
+					_vc.vs = vws.vs;
 				}
 			}
 			
-			if(arr[i] is KalturaError || (arr[i].hasOwnProperty("error")))
+			if(arr[i] is VidiunError || (arr[i].hasOwnProperty("error")))
 			{
 				++i; //procced anyway
 				//TODO: Trace, Report, and notify the user
@@ -251,23 +251,23 @@ package com.kaltura.kdpfl.controller
 			}
 			else
 			{
-				//set the config proxy with the new kalture widget
-				var kw : KalturaWidget = arr[i++];
-				_configProxy.vo.kw = kw;
+				//set the config proxy with the new vidiun widget
+				var vw : VidiunWidget = arr[i++];
+				_configProxy.vo.vw = vw;
 			}
 		
-			if(arr[i] is KalturaError || (arr[i].hasOwnProperty("error")))
+			if(arr[i] is VidiunError || (arr[i].hasOwnProperty("error")))
 			{
 				++i; //procced anyway
 				//TODO: Trace, Report, and notify the user
-				KTrace.getInstance().log("Error in Get UIConf");
+				VTrace.getInstance().log("Error in Get UIConf");
 				sendNotification( NotificationType.ALERT , {message: MessageStrings.getString("SERVICE_GET_UICONF_ERROR"), title: MessageStrings.getString("SERVICE_ERROR")} );
 			}
 			else
 			{
-				//set the config proxy with the new kalture uiconf 
-				var kuiConf : KalturaUiConf = arr[i++];
-				_configProxy.vo.kuiConf = kuiConf;
+				//set the config proxy with the new vidiun uiconf 
+				var vuiConf : VidiunUiConf = arr[i++];
+				_configProxy.vo.vuiConf = vuiConf;
 			}
 				
 			
@@ -281,41 +281,41 @@ package com.kaltura.kdpfl.controller
 		 */		
 		public function fault(data:Object):void
 		{
-			KTrace.getInstance().log("LoadConfigCommand==>fault");
+			VTrace.getInstance().log("LoadConfigCommand==>fault");
 			commandComplete(); //execute next command
 		}
 		
 		
 		/**
-		 *  Resolve the retrieval of the layout xml file. It can be injected into the KDP, loaded from an external source, or it may already
+		 *  Resolve the retrieval of the layout xml file. It can be injected into the VDP, loaded from an external source, or it may already
 		 * have been retrieved from the CMS in the multi-request created by the <code>execute</code> function.
 		 * 
 		 */		
 		public function fetchLayout():void
 		{
-			//if we inject the xml through the init( kml : XML ) function in kdp3 class 
+			//if we inject the xml through the init( vml : XML ) function in vdp3 class 
 			//we can setLayout xml right away
-			if( _flashvars.kml == INJECT )
+			if( _flashvars.vml == INJECT )
 			{
 				setLayout( _layoutProxy.vo.layoutXML );
 			}
-			else if( _flashvars.kml == LOCAL ) //if we want to load local XML (DEBUG USE ONLY)
+			else if( _flashvars.vml == LOCAL ) //if we want to load local XML (DEBUG USE ONLY)
 			{
 				var loader : URLLoader;
 				
-				if(_flashvars.kmlPath == null) //if we don't have kmlPath in flashvars
-					_flashvars.kmlPath = 'config.xml'
+				if(_flashvars.vmlPath == null) //if we don't have vmlPath in flashvars
+					_flashvars.vmlPath = 'config.xml'
 					
 				
 				loader = new URLLoader();
 				loader.addEventListener(Event.COMPLETE, XMLLoaded ); 
 				loader.addEventListener(IOErrorEvent.IO_ERROR , onIOError);
-				loader.load( new URLRequest(_flashvars.kmlPath) );
+				loader.load( new URLRequest(_flashvars.vmlPath) );
 				//Only after XML was loaded we move on...
 			}
 			else //set the layout proxy with the new uiconf xml
 			{
-				setLayout(XML(_configProxy.vo.kuiConf.confFile));
+				setLayout(XML(_configProxy.vo.vuiConf.confFile));
 			}
 		}
 		
@@ -334,7 +334,7 @@ package com.kaltura.kdpfl.controller
 		 * If both attributes are ommited the plugin is prepended to the first child of the layout.
 		 * This would be probably be a non visual plugin
 		 * Builtin components can be added as well by specfying a className attribute such as Button, Label etc.. 
-		 * @param layoutXML the whole kdp layout
+		 * @param layoutXML the whole vdp layout
 		 * @param pluginXML the plugin xml including the relativeTo and position attributes
 		 * 
 		 */
@@ -362,7 +362,7 @@ package com.kaltura.kdpfl.controller
 				var xml:XML = layoutXML.descendants().(attribute("id") == relativeTo)[0];
 				if (xml == null)
 				{
-					KTrace.getInstance().log("ERROR: plugin ", pluginXML.@id, " - couldnt find relativeTo component " + relativeTo);
+					VTrace.getInstance().log("ERROR: plugin ", pluginXML.@id, " - couldnt find relativeTo component " + relativeTo);
 				}
 				else if (position == "before")
 				{
@@ -383,7 +383,7 @@ package com.kaltura.kdpfl.controller
 					xml.appendChild(pluginXML);
 				}
 				else {
-					KTrace.getInstance().log("ERROR: plugin ", pluginXML.@id, " - invalid position " + position);
+					VTrace.getInstance().log("ERROR: plugin ", pluginXML.@id, " - invalid position " + position);
 				}
 			}
 			else
@@ -398,7 +398,7 @@ package com.kaltura.kdpfl.controller
 		 * Look for all flashvars with .plugin attribute and treat them as plugins
 		 * The id of the given plugin is the flashvars prefix
 		 * Insert all children of the <plugins> segment of the layout xml as well
-		 * @param layoutXML the whole kdp layout
+		 * @param layoutXML the whole vdp layout
 		 * 
 		 */
 		private function appendPluginsToLayout(layoutXML:XML):void
@@ -499,7 +499,7 @@ package com.kaltura.kdpfl.controller
 			return uiVarObj;
 		}
 		/**
-		 * Function which removes dotted flashvars (not UIVars) from the KDP configuration. 
+		 * Function which removes dotted flashvars (not UIVars) from the VDP configuration. 
 		 * @return 
 		 * 
 		 */		
@@ -519,7 +519,7 @@ package com.kaltura.kdpfl.controller
 		 * Originally dotted variables are now container objects (after calling buildFlashvarsTree).
 		 * these parameters override components using their id's as the first part of the flashvar dotted name
 		 * if a component wasnt found we try to retrieve a proxy object with the container name (e.g. mediaProxy)   
-		 * @param layoutXML the whole kdp layout
+		 * @param layoutXML the whole vdp layout
 		 * 
 		 */
 		private function overrideAttributes(layoutXML:XML):void
@@ -547,7 +547,7 @@ package com.kaltura.kdpfl.controller
 							}
 							catch(e:Error)
 							{
-								KTrace.getInstance().log("overrideAttributes failed to set attribute ", s, key);
+								VTrace.getInstance().log("overrideAttributes failed to set attribute ", s, key);
 								//trace("overrideAttributes failed to set attribute ", s, key);
 							}
 						}
@@ -563,7 +563,7 @@ package com.kaltura.kdpfl.controller
 		 * 3. Add partner data variables from retrieved widget
 		 * 4. Convert all flashvars with dot syntax (e.g. watermark.path) to objects 
 		 * 5. Append plugins into actual layout from flashvars and plugins section
-		 * 6. Parse parameters related to the KDP managers : TooltipManager and AlertMediator
+		 * 6. Parse parameters related to the VDP managers : TooltipManager and AlertMediator
 		 * @param xml the layout xml received from either uiconf or local configuration
 		 * 
 		 */
@@ -590,7 +590,7 @@ package com.kaltura.kdpfl.controller
 			// add the strings section of the layout to the flashvars
 			addLayoutVars(xml..strings.children(), "strings.");
 			
-			//check whether variable which blocks the KDP from accepting plugins/layout definitions passed through the embed code is present
+			//check whether variable which blocks the VDP from accepting plugins/layout definitions passed through the embed code is present
 			var uiVars : Object = parseKeyValuePairs( xml..uiVars.children() );
 			
 			if ( _flashvars.blockExternalInterference || uiVars.blockExternalInterference )
@@ -602,12 +602,12 @@ package com.kaltura.kdpfl.controller
 			addLayoutVars(xml..uiVars.children());
 			
 			// add partner data variables from retrieved widget
-			var kw:KalturaWidget = _configProxy.vo.kw;
-			//kw.partnerData = '<xml><uiVars><var key="pageName" value="my blog post" /><var key="pageUrl" value="http://my.blog.com/blog?article=1234" /></uiVars></xml>';
+			var vw:VidiunWidget = _configProxy.vo.vw;
+			//vw.partnerData = '<xml><uiVars><var key="pageName" value="my blog post" /><var key="pageUrl" value="http://my.blog.com/blog?article=1234" /></uiVars></xml>';
 			
-			if (kw && kw.partnerData)
+			if (vw && vw.partnerData)
 			{
-				addLayoutVars(XML(kw.partnerData).uiVars.children());
+				addLayoutVars(XML(vw.partnerData).uiVars.children());
 			}
 			
 			//if the flashvars say to disable any call to the ExternalInterface API we will do it here
@@ -619,10 +619,10 @@ package com.kaltura.kdpfl.controller
 			{
 				extProxy.vo.enabled = true;
 				extProxy.jsCallBackReadyFunc = _flashvars.jsCallBackReadyFunc;
-				extProxy.registerKDPCallbacks();
+				extProxy.registerVDPCallbacks();
 				
 				if (_flashvars.jsTraces=="true")
-					KTrace.getInstance().jsCallback = true;
+					VTrace.getInstance().jsCallback = true;
 			}
 			//in this case if external interface enabled will look for referrer, otherwise referrer will be empty
 			if (_flashvars.disableReferrerOverride == "true" || !_flashvars.referrer) {
@@ -656,7 +656,7 @@ package com.kaltura.kdpfl.controller
 			
 			if (_flashvars.clientDefaultMethod)
 			{
-				KalturaCall.defaultMethod = _flashvars.clientDefaultMethod;
+				VidiunCall.defaultMethod = _flashvars.clientDefaultMethod;
 			}
 			
 			
@@ -687,15 +687,15 @@ package com.kaltura.kdpfl.controller
 					var flavorCookie : SharedObject;
 					try
 					{
-						flavorCookie = SharedObject.getLocal("Kaltura");
+						flavorCookie = SharedObject.getLocal("Vidiun");
 					}
 					catch (e: Error)
 					{
-						KTrace.getInstance().log("no permissions to access partner's file system");
+						VTrace.getInstance().log("no permissions to access partner's file system");
 					}
 					
 					
-					KTrace.getInstance().log("---check if we need BW detection");
+					VTrace.getInstance().log("---check if we need BW detection");
 					if(flavorCookie && flavorCookie.data.preferedFlavorBR)
 					{	
 						//interval between bandwidth checks, in seconds
@@ -706,7 +706,7 @@ package com.kaltura.kdpfl.controller
 							var diff:Number = (new Date()).time - flavorCookie.data.timeStamp;
 							if (diff <= Number(bwInterval * 1000))
 							{
-								KTrace.getInstance().log("---bw interval is still valid");
+								VTrace.getInstance().log("---bw interval is still valid");
 								doBWCheck = false;
 							}
 						}
@@ -717,12 +717,12 @@ package com.kaltura.kdpfl.controller
 							//if the last playing flavor was the highest available (with 20%  range of difference) then there might be more suitable flaor now
 							if (flavorCookie.data.lastHighestBR && (Math.abs(flavorCookie.data.preferedFlavorBR - flavorCookie.data.lastHighestBR))<=(flavorCookie.data.preferedFlavorBR * 0.2))
 							{
-								KTrace.getInstance().log("---preferredBR was the heighest possible, might need BW check");
+								VTrace.getInstance().log("---preferredBR was the heighest possible, might need BW check");
 								//if the difference between the detected BW and the actual playing BW is too big (more than 50% out of the detected BR)
 								//we should perform BW check
 								if (flavorCookie.data.detectedBitrate && (0.5 * flavorCookie.data.detectedBitrate)>flavorCookie.data.preferedFlavorBR)
 								{
-									KTrace.getInstance().log("---difference between detected BR and preferred is too high, do BW check!");
+									VTrace.getInstance().log("---difference between detected BR and preferred is too high, do BW check!");
 									doConditionalBWCheck = true;
 								}
 							}
@@ -747,7 +747,7 @@ package com.kaltura.kdpfl.controller
 			if (doBWCheck || doConditionalBWCheck)
 			{
 				bwPlugin.@loadingPolicy = "wait";
-				KTrace.getInstance().log("---------LOAD BW CHECK PLUGIN-----------");
+				VTrace.getInstance().log("---------LOAD BW CHECK PLUGIN-----------");
 				//we should load BW plugin, but maybe the detection is still unnecessary, tell the plugin to run check before
 				if (doConditionalBWCheck)
 				{
@@ -771,7 +771,7 @@ package com.kaltura.kdpfl.controller
 			
 		}
 		
-		//on kml=local mode if we load the kml localy
+		//on vml=local mode if we load the vml localy
 		private function XMLLoaded( event : Event) : void
 		{
 			setLayout(new XML(event.target.data));
@@ -857,7 +857,7 @@ package com.kaltura.kdpfl.controller
 					catch (e: Error)
 					{
 						if (_flashvars.debugMode=="true")
-							KTrace.getInstance().log("LoadConfigCommand::addAttributesToManager >> property " +prop.localName()+" not found on " + getQualifiedClassName(manager));
+							VTrace.getInstance().log("LoadConfigCommand::addAttributesToManager >> property " +prop.localName()+" not found on " + getQualifiedClassName(manager));
 						//	trace ("LoadConfigCommand::addAttributesToManager >> property " +prop.localName()+" not found on " + getQualifiedClassName(manager));
 					}
 				}

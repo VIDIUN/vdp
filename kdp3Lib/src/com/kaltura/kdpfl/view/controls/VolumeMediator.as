@@ -5,12 +5,12 @@
  * @playerversion Flash 9.0.28.0
  * @author Dan Bacon / www.baconoppenheim.com
  */
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
 	
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.LayoutProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
 	
 	import fl.core.UIComponent;
 	
@@ -43,8 +43,8 @@ package com.kaltura.kdpfl.view.controls
 			volumeBar.init();
 			var flashvars : Object = (facade.retrieveProxy( ConfigProxy.NAME ) as ConfigProxy).vo.flashvars;
 			
-			volumeBar.addEventListener( KVolumeBar.EVENT_CHANGE, onVolumeChange, false, 0, true );
-			volumeBar.addEventListener( KVolumeBar.EVENT_CHANGE_END, onVolumeChangeEnd, false, 0, true );
+			volumeBar.addEventListener( VVolumeBar.EVENT_CHANGE, onVolumeChange, false, 0, true );
+			volumeBar.addEventListener( VVolumeBar.EVENT_CHANGE_END, onVolumeChangeEnd, false, 0, true );
 			
 			var initialValue:Number;
 			initialValue = volumeBar.initialValue;
@@ -52,11 +52,11 @@ package com.kaltura.kdpfl.view.controls
 			var volumeCookie : SharedObject;
 			try
 			{
-				volumeCookie= SharedObject.getLocal("KalturaVolume");
+				volumeCookie= SharedObject.getLocal("VidiunVolume");
 			}
 			catch (e : Error)
 			{
-				KTrace.getInstance().log("No access to user's file system");
+				VTrace.getInstance().log("No access to user's file system");
 				//trace ("No access to user's file system");
 			}
 			if(volumeCookie && volumeCookie.data.volume != null){
@@ -119,9 +119,9 @@ package com.kaltura.kdpfl.view.controls
 			];
 		}
 		
-		public function get volumeBar():KVolumeBar
+		public function get volumeBar():VVolumeBar
 		{
-			return( viewComponent as KVolumeBar );
+			return( viewComponent as VVolumeBar );
 		}		
 	}
 }

@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.plugin.component {
-	//import com.kaltura.kdpfl.component.IComponent;
+package com.vidiun.vdpfl.plugin.component {
+	//import com.vidiun.vdpfl.component.IComponent;
 	
-	import com.kaltura.kdpfl.view.containers.KHBox;
-	import com.kaltura.types.KalturaCaptionType;
+	import com.vidiun.vdpfl.view.containers.VHBox;
+	import com.vidiun.types.VidiunCaptionType;
 	
 	import fl.controls.ScrollPolicy;
 	import fl.events.ComponentEvent;
@@ -26,7 +26,7 @@ package com.kaltura.kdpfl.plugin.component {
 	
 	
 	
-	public class ClosedCaptions extends KHBox //implements IComponent
+	public class ClosedCaptions extends VHBox //implements IComponent
 	{
 		public static const ERROR_PARSING_SRT:String = "errorParsingSRT";
 		
@@ -180,7 +180,7 @@ package com.kaltura.kdpfl.plugin.component {
 				
 				_captionsURLLoader = new URLLoader();
 				_captionsURLLoader.dataFormat = URLLoaderDataFormat.TEXT;
-				_captionsURLLoader.addEventListener(Event.COMPLETE, (fileType == "tt" || fileType == KalturaCaptionType.DFXP) ? parseTimedText : parseSRT);
+				_captionsURLLoader.addEventListener(Event.COMPLETE, (fileType == "tt" || fileType == VidiunCaptionType.DFXP) ? parseTimedText : parseSRT);
 				
 				_captionsURLLoader.addEventListener(ErrorEvent.ERROR, onError)
 				_captionsURLLoader.addEventListener(AsyncErrorEvent.ASYNC_ERROR, onError);

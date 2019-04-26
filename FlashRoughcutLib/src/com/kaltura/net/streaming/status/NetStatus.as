@@ -1,6 +1,6 @@
-package com.kaltura.net.streaming.status
+package com.vidiun.net.streaming.status
 {
-	import com.kaltura.utils.KStringUtil;
+	import com.vidiun.utils.VStringUtil;
 
 	final public class NetStatus
 	{
@@ -51,7 +51,7 @@ package com.kaltura.net.streaming.status
 		static public function convertServerToCamel (server_code:String):String
 		{
 			server_code = server_code.replace(/\./g, "_");
-			return KStringUtil.camelize(server_code);
+			return VStringUtil.camelize(server_code);
 		}
 	}
 }

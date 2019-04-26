@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.strings
+package com.vidiun.vdpfl.plugin.strings
 {
 	public class SortOrderString
 	{

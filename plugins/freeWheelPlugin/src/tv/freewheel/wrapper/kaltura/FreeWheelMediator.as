@@ -1,21 +1,21 @@
-package tv.freewheel.wrapper.kaltura
+package tv.freewheel.wrapper.vidiun
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.AdsNotificationTypes;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.kdpfl.model.type.SourceType;
-	import com.kaltura.kdpfl.model.vo.AdMetadataVO;
-	import com.kaltura.kdpfl.plugin.IMidrollSequencePlugin;
-	import com.kaltura.kdpfl.view.controls.KTrace;
-	import com.kaltura.kdpfl.view.media.KMediaPlayer;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.osmf.proxy.KSwitchingProxyElement;
-	import com.kaltura.puremvc.as3.patterns.mediator.SequenceMultiMediator;
-	import com.kaltura.types.KalturaAdProtocolType;
-	import com.kaltura.vo.KalturaAdCuePoint;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.AdsNotificationTypes;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.SequenceContextType;
+	import com.vidiun.vdpfl.model.type.SourceType;
+	import com.vidiun.vdpfl.model.vo.AdMetadataVO;
+	import com.vidiun.vdpfl.plugin.IMidrollSequencePlugin;
+	import com.vidiun.vdpfl.view.controls.VTrace;
+	import com.vidiun.vdpfl.view.media.VMediaPlayer;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
+	import com.vidiun.osmf.proxy.VSwitchingProxyElement;
+	import com.vidiun.puremvc.as3.patterns.mediator.SequenceMultiMediator;
+	import com.vidiun.types.VidiunAdProtocolType;
+	import com.vidiun.vo.VidiunAdCuePoint;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -41,13 +41,13 @@ package tv.freewheel.wrapper.kaltura
 	import tv.freewheel.ad.behavior.ISlot;
 	import tv.freewheel.logging.Logger;
 	import tv.freewheel.renderer.util.StringUtil;
-	import tv.freewheel.wrapper.kaltura.events.SeekEvent;
+	import tv.freewheel.wrapper.vidiun.events.SeekEvent;
 	import tv.freewheel.wrapper.osmf.events.FWScrubEvent;
 	import tv.freewheel.wrapper.osmf.events.FWSlotEvent;
 	import tv.freewheel.wrapper.osmf.slot.FWSlotElement;
 	
 	/**
-	 * Mediator is for interacting with KDP player
+	 * Mediator is for interacting with VDP player
 	 */
 	public class FreeWheelMediator extends SequenceMultiMediator 
 	{
@@ -66,8 +66,8 @@ package tv.freewheel.wrapper.kaltura
 		private var plugin:freeWheelPluginCode;
 		public var slotBase:SlotBase;
 		
-		private var _playerMediator:KMediaPlayerMediator;
-		private var _player:KMediaPlayer;
+		private var _playerMediator:VMediaPlayerMediator;
+		private var _player:VMediaPlayer;
 		
 		private var playhead:Number;
 		private var seekTo:Number;
@@ -91,7 +91,7 @@ package tv.freewheel.wrapper.kaltura
 		
 		public function FreeWheelMediator(pluginCode:freeWheelPluginCode, viewComponent:Object = null)
 		{
-			this.logger = Logger.getSimpleLogger('KDPPlugin.Mediator ');
+			this.logger = Logger.getSimpleLogger('VDPPlugin.Mediator ');
 			this.logger.debug('new FreeWheelMediator()');
 			super(viewComponent);
 			this.plugin = pluginCode;
@@ -120,7 +120,7 @@ package tv.freewheel.wrapper.kaltura
 				END_INTERACTIVE_AD,
 				NotificationType.SEQUENCE_ITEM_PLAY_END,
 				UPDATE_VIDEO_ASSET_ID,
-				NotificationType.KDP_READY,
+				NotificationType.VDP_READY,
 				UPDATE_VIDEO_ASSET_DURATION
 			];
 		}
@@ -147,7 +147,7 @@ package tv.freewheel.wrapper.kaltura
 				case NotificationType.HAS_OPENED_FULL_SCREEN:
 				case NotificationType.HAS_CLOSED_FULL_SCREEN:
 				case NotificationType.ROOT_RESIZE:
-				case NotificationType.KDP_READY:
+				case NotificationType.VDP_READY:
 					flash.utils.setTimeout(this.plugin.resize, 1);
 					break;
 				case NotificationType.PLAYER_STATE_CHANGE:
@@ -177,10 +177,10 @@ package tv.freewheel.wrapper.kaltura
 					break;
 				case NotificationType.AD_OPPORTUNITY:
 					var adContext : String = notification.getBody().context;
-					var cuePoint:KalturaAdCuePoint = notification.getBody().cuePoint as KalturaAdCuePoint;
-					if (this.plugin.useKalturaTemporalSlots || cuePoint[freeWheelPluginCode.FROM_FREEWHEEL])
+					var cuePoint:VidiunAdCuePoint = notification.getBody().cuePoint as VidiunAdCuePoint;
+					if (this.plugin.useVidiunTemporalSlots || cuePoint[freeWheelPluginCode.FROM_FREEWHEEL])
 					{
-						if (cuePoint.protocolType == KalturaAdProtocolType.CUSTOM) {
+						if (cuePoint.protocolType == VidiunAdProtocolType.CUSTOM) {
 							if (adContext== SequenceContextType.PRE)
 								_sequenceProxy.vo.preSequenceArr.push(plugin);
 							else if (adContext== SequenceContextType.POST)
@@ -197,7 +197,7 @@ package tv.freewheel.wrapper.kaltura
 					}
 					break;
 				case END_INTERACTIVE_AD:
-					playerMediator.kMediaPlayer.removeEventListener(MouseEvent.CLICK, onInteractiveClick);
+					playerMediator.vMediaPlayer.removeEventListener(MouseEvent.CLICK, onInteractiveClick);
 					endSlot();
 					break;
 				
@@ -299,14 +299,14 @@ package tv.freewheel.wrapper.kaltura
 			var swfElement:SWFElement = new SWFElement(new URLResource(_adMetadataVo.url));
 			_interactiveTimer = new Timer(slot.duration * 1000, 1);
 			swfElement.addEventListener(MediaElementEvent.TRAIT_ADD, onTraitAdd);
-			playerMediator.kMediaPlayer.addEventListener(MouseEvent.CLICK, onInteractiveClick);
+			playerMediator.vMediaPlayer.addEventListener(MouseEvent.CLICK, onInteractiveClick);
 			return swfElement;
 		}
 		
 		private function onInteractiveAdEnd(event:TimerEvent):void {
 			_interactiveTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, onInteractiveAdEnd);
 			if (this.plugin.autoContinue) {
-				playerMediator.kMediaPlayer.removeEventListener(MouseEvent.CLICK, onInteractiveClick);
+				playerMediator.vMediaPlayer.removeEventListener(MouseEvent.CLICK, onInteractiveClick);
 				endSlot();
 			}
 		}
@@ -628,7 +628,7 @@ package tv.freewheel.wrapper.kaltura
 				this.playhead = playhead;
 			}
 			else {
-				var duration:Number = (facade.retrieveMediator("kMediaPlayerMediator"))["player"]["duration"];
+				var duration:Number = (facade.retrieveMediator("vMediaPlayerMediator"))["player"]["duration"];
 				var fraction:Number = playhead / duration;
 				if (!_reached25 && fraction > 0.25) {
 					sendNotification(AdsNotificationTypes.FIRST_QUARTILE_OF_AD, {timeSlot: this.sequenceContext});
@@ -660,7 +660,7 @@ package tv.freewheel.wrapper.kaltura
 				return this.playhead;
 			}
 			else{
-				var playerMediator:KMediaPlayerMediator = this.facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator;
+				var playerMediator:VMediaPlayerMediator = this.facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator;
 				if (playerMediator){
 					return playerMediator.getCurrentTime();
 				}
@@ -682,16 +682,16 @@ package tv.freewheel.wrapper.kaltura
 			}
 		}
 		
-		private function get player():KMediaPlayer{
+		private function get player():VMediaPlayer{
 			if (!this._player && this.playerMediator){
-				this._player = this.playerMediator.kMediaPlayer;
+				this._player = this.playerMediator.vMediaPlayer;
 			}
 			return this._player;
 		}
 		
-		private function get playerMediator():KMediaPlayerMediator{
+		private function get playerMediator():VMediaPlayerMediator{
 			if (!this._playerMediator)
-				this._playerMediator = this.facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator;
+				this._playerMediator = this.facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator;
 			return this._playerMediator;
 		}
 		
@@ -722,7 +722,7 @@ package tv.freewheel.wrapper.kaltura
 		}
 		private function get shouldWaitForCuePoints():Boolean{
 		//	var configProxy:ConfigProxy = this.facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			return  plugin.useKalturaTemporalSlots && configProxy && configProxy.vo.flashvars.getCuePointsData && !this.entryCuePoints;
+			return  plugin.useVidiunTemporalSlots && configProxy && configProxy.vo.flashvars.getCuePointsData && !this.entryCuePoints;
 		}
 		
 		private function get configProxy():ConfigProxy

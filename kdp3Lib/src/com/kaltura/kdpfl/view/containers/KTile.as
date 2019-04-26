@@ -1,15 +1,15 @@
-package com.kaltura.kdpfl.view.containers
+package com.vidiun.vdpfl.view.containers
 {
-	import com.kaltura.kdpfl.component.IComponent;
+	import com.vidiun.vdpfl.component.IComponent;
 	import com.yahoo.astra.fl.containers.FlowPane;
 	import com.yahoo.astra.layout.modes.HorizontalAlignment;
 	import com.yahoo.astra.layout.modes.VerticalAlignment;
 	
 	import flash.utils.getDefinitionByName;
 
-	public dynamic class KTile extends FlowPane implements IComponent
+	public dynamic class VTile extends FlowPane implements IComponent
 	{
-		public function KTile(configuration:Array=null)
+		public function VTile(configuration:Array=null)
 		{
 			super(configuration);
 			mouseEnabled = false;

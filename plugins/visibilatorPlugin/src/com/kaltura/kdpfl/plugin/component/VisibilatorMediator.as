@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.puremvc.as3.patterns.mediator.MultiMediator;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.puremvc.as3.patterns.mediator.MultiMediator;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;

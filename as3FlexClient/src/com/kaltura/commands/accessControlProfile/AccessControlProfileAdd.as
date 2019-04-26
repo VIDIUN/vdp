@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.accessControlProfile
+package com.vidiun.commands.accessControlProfile
 {
-		import com.kaltura.vo.KalturaAccessControlProfile;
-	import com.kaltura.delegates.accessControlProfile.AccessControlProfileAddDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunAccessControlProfile;
+	import com.vidiun.delegates.accessControlProfile.AccessControlProfileAddDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Add new access control profile
 	* 
 	**/
-	public class AccessControlProfileAdd extends KalturaCall
+	public class AccessControlProfileAdd extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param accessControlProfile KalturaAccessControlProfile
+		* @param accessControlProfile VidiunAccessControlProfile
 		**/
-		public function AccessControlProfileAdd( accessControlProfile : KalturaAccessControlProfile )
+		public function AccessControlProfileAdd( accessControlProfile : VidiunAccessControlProfile )
 		{
 			service= 'accesscontrolprofile';
 			action= 'add';
@@ -50,7 +50,7 @@ package com.kaltura.commands.accessControlProfile
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(accessControlProfile, 'accessControlProfile');
+				keyValArr = vidiunObject2Arrays(accessControlProfile, 'accessControlProfile');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

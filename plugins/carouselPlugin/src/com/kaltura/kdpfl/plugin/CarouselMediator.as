@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin
+package com.vidiun.vdpfl.plugin
 {
 	import flash.events.Event;
 	
@@ -49,19 +49,19 @@ package com.kaltura.kdpfl.plugin
 			return notifications;
 		}
 		
-		protected function get carousel():KCarousel
+		protected function get carousel():VCarousel
 		{
-			return viewComponent.carousel as KCarousel;
+			return viewComponent.carousel as VCarousel;
 		}
 		
 		protected function onCarouselPrev(note:INotification):void
 		{
-			(this.carousel.layoutRenderer as KSlidingCarouselRenderer).prevSlide();
+			(this.carousel.layoutRenderer as VSlidingCarouselRenderer).prevSlide();
 		}
 		
 		protected function onCarouselNext(note:INotification):void
 		{
-			(this.carousel.layoutRenderer as KSlidingCarouselRenderer).nextSlide();
+			(this.carousel.layoutRenderer as VSlidingCarouselRenderer).nextSlide();
 		}
 		
 		protected function onCarouselChange(event:Event):void

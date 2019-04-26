@@ -1,13 +1,13 @@
-package com.kaltura.utils
+package com.vidiun.utils
 {
 	
-	import com.kaltura.utils.parsers.DateParser;
+	import com.vidiun.utils.parsers.DateParser;
 	
 	import flash.utils.describeType;
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
 	
-	public class KConfigUtil
+	public class VConfigUtil
 	{
 		//TODO: merge getDefaultValue2 & getDefaultValue into one function that can get either default property name or data type class
 		//TODO: add multiple fallbacks support, for example, the function could be called passing it (flashvars, uiconf, default hardcoded value) in single call instead of two.

@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin 
+package com.vidiun.vdpfl.plugin 
 {
-	import com.kaltura.kdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.NotificationType;
 	
 	import fl.core.UIComponent;
 	
@@ -37,7 +37,7 @@ package com.kaltura.kdpfl.plugin
 		/**
 		 * skin className for the loading animation
 		 * */
-		public var spinnerClass : String = "kspin";
+		public var spinnerClass : String = "vspin";
 		/**
 		 * loading animation
 		 * */

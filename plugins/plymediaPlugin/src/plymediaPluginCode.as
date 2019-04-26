@@ -1,7 +1,7 @@
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.Plymedia;
-	import com.kaltura.kdpfl.plugin.component.PlymediaMediator;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.Plymedia;
+	import com.vidiun.vdpfl.plugin.component.PlymediaMediator;
 
 	import fl.core.UIComponent;
 	import fl.managers.*;
@@ -25,7 +25,7 @@ package {
 
 		/**
 		 * if true, host will be taken from falshvars.host
-		 * otherwise the host will be www.kaltura.com
+		 * otherwise the host will be www.vidiun.com
 		 * */
 		public var useHost:Boolean = false;
 

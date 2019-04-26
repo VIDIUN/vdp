@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
-	import com.kaltura.kdpfl.component.IComponent;
-	import com.kaltura.kdpfl.style.TextFormatManager;
+	import com.vidiun.vdpfl.component.IComponent;
+	import com.vidiun.vdpfl.style.TextFormatManager;
 	
 	import fl.controls.List;
 	import fl.controls.ScrollPolicy;
@@ -15,18 +15,18 @@ package com.kaltura.kdpfl.view.controls
 	import flash.utils.getDefinitionByName;
 	
 	/**
-	 * Klist will be created for "List" component. 
+	 * Vlist will be created for "List" component. 
 	 * @author michalr
 	 * 
 	 */	
-	public class KList extends List implements IComponent
+	public class VList extends List implements IComponent
 	{
 		private var _postfix:String;
 		public var maxHeight:int = 100;
 		private var _selectedTf:TextFormat
 		private var _listTf:TextFormat
 		
-		public function KList()
+		public function VList()
 		{
 			super();
 		}
@@ -176,7 +176,7 @@ package com.kaltura.kdpfl.view.controls
 				var displayItem:* = getDefinitionByName(className+_postfix) as Class;
 				item.setStyle( styleProperty ,displayItem );
 			} catch(e:Error) {
-				KTrace.getInstance().log(e.toString());
+				VTrace.getInstance().log(e.toString());
 			};
 		}
 		

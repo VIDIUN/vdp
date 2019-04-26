@@ -1,15 +1,15 @@
-package com.kaltura.kdpfl.plugin.googleAnalytics
+package com.vidiun.vdpfl.plugin.googleAnalytics
 {
 	import com.google.analytics.GATracker;
 	import com.google.analytics.core.RequestObject;
-	import com.kaltura.commands.stats.StatsCollect;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.types.KalturaStatsEventType;
-	import com.kaltura.vo.KalturaBaseEntry;
-	import com.kaltura.vo.KalturaStatsEvent;
+	import com.vidiun.commands.stats.StatsCollect;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
+	import com.vidiun.types.VidiunStatsEventType;
+	import com.vidiun.vo.VidiunBaseEntry;
+	import com.vidiun.vo.VidiunStatsEvent;
 	
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
@@ -47,7 +47,7 @@ package com.kaltura.kdpfl.plugin.googleAnalytics
 			NotificationType.DO_PAUSE,
 			NotificationType.DO_REPLAY,
 			NotificationType.DURATION_CHANGE,
-			"kdpReady",
+			"vdpReady",
 			"doDownload",
 			"doGigya",
 			"showAdvancedShare",
@@ -108,31 +108,31 @@ package com.kaltura.kdpfl.plugin.googleAnalytics
 		
 		/**
 		 *Build a generic statistics object for easier tracking. 
-		 * @param kc	The Kaltura Client (from the flex Kaltura APIs Client Library).
-		 * @return 		A generic Kaltura statistics event.
+		 * @param vc	The Vidiun Client (from the flex Vidiun APIs Client Library).
+		 * @return 		A generic Vidiun statistics event.
 		 */		
-		private function getBasicStatsEntry(kc:Object) : com.kaltura.vo.KalturaStatsEvent
+		private function getBasicStatsEntry(vc:Object) : com.vidiun.vo.VidiunStatsEvent
 		{
 			var config: Object =  facade.retrieveProxy("configProxy");
-			var mediaPlayer : KMediaPlayerMediator = facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator;
-			var kse : com.kaltura.vo.KalturaStatsEvent = new com.kaltura.vo.KalturaStatsEvent();
-			kse.partnerId = config["vo"]["flashvars"].partnerId;
-			kse.widgetId = config["vo"]["flashvars"].id;
-            kse.uiconfId = config["vo"].flashvars.uiConfId;
-            kse.entryId =  (facade.retrieveProxy("mediaProxy"))["vo"].entry.id;
- 		    kse.clientVer = "3.0:" + facade["kdpVersion"];
+			var mediaPlayer : VMediaPlayerMediator = facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator;
+			var vse : com.vidiun.vo.VidiunStatsEvent = new com.vidiun.vo.VidiunStatsEvent();
+			vse.partnerId = config["vo"]["flashvars"].partnerId;
+			vse.widgetId = config["vo"]["flashvars"].id;
+            vse.uiconfId = config["vo"].flashvars.uiConfId;
+            vse.entryId =  (facade.retrieveProxy("mediaProxy"))["vo"].entry.id;
+ 		    vse.clientVer = "3.0:" + facade["vdpVersion"];
             var dt:Date = new Date();
-            kse.eventTimestamp = dt.time + dt.timezoneOffset-dt.timezoneOffset*60000; // milisec UTC + users timezone offset
+            vse.eventTimestamp = dt.time + dt.timezoneOffset-dt.timezoneOffset*60000; // milisec UTC + users timezone offset
             if(mediaPlayer)
             {
-		        kse.duration = mediaPlayer.player.duration;
-		        kse.currentPoint = mediaPlayer.getCurrentTime() * 1000;
+		        vse.duration = mediaPlayer.player.duration;
+		        vse.currentPoint = mediaPlayer.getCurrentTime() * 1000;
             }
-			kse.sessionId =kc["ks"];            
-			kse.referrer = config["vo"].flashvars.referer;
-			if(!kse.referrer)			
-				kse.referrer = config["vo"].flashvars.refferer;			
-			return kse;
+			vse.sessionId =vc["vs"];            
+			vse.referrer = config["vo"].flashvars.referer;
+			if(!vse.referrer)			
+				vse.referrer = config["vo"].flashvars.refferer;			
+			return vse;
 			
 		}
 		
@@ -166,11 +166,11 @@ package com.kaltura.kdpfl.plugin.googleAnalytics
 		override public function handleNotification(notification:INotification):void
 		{
 			log("RECEIVED: "+notification.getName());	
-			var kc: Object =  facade.retrieveProxy("servicesProxy")["kalturaClient"];
+			var vc: Object =  facade.retrieveProxy("servicesProxy")["vidiunClient"];
 			var sp: SequenceProxy =  (facade.retrieveProxy("sequenceProxy") as SequenceProxy);
-			var kse : com.kaltura.vo.KalturaStatsEvent = this.getBasicStatsEntry(kc);
-			var kw:Object	= facade.retrieveProxy("configProxy")["vo"]["kw"];
-			var entry : KalturaBaseEntry  	= (facade.retrieveProxy("mediaProxy")["vo"]["entry"] as KalturaBaseEntry);
+			var vse : com.vidiun.vo.VidiunStatsEvent = this.getBasicStatsEntry(vc);
+			var vw:Object	= facade.retrieveProxy("configProxy")["vo"]["vw"];
+			var entry : VidiunBaseEntry  	= (facade.retrieveProxy("mediaProxy")["vo"]["entry"] as VidiunBaseEntry);
 			var data:Object = notification.getBody();
 			var note:String	= notification.getName();
 			var value:Number;
@@ -181,16 +181,16 @@ package com.kaltura.kdpfl.plugin.googleAnalytics
 			var shouldPublish:Boolean 	= true;
 			var currTime:Number	= new Date().time;
 			switch(note){
-				case "kdpReady":
+				case "vdpReady":
 					/*
 					//stop tracking pageview
 					var siteUrl:String	= facade.retrieveProxy("configProxy")["vo"]["flashvars"]["referer"];
-					var playerId:String	= kw.id;
+					var playerId:String	= vw.id;
 					var videoId:String	= entry.id;
 					var videoName:String= entry.name;
 					var url:String		= siteUrl;
 					var refUrl			= siteUrl;
-					var requestUrl:String	= siteUrl+"/playerid="+kw.id+"/videoid="+entry.id+"/videoname="+entry.name+"/url="+siteUrl+"/refurl="+siteUrl;
+					var requestUrl:String	= siteUrl+"/playerid="+vw.id+"/videoid="+entry.id+"/videoname="+entry.name+"/url="+siteUrl+"/refurl="+siteUrl;
 					_ga.trackPageview(requestUrl);
 					*/
 					break; 
@@ -303,7 +303,7 @@ package com.kaltura.kdpfl.plugin.googleAnalytics
 						shouldPublish	= false;
 					break;
 				case "playerSeekEnd":
-					var mediaPlayer:Object = facade.retrieveMediator("kMediaPlayerMediator");
+					var mediaPlayer:Object = facade.retrieveMediator("vMediaPlayerMediator");
 					_nextCuePoint=-1;
 					_inSeek = false;
 					percentStatsChanged(mediaPlayer["player"].currentTime);
@@ -317,7 +317,7 @@ package com.kaltura.kdpfl.plugin.googleAnalytics
 			
 			
 			var gaCategory:String	= customObject["Category"] || defaultCategory;
-			var	gaLabel:String		= customObject["Label"] || ((entry.name || _mediaTitle)+" | "+entry.id+" | "+kw.id);
+			var	gaLabel:String		= customObject["Label"] || ((entry.name || _mediaTitle)+" | "+entry.id+" | "+vw.id);
 			var	gaAction:String		= customObject["Action"] || note;
 			var	gaValue:Number		= customObject["Value"] || value;
 			log("SENDING ::: "+notification.getName() +" | "+shouldPublish);	
@@ -366,7 +366,7 @@ package com.kaltura.kdpfl.plugin.googleAnalytics
 						{
 							if(currPosition ) 
 							{
-								publishGa (defaultCategory, _percentages[s][1]+"_pct_watched",  entry.name +" | "+entry.id+" | "+kw.id, Math.round(_currentTime))
+								publishGa (defaultCategory, _percentages[s][1]+"_pct_watched",  entry.name +" | "+entry.id+" | "+vw.id, Math.round(_currentTime))
 								trace("PERCENTAGE REACHED!!!!!!			"+_percentages[s][1]);
 								if(_percentages.length == s+1)
 								{
@@ -458,7 +458,7 @@ package com.kaltura.kdpfl.plugin.googleAnalytics
 		 */		
 		public function setupGa (urchin_code:String):void {
 			urchinCode = urchin_code;
-			log("KDPGA - ga_id: " + urchinCode);
+			log("VDPGA - ga_id: " + urchinCode);
 			_ga = new GATracker( view, urchinCode, "AS3", visualDebug);
 		}
 		

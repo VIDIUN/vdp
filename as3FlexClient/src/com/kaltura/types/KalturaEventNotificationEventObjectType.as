@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,9 +25,9 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.types
+package com.vidiun.types
 {
-	public class KalturaEventNotificationEventObjectType
+	public class VidiunEventNotificationEventObjectType
 	{
 		public static const AD_CUE_POINT : String = 'adCuePointEventNotifications.AdCuePoint';
 		public static const ANNOTATION : String = 'annotationEventNotifications.Annotation';
@@ -42,17 +42,17 @@ package com.kaltura.types
 		public static const ASSET : String = '3';
 		public static const FLAVORASSET : String = '4';
 		public static const THUMBASSET : String = '5';
-		public static const KUSER : String = '8';
+		public static const VUSER : String = '8';
 		public static const ACCESSCONTROL : String = '9';
 		public static const BATCHJOB : String = '10';
 		public static const BULKUPLOADRESULT : String = '11';
-		public static const CATEGORYKUSER : String = '12';
+		public static const CATEGORYVUSER : String = '12';
 		public static const CONVERSIONPROFILE2 : String = '14';
 		public static const FLAVORPARAMS : String = '15';
 		public static const FLAVORPARAMSCONVERSIONPROFILE : String = '16';
 		public static const FLAVORPARAMSOUTPUT : String = '17';
 		public static const GENERICSYNDICATIONFEED : String = '18';
-		public static const KUSERTOUSERROLE : String = '19';
+		public static const VUSERTOUSERROLE : String = '19';
 		public static const PARTNER : String = '20';
 		public static const PERMISSION : String = '21';
 		public static const PERMISSIONITEM : String = '22';

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,26 +25,26 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.document
+package com.vidiun.commands.document
 {
-		import com.kaltura.vo.KalturaDocumentEntryFilter;
-		import com.kaltura.vo.KalturaFilterPager;
-	import com.kaltura.delegates.document.DocumentListDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunDocumentEntryFilter;
+		import com.vidiun.vo.VidiunFilterPager;
+	import com.vidiun.delegates.document.DocumentListDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* List document entries by filter with paging support.
 	* 
 	**/
-	public class DocumentList extends KalturaCall
+	public class DocumentList extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param filter KalturaDocumentEntryFilter
-		* @param pager KalturaFilterPager
+		* @param filter VidiunDocumentEntryFilter
+		* @param pager VidiunFilterPager
 		**/
-		public function DocumentList( filter : KalturaDocumentEntryFilter=null,pager : KalturaFilterPager=null )
+		public function DocumentList( filter : VidiunDocumentEntryFilter=null,pager : VidiunFilterPager=null )
 		{
 			service= 'document';
 			action= 'list';
@@ -53,12 +53,12 @@ package com.kaltura.commands.document
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
 			if (filter) { 
-				keyValArr = kalturaObject2Arrays(filter, 'filter');
+				keyValArr = vidiunObject2Arrays(filter, 'filter');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 
 			if (pager) { 
-				keyValArr = kalturaObject2Arrays(pager, 'pager');
+				keyValArr = vidiunObject2Arrays(pager, 'pager');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

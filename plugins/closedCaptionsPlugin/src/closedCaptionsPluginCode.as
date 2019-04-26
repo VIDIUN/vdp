@@ -1,8 +1,8 @@
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.ClosedCaptions;
-	import com.kaltura.kdpfl.plugin.component.ClosedCaptionsMediator;
-	import com.kaltura.kdpfl.view.containers.KHBox;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.ClosedCaptions;
+	import com.vidiun.vdpfl.plugin.component.ClosedCaptionsMediator;
+	import com.vidiun.vdpfl.view.containers.VHBox;
 	
 	import fl.core.UIComponent;
 	import fl.data.DataProvider;

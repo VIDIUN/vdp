@@ -1,10 +1,10 @@
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.style.TextFormatManager;
-	import com.kaltura.kdpfl.view.containers.KCanvas;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.LayoutProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.style.TextFormatManager;
+	import com.vidiun.vdpfl.view.containers.VCanvas;
 	import com.yahoo.astra.fl.events.AlertEvent;
 	import com.yahoo.astra.fl.managers.AlertManager;
 	
@@ -18,7 +18,7 @@ package com.kaltura.kdpfl.view.controls
 	import org.puremvc.as3.patterns.facade.Facade;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	/**
-	 * This class handles presenting KDP alerts to the user. 
+	 * This class handles presenting VDP alerts to the user. 
 	 * @author Hila
 	 * 
 	 */
@@ -86,7 +86,7 @@ package com.kaltura.kdpfl.view.controls
 		            }
 		            if(!_disabled){
 						var layoutProxy:LayoutProxy = Facade.getInstance().retrieveProxy( LayoutProxy.NAME ) as LayoutProxy;
-						var foreground:KCanvas = layoutProxy.vo.foreground;
+						var foreground:VCanvas = layoutProxy.vo.foreground;
 						if (!alertStylesApplied)
 							styleAlert();
 						if(note.getBody() && note.getBody().message && note.getBody().title)

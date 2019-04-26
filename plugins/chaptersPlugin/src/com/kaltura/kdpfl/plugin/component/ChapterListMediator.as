@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.plugin.constants.NotificationStrings;
-	import com.kaltura.kdpfl.plugin.events.ChapterEvent;
+	import com.vidiun.vdpfl.plugin.constants.NotificationStrings;
+	import com.vidiun.vdpfl.plugin.events.ChapterEvent;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;

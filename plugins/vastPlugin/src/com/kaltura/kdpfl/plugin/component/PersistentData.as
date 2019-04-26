@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
 	import flash.net.SharedObject;
 	
@@ -7,7 +7,7 @@ package com.kaltura.kdpfl.plugin.component
 	public class PersistentData {
 		
 		
-		private var _soName:String = "kaltura/vast_";
+		private var _soName:String = "vidiun/vast_";
 		
 		public static const millisecondsPerDay:int = 1000 * 60 * 60 * 24;
 		
@@ -23,7 +23,7 @@ package com.kaltura.kdpfl.plugin.component
 		
 		public function init(facade:IFacade) :void {
 			_config = facade.retrieveProxy("configProxy");
-			_so = SharedObject.getLocal(_soName + _config.vo.kuiConf.id);
+			_so = SharedObject.getLocal(_soName + _config.vo.vuiConf.id);
 		}
 		
 		

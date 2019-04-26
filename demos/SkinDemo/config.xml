@@ -1,6 +1,6 @@
 <layout id="full" skinPath="assets/skin.swf">
 		<VBox id="player" width="100%" height="100%" styleName="black">
-			<Plugin id="kalturaMix" width="0%" height="0%" includeInLayout="false"
+			<Plugin id="vidiunMix" width="0%" height="0%" includeInLayout="false"
 				loadingPolicy="onDemand"/>
 			<Plugin id="statistics" width="0%" height="0%" includeInLayout="false"/>
 			
@@ -15,8 +15,8 @@
 					endScreenOverId="endScreen"/>
 				
 				<Watermark id="watermark" width="100%" height="100%"
-					watermarkPath="http://www.kaltura.com/content/uiconf/kaltura/kmc/appstudio/kdp3/exampleWatermark.png"
-					watermarkClickPath="http://www.kaltura.com/"
+					watermarkPath="http://www.vidiun.com/content/uiconf/vidiun/vmc/appstudio/vdp3/exampleWatermark.png"
+					watermarkClickPath="http://www.vidiun.com/"
 					watermarkPosition="bottomLeft" padding="5"/>
 				<Plugin id="gigya" width="100%" height="100%" loadingPolicy="noWait"
 					shareEmailBody="Hi,&lt;br>I watched this video and thought you'd enjoy it too. &lt;br>$URL$ to watch.&lt;br> $sender$"
@@ -79,7 +79,7 @@
 						 />
 												
 						<Button id="shareBtnControllerScreen"
-							kClick="sendNotification('doGigya')" 
+							vClick="sendNotification('doGigya')" 
 							maxHeight="20"
 							label="Share"
 							focusRectPadding="0"
@@ -102,7 +102,7 @@
 						tooltip="Play video"
 					/>
 					<Button id="shareBtnStartScreen"
-						kClick="sendNotification('doGigya')" minWidth="60"
+						vClick="sendNotification('doGigya')" minWidth="60"
 						labelPlacement="top" label="Share" 
 						styleName="onScreenBtn"
 						upIcon="shareIcon"
@@ -128,7 +128,7 @@
 						color1="14540253" color2="16777215" color3="3355443"
 						color4="10066329" color5="16777215" font="Arial"/>
 					<Button id="shareBtnPauseScreen"
-						kClick="sendNotification('doGigya')"
+						vClick="sendNotification('doGigya')"
 						 minWidth="60"
 						labelPlacement="top" label="Share" styleName="onScreenBtn"
 						upIcon="shareIcon" tooltip="share with friends"
@@ -146,7 +146,7 @@
 				<Tile id="playTile" width="100%" verticalGap="10"
 					verticalAlign="middle" horizontalAlign="center">
 					<Button id="shareBtnPlayScreen"
-						kClick="sendNotification('doGigya')"
+						vClick="sendNotification('doGigya')"
 						 minWidth="60"
 						labelPlacement="top" label="Share" styleName="onScreenBtn"
 						upIcon="shareIcon" tooltip="share with friends"
@@ -164,7 +164,7 @@
 				<Tile id="endTile" width="100%" verticalGap="10"
 					verticalAlign="middle" horizontalAlign="center">
 					<Button id="replayBtnEndScreen"
-						kClick="sendNotification('doPlay')"
+						vClick="sendNotification('doPlay')"
 						 minWidth="60"
 						labelPlacement="top" label="Replay"
 						styleName="onScreenBtn" upIcon="replayIcon"
@@ -172,7 +172,7 @@
 						color3="3355443" color4="10066329" color5="16777215"
 						font="Arial"/>
 					<Button id="shareBtnEndScreen"
-						kClick="sendNotification('doGigya')"
+						vClick="sendNotification('doGigya')"
 						 minWidth="60"
 						labelPlacement="top" label="Share" styleName="onScreenBtn"
 						upIcon="shareIcon" tooltip="share with friends"

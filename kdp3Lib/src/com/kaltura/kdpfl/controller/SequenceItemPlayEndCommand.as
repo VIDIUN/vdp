@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.controller
+package com.vidiun.vdpfl.controller
 {
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;

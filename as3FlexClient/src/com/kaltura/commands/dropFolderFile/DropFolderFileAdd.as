@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.dropFolderFile
+package com.vidiun.commands.dropFolderFile
 {
-		import com.kaltura.vo.KalturaDropFolderFile;
-	import com.kaltura.delegates.dropFolderFile.DropFolderFileAddDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunDropFolderFile;
+	import com.vidiun.delegates.dropFolderFile.DropFolderFileAddDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
-	* Allows you to add a new KalturaDropFolderFile object
+	* Allows you to add a new VidiunDropFolderFile object
 	* 
 	**/
-	public class DropFolderFileAdd extends KalturaCall
+	public class DropFolderFileAdd extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param dropFolderFile KalturaDropFolderFile
+		* @param dropFolderFile VidiunDropFolderFile
 		**/
-		public function DropFolderFileAdd( dropFolderFile : KalturaDropFolderFile )
+		public function DropFolderFileAdd( dropFolderFile : VidiunDropFolderFile )
 		{
 			service= 'dropfolder_dropfolderfile';
 			action= 'add';
@@ -50,7 +50,7 @@ package com.kaltura.commands.dropFolderFile
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(dropFolderFile, 'dropFolderFile');
+				keyValArr = vidiunObject2Arrays(dropFolderFile, 'dropFolderFile');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

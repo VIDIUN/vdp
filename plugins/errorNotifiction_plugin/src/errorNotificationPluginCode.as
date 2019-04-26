@@ -1,8 +1,8 @@
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.ErrorNotificationMediator;
-	import com.kaltura.vo.KalturaBaseEntry;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.ErrorNotificationMediator;
+	import com.vidiun.vo.VidiunBaseEntry;
 	
 	import flash.display.Sprite;
 	
@@ -70,7 +70,7 @@ package
 
 		/**
 		 * Initialize plugin mediator and data 
-		 * @param facade KDP application facade.
+		 * @param facade VDP application facade.
 		 * 
 		 */		
 		public function initializePlugin( facade : IFacade ) : void {

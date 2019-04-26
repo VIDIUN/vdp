@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.BaseFlexVo;
+	import com.vidiun.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaEntryDistribution extends BaseFlexVo
+	public dynamic class VidiunEntryDistribution extends BaseFlexVo
 	{
 		/**
 		* Auto generated unique id
@@ -69,17 +69,17 @@ package com.kaltura.vo
 		public var distributionProfileId : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaEntryDistributionStatus
+		* @see com.vidiun.types.VidiunEntryDistributionStatus
 		**/
 		public var status : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaEntryDistributionSunStatus
+		* @see com.vidiun.types.VidiunEntryDistributionSunStatus
 		**/
 		public var sunStatus : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaEntryDistributionFlag
+		* @see com.vidiun.types.VidiunEntryDistributionFlag
 		**/
 		public var dirtyStatus : int = int.MIN_VALUE;
 
@@ -136,7 +136,7 @@ package com.kaltura.vo
 		public var validationErrors : Array = null;
 
 		/**
-		* @see com.kaltura.types.KalturaBatchJobErrorTypes
+		* @see com.vidiun.types.VidiunBatchJobErrorTypes
 		**/
 		public var errorType : int = int.MIN_VALUE;
 
@@ -149,32 +149,32 @@ package com.kaltura.vo
 		public var errorDescription : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaNullableBoolean
+		* @see com.vidiun.types.VidiunNullableBoolean
 		**/
 		public var hasSubmitResultsLog : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaNullableBoolean
+		* @see com.vidiun.types.VidiunNullableBoolean
 		**/
 		public var hasSubmitSentDataLog : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaNullableBoolean
+		* @see com.vidiun.types.VidiunNullableBoolean
 		**/
 		public var hasUpdateResultsLog : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaNullableBoolean
+		* @see com.vidiun.types.VidiunNullableBoolean
 		**/
 		public var hasUpdateSentDataLog : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaNullableBoolean
+		* @see com.vidiun.types.VidiunNullableBoolean
 		**/
 		public var hasDeleteResultsLog : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaNullableBoolean
+		* @see com.vidiun.types.VidiunNullableBoolean
 		**/
 		public var hasDeleteSentDataLog : int = int.MIN_VALUE;
 
@@ -216,7 +216,7 @@ package com.kaltura.vo
 			var result:String = '';
 			switch (arrayName) {
 				case 'validationErrors':
-					result = 'KalturaDistributionValidationError';
+					result = 'VidiunDistributionValidationError';
 					break;
 			}
 			return result;

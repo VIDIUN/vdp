@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,16 +25,16 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.sharepointExtension
+package com.vidiun.commands.sharepointExtension
 {
-	import com.kaltura.delegates.sharepointExtension.SharepointExtensionIsVersionSupportedDelegate;
-	import com.kaltura.net.KalturaCall;
+	import com.vidiun.delegates.sharepointExtension.SharepointExtensionIsVersionSupportedDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
-	* Is this Kaltura-Sharepoint-Server-Plugin supports minimum version of $major.$minor.$build (which is required by the extension)
+	* Is this Vidiun-Sharepoint-Server-Plugin supports minimum version of $major.$minor.$build (which is required by the extension)
 	* 
 	**/
-	public class SharepointExtensionIsVersionSupported extends KalturaCall
+	public class SharepointExtensionIsVersionSupported extends VidiunCall
 	{
 		public var filterFields : String;
 		
@@ -45,7 +45,7 @@ package com.kaltura.commands.sharepointExtension
 		**/
 		public function SharepointExtensionIsVersionSupported( serverMajor : int,serverMinor : int,serverBuild : int )
 		{
-			service= 'kalturasharepointextension_sharepointextension';
+			service= 'vidiunsharepointextension_sharepointextension';
 			action= 'isVersionSupported';
 
 			var keyArr : Array = new Array();

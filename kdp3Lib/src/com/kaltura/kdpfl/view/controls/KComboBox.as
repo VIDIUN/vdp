@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
-	import com.kaltura.kdpfl.component.IComponent;
-	import com.kaltura.kdpfl.style.TextFormatManager;
+	import com.vidiun.vdpfl.component.IComponent;
+	import com.vidiun.vdpfl.style.TextFormatManager;
 	
 	import fl.controls.ComboBox;
 	import fl.controls.List;
@@ -12,7 +12,7 @@ package com.kaltura.kdpfl.view.controls
 	import flash.text.TextFormatAlign;
 	import flash.utils.getDefinitionByName;
 
-	public class KComboBox extends ComboBox implements IComponent
+	public class VComboBox extends ComboBox implements IComponent
 	{
 		private var _postfix:String;
 		public var forceUpperList:String;
@@ -21,7 +21,7 @@ package com.kaltura.kdpfl.view.controls
 		public var limitRowCount:String = "7";
 	
 		
-		public function KComboBox()
+		public function VComboBox()
 		{
 			super();
 			
@@ -108,7 +108,7 @@ package com.kaltura.kdpfl.view.controls
 				var displayItem:* = getDefinitionByName(className+_postfix) as Class;
 				item.setStyle( styleProperty ,displayItem );
 			} catch(e:Error) {
-				KTrace.getInstance().log(e.toString());
+				VTrace.getInstance().log(e.toString());
 			};
 		}
 		

@@ -42,7 +42,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 </table>
 <p></p>
-  Class starsMediator manages the communication between the KDP and the Stars component. 
+  Class starsMediator manages the communication between the VDP and the Stars component. 
   <p></p>
 <br>
 <hr>
@@ -61,7 +61,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#mediaProxy">mediaProxy</a> : Proxy<div class="summaryTableDescription">
-   Parameter holds the KDP's MediaProxy.</div>
+   Parameter holds the VDP's MediaProxy.</div>
 </td><td class="summaryTableOwnerCol">starsMediator</td>
 </tr>
 <tr class="">
@@ -70,7 +70,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">starsMediator</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#stars">stars</a> : <a href="kaltura/controls/Stars.html">Stars</a>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#stars">stars</a> : <a href="vidiun/controls/Stars.html">Stars</a>
 <div class="summaryTableDescription">
    The view component of the plugin.</div>
 </td><td class="summaryTableOwnerCol">starsMediator</td>
@@ -92,7 +92,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#starsMediator()">starsMediator</a>(newStars:<a href="kaltura/controls/Stars.html">Stars</a>, isEditable:Boolean, startRank:Number)</div>
+<a class="signatureLink" href="#starsMediator()">starsMediator</a>(newStars:<a href="vidiun/controls/Stars.html">Stars</a>, isEditable:Boolean, startRank:Number)</div>
 <div class="summaryTableDescription">
    Constructor
    </div>
@@ -111,7 +111,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#listNotificationInterests()">listNotificationInterests</a>():Array</div>
 <div class="summaryTableDescription">
-   Function returns the array of KDP notifications that are of interest to the plugin.</div>
+   Function returns the array of VDP notifications that are of interest to the plugin.</div>
 </td><td class="summaryTableOwnerCol">starsMediator</td>
 </tr>
 </table>
@@ -141,7 +141,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public var mediaProxy:Proxy</code><p>
-   Parameter holds the KDP's MediaProxy. 
+   Parameter holds the VDP's MediaProxy. 
    </p></div>
 <a name="rating"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -160,7 +160,7 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public var stars:<a href="kaltura/controls/Stars.html">Stars</a></code><p>
+<code>public var stars:<a href="vidiun/controls/Stars.html">Stars</a></code><p>
    The view component of the plugin. 
    </p></div>
 <a name="view"></a>
@@ -186,12 +186,12 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function starsMediator(newStars:<a href="kaltura/controls/Stars.html">Stars</a>, isEditable:Boolean, startRank:Number)</code><p>
+<code>public function starsMediator(newStars:<a href="vidiun/controls/Stars.html">Stars</a>, isEditable:Boolean, startRank:Number)</code><p>
    Constructor
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">newStars</span>:<a href="kaltura/controls/Stars.html">Stars</a></code> &mdash; a new view component for the plugin.
+<td width="20px"></td><td><code><span class="label">newStars</span>:<a href="vidiun/controls/Stars.html">Stars</a></code> &mdash; a new view component for the plugin.
    </td>
 </tr>
 <tr>
@@ -225,7 +225,7 @@ showHideInherited();
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">notification</span>:INotification</code> &mdash; the KDP notification intercepted by the mediator.
+<td width="20px"></td><td><code><span class="label">notification</span>:INotification</code> &mdash; the VDP notification intercepted by the mediator.
    
    </td>
 </tr>
@@ -239,7 +239,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public override function listNotificationInterests():Array</code><p>
-   Function returns the array of KDP notifications that are of interest to the plugin. 
+   Function returns the array of VDP notifications that are of interest to the plugin. 
    </p><p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">

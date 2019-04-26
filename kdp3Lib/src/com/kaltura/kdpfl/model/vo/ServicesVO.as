@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.model.vo
+package com.vidiun.vdpfl.model.vo
 {
-	import com.kaltura.KalturaClient;
+	import com.vidiun.VidiunClient;
 	
 	import flash.events.EventDispatcher;
 
@@ -10,7 +10,7 @@ package com.kaltura.kdpfl.model.vo
 		{
 		}
 		[Bindable]
-		public var kalturaClient : KalturaClient;
+		public var vidiunClient : VidiunClient;
 
 	}
 }

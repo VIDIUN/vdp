@@ -4,8 +4,8 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../../../print.css" type="text/css" media="print">
-<meta content="PlaylistAPIMediator,com.kaltura.kdpfl.plugin.component.PlaylistAPIMediator,NAME,view,clearFilter,clearFilters,handleNotification,listNotificationInterests,loadPlaylist,onDataLoadError,onDataLoaded,onDataLoadedNotMRSS,onRegister,reloadPlaylist,setFilter,toString" name="keywords">
-<title>com.kaltura.kdpfl.plugin.component.PlaylistAPIMediator</title>
+<meta content="PlaylistAPIMediator,com.vidiun.vdpfl.plugin.component.PlaylistAPIMediator,NAME,view,clearFilter,clearFilters,handleNotification,listNotificationInterests,loadPlaylist,onDataLoadError,onDataLoaded,onDataLoadedNotMRSS,onRegister,reloadPlaylist,setFilter,toString" name="keywords">
+<title>com.vidiun.vdpfl.plugin.component.PlaylistAPIMediator</title>
 </head>
 <body>
 <script type="text/javascript" language="javascript" src="../../../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../../cookies.js"></script><script type="text/javascript" language="javascript">
@@ -16,7 +16,7 @@
 			--></script>
 <table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
 <tr>
-<td align="left" class="titleTableTitle">Playlist API Plugin Documentation</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../../all-classes.html')" href="../../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../../all-classes.html')" href="../../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../../index-list.html')" href="../../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../../index.html?com/kaltura/kdpfl/plugin/component/PlaylistAPIMediator.html&amp;com/kaltura/kdpfl/plugin/component/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../../images/logo.jpg"></td>
+<td align="left" class="titleTableTitle">Playlist API Plugin Documentation</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../../all-classes.html')" href="../../../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../../all-classes.html')" href="../../../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../../../index-list.html')" href="../../../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../../../index.html?com/vidiun/vdpfl/plugin/component/PlaylistAPIMediator.html&amp;com/vidiun/vdpfl/plugin/component/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../../../images/logo.jpg"></td>
 </tr>
 <tr class="titleTableRow2">
 <td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;PlaylistAPIMediator</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#constantSummary">Constants</a></td>
@@ -32,7 +32,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="MainContent">
 <table cellspacing="0" cellpadding="0" class="classHeaderTable">
 <tr>
-<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.kaltura.kdpfl.plugin.component</a></td>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.vidiun.vdpfl.plugin.component</a></td>
 </tr>
 <tr>
 <td class="classHeaderTableLabel">Class</td><td class="classSignature">public class PlaylistAPIMediator</td>
@@ -131,7 +131,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#onDataLoadedNotMRSS()">onDataLoadedNotMRSS</a>(evt:KalturaEvent):void</div>
+<a class="signatureLink" href="#onDataLoadedNotMRSS()">onDataLoadedNotMRSS</a>(evt:VidiunEvent):void</div>
 <div class="summaryTableDescription">
    Create a data provider from a non-mrss response and assign it to the view.</div>
 </td><td class="summaryTableOwnerCol">PlaylistAPIMediator</td>
@@ -139,9 +139,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#onDataLoadError()">onDataLoadError</a>(evt:KalturaEvent):void</div>
+<a class="signatureLink" href="#onDataLoadError()">onDataLoadError</a>(evt:VidiunEvent):void</div>
 <div class="summaryTableDescription">
-   Notify KDP that load failed 
+   Notify VDP that load failed 
    </div>
 </td><td class="summaryTableOwnerCol">PlaylistAPIMediator</td>
 </tr>
@@ -357,12 +357,12 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function onDataLoadedNotMRSS(evt:KalturaEvent):void</code><p>
+<code>public function onDataLoadedNotMRSS(evt:VidiunEvent):void</code><p>
    Create a data provider from a non-mrss response and assign it to the view.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">evt</span>:KalturaEvent</code> &mdash; KalturaEvent
+<td width="20px"></td><td><code><span class="label">evt</span>:VidiunEvent</code> &mdash; VidiunEvent
    </td>
 </tr>
 </table>
@@ -374,12 +374,12 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function onDataLoadError(evt:KalturaEvent):void</code><p>
-   Notify KDP that load failed 
+<code>public function onDataLoadError(evt:VidiunEvent):void</code><p>
+   Notify VDP that load failed 
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">evt</span>:KalturaEvent</code> &mdash; fault data
+<td width="20px"></td><td><code><span class="label">evt</span>:VidiunEvent</code> &mdash; fault data
    </td>
 </tr>
 </table>
@@ -392,7 +392,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public override function onRegister():void</code><p>
-   Mediator's registration function. Sets KDP autoPlay value and the default image duration.  
+   Mediator's registration function. Sets VDP autoPlay value and the default image duration.  
    </p></div>
 <a name="reloadPlaylist()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.user
+package com.vidiun.commands.user
 {
-		import com.kaltura.vo.KalturaUserLoginDataFilter;
-	import com.kaltura.delegates.user.UserCheckLoginDataExistsDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunUserLoginDataFilter;
+	import com.vidiun.delegates.user.UserCheckLoginDataExistsDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Action which checks whther user login
 	* 
 	**/
-	public class UserCheckLoginDataExists extends KalturaCall
+	public class UserCheckLoginDataExists extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param filter KalturaUserLoginDataFilter
+		* @param filter VidiunUserLoginDataFilter
 		**/
-		public function UserCheckLoginDataExists( filter : KalturaUserLoginDataFilter )
+		public function UserCheckLoginDataExists( filter : VidiunUserLoginDataFilter )
 		{
 			service= 'user';
 			action= 'checkLoginDataExists';
@@ -50,7 +50,7 @@ package com.kaltura.commands.user
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(filter, 'filter');
+				keyValArr = vidiunObject2Arrays(filter, 'filter');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

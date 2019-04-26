@@ -1,6 +1,6 @@
-This project is a demo showing how to build a visual KDP plugin.
-This project holds a KDP swf in a debug mode under html-template folder, meaning you should be able to
- test your plugin without having to compile the KDP project.
+This project is a demo showing how to build a visual VDP plugin.
+This project holds a VDP swf in a debug mode under html-template folder, meaning you should be able to
+ test your plugin without having to compile the VDP project.
 The config.xml file found under html-template folder is a local layout configuration which places 
  the demoPlugin over the video area. 
 The project compiles its swf into the html-template folder. Make sure the compiled .swf is copied 

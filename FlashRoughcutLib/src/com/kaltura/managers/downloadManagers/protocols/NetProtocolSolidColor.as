@@ -1,11 +1,11 @@
-package com.kaltura.managers.downloadManagers.protocols
+package com.vidiun.managers.downloadManagers.protocols
 {
-	import com.kaltura.application.KalturaApplication;
-	import com.kaltura.assets.abstracts.AbstractAsset;
-	import com.kaltura.base.types.MediaTypes;
-	import com.kaltura.managers.downloadManagers.protocols.interfaces.INetProtocol;
-	import com.kaltura.net.loaders.interfaces.IMediaSourceLoader;
-	//xxx import com.kaltura.utils.colors.ColorsUtil;
+	import com.vidiun.application.VidiunApplication;
+	import com.vidiun.assets.abstracts.AbstractAsset;
+	import com.vidiun.base.types.MediaTypes;
+	import com.vidiun.managers.downloadManagers.protocols.interfaces.INetProtocol;
+	import com.vidiun.net.loaders.interfaces.IMediaSourceLoader;
+	//xxx import com.vidiun.utils.colors.ColorsUtil;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -47,8 +47,8 @@ package com.kaltura.managers.downloadManagers.protocols
 		public function load(source_asset:AbstractAsset):IMediaSourceLoader
 		{
 			_asset = source_asset;
-			var bd:BitmapData = new BitmapData (KalturaApplication.getInstance().initPlayerWidth,
-								KalturaApplication.getInstance().initPlayerHeight, false, uint(_asset.thumbnailURL));
+			var bd:BitmapData = new BitmapData (VidiunApplication.getInstance().initPlayerWidth,
+								VidiunApplication.getInstance().initPlayerHeight, false, uint(_asset.thumbnailURL));
 			var bmp:Bitmap = new Bitmap (bd);
 			var colorName:String = "";//xxx ColorsUtil.getName(uint(_asset.thumbnailURL))[1];
 			_asset.entryName = MediaTypes.getLocaleMediaType(MediaTypes.SOLID) + " (" + colorName + ")";

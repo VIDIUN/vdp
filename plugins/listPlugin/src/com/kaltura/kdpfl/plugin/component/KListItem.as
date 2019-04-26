@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
 
 import fl.controls.listClasses.CellRenderer;
@@ -11,15 +11,15 @@ import flash.events.MouseEvent;
 import mx.utils.ObjectProxy;
 
 
-public class KListItem extends CellRenderer
+public class VListItem extends CellRenderer
 {
 	// TODO set iconStyle always to null so no icon
 	protected var _content:UIComponent;
-	private var _kData:ObjectProxy = null;
+	private var _vData:ObjectProxy = null;
 	
 	public static var stylName:String;
 	
-	public function KListItem()
+	public function VListItem()
 	{
 		
 	}
@@ -76,7 +76,7 @@ public class KListItem extends CellRenderer
 	override public function set data(value:Object):void
 	{
 		super.data = ObjectProxy( value );
-		kData = ObjectProxy(data);
+		vData = ObjectProxy(data);
 		invalidate( InvalidationType.DATA );
 		this.addEventListener(MouseEvent.ROLL_OVER, onOver);
 		this.addEventListener(MouseEvent.ROLL_OUT, onOut);
@@ -93,15 +93,15 @@ public class KListItem extends CellRenderer
 	}
 	
 	
-	public function get kData():ObjectProxy
+	public function get vData():ObjectProxy
 	{
-		return _kData;
+		return _vData;
 	}
 	
 	[Bindable]
-	public function set kData(kData:ObjectProxy):void
+	public function set vData(vData:ObjectProxy):void
 	{
-		_kData = kData;
+		_vData = vData;
 	}
 	
 	override protected function configUI():void
@@ -147,7 +147,7 @@ public class KListItem extends CellRenderer
 		if( _content && this.contains( _content ) ) 
 			this.removeChild( _content );
 		
-		_content = contentFactory( contentLayout, kData );
+		_content = contentFactory( contentLayout, vData );
 		_content.mouseEnabled = true;
 		this.mouseChildren = true;
 		addChild( _content ); 

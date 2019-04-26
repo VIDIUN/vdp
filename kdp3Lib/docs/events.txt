@@ -32,7 +32,7 @@ Each bullet lists the as3 constant name of the event and its actual string value
 	When the source is ready we can set the media element to the media player
 	 
 10.	LOAD_MEDIA - loadMedia
-	Start the init macro command of the KDP 
+	Start the init macro command of the VDP 
 
 11. MEDIA_LOADING - mediaLoading
 	The loadable media has begun loading..
@@ -72,21 +72,21 @@ Each bullet lists the as3 constant name of the event and its actual string value
 	because of the pre session mechanism (pre roll ads, bumper)
 
 23.	DO_STOP - doStop
-	Do stop command to the kplayer. Pause and move the playhead to 0
+	Do stop command to the vplayer. Pause and move the playhead to 0
 
 24. DO_SEEK - doSeek
-	Do seek command to the kplayer. Additional data - number 
+	Do seek command to the vplayer. Additional data - number 
 
 26.	DO_SWITCH - doSwitch
 	Do switch command for switching manual switching between mbr streams within an rtmp dynamic stream resource 
 	Body of the notification is:
 	preferedFlavorBitrate : Number and carries the prefered bitrate to switch to.
 
-27. KDP_READY - kdpReady		
-	Dispatched when the KDP is Ready  
+27. VDP_READY - vdpReady		
+	Dispatched when the VDP is Ready  
 
-28.	KDP_EMPTY - kdpEmpty
-	Dispatched when the KDP is Ready and has no source loaded  
+28.	VDP_EMPTY - vdpEmpty
+	Dispatched when the VDP is Ready and has no source loaded  
 
 29. LAYOUT_READY - layoutReady		
 	Dispatched when the init macro command is done and the layout is ready  
@@ -183,7 +183,7 @@ Each bullet lists the as3 constant name of the event and its actual string value
 	the fullscreen was just activated
 
 59.	SWITCHING_CHANGE - switchingChange
-	Dispatched when the kdp has started or finished switching to new bitrate.
+	Dispatched when the vdp has started or finished switching to new bitrate.
 
 60.	SCRUBBER_DRAG_START - scrubberDragStart
 	The scrubber had started being dragged
@@ -202,7 +202,7 @@ Each bullet lists the as3 constant name of the event and its actual string value
 	
 	
 63.	BUMPER_PLAY_END - bumperPlayEnd - DEPRECATED
-	notification sent when a bumper (kaltura entry that plays as part of a sequence) has finished playback.
+	notification sent when a bumper (vidiun entry that plays as part of a sequence) has finished playback.
 	
 64. PLAYBACK_COMPLETE - fired when a media playing in the player (not an external swf) has finished playback
 

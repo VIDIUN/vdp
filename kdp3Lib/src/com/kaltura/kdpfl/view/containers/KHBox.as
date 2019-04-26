@@ -1,11 +1,11 @@
-package com.kaltura.kdpfl.view.containers
+package com.vidiun.vdpfl.view.containers
 {
 
-	import com.kaltura.kdpfl.component.IComponent;
-	import com.kaltura.kdpfl.util.KColorUtil;
+	import com.vidiun.vdpfl.component.IComponent;
+	import com.vidiun.vdpfl.util.VColorUtil;
 	import com.yahoo.astra.fl.containers.HBoxPane;
 
-	public dynamic class KHBox extends HBoxPane implements IComponent
+	public dynamic class VHBox extends HBoxPane implements IComponent
 	{
 		private var _bgColor:Number = -1;
 		private var _bgAlpha:Number = 1;
@@ -15,7 +15,7 @@ package com.kaltura.kdpfl.view.containers
 		[Bindable]
 		public var maxHeight:Number = -1;
 		
-		public function KHBox(configuration:Array=null)
+		public function VHBox(configuration:Array=null)
 		{
 			super(configuration);
 			mouseEnabled = false;
@@ -78,7 +78,7 @@ package com.kaltura.kdpfl.view.containers
 			super.drawBackground();
 			if (this.background && _bgColor !=-1)
 			{
-				KColorUtil.colorDisplayObject(this.background,_bgColor);
+				VColorUtil.colorDisplayObject(this.background,_bgColor);
 				this.background.alpha = _bgAlpha;
 			}
 		}

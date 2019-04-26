@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,27 +25,27 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.categoryUser
+package com.vidiun.commands.categoryUser
 {
-		import com.kaltura.vo.KalturaCategoryUser;
-	import com.kaltura.delegates.categoryUser.CategoryUserUpdateDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunCategoryUser;
+	import com.vidiun.delegates.categoryUser.CategoryUserUpdateDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Update CategoryUser by id
 	* 
 	**/
-	public class CategoryUserUpdate extends KalturaCall
+	public class CategoryUserUpdate extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param categoryId int
 		* @param userId String
-		* @param categoryUser KalturaCategoryUser
+		* @param categoryUser VidiunCategoryUser
 		* @param override Boolean
 		**/
-		public function CategoryUserUpdate( categoryId : int,userId : String,categoryUser : KalturaCategoryUser,override : Boolean=false )
+		public function CategoryUserUpdate( categoryId : int,userId : String,categoryUser : VidiunCategoryUser,override : Boolean=false )
 		{
 			service= 'categoryuser';
 			action= 'update';
@@ -57,7 +57,7 @@ package com.kaltura.commands.categoryUser
 			valueArr.push(categoryId);
 			keyArr.push('userId');
 			valueArr.push(userId);
-				keyValArr = kalturaObject2Arrays(categoryUser, 'categoryUser');
+				keyValArr = vidiunObject2Arrays(categoryUser, 'categoryUser');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			keyArr.push('override');

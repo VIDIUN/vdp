@@ -1,12 +1,12 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.StreamerType;
-	import com.kaltura.kdpfl.model.vo.StorageProfileVO;
-	import com.kaltura.kdpfl.plugin.component.strings.NotificationStrings;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.StreamerType;
+	import com.vidiun.vdpfl.model.vo.StorageProfileVO;
+	import com.vidiun.vdpfl.plugin.component.strings.NotificationStrings;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
 	
 	import fl.core.UIComponent;
 	
@@ -76,7 +76,7 @@ package com.kaltura.kdpfl.plugin.component
 				switch (notification.getName())
 				{
 					case NotificationType.LAYOUT_READY:
-						mediaPlayer = (facade.retrieveMediator( KMediaPlayerMediator.NAME ) as KMediaPlayerMediator).player;
+						mediaPlayer = (facade.retrieveMediator( VMediaPlayerMediator.NAME ) as VMediaPlayerMediator).player;
 					
 						break;
 					
@@ -201,7 +201,7 @@ package com.kaltura.kdpfl.plugin.component
 				
 				failoverElementSeekTrait.addEventListener( SeekEvent.SEEKING_CHANGE , onFailoverSeekComplete );
 				
-				failoverElementSeekTrait.seek((facade.retrieveMediator( KMediaPlayerMediator.NAME ) as KMediaPlayerMediator).getCurrentTime() );
+				failoverElementSeekTrait.seek((facade.retrieveMediator( VMediaPlayerMediator.NAME ) as VMediaPlayerMediator).getCurrentTime() );
 			}
 		}
 		

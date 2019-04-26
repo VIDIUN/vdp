@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,30 +25,30 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.stats
+package com.vidiun.commands.stats
 {
-		import com.kaltura.vo.KalturaCEError;
-	import com.kaltura.delegates.stats.StatsReportKceErrorDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunCEError;
+	import com.vidiun.delegates.stats.StatsReportVceErrorDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	**/
-	public class StatsReportKceError extends KalturaCall
+	public class StatsReportVceError extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param kalturaCEError KalturaCEError
+		* @param vidiunCEError VidiunCEError
 		**/
-		public function StatsReportKceError( kalturaCEError : KalturaCEError )
+		public function StatsReportVceError( vidiunCEError : VidiunCEError )
 		{
 			service= 'stats';
-			action= 'reportKceError';
+			action= 'reportVceError';
 
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(kalturaCEError, 'kalturaCEError');
+				keyValArr = vidiunObject2Arrays(vidiunCEError, 'vidiunCEError');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);
@@ -57,7 +57,7 @@ package com.kaltura.commands.stats
 		override public function execute() : void
 		{
 			setRequestArgument('filterFields', filterFields);
-			delegate = new StatsReportKceErrorDelegate( this , config );
+			delegate = new StatsReportVceErrorDelegate( this , config );
 		}
 	}
 }

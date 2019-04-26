@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,16 +25,16 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.report
+package com.vidiun.commands.report
 {
-	import com.kaltura.delegates.report.ReportGetCsvFromStringParamsDelegate;
-	import com.kaltura.net.KalturaCall;
+	import com.vidiun.delegates.report.ReportGetCsvFromStringParamsDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Returns report CSV file executed by string params with the following convention: param1=value1;param2=value2
 	* 
 	**/
-	public class ReportGetCsvFromStringParams extends KalturaCall
+	public class ReportGetCsvFromStringParams extends VidiunCall
 	{
 		public var filterFields : String;
 		

@@ -1,12 +1,12 @@
- package com.kaltura.kdpfl.controller
+ package com.vidiun.vdpfl.controller
 {
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.PluginManager;
-	import com.kaltura.kdpfl.view.MainViewMediator;
-	import com.kaltura.kdpfl.view.RootMediator;
-	import com.kaltura.kdpfl.view.containers.KCanvas;
-	import com.kaltura.kdpfl.view.controls.ToolTipManager;
+	import com.vidiun.vdpfl.model.LayoutProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.plugin.PluginManager;
+	import com.vidiun.vdpfl.view.MainViewMediator;
+	import com.vidiun.vdpfl.view.RootMediator;
+	import com.vidiun.vdpfl.view.containers.VCanvas;
+	import com.vidiun.vdpfl.view.controls.ToolTipManager;
 	
 	import flash.events.Event;
 	
@@ -14,7 +14,7 @@
 	import org.puremvc.as3.patterns.command.AsyncCommand;
 
 	/**
-	 * This class is responsible for parsing layout xml and creating KDP layout. 
+	 * This class is responsible for parsing layout xml and creating VDP layout. 
 	 */	
 	public class ParseLayoutCommand extends AsyncCommand
 	{
@@ -28,7 +28,7 @@
 		{
 			_layoutProxy = facade.retrieveProxy( LayoutProxy.NAME ) as LayoutProxy;
 			//var flashvars : Object = (facade.retrieveProxy( ConfigProxy.NAME ) as ConfigProxy).vo.flashvars;
-			//TODO hook this with the KDP swf path 				
+			//TODO hook this with the VDP swf path 				
 			//if(!flashvars.debugMode) //if this is debug mode load the modules localy
 				//_pluginsPath = "http://" + _flashvars.host + "/";
 				
@@ -41,7 +41,7 @@
 			//add the main view to the stage
 			rm.root.addChild(mainView.view);
 			//add the foreground layer and set it to the layoutProxy.vo
-			var canvas:KCanvas = new KCanvas();
+			var canvas:VCanvas = new VCanvas();
 			//TODO: see if we can take this out of the skin file. 
 			canvas.setSkin("clickThrough",true);
 			canvas.width = 1;

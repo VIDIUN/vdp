@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.plugin.component.tile
+package com.vidiun.vdpfl.plugin.component.tile
 {
 
-	import com.kaltura.kdpfl.component.IComponent;
+	import com.vidiun.vdpfl.component.IComponent;
 	
 	import fl.controls.List;
 	import fl.controls.SelectableList;
@@ -12,13 +12,13 @@ package com.kaltura.kdpfl.plugin.component.tile
 	import flash.utils.getDefinitionByName;
 	
 	
-	public class KTile extends TileList implements IComponent
+	public class VTile extends TileList implements IComponent
 	{
 	
 		private var _itemContentFactory:Function; 
 		private var _itemContentLayout:XML; 
 		
-		public function KTile()
+		public function VTile()
 		{
 			super();
 		}

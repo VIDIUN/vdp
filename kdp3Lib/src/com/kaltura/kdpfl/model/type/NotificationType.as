@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.model.type
+package com.vidiun.vdpfl.model.type
 {
 	/**
-	 * Class NotificationType holds the constants representing the notifications fired within the KDP. 
+	 * Class NotificationType holds the constants representing the notifications fired within the VDP. 
 	 * @author Hila
 	 * 
 	 */	
@@ -36,7 +36,7 @@ package com.kaltura.kdpfl.model.type
 		 */		
 		public static const ENTRY_READY				:String = "entryReady";
 		/**
-		 * The BaseEntry object has been retrieved but KDP can't play the entry
+		 * The BaseEntry object has been retrieved but VDP can't play the entry
 		 * possible reasons: status not ready / moderation status/ access control
 		 */		
 		public static const ENTRY_NOT_AVAILABLE	:String = "entryNotAvailable";
@@ -58,7 +58,7 @@ package com.kaltura.kdpfl.model.type
 		public static const SOURCE_READY			:String = "sourceReady";
 		/**
 		 * DEPRECATED
-		 * Start the init macro command of the KDP 
+		 * Start the init macro command of the VDP 
 		 */	
 		public static const LOAD_MEDIA				:String	= "loadMedia";
 		/**
@@ -111,17 +111,17 @@ package com.kaltura.kdpfl.model.type
 		 */
 		static public const DO_PLAY					:String = "doPlay";
 		/**
-		 * DEPRECATED IN KDP3
+		 * DEPRECATED IN VDP3
 		 * This is the actually play command on the video player. It is an addition to the DoPlay
 		 * because of the pre session mechanism (pre roll ads, bumper)
 		 */
 		static public const DO_PLAY_ENTRY			:String = "doPlayEntry";
 		/**
-		 * Do stop command to the kplayer. Pause and move the playhead to 0
+		 * Do stop command to the vplayer. Pause and move the playhead to 0
 		 */
 		static public const DO_STOP					:String = "doStop";
 		/**
-		 * Do seek command to the kplayer. Addition data - number 
+		 * Do seek command to the vplayer. Addition data - number 
 		 */
 		static public const DO_SEEK					:String = "doSeek";
 		/**
@@ -129,13 +129,13 @@ package com.kaltura.kdpfl.model.type
 		 */
 		static public const DO_SWITCH					:String = "doSwitch";
 		/**
-		 * Dispahed when the KDP is Ready  
+		 * Dispahed when the VDP is Ready  
 		 */		
-		static public const KDP_READY 				:String = "kdpReady";		
+		static public const VDP_READY 				:String = "vdpReady";		
 		/**
-		 * Dispahed when the KDP is Ready and has no source loaded  
+		 * Dispahed when the VDP is Ready and has no source loaded  
 		 */		
-		static public const KDP_EMPTY 				:String = "kdpEmpty";
+		static public const VDP_EMPTY 				:String = "vdpEmpty";
 		/**
 		 * Dispahed when the init macro command is done and the layout is ready  
 		 */		
@@ -153,11 +153,11 @@ package com.kaltura.kdpfl.model.type
 		 */		
 		static public const PLAYER_CONTAINER_READY  :String = "playerContainerReady";
 		/**
-		 * Was paused event the kplayer shoots
+		 * Was paused event the vplayer shoots
 		 */
 		static public const PLAYER_PAUSED			:String = "playerPaused";
 		/**
-		 * was played event the kplayer shoots
+		 * was played event the vplayer shoots
 		 */
 		static public const PLAYER_PLAYED			:String = "playerPlayed";
 		/**
@@ -344,12 +344,12 @@ package com.kaltura.kdpfl.model.type
 		 static public const MEDIA_LOADED 					: String = "mediaLoaded";
 		 /**
 		  *  Notification added with version 3.5.0, signifies that an entry/media is ready to be
-		  * played in the KDP
+		  * played in the VDP
 		  */		 
 		 static public const READY_TO_PLAY					: String = "readyToPlay";
 		 /**
 		  * Notification added with version 3.5.0, signifies that there is no playable
-		  * entry/media in the KDP, and that it is ready to load alternate media/entries.
+		  * entry/media in the VDP, and that it is ready to load alternate media/entries.
 		  */		 
 		 static public const READY_TO_LOAD					: String = "readyToLoad";
 		 /**
@@ -424,7 +424,7 @@ package com.kaltura.kdpfl.model.type
 		  */		 
 		 static public const VOLUME_CHANGED_END					: String = "volumeChangedEnd";
 		 /**
-		  * Notification fired when preloader was loaded externally from preloader path, and was loaded after the kdp.swf was loaded
+		  * Notification fired when preloader was loaded externally from preloader path, and was loaded after the vdp.swf was loaded
 		  * Body - preloader: preloader object 
 		  */		 
 		 static public const PRELOADER_LOADED					: String = "preloaderLoaded";

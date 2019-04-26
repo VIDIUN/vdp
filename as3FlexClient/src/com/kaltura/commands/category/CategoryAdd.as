@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.category
+package com.vidiun.commands.category
 {
-		import com.kaltura.vo.KalturaCategory;
-	import com.kaltura.delegates.category.CategoryAddDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunCategory;
+	import com.vidiun.delegates.category.CategoryAddDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Add new Category
 	* 
 	**/
-	public class CategoryAdd extends KalturaCall
+	public class CategoryAdd extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param category KalturaCategory
+		* @param category VidiunCategory
 		**/
-		public function CategoryAdd( category : KalturaCategory )
+		public function CategoryAdd( category : VidiunCategory )
 		{
 			service= 'category';
 			action= 'add';
@@ -50,7 +50,7 @@ package com.kaltura.commands.category
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(category, 'category');
+				keyValArr = vidiunObject2Arrays(category, 'category');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

@@ -1,14 +1,14 @@
-package com.kaltura.kdpfl.controller.media
+package com.vidiun.vdpfl.controller.media
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.vo.SequenceVO;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.types.KalturaMediaType;
-	import com.kaltura.vo.KalturaMediaEntry;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.EnableType;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.vo.SequenceVO;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
+	import com.vidiun.types.VidiunMediaType;
+	import com.vidiun.vo.VidiunMediaEntry;
 	
 	import org.osmf.media.MediaPlayer;
 	import org.puremvc.as3.interfaces.INotification;
@@ -30,7 +30,7 @@ package com.kaltura.kdpfl.controller.media
 		 */		
 		public function MediaReadyCommand()
 		{
-			_player = (facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).player;
+			_player = (facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator).player;
 			_mediaProxy = facade.retrieveProxy(MediaProxy.NAME) as MediaProxy;
 			_flashvars = (facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy).vo.flashvars;
 			_sequence = (facade.retrieveProxy(SequenceProxy.NAME) as SequenceProxy).vo;
@@ -45,7 +45,7 @@ package com.kaltura.kdpfl.controller.media
 		 */				
 		override public function execute(notification:INotification):void
 		{
-			var playerMediator : KMediaPlayerMediator = facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator;
+			var playerMediator : VMediaPlayerMediator = facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator;
 			
 			//live streaming entry.
 			//In each of these cases the media within the player needs to start playing immediately.
@@ -69,8 +69,8 @@ package com.kaltura.kdpfl.controller.media
 				
 			}		
 			//In case of an image entry, there is no need to enable GUI
-			if( _mediaProxy.vo.entry is KalturaMediaEntry && 
-				(_mediaProxy.vo.entry as KalturaMediaEntry).mediaType == KalturaMediaType.IMAGE &&
+			if( _mediaProxy.vo.entry is VidiunMediaEntry && 
+				(_mediaProxy.vo.entry as VidiunMediaEntry).mediaType == VidiunMediaType.IMAGE &&
 				(!playerMediator.player.duration || isNaN(playerMediator.player.duration)))
 			{
 				sendNotification(NotificationType.ENABLE_GUI, {guiEnabled : false , enableType : EnableType.CONTROLS});

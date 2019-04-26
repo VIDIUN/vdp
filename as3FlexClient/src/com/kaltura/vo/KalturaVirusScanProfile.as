@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,14 +25,14 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.KalturaBaseEntryFilter;
+	import com.vidiun.vo.VidiunBaseEntryFilter;
 
-	import com.kaltura.vo.BaseFlexVo;
+	import com.vidiun.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaVirusScanProfile extends BaseFlexVo
+	public dynamic class VidiunVirusScanProfile extends BaseFlexVo
 	{
 		/**
 		**/
@@ -55,21 +55,21 @@ package com.kaltura.vo
 		public var name : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaVirusScanProfileStatus
+		* @see com.vidiun.types.VidiunVirusScanProfileStatus
 		**/
 		public var status : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaVirusScanEngineType
+		* @see com.vidiun.types.VidiunVirusScanEngineType
 		**/
 		public var engineType : String = null;
 
 		/**
 		**/
-		public var entryFilter : KalturaBaseEntryFilter;
+		public var entryFilter : VidiunBaseEntryFilter;
 
 		/**
-		* @see com.kaltura.types.KalturaVirusFoundAction
+		* @see com.vidiun.types.VidiunVirusFoundAction
 		**/
 		public var actionIfInfected : int = int.MIN_VALUE;
 

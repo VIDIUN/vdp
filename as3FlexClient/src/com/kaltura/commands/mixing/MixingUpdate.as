@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.mixing
+package com.vidiun.commands.mixing
 {
-		import com.kaltura.vo.KalturaMixEntry;
-	import com.kaltura.delegates.mixing.MixingUpdateDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunMixEntry;
+	import com.vidiun.delegates.mixing.MixingUpdateDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Update mix entry. Only the properties that were set will be updated.
 	* 
 	**/
-	public class MixingUpdate extends KalturaCall
+	public class MixingUpdate extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param entryId String
-		* @param mixEntry KalturaMixEntry
+		* @param mixEntry VidiunMixEntry
 		**/
-		public function MixingUpdate( entryId : String,mixEntry : KalturaMixEntry )
+		public function MixingUpdate( entryId : String,mixEntry : VidiunMixEntry )
 		{
 			service= 'mixing';
 			action= 'update';
@@ -53,7 +53,7 @@ package com.kaltura.commands.mixing
 			var keyValArr : Array = new Array();
 			keyArr.push('entryId');
 			valueArr.push(entryId);
-				keyValArr = kalturaObject2Arrays(mixEntry, 'mixEntry');
+				keyValArr = vidiunObject2Arrays(mixEntry, 'mixEntry');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

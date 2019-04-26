@@ -1,7 +1,7 @@
-package com.kaltura
+package com.vidiun
 {
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.plugin.IPlugin;
 	
 	import fl.core.UIComponent;
 	

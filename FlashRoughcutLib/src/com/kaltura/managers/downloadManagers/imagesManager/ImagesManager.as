@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Vidiun Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,13 +20,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.managers.downloadManagers.imagesManager
+package com.vidiun.managers.downloadManagers.imagesManager
 {
-	import com.kaltura.dataStructures.HashMap;
-	import com.kaltura.dataStructures.IMap;
-	import com.kaltura.net.loaders.MediaSourceLoader;
-	import com.kaltura.net.loaders.interfaces.IMediaSourceLoader;
-	import com.kaltura.net.nonStreaming.LoaderDisplayObject;
+	import com.vidiun.dataStructures.HashMap;
+	import com.vidiun.dataStructures.IMap;
+	import com.vidiun.net.loaders.MediaSourceLoader;
+	import com.vidiun.net.loaders.interfaces.IMediaSourceLoader;
+	import com.vidiun.net.nonStreaming.LoaderDisplayObject;
 
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -74,7 +74,7 @@ package com.kaltura.managers.downloadManagers.imagesManager
 		 * @param image_url		the url to load.
 		 * @param asset_uid		the uid of the asset it's media to load.
 		 * @return 				the loadStream of the loaded image, if image is already loaded, return the saved loadStream.
-		 * @see			com.kaltura.net.nonStreaming.LoaderDisplayObject
+		 * @see			com.vidiun.net.nonStreaming.LoaderDisplayObject
 		 */
 		public function create(image_url:String, asset_uid:String):IMediaSourceLoader
 		{

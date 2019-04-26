@@ -1,13 +1,13 @@
-package com.kaltura.kdpfl.controller
+package com.vidiun.vdpfl.controller
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.PlayerStatusProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.strings.MessageStrings;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.MainViewMediator;
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.PlayerStatusProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.strings.MessageStrings;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.view.MainViewMediator;
+	import com.vidiun.vdpfl.view.controls.VTrace;
 	
 	import flash.display.Loader;
 	import flash.events.Event;
@@ -17,7 +17,7 @@ package com.kaltura.kdpfl.controller
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 
 	/**
-	 * This class defines the actions that are taken once KDP layout is ready. 
+	 * This class defines the actions that are taken once VDP layout is ready. 
 	 */
 	public class LayoutReadyCommand extends SimpleCommand
 	{
@@ -32,7 +32,7 @@ package com.kaltura.kdpfl.controller
 		override public function execute(notification:INotification):void
 		{
 			var playerStatus : PlayerStatusProxy = facade.retrieveProxy(PlayerStatusProxy.NAME) as PlayerStatusProxy;
-			playerStatus.vo.kdpStatus = "ready";
+			playerStatus.vo.vdpStatus = "ready";
 			_flashvars = (facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy).vo.flashvars;
 			// remove the preloader
 			var rm:Object = facade.retrieveMediator("stageMediator");
@@ -53,17 +53,17 @@ package com.kaltura.kdpfl.controller
 			}
 			(facade.retrieveMediator(MainViewMediator.NAME) as MainViewMediator).createContextMenu();
 						
-			//check if kdp is allowed to save cookies, do it here before flow starts and after alert buttons are available from skin
+			//check if vdp is allowed to save cookies, do it here before flow starts and after alert buttons are available from skin
 			if (_flashvars.alertForCookies && _flashvars.alertForCookies=="true")
 			{
 				var cookie : SharedObject;
 				try
 				{
-					cookie = SharedObject.getLocal("KalturaCookies");
+					cookie = SharedObject.getLocal("VidiunCookies");
 				}
 				catch (e: Error)
 				{
-					KTrace.getInstance().log("no permissions to access partner's file system");
+					VTrace.getInstance().log("no permissions to access partner's file system");
 				}
 				if (cookie && cookie.data.allowCookies && cookie.data.allowCookies==true)
 				{
@@ -112,11 +112,11 @@ package com.kaltura.kdpfl.controller
 				var cookie : SharedObject;
 				try
 				{
-					cookie= SharedObject.getLocal("KalturaCookies");
+					cookie= SharedObject.getLocal("VidiunCookies");
 				}
 				catch (e : Error)
 				{
-					KTrace.getInstance().log("No access to user's file system");
+					VTrace.getInstance().log("No access to user's file system");
 				}
 				if (cookie)
 				{

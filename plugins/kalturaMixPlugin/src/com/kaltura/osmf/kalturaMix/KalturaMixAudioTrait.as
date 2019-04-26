@@ -1,14 +1,14 @@
-package com.kaltura.osmf.kalturaMix
+package com.vidiun.osmf.vidiunMix
 {
-	import com.kaltura.components.players.eplayer.Eplayer;
+	import com.vidiun.components.players.eplayer.Eplayer;
 	
 	import org.osmf.traits.AudioTrait;
 
-	public class KalturaMixAudioTrait extends AudioTrait
+	public class VidiunMixAudioTrait extends AudioTrait
 	{
 		public var eplayer:Eplayer;
 
-		public function KalturaMixAudioTrait(_eplayer:Eplayer)
+		public function VidiunMixAudioTrait(_eplayer:Eplayer)
 		{
 			eplayer = _eplayer;
 			super();

@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.util
+package com.vidiun.vdpfl.util
 {
 	import mx.utils.Base64Encoder;
 	

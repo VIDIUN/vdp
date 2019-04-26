@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,26 +25,26 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.documents
+package com.vidiun.commands.documents
 {
-		import com.kaltura.vo.KalturaDocumentEntry;
-	import com.kaltura.delegates.documents.DocumentsAddFromEntryDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunDocumentEntry;
+	import com.vidiun.delegates.documents.DocumentsAddFromEntryDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Copy entry into new entry
 	* 
 	**/
-	public class DocumentsAddFromEntry extends KalturaCall
+	public class DocumentsAddFromEntry extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param sourceEntryId String
-		* @param documentEntry KalturaDocumentEntry
+		* @param documentEntry VidiunDocumentEntry
 		* @param sourceFlavorParamsId int
 		**/
-		public function DocumentsAddFromEntry( sourceEntryId : String,documentEntry : KalturaDocumentEntry=null,sourceFlavorParamsId : int=int.MIN_VALUE )
+		public function DocumentsAddFromEntry( sourceEntryId : String,documentEntry : VidiunDocumentEntry=null,sourceFlavorParamsId : int=int.MIN_VALUE )
 		{
 			service= 'document_documents';
 			action= 'addFromEntry';
@@ -55,7 +55,7 @@ package com.kaltura.commands.documents
 			keyArr.push('sourceEntryId');
 			valueArr.push(sourceEntryId);
 			if (documentEntry) { 
-				keyValArr = kalturaObject2Arrays(documentEntry, 'documentEntry');
+				keyValArr = vidiunObject2Arrays(documentEntry, 'documentEntry');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

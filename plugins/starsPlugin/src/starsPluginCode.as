@@ -1,8 +1,8 @@
 package
 {
-	import com.kaltura.controls.Stars;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.plugin.IPlugin;
+	import com.vidiun.controls.Stars;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.plugin.IPlugin;
 	import com.starsMediator;
 	
 	import fl.core.UIComponent;

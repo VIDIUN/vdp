@@ -1,8 +1,8 @@
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.Scrubber508;
-	import com.kaltura.kdpfl.plugin.component.Scrubber508Mediator;
-	import com.kaltura.kdpfl.view.controls.KButton;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.Scrubber508;
+	import com.vidiun.vdpfl.plugin.component.Scrubber508Mediator;
+	import com.vidiun.vdpfl.view.controls.VButton;
 	
 	import fl.core.UIComponent;
 	
@@ -11,9 +11,9 @@ package {
 	public class Scrubber508PluginCode extends UIComponent implements IPlugin
 	{
 		private var _scrubber508Mediator : Scrubber508Mediator;
-		private var _backbtn:KButton;
+		private var _backbtn:VButton;
 		private var _backbtnName:String;
-		private var _fwdbtn:KButton;
+		private var _fwdbtn:VButton;
 		private var _fwdbtnName:String;
 		
 		/**
@@ -31,8 +31,8 @@ package {
 		 */		
 		public function initializePlugin( facade : IFacade ) : void
 		{
-			_backbtn = facade ["bindObject"][_backbtnName] as KButton;
-			_fwdbtn = facade ["bindObject"][_fwdbtnName] as KButton;
+			_backbtn = facade ["bindObject"][_backbtnName] as VButton;
+			_fwdbtn = facade ["bindObject"][_fwdbtnName] as VButton;
 			// Register Proxy
 			//facade.retrieveProxy(
 			

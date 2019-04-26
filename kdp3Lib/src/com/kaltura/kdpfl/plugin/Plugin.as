@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.plugin
+package com.vidiun.vdpfl.plugin
 {
-	import com.kaltura.kdpfl.view.containers.KVBox;
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.vidiun.vdpfl.view.containers.VVBox;
+	import com.vidiun.vdpfl.view.controls.VTrace;
 	
 	import flash.events.AsyncErrorEvent;
 	import flash.events.ErrorEvent;
@@ -9,7 +9,7 @@ package com.kaltura.kdpfl.plugin
 	import flash.events.IOErrorEvent;
 	import flash.events.SecurityErrorEvent;
 
-	public class Plugin extends KVBox
+	public class Plugin extends VVBox
 	{
 		/**
 		 * the loader that loades the plugin 
@@ -83,7 +83,7 @@ package com.kaltura.kdpfl.plugin
 	        }
 	        catch(error:Error)
 	        {
-				KTrace.getInstance().log("onPluginReady ", error);
+				VTrace.getInstance().log("onPluginReady ", error);
 	        	//trace("onPluginReady ", error);
 	        }
 		}

@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.type
+package com.vidiun.vdpfl.plugin.type
 {
 	/**
 	 * This class represents playlist notification types 
@@ -17,7 +17,7 @@ package com.kaltura.kdpfl.plugin.type
 		public static const PLAYLIST_PLAY_NEXT : String		 	= "playlistPlayNext";
 		/**
 		 * load playlist
-		 * Body: kplName=kaltura playlist name, kplUrl=kaltura playlist URL 
+		 * Body: vplName=vidiun playlist name, vplUrl=vidiun playlist URL 
 		 */		
 		public static const LOAD_PLAYLIST : String				= "loadPlaylist";
 		

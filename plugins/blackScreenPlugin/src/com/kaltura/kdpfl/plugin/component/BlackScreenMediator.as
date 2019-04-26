@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayer;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.view.media.VMediaPlayer;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -13,7 +13,7 @@ package com.kaltura.kdpfl.plugin.component
 		public static const NAME : String = "BlackScreenMediator";
 		private var _lastVolume:Number = 1;
 		private var _wasMuted:Boolean = false;
-		private var _playerMediator:KMediaPlayerMediator;
+		private var _playerMediator:VMediaPlayerMediator;
 		
 		public function BlackScreenMediator(mediatorName:String=null, viewComponent:Object=null)
 		{
@@ -36,7 +36,7 @@ package com.kaltura.kdpfl.plugin.component
 				switch (notification.getName())
 				{
 					case NotificationType.LAYOUT_READY:
-						_playerMediator = (facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator);
+						_playerMediator = (facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator);
 						_lastVolume = _playerMediator.player.volume;
 						break;
 					case NotificationType.PLAYER_UPDATE_PLAYHEAD:

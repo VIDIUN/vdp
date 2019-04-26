@@ -1,14 +1,14 @@
-package com.kaltura.kdpfl.view
+package com.vidiun.vdpfl.view
 {
-	import com.kaltura.kdpfl.ApplicationFacade;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.Plugin;
-	import com.kaltura.kdpfl.util.KTextParser;
-	import com.kaltura.kdpfl.view.containers.KCanvas;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
+	import com.vidiun.vdpfl.ApplicationFacade;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.LayoutProxy;
+	import com.vidiun.vdpfl.model.type.EnableType;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.plugin.Plugin;
+	import com.vidiun.vdpfl.util.VTextParser;
+	import com.vidiun.vdpfl.view.containers.VCanvas;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
 	
 	import fl.core.UIComponent;
 	import fl.events.ComponentEvent;
@@ -41,14 +41,14 @@ package com.kaltura.kdpfl.view
 			view.addEventListener(ComponentEvent.HIDE, onFlashCompEvent);
 			view.addEventListener(ComponentEvent.RESIZE, onFlashCompEvent);
 			view.addEventListener(ComponentEvent.MOVE, onFlashCompEvent);
-			//This section is necessary to stop propagation of "common" events, so they are not received outside of the kdp,
-			// like the drilldown pop-up in kmc Content.
+			//This section is necessary to stop propagation of "common" events, so they are not received outside of the vdp,
+			// like the drilldown pop-up in vmc Content.
 			view.addEventListener("change", onIndexChange);
 			view.addEventListener("childIndexChange", onIndexChange);
 			view.addEventListener("headerShift", onIndexChange); 
 			
 			
-			//Initially save the enable configuration of the uicomponents in the kdp
+			//Initially save the enable configuration of the uicomponents in the vdp
 			var corrComp : Object;
 			var allObjects : Object = facade["bindObject"];
 			for each(var uicomp:* in allObjects)
@@ -108,7 +108,7 @@ package com.kaltura.kdpfl.view
 					view.width = note.getBody().width;
 					view.height = note.getBody().height;
 					
-					var foreground:KCanvas = _lp.vo.foreground;
+					var foreground:VCanvas = _lp.vo.foreground;
 					
 					//resize the foreground layer 
  					if(foreground)
@@ -119,7 +119,7 @@ package com.kaltura.kdpfl.view
 					
 				break;
 				case NotificationType.ENABLE_GUI:
-					var kMediaPlayerMediator : KMediaPlayerMediator = facade.retrieveMediator( KMediaPlayerMediator.NAME ) as KMediaPlayerMediator;
+					var vMediaPlayerMediator : VMediaPlayerMediator = facade.retrieveMediator( VMediaPlayerMediator.NAME ) as VMediaPlayerMediator;
 					var enableType : String = note.getBody().enableType;
 					if( note.getBody().guiEnabled )
 					{
@@ -131,14 +131,14 @@ package com.kaltura.kdpfl.view
 								if(_disGuiArr.length == 0)
 								{
 									setEnableGuiToAllComponents(true , EnableType.FULL);
-									if(kMediaPlayerMediator && !_flashvars.disableOnScreenClick)
-										kMediaPlayerMediator.enableOnScreenClick();
+									if(vMediaPlayerMediator && !_flashvars.disableOnScreenClick)
+										vMediaPlayerMediator.enableOnScreenClick();
 								}
 								else
 								{
 									setEnableGuiToAllComponents(false , _disGuiArr[_disGuiArr.length - 1]);
-									if(kMediaPlayerMediator && !_flashvars.disableOnScreenClick)
-										kMediaPlayerMediator.disableOnScreenClick();
+									if(vMediaPlayerMediator && !_flashvars.disableOnScreenClick)
+										vMediaPlayerMediator.disableOnScreenClick();
 								}
 							}
 							else
@@ -158,8 +158,8 @@ package com.kaltura.kdpfl.view
 					{
 						_disGuiArr.push(enableType);
 						setEnableGuiToAllComponents(false , enableType);
-						if(kMediaPlayerMediator && !_flashvars.disableOnScreenClick)
-							kMediaPlayerMediator.disableOnScreenClick();
+						if(vMediaPlayerMediator && !_flashvars.disableOnScreenClick)
+							vMediaPlayerMediator.disableOnScreenClick();
 					}
 				break;
 				case NotificationType.HAS_CLOSED_FULL_SCREEN:
@@ -272,11 +272,11 @@ package com.kaltura.kdpfl.view
 		private function parseFromComp ( item : Object ) : void
 		{
 			var allObjs : Object = facade["bindObject"];		
-			KTextParser.bind(item, "enabled", allObjs, _origEnableMap[item.name] as String);
+			VTextParser.bind(item, "enabled", allObjs, _origEnableMap[item.name] as String);
 		} 
 		
 		/**
-		 * This function creates the context menu (menu which opens on right-clicking the kdp).
+		 * This function creates the context menu (menu which opens on right-clicking the vdp).
 		 * @param flashvars the flashvars Object containing the parsed flashvars
 		 * 
 		 */		
@@ -289,7 +289,7 @@ package com.kaltura.kdpfl.view
 			
 			if (!_flashvars.emptyContextMenu || _flashvars.emptyContextMenu!="true")
 			{
-				var menuItem:ContextMenuItem = new ContextMenuItem( "kdp version: " + ApplicationFacade.getInstance().kdpVersion );
+				var menuItem:ContextMenuItem = new ContextMenuItem( "vdp version: " + ApplicationFacade.getInstance().vdpVersion );
 				
 				var credits:ContextMenuItem = new ContextMenuItem(_flashvars.aboutPlayer);
 				

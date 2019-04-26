@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.KalturaEmailNotificationRecipientProvider;
+	import com.vidiun.vo.VidiunEmailNotificationRecipientProvider;
 
-	import com.kaltura.vo.KalturaEmailNotificationRecipientProvider;
+	import com.vidiun.vo.VidiunEmailNotificationRecipientProvider;
 
-	import com.kaltura.vo.KalturaEmailNotificationRecipientProvider;
+	import com.vidiun.vo.VidiunEmailNotificationRecipientProvider;
 
-	import com.kaltura.vo.KalturaEmailNotificationRecipientProvider;
+	import com.vidiun.vo.VidiunEmailNotificationRecipientProvider;
 
-	import com.kaltura.vo.KalturaEventNotificationTemplate;
+	import com.vidiun.vo.VidiunEventNotificationTemplate;
 
 	[Bindable]
-	public dynamic class KalturaEmailNotificationTemplate extends KalturaEventNotificationTemplate
+	public dynamic class VidiunEmailNotificationTemplate extends VidiunEventNotificationTemplate
 	{
 		/**
 		* Define the email body format
 		* 
-		* @see com.kaltura.types.KalturaEmailNotificationFormat
+		* @see com.vidiun.types.VidiunEmailNotificationFormat
 		**/
 		public var format : String = null;
 
@@ -75,30 +75,30 @@ package com.kaltura.vo
 		* Email recipient emails and names
 		* 
 		**/
-		public var to : KalturaEmailNotificationRecipientProvider;
+		public var to : VidiunEmailNotificationRecipientProvider;
 
 		/**
 		* Email recipient emails and names
 		* 
 		**/
-		public var cc : KalturaEmailNotificationRecipientProvider;
+		public var cc : VidiunEmailNotificationRecipientProvider;
 
 		/**
 		* Email recipient emails and names
 		* 
 		**/
-		public var bcc : KalturaEmailNotificationRecipientProvider;
+		public var bcc : VidiunEmailNotificationRecipientProvider;
 
 		/**
 		* Default email addresses to whom the reply should be sent.
 		* 
 		**/
-		public var replyTo : KalturaEmailNotificationRecipientProvider;
+		public var replyTo : VidiunEmailNotificationRecipientProvider;
 
 		/**
 		* Define the email priority
 		* 
-		* @see com.kaltura.types.KalturaEmailNotificationTemplatePriority
+		* @see com.vidiun.types.VidiunEmailNotificationTemplatePriority
 		**/
 		public var priority : int = int.MIN_VALUE;
 
@@ -173,7 +173,7 @@ package com.kaltura.vo
 					result = '';
 					break;
 				case 'customHeaders':
-					result = 'KalturaKeyValue';
+					result = 'VidiunKeyValue';
 					break;
 				default:
 					result = super.getElementType(arrayName);

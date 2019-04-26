@@ -1,8 +1,8 @@
 package
 {
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.KPluginEvent;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.VPluginEvent;
 	
 	import fl.core.UIComponent;
 	
@@ -13,7 +13,7 @@ package
 	import org.osmf.media.URLResource;
 	import org.puremvc.as3.interfaces.IFacade;
 	/**
-	 * Plugin which wraps the load of an OSMF plugin into the OSMF MediaFactory of the KDP 
+	 * Plugin which wraps the load of an OSMF plugin into the OSMF MediaFactory of the VDP 
 	 * @author Hila
 	 * 
 	 */	
@@ -29,7 +29,7 @@ package
 		
 		/**
 		 * A-sync init of the Plugin - this function begins an a-sync load process of the 
-		 * OSMF plugin into the MediaFactory contained by the KDP.  
+		 * OSMF plugin into the MediaFactory contained by the VDP.  
 		 * @param facade
 		 * 
 		 */		
@@ -51,7 +51,7 @@ package
 		 */		
 		protected function onOSMFPluginLoaded (e : MediaFactoryEvent) : void
 		{
-			dispatchEvent( new KPluginEvent (KPluginEvent.KPLUGIN_INIT_COMPLETE) );
+			dispatchEvent( new VPluginEvent (VPluginEvent.VPLUGIN_INIT_COMPLETE) );
 		}
 		/**
 		 * Listener for the LOAD_ERROR event.
@@ -60,7 +60,7 @@ package
 		 */		
 		protected function onOSMFPluginLoadError (e : MediaFactoryEvent) : void
 		{
-			dispatchEvent( new KPluginEvent (KPluginEvent.KPLUGIN_INIT_FAILED) );
+			dispatchEvent( new VPluginEvent (VPluginEvent.VPLUGIN_INIT_FAILED) );
 		}
 		
 		public function setSkin(styleName:String, setSkinSize:Boolean=false):void

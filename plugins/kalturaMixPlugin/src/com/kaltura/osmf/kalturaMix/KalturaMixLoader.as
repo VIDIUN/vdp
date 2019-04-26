@@ -1,16 +1,16 @@
-package com.kaltura.osmf.kalturaMix
+package com.vidiun.osmf.vidiunMix
 {
-	import com.kaltura.osmf.kaltura.KalturaBaseEntryResource;
-	import com.kaltura.vo.KalturaMixEntry;
+	import com.vidiun.osmf.vidiun.VidiunBaseEntryResource;
+	import com.vidiun.vo.VidiunMixEntry;
 	
 	import org.osmf.media.MediaResourceBase;
 	import org.osmf.traits.LoadState;
 	import org.osmf.traits.LoadTrait;
 	import org.osmf.traits.LoaderBase;
 
-	public class KalturaMixLoader extends LoaderBase
+	public class VidiunMixLoader extends LoaderBase
 	{
-		public function KalturaMixLoader()
+		public function VidiunMixLoader()
 		{
 			super();
 		}
@@ -39,9 +39,9 @@ package com.kaltura.osmf.kalturaMix
 		 */
 		override public function canHandleResource(resource:MediaResourceBase):Boolean
 		{
-			//if (resource is KalturaEntryResource && (resource as KalturaEntryResource).entry is KalturaEntry)
+			//if (resource is VidiunEntryResource && (resource as VidiunEntryResource).entry is VidiunEntry)
 			//	return true;
-			if (resource is KalturaBaseEntryResource && (resource as KalturaBaseEntryResource).entry is KalturaMixEntry)
+			if (resource is VidiunBaseEntryResource && (resource as VidiunBaseEntryResource).entry is VidiunMixEntry)
 				return true;
 				
 			return false;

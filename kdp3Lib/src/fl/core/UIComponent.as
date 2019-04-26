@@ -1,7 +1,7 @@
 // Copyright 2007. Adobe Systems Incorporated. All Rights Reserved.
 package fl.core {
 
-	import com.kaltura.kdpfl.view.controls.ToolTipManager;
+	import com.vidiun.vdpfl.view.controls.ToolTipManager;
 	import com.yahoo.astra.fl.containers.layoutClasses.AdvancedLayoutPane;
 	
 	import fl.events.ComponentEvent;
@@ -1305,7 +1305,7 @@ package fl.core {
 			invalidHash = {};
 
 			//remove draw() from the "call later" queue
-			delete this.callLaterMethods[draw]; // Kaltura patch
+			delete this.callLaterMethods[draw]; // Vidiun patch
 		}
 		/**
          * @private (protected)
@@ -1388,13 +1388,13 @@ package fl.core {
          * @playerversion Flash 9.0.28.0
 		 */
 		protected function callLater(fn:Function):void {
-//			if (inCallLaterPhase) { return; }  // Kaltura patch
+//			if (inCallLaterPhase) { return; }  // Vidiun patch
 
-			if (!callLaterMethods[fn]) // Kaltura patch
+			if (!callLaterMethods[fn]) // Vidiun patch
 			{			
 				callLaterMethods[fn] = true;
 				if (stage != null) {
-	                stage.addEventListener(Event.ENTER_FRAME,callLaterDispatcher,false,0,true); // Kaltura patch
+	                stage.addEventListener(Event.ENTER_FRAME,callLaterDispatcher,false,0,true); // Vidiun patch
 					stage.addEventListener(Event.RENDER,callLaterDispatcher,false,0,true);
 					stage.invalidate();				
 				} else {
@@ -1413,14 +1413,14 @@ package fl.core {
 		{
 			if (event.type == Event.ADDED_TO_STAGE) {
 				removeEventListener(Event.ADDED_TO_STAGE,callLaterDispatcher);
-                stage.addEventListener(Event.ENTER_FRAME,callLaterDispatcher,false,0,true); // Kaltura patch
+                stage.addEventListener(Event.ENTER_FRAME,callLaterDispatcher,false,0,true); // Vidiun patch
 				// now we can listen for render event:
 				stage.addEventListener(Event.RENDER,callLaterDispatcher,false,0,true);
 				stage.invalidate();
 				
 				return;
 			} else {
-                event.target.removeEventListener(Event.ENTER_FRAME,callLaterDispatcher); // Kaltura patch
+                event.target.removeEventListener(Event.ENTER_FRAME,callLaterDispatcher); // Vidiun patch
 				event.target.removeEventListener(Event.RENDER,callLaterDispatcher);
 				if (stage == null) {
 					// received render, but the stage is not available, so we will listen for addedToStage again:
@@ -1430,7 +1430,7 @@ package fl.core {
 			}
 
 		    var methods:Dictionary = callLaterMethods;
-		    callLaterMethods = new Dictionary(); // Kaltura patch
+		    callLaterMethods = new Dictionary(); // Vidiun patch
 		    for (var method:Object in methods) 
 		    {
 				method();

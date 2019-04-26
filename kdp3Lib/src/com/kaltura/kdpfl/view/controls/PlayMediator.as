@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
-	import com.kaltura.kdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.NotificationType;
 	
 	import fl.controls.Button;
 	

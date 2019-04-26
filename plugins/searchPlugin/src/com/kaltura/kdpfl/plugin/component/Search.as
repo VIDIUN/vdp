@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	//import com.kaltura.kdpfl.component.IComponent;
+	//import com.vidiun.vdpfl.component.IComponent;
 	
-	import com.kaltura.kdpfl.view.containers.KHBox;
+	import com.vidiun.vdpfl.view.containers.VHBox;
 	
 	import fl.controls.TextInput;
 	import fl.data.DataProvider;
@@ -18,7 +18,7 @@ package com.kaltura.kdpfl.plugin.component
 
 	public class Search extends Sprite //implements IComponent
 	{
-		private var searchForm:KHBox = new KHBox();
+		private var searchForm:VHBox = new VHBox();
 		private var searchInput:TextInput = new TextInput();  
 		private var submitButton : SimpleButton;
 		

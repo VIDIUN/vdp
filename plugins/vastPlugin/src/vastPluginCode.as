@@ -1,11 +1,11 @@
 package {
-	import com.kaltura.kdpfl.plugin.IMidrollSequencePlugin;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.ISequencePlugin;
-	import com.kaltura.kdpfl.plugin.component.NonLinearAdProxy;
-	import com.kaltura.kdpfl.plugin.component.PersistentData;
-	import com.kaltura.kdpfl.plugin.component.VastLinearAdProxy;
-	import com.kaltura.kdpfl.plugin.component.VastMediator;
+	import com.vidiun.vdpfl.plugin.IMidrollSequencePlugin;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.ISequencePlugin;
+	import com.vidiun.vdpfl.plugin.component.NonLinearAdProxy;
+	import com.vidiun.vdpfl.plugin.component.PersistentData;
+	import com.vidiun.vdpfl.plugin.component.VastLinearAdProxy;
+	import com.vidiun.vdpfl.plugin.component.VastMediator;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -278,7 +278,7 @@ package {
 
 
 		/**
-		 * Function starts the plugin playing in the kdp
+		 * Function starts the plugin playing in the vdp
 		 *
 		 */
 		public function start():void {
@@ -321,7 +321,7 @@ package {
 		
 		/**
 		 * update counters and flush data according to current roll. </br>
-		 * this happens right before the plugin returns control to KDP
+		 * this happens right before the plugin returns control to VDP
 		 * @param e
 		 */		
 		private function endSubsequence(e:Event = null):void {

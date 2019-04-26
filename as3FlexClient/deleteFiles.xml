@@ -4,7 +4,7 @@
 	<target name="main" depends="clean" />
 	<target name="clean">
 		<delete includeemptydirs="true">
-    		<fileset dir="src/com/kaltura" includes="**/*"/>
+    		<fileset dir="src/com/vidiun" includes="**/*"/>
 	  	</delete>
 	</target>
 	

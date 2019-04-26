@@ -1,6 +1,6 @@
-package com.kaltura.roughcut.mediaclips.settings
+package com.vidiun.roughcut.mediaclips.settings
 {
-	import com.kaltura.plugin.types.transitions.TransitionTypes;
+	import com.vidiun.plugin.types.transitions.TransitionTypes;
 
 	/**
 	 *this class is used as VO to set the default behaviour of the mediaclips assets.

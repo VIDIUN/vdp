@@ -1,17 +1,17 @@
 package
 {
-	import com.kaltura.kdpfl.model.strings.MessageStrings;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.util.KAstraAdvancedLayoutUtil;
-	import com.kaltura.kdpfl.view.Annotation;
-	import com.kaltura.kdpfl.view.AnnotationBoxMediator;
-	import com.kaltura.kdpfl.view.AnnotationsBox;
-	import com.kaltura.kdpfl.view.EditAnnotationForm;
-	import com.kaltura.kdpfl.view.containers.KCanvas;
-	import com.kaltura.kdpfl.view.containers.KVBox;
-	import com.kaltura.kdpfl.view.strings.AnnotationStrings;
-	import com.kaltura.kdpfl.view.strings.Notifications;
+	import com.vidiun.vdpfl.model.strings.MessageStrings;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.util.VAstraAdvancedLayoutUtil;
+	import com.vidiun.vdpfl.view.Annotation;
+	import com.vidiun.vdpfl.view.AnnotationBoxMediator;
+	import com.vidiun.vdpfl.view.AnnotationsBox;
+	import com.vidiun.vdpfl.view.EditAnnotationForm;
+	import com.vidiun.vdpfl.view.containers.VCanvas;
+	import com.vidiun.vdpfl.view.containers.VVBox;
+	import com.vidiun.vdpfl.view.strings.AnnotationStrings;
+	import com.vidiun.vdpfl.view.strings.Notifications;
 	
 	import fl.core.UIComponent;
 	
@@ -21,7 +21,7 @@ package
 	
 	import org.puremvc.as3.interfaces.IFacade;
 	
-	public class annotationsPluginCode extends KVBox implements IPlugin
+	public class annotationsPluginCode extends VVBox implements IPlugin
 	{
 		protected var _userMode : String;
 		protected var _annotationsBox : AnnotationsBox;
@@ -35,7 +35,7 @@ package
 		protected var _messageText : String = "";
 		protected var _maxChars : Number = 0;
 		//Added 17.5.2011 - new variable for annotation persistence target
-		protected var _submissionTarget : String = AnnotationStrings.KALTURA;
+		protected var _submissionTarget : String = AnnotationStrings.VIDIUN;
 		protected var _useSharedObject : Boolean = true;
 		
 		public function annotationsPluginCode()
@@ -156,10 +156,10 @@ package
 		private function addVisualComponents () : void
 		{
 			_annotationEditForm.visible = false;
-			var boxesContainer : KCanvas = new KCanvas();
-			KAstraAdvancedLayoutUtil.appendToLayout(boxesContainer, _annotationsBox,100, 100);
-			KAstraAdvancedLayoutUtil.appendToLayout(boxesContainer, _annotationEditForm, 100, 100);
-			KAstraAdvancedLayoutUtil.appendToLayout(this, boxesContainer, 100, 100);
+			var boxesContainer : VCanvas = new VCanvas();
+			VAstraAdvancedLayoutUtil.appendToLayout(boxesContainer, _annotationsBox,100, 100);
+			VAstraAdvancedLayoutUtil.appendToLayout(boxesContainer, _annotationEditForm, 100, 100);
+			VAstraAdvancedLayoutUtil.appendToLayout(this, boxesContainer, 100, 100);
 			this.addEventListener( AnnotationStrings.INVALID_ANNOTATION_TEXT_EVENT, onInvalidAnnotationSaveAttempt );
 			this.addEventListener( AnnotationStrings.INVALID_ANNOTATION_INTIME_EVENT, onInvalidAnnotationIntime );
 			

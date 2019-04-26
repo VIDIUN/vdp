@@ -1,10 +1,10 @@
-package com.kaltura.kdpfl.model.vo
+package com.vidiun.vdpfl.model.vo
 {
-	import com.kaltura.kdpfl.plugin.IMidrollSequencePlugin;
+	import com.vidiun.vdpfl.plugin.IMidrollSequencePlugin;
 
 	[Bindable]
 	/**
-	 * Class SequenceVO holds parameters related to the KDP sequence mechanism. 
+	 * Class SequenceVO holds parameters related to the VDP sequence mechanism. 
 	 * @author Hila
 	 * 
 	 */	
@@ -79,7 +79,7 @@ package com.kaltura.kdpfl.model.vo
 		/**
 		 * Property containing the current midroll plugin playing in the player. The running assumptions are:
 		 * a. There is only 1 midroll plugin playing at a given time
-		 * b. The only way that this midroll is of interest to us is if it's playing in the KDP MediaPlayer.
+		 * b. The only way that this midroll is of interest to us is if it's playing in the VDP MediaPlayer.
 		 */		
 		public var activeMidrollPlugin : IMidrollSequencePlugin;
 		/**

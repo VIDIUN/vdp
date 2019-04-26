@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Vidiun Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,9 +20,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.net.streaming
+package com.vidiun.net.streaming
 {
-	import com.kaltura.net.streaming.events.NetClientEvent;
+	import com.vidiun.net.streaming.events.NetClientEvent;
 	
 	import flash.events.EventDispatcher;
 	
@@ -31,32 +31,32 @@ package com.kaltura.net.streaming
 
 	/**
 	 *  Dispatched when the Netstream client gets BufferSizes object on the metadata.
-	 *  @eventType com.kaltura.net.streaming.events.NetClientEvent.ON_METADATA_BUFFER_SIZES
+	 *  @eventType com.vidiun.net.streaming.events.NetClientEvent.ON_METADATA_BUFFER_SIZES
 	 */
-	[Event(name="onMetadataBufferSizes", type="com.kaltura.net.streaming.events.NetClientEvent")]
+	[Event(name="onMetadataBufferSizes", type="com.vidiun.net.streaming.events.NetClientEvent")]
 
 	/**
 	 *  Dispatched when the Netstream client gets to the end of the stream.
-	 *  @eventType com.kaltura.net.streaming.events.NetClientEvent.ON_STREAM_END
+	 *  @eventType com.vidiun.net.streaming.events.NetClientEvent.ON_STREAM_END
 	 */
-	[Event(name="onStreamEnd", type="com.kaltura.net.streaming.events.NetClientEvent")]
+	[Event(name="onStreamEnd", type="com.vidiun.net.streaming.events.NetClientEvent")]
 
 	/**
 	 *  Dispatched when the Netstream client gets event that the stream has been switched on the server sequence (playlist mode).
-	 *  @eventType com.kaltura.net.streaming.events.NetClientEvent.ON_STREAM_SWITCH
+	 *  @eventType com.vidiun.net.streaming.events.NetClientEvent.ON_STREAM_SWITCH
 	 */
-	[Event(name="onStreamSwitch", type="com.kaltura.net.streaming.events.NetClientEvent")]
+	[Event(name="onStreamSwitch", type="com.vidiun.net.streaming.events.NetClientEvent")]
 
 	/**
 	 *  Dispatched when the Netstream client gets to the last second before the stream ends.
-	 *  @eventType com.kaltura.net.streaming.events.NetClientEvent.ON_LAST_SECOND
+	 *  @eventType com.vidiun.net.streaming.events.NetClientEvent.ON_LAST_SECOND
 	 */
-	[Event(name="onLastSecond", type="com.kaltura.net.streaming.events.NetClientEvent")]
+	[Event(name="onLastSecond", type="com.vidiun.net.streaming.events.NetClientEvent")]
 
 	/**
 	 *  Dispatched after the Netstream client gets the metadata and parse it to a StreamMetaData object.
 	 *  @eventType mx.events.MetadataEvent.METADATA_RECEIVED
-	 * @see com.kaltura.net.streaming.StreamMetaData
+	 * @see com.vidiun.net.streaming.StreamMetaData
 	 */
 	[Event(name="metadataReceived", type="mx.events.MetadataEvent")]
 

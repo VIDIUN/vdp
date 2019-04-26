@@ -1,10 +1,10 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.flavorAsset.FlavorAssetGetByEntryId;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.vo.KalturaFlavorAsset;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.commands.flavorAsset.FlavorAssetGetByEntryId;
+	import com.vidiun.events.VidiunEvent;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vo.VidiunFlavorAsset;
 	
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
@@ -55,11 +55,11 @@ package com.kaltura.kdpfl.plugin.component
 						mediaProxy = facade.retrieveProxy("mediaProxy") as MediaProxy;
 						entryId=mediaProxy.vo.entry.id;
 						var entry:Object = mediaProxy.vo.entry;
-						var kClient : KalturaClient = facade.retrieveProxy("servicesProxy")["kalturaClient"] as KalturaClient;
+						var vClient : VidiunClient = facade.retrieveProxy("servicesProxy")["vidiunClient"] as VidiunClient;
 						var flavorAssetByEntryId:FlavorAssetGetByEntryId = new FlavorAssetGetByEntryId(entryId);
-						flavorAssetByEntryId.addEventListener(KalturaEvent.COMPLETE, result);
-						flavorAssetByEntryId.addEventListener(KalturaEvent.FAILED, fault);
-						kClient.post(flavorAssetByEntryId);
+						flavorAssetByEntryId.addEventListener(VidiunEvent.COMPLETE, result);
+						flavorAssetByEntryId.addEventListener(VidiunEvent.FAILED, fault);
+						vClient.post(flavorAssetByEntryId);
 					}
 					break;
 			}	
@@ -84,7 +84,7 @@ package com.kaltura.kdpfl.plugin.component
 			
 			
 			//manifest code  
-			//var entryManifestUrl:String  = _flashvars.httpProtocol + _flashvars.host+ "/p/" + _flashvars.partnerId+ "/sp/" + _flashvars.subpId + "/playManifest/entryId/" + entryId + ((_flashvars.deliveryCode) ? "/deliveryCode/" + _flashvars.deliveryCode : "")+ ((flavor) ? "/flavorId/" + flavor : "")+ "/format/url" + (_flashvars.cdnHost ? "/cdnHost/" + _flashvars.cdnHost : "")+ (_flashvars.storageId ? "/storageId/" + _flashvars.storageId : "") + (_flashvars.ks ? "/ks/" + _flashvars.ks : "")+(_flashvars.b64Referrer ? "/referrer/" + _flashvars.b64Referrer : "");
+			//var entryManifestUrl:String  = _flashvars.httpProtocol + _flashvars.host+ "/p/" + _flashvars.partnerId+ "/sp/" + _flashvars.subpId + "/playManifest/entryId/" + entryId + ((_flashvars.deliveryCode) ? "/deliveryCode/" + _flashvars.deliveryCode : "")+ ((flavor) ? "/flavorId/" + flavor : "")+ "/format/url" + (_flashvars.cdnHost ? "/cdnHost/" + _flashvars.cdnHost : "")+ (_flashvars.storageId ? "/storageId/" + _flashvars.storageId : "") + (_flashvars.vs ? "/vs/" + _flashvars.vs : "")+(_flashvars.b64Referrer ? "/referrer/" + _flashvars.b64Referrer : "");
 			
 			if (flavor !=null){
 				url=_flashvars.httpProtocol+cdnHost+"/p/"+partner+"/sp/"+subPartner+"/download/entry_id/"+entryId+"/flavor/"+flavor;		
@@ -94,9 +94,9 @@ package com.kaltura.kdpfl.plugin.component
 				url=_flashvars.httpProtocol+cdnHost+"/p/"+partner+"/sp/"+subPartner+"/download/entry_id/"+entryId;
 			}
 			
-			if ( _flashvars.ks )
+			if ( _flashvars.vs )
 			{
-				url += "/ks/" + _flashvars.ks;
+				url += "/vs/" + _flashvars.vs;
 			}
 			if(_flashvars.referrer && _flashvars.referrer != '')
 			{
@@ -125,7 +125,7 @@ package com.kaltura.kdpfl.plugin.component
 			}
 			
 			
-			for each (var o:KalturaFlavorAsset in data.data) 
+			for each (var o:VidiunFlavorAsset in data.data) 
 			{
 				if(flavorParamId && flavorParamId == o.flavorParamsId.toString() )
 				{

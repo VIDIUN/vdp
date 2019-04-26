@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
 	import com.yahoo.astra.fl.containers.BoxPane;
 	
@@ -7,7 +7,7 @@ package com.kaltura.kdpfl.view.controls
 	import flash.utils.getDefinitionByName;
 
 	/**
-	 * class for the buffer indicator animation that appears when media playing in the KDP goes into buffering mode. 
+	 * class for the buffer indicator animation that appears when media playing in the VDP goes into buffering mode. 
 	 * @author Hila
 	 * 
 	 */
@@ -35,7 +35,7 @@ package com.kaltura.kdpfl.view.controls
 				anim = getDefinitionByName(className) as Class;
 			} catch ( e : Error ){
 				//trace("couldn't find needed class:", className);
-				KTrace.getInstance().log("couldn't find needed class:", className);
+				VTrace.getInstance().log("couldn't find needed class:", className);
 				return; //if the class don't exist stay with the loading label when showing the loader
 			}
 

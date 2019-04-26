@@ -1,8 +1,8 @@
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.OverlayMC;
-	import com.kaltura.kdpfl.plugin.component.OverlayMediator;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.OverlayMC;
+	import com.vidiun.vdpfl.plugin.component.OverlayMediator;
 	
 	import fl.core.UIComponent;
 	
@@ -15,7 +15,7 @@ package
 	 * ad on the screen, according to data received from the Vast plugin. 
 	 * It creates a sprite in a suitable size for the loaded image/swf and displays 
 	 * it at regular intervals. The ad is clickable if so configured in the Vast XML, 
-	 * dispatches statistics both to the Kaltura Management Console and to the ad 
+	 * dispatches statistics both to the Vidiun Management Console and to the ad 
 	 * provider and all of its parameters are cofigurable.
 	 */	
 	public class overlayPluginCode extends UIComponent implements IPlugin
@@ -43,7 +43,7 @@ package
 
 		/**
 		 * create and intialize the mediator and view component 
-		 * @param facade 	KDP application facade
+		 * @param facade 	VDP application facade
 		 */		
 		public function initializePlugin ( facade : IFacade ) : void
 		{

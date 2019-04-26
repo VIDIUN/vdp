@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.model
+package com.vidiun.vdpfl.model
 {
-	import com.kaltura.kdpfl.model.vo.ConfigVO;
+	import com.vidiun.vdpfl.model.vo.ConfigVO;
 	
 	import mx.utils.UIDUtil;
 	
@@ -8,7 +8,7 @@ package com.kaltura.kdpfl.model
 
 	/**
 	 * ConfigProxy is the gateway to application parameters. You can access
-	 * KDP flashvars from everywhere in the application via this proxy.
+	 * VDP flashvars from everywhere in the application via this proxy.
 	 */	
 	public class ConfigProxy extends Proxy
 	{

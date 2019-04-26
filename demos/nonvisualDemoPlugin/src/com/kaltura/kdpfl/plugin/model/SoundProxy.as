@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.model
+package com.vidiun.vdpfl.plugin.model
 {
 	import flash.media.Sound;
 	
@@ -77,7 +77,7 @@ package com.kaltura.kdpfl.plugin.model
 		}
 
 		/**
-		 * duration of the entry currently playing in KDP 
+		 * duration of the entry currently playing in VDP 
 		 */
 		public function get entryDuration():Number
 		{

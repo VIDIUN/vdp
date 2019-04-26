@@ -1,14 +1,14 @@
-package com.kaltura.kdpfl.view
+package com.vidiun.vdpfl.view
 {
-	import com.kaltura.kdpfl.util.KAstraAdvancedLayoutUtil;
-	import com.kaltura.kdpfl.view.containers.KVBox;
-	import com.kaltura.kdpfl.view.strings.AnnotationStrings;
+	import com.vidiun.vdpfl.util.VAstraAdvancedLayoutUtil;
+	import com.vidiun.vdpfl.view.containers.VVBox;
+	import com.vidiun.vdpfl.view.strings.AnnotationStrings;
 	
 	import fl.controls.ScrollPolicy;
 	
 	import flash.events.Event;
 	
-	public class EditAnnotationForm extends KVBox
+	public class EditAnnotationForm extends VVBox
 	{
 		
 		private var prevText : String = "";
@@ -63,7 +63,7 @@ package com.kaltura.kdpfl.view
 			else
 			{
 				var currAnnotation : Annotation = annotation;
-				KAstraAdvancedLayoutUtil.removeFromLayout(this, annotation);
+				VAstraAdvancedLayoutUtil.removeFromLayout(this, annotation);
 				currAnnotation.viewMode = AnnotationStrings.VIEW_MODE;
 				prevText = "";
 				return currAnnotation;
@@ -99,7 +99,7 @@ package com.kaltura.kdpfl.view
 			var currAnnotation : Annotation = annotation;
 			currAnnotation.annotationText = prevText;
 			prevText = "";
-			KAstraAdvancedLayoutUtil.removeFromLayout(this, annotation);
+			VAstraAdvancedLayoutUtil.removeFromLayout(this, annotation);
 			currAnnotation.viewMode = AnnotationStrings.VIEW_MODE;
 			return currAnnotation;
 		}

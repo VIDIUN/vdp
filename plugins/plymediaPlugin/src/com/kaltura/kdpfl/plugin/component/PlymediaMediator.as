@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
 	import flash.display.DisplayObject;
 	import flash.display.Loader;
@@ -18,11 +18,11 @@ package com.kaltura.kdpfl.plugin.component
 	public class PlymediaMediator extends Mediator
 	{
 		public static const NAME:String = "plymediaMediator";
-		public static const DEFAULT_HOST:String = "www.kaltura.com";
+		public static const DEFAULT_HOST:String = "www.vidiun.com";
 		private var pageString:String; 
 		private var checkSubtitlesPage:String;
 		//private static const PAGE_STRING:String = '/extservices/plymedia?movie=entry_';
-		//private static const CHECK_SUBTITLES_PAGE:String = "http://content.plymedia.com/initialize?video=";//http://www.kaltura.com/extservices/plymedia?movie=entry_";	
+		//private static const CHECK_SUBTITLES_PAGE:String = "http://content.plymedia.com/initialize?video=";//http://www.vidiun.com/extservices/plymedia?movie=entry_";	
 	
 		private var _plyClip:Object;		
 		private var _view:Sprite;	
@@ -40,7 +40,7 @@ package com.kaltura.kdpfl.plugin.component
 		private static var _curLanguageIndex:int = 0;
 		private var _firstCondition:Boolean = false;
 		
-		public var partner:String = "Kaltura";
+		public var partner:String = "Vidiun";
 		
 		/**
 		 *  
@@ -85,8 +85,8 @@ package com.kaltura.kdpfl.plugin.component
 						"playerPlayed",
 						"mediaReady",
 						"durationChange",
-						"kdpReady",
-						"kdpEmpty",
+						"vdpReady",
+						"vdpEmpty",
 						"showSubtitles"
 					];
 		}
@@ -99,7 +99,7 @@ package com.kaltura.kdpfl.plugin.component
 					
 		override public function handleNotification(note:INotification):void
 		{
-			var kc: Object =  facade.retrieveProxy("servicesProxy")["kalturaClient"];
+			var vc: Object =  facade.retrieveProxy("servicesProxy")["vidiunClient"];
 			var media : Object = facade.retrieveProxy("mediaProxy");
 			var entry:String = media["vo"]["entry"]["id"];
 			var data:Object = note.getBody();
@@ -131,8 +131,8 @@ package com.kaltura.kdpfl.plugin.component
 				}
 				break;	
 				
-				case "kdpReady":
-				case "kdpEmpty":
+				case "vdpReady":
+				case "vdpEmpty":
 					setMenuVisibility();
 					//indicates that at least one condition for setMenuVisibility exists
 					_firstCondition = true;
@@ -157,7 +157,7 @@ package com.kaltura.kdpfl.plugin.component
 		
 		/**
 		 * sets the plymedia menu visibility according to the given value, and only
-		 * if plyClip was loaded AND notification of either kdpReady or kdpEmpty was sent
+		 * if plyClip was loaded AND notification of either vdpReady or vdpEmpty was sent
 		 * */
 		private function setMenuVisibility() : void
 		{
@@ -279,28 +279,28 @@ package com.kaltura.kdpfl.plugin.component
 		//change the value of the url of plyMedia player and the player content
 		private function changePlymediaUrl(value:String):void
 		{
-			var kshow:String="-1";
+			var vshow:String="-1";
 			var entry:String="-1";
 			
-			//figure out if this is a kshow or an entry
-			if(value.split("kshow_").length>1)
+			//figure out if this is a vshow or an entry
+			if(value.split("vshow_").length>1)
 			{
-				kshow = String(value.split("kshow_")[1]);
+				vshow = String(value.split("vshow_")[1]);
 			}
 			
 			if(value.split("entry_").length>1)
 			{
-				//this is a kshow
+				//this is a vshow
 				entry = String(value.split("entry_")[1]);
 			}
 			
 			var o:Object = new Object();
-		   	o.kshowid = kshow;
+		   	o.vshowid = vshow;
 		   	o.entryid = entry;
 		   	o.entryversion = "-1";
 		   	o.autoplay = false;
-	   		//load a new kshow or entry
-		   	if(entry != "-1" || kshow != "-1" )
+	   		//load a new vshow or entry
+		   	if(entry != "-1" || vshow != "-1" )
 		   	{
 		   		facade.sendNotification("changeMedia", o);
 		   	}

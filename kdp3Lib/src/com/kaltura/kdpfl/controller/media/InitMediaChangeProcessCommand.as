@@ -1,16 +1,16 @@
-package com.kaltura.kdpfl.controller.media
+package com.vidiun.vdpfl.controller.media
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.kdpfl.model.type.StreamerType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.osmf.proxy.KSwitchingProxyElement;
-	import com.kaltura.types.KalturaStatsFeatureType;
-	import com.kaltura.vo.KalturaBaseEntry;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.EnableType;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.SequenceContextType;
+	import com.vidiun.vdpfl.model.type.StreamerType;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
+	import com.vidiun.osmf.proxy.VSwitchingProxyElement;
+	import com.vidiun.types.VidiunStatsFeatureType;
+	import com.vidiun.vo.VidiunBaseEntry;
 	
 	import flash.net.SharedObject;
 	
@@ -34,7 +34,7 @@ package com.kaltura.kdpfl.controller.media
 		{
 			
 			var note : Object = (notification as Notification).getBody();
-			var player:MediaPlayer = (facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).player;
+			var player:MediaPlayer = (facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator).player;
 			if (player && player.state == MediaPlayerState.PLAYING)
 				sendNotification(NotificationType.DO_PAUSE);
 			//if the controls where disabled relese the lock
@@ -47,7 +47,7 @@ package com.kaltura.kdpfl.controller.media
 			if (note.originFeature)
 				flashvars.originFeature = note.originFeature;
 			else
-				flashvars.originFeature = KalturaStatsFeatureType.NONE;
+				flashvars.originFeature = VidiunStatsFeatureType.NONE;
 			
 			sendNotification(NotificationType.CHANGE_MEDIA_PROCESS_STARTED, {entryId: notification.getBody().entryId});
 			
@@ -83,14 +83,14 @@ package com.kaltura.kdpfl.controller.media
 				sequenceProxy.vo.preSequenceComplete = false;
 				sequenceProxy.vo.mainMediaVO = null;
 				sequenceProxy.vo.isInSequence = false;
-				if (mediaProxy.vo.media is KSwitchingProxyElement)
-					(mediaProxy.vo.media as KSwitchingProxyElement).secondaryMediaElement = null;
+				if (mediaProxy.vo.media is VSwitchingProxyElement)
+					(mediaProxy.vo.media as VSwitchingProxyElement).secondaryMediaElement = null;
 			}
 			
 			// set the new entry to be loaded (the rest of the params will be override when loaded
-			mediaProxy.vo.entry = new KalturaBaseEntry();
+			mediaProxy.vo.entry = new VidiunBaseEntry();
 			mediaProxy.vo.entryExtraData = null;
-			mediaProxy.vo.kalturaMediaFlavorArray = null;
+			mediaProxy.vo.vidiunMediaFlavorArray = null;
 			mediaProxy.vo.selectedFlavorId = null;
 			mediaProxy.vo.keyframeValuesArray = null;
 			if (newEntryId) {
@@ -124,7 +124,7 @@ package com.kaltura.kdpfl.controller.media
 				var flavorCookie : SharedObject;
 				try
 				{
-					flavorCookie = SharedObject.getLocal("Kaltura");
+					flavorCookie = SharedObject.getLocal("Vidiun");
 				}
 				catch (e : Error)
 				{

@@ -1,13 +1,13 @@
 package {
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.kdpfl.plugin.component.AssetsRefferencer;
-	import com.kaltura.kdpfl.plugin.component.ModerationMediator;
-	import com.kaltura.kdpfl.plugin.view.Message;
-	import com.kaltura.kdpfl.plugin.view.ModerationScreen;
-	import com.kaltura.kdpfl.view.containers.KHBox;
-	import com.kaltura.types.KalturaModerationFlagType;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.IPluginFactory;
+	import com.vidiun.vdpfl.plugin.component.AssetsRefferencer;
+	import com.vidiun.vdpfl.plugin.component.ModerationMediator;
+	import com.vidiun.vdpfl.plugin.view.Message;
+	import com.vidiun.vdpfl.plugin.view.ModerationScreen;
+	import com.vidiun.vdpfl.view.containers.VHBox;
+	import com.vidiun.types.VidiunModerationFlagType;
 	import com.yahoo.astra.fl.containers.HBoxPane;
 	import com.yahoo.astra.fl.containers.layoutClasses.AdvancedLayoutPane;
 	import com.yahoo.astra.fl.containers.layoutClasses.BaseLayoutPane;
@@ -20,7 +20,7 @@ package {
 	
 	import org.puremvc.as3.interfaces.IFacade;
 
-	public class ModerationPlugin extends KHBox implements IPluginFactory, IPlugin {
+	public class ModerationPlugin extends VHBox implements IPluginFactory, IPlugin {
 		
 		
 		/**
@@ -165,7 +165,7 @@ package {
 		 * shows the moderation ui over the player
 		 * */
 		public function showScreen():void {
-			// disable KDP gui, stop entry from playing, exit fullscreen 
+			// disable VDP gui, stop entry from playing, exit fullscreen 
 			_mediator.sendNotification(NotificationType.CLOSE_FULL_SCREEN);
 			_mediator.sendNotification(NotificationType.ENABLE_GUI, {guiEnabled : false, enableType : "full"});
 			_mediator.sendNotification(NotificationType.DO_PAUSE);
@@ -181,10 +181,10 @@ package {
 					_ui.windowText = text;
 				}
 				
-				_ui.reasonsDataProvider = [{label:reasonSex, type:KalturaModerationFlagType.SEXUAL_CONTENT}, 
-									{label:reasonViolence, type:KalturaModerationFlagType.VIOLENT_REPULSIVE}, 
-									{label:reasonHarmful, type:KalturaModerationFlagType.HARMFUL_DANGEROUS}, 
-									{label:reasonSpam, type:KalturaModerationFlagType.SPAM_COMMERCIALS}]
+				_ui.reasonsDataProvider = [{label:reasonSex, type:VidiunModerationFlagType.SEXUAL_CONTENT}, 
+									{label:reasonViolence, type:VidiunModerationFlagType.VIOLENT_REPULSIVE}, 
+									{label:reasonHarmful, type:VidiunModerationFlagType.HARMFUL_DANGEROUS}, 
+									{label:reasonSpam, type:VidiunModerationFlagType.SPAM_COMMERCIALS}]
 				//set custom behaviour for reasons combo 
 				_ui.comboSelectedIndex = comboSelectedIndex;
 				

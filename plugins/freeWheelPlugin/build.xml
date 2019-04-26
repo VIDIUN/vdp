@@ -1,14 +1,14 @@
-<project name="KDPPlugin" basedir="." default="player-as3">
+<project name="VDPPlugin" basedir="." default="player-as3">
 	<property name="REPO_ROOT" value="${basedir}/../.."/>
 	<property name="TOOLS_HOME" value="${REPO_ROOT}/tools"/>
 	<property name="SDK_PLATFORM" value="as3"/>
   	<!--property name="PLAYER_API_TARGET" value="OsmfPluginAPI.swc"/-->
   	<property name="PLAYER_CLASS" value="FreeWheelPlugin"/>
-  	<property name="PLAYER_TARGET" value="KDPPlugin.swf"/>
+  	<property name="PLAYER_TARGET" value="VDPPlugin.swf"/>
 	<property name="TARGET_VERSION" value="10"/>
   	<import file="${REPO_ROOT}/common/build.xml"/>
   	
-  	<property name="kdp3lib" value="kdp3Lib_dev.swc" />
+  	<property name="vdp3lib" value="vdp3Lib_dev.swc" />
   	<condition property="osmf_swc_name" value="OSMF.logging.swc" else="OSMF.swc">
 		<istrue value="${DEBUG}" />
 	</condition>
@@ -16,7 +16,7 @@
 
 	<!-- override this target to add CONFIG::LOGGING definition -->
 	<target name="build-player-as3" depends="info,tasks-as3,mkdirs,rdk-as3">
-    <echo>Build KDP Plugin</echo>
+    <echo>Build VDP Plugin</echo>
 		<echo>Building ${SDK_PLATFORM} ${PLAYER_TARGET} FP${TARGET_VERSION} ${VERSION}(${RDK_VERSION})</echo>
 		<property name="COMMON_DIR" value="${basedir}/../common"/>
 		<echo file="${OUTPUT}/PLAYER_CLASS">${PLAYER_CLASS}</echo>
@@ -43,7 +43,7 @@
 				<include name="AdManagerLoader.swc"/>
 			</compiler.include-libraries>
 			<compiler.include-libraries dir="${basedir}/lib" append="true">
-				<include name="${kdp3lib}"/>
+				<include name="${vdp3lib}"/>
 			</compiler.include-libraries>
 			<compiler.include-libraries dir="${basedir}/lib" append="true">
 				<include name="${osmf_swc_name}"/>

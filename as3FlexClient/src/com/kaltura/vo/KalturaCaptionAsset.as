@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.KalturaAsset;
+	import com.vidiun.vo.VidiunAsset;
 
 	[Bindable]
-	public dynamic class KalturaCaptionAsset extends KalturaAsset
+	public dynamic class VidiunCaptionAsset extends VidiunAsset
 	{
 		/**
 		* The Caption Params used to create this Caption Asset
@@ -41,21 +41,21 @@ package com.kaltura.vo
 		/**
 		* The language of the caption asset content
 		* 
-		* @see com.kaltura.types.KalturaLanguage
+		* @see com.vidiun.types.VidiunLanguage
 		**/
 		public var language : String = null;
 
 		/**
 		* The language of the caption asset content
 		* 
-		* @see com.kaltura.types.KalturaLanguageCode
+		* @see com.vidiun.types.VidiunLanguageCode
 		**/
 		public var languageCode : String = null;
 
 		/**
 		* Is default caption asset of the entry
 		* 
-		* @see com.kaltura.types.KalturaNullableBoolean
+		* @see com.vidiun.types.VidiunNullableBoolean
 		**/
 		public var isDefault : int = int.MIN_VALUE;
 
@@ -68,14 +68,14 @@ package com.kaltura.vo
 		/**
 		* The caption format
 		* 
-		* @see com.kaltura.types.KalturaCaptionType
+		* @see com.vidiun.types.VidiunCaptionType
 		**/
 		public var format : String = null;
 
 		/**
 		* The status of the asset
 		* 
-		* @see com.kaltura.types.KalturaCaptionAssetStatus
+		* @see com.vidiun.types.VidiunCaptionAssetStatus
 		**/
 		public var status : int = int.MIN_VALUE;
 

@@ -1,16 +1,16 @@
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
 
-import com.kaltura.kdpfl.util.DateTimeUtils;
+import com.vidiun.vdpfl.util.DateTimeUtils;
 
 import flash.events.MouseEvent;
 	
 /**
- * Class representing the timers used by the KDP
+ * Class representing the timers used by the VDP
  * @author Hila
  * 
  */
-public dynamic class KTimer extends KLabel
+public dynamic class VTimer extends VLabel
 {
 	
 	public var format:String = "mm:ss";
@@ -24,7 +24,7 @@ public dynamic class KTimer extends KLabel
 	 * C-tor 
 	 * 
 	 */	
-	public function KTimer()
+	public function VTimer()
 	{
 		super();
 	}
@@ -53,7 +53,7 @@ public dynamic class KTimer extends KLabel
 	}
 
 	/**
-	 * Prevent direct access to KLabel.text
+	 * Prevent direct access to VLabel.text
 	 */		
 	override public function set text( value:String ):void {}
 	

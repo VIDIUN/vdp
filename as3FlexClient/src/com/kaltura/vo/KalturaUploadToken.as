@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.BaseFlexVo;
+	import com.vidiun.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaUploadToken extends BaseFlexVo
+	public dynamic class VidiunUploadToken extends BaseFlexVo
 	{
 		/**
 		* Upload token unique ID
@@ -53,7 +53,7 @@ package com.kaltura.vo
 		/**
 		* Status of the upload token
 		* 
-		* @see com.kaltura.types.KalturaUploadTokenStatus
+		* @see com.vidiun.types.VidiunUploadTokenStatus
 		**/
 		public var status : int = int.MIN_VALUE;
 

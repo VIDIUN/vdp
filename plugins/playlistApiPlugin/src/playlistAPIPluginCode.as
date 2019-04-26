@@ -4,30 +4,30 @@ package {
 	import com.akamai.rss.ContentTO;
 	import com.akamai.rss.ItemTO;
 	import com.akamai.rss.Media;
-	import com.kaltura.KalturaClient;
-	import com.kaltura.base.types.MediaTypes;
-	import com.kaltura.commands.MultiRequest;
-	import com.kaltura.commands.playlist.PlaylistExecute;
-	import com.kaltura.commands.playlist.PlaylistGet;
-	import com.kaltura.errors.KalturaError;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.PlayerStatusProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.KDataProvider;
-	import com.kaltura.kdpfl.plugin.component.PlaylistAPIMediator;
-	import com.kaltura.kdpfl.plugin.component.PlaylistEntryVO;
-	import com.kaltura.kdpfl.plugin.type.PlaylistNotificationType;
-	import com.kaltura.kdpfl.util.Functor;
-	import com.kaltura.kdpfl.util.URLUtils;
-	import com.kaltura.utils.KConfigUtil;
-	import com.kaltura.vo.KalturaMediaEntry;
-	import com.kaltura.vo.KalturaMediaEntryFilter;
-	import com.kaltura.vo.KalturaMediaEntryFilterForPlaylist;
-	import com.kaltura.vo.KalturaPlayableEntry;
-	import com.kaltura.vo.KalturaPlaylist;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.base.types.MediaTypes;
+	import com.vidiun.commands.MultiRequest;
+	import com.vidiun.commands.playlist.PlaylistExecute;
+	import com.vidiun.commands.playlist.PlaylistGet;
+	import com.vidiun.errors.VidiunError;
+	import com.vidiun.events.VidiunEvent;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.PlayerStatusProxy;
+	import com.vidiun.vdpfl.model.ServicesProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.VDataProvider;
+	import com.vidiun.vdpfl.plugin.component.PlaylistAPIMediator;
+	import com.vidiun.vdpfl.plugin.component.PlaylistEntryVO;
+	import com.vidiun.vdpfl.plugin.type.PlaylistNotificationType;
+	import com.vidiun.vdpfl.util.Functor;
+	import com.vidiun.vdpfl.util.URLUtils;
+	import com.vidiun.utils.VConfigUtil;
+	import com.vidiun.vo.VidiunMediaEntry;
+	import com.vidiun.vo.VidiunMediaEntryFilter;
+	import com.vidiun.vo.VidiunMediaEntryFilterForPlaylist;
+	import com.vidiun.vo.VidiunPlayableEntry;
+	import com.vidiun.vo.VidiunPlaylist;
 	
 	import fl.data.DataProvider;
 	
@@ -57,7 +57,7 @@ package {
 		/**
 		 * @copy #dataProvider. 
 		 */		
-		private var _dataProvider:KDataProvider;
+		private var _dataProvider:VDataProvider;
 		
 		/**
 		 * url of currently playing playlist 
@@ -85,7 +85,7 @@ package {
 		private var _initialLoad:Boolean = false;
 		
 		/**
-		 * an object whose keys are playlist urls and values are matching KDataProviders.
+		 * an object whose keys are playlist urls and values are matching VDataProviders.
 		 * when you come to wonder why an array has keys that are strings - it's because 
 		 * array is a dynamic class. why an array is used here instead of an object is beyond me.
 		 */		
@@ -175,7 +175,7 @@ package {
 		
 		private var _shouldAutoInsert:Boolean;
 		
-		private var _kc:KalturaClient;
+		private var _vc:VidiunClient;
 		
 		/**
 		 *indicates if we should use api_v3 
@@ -197,17 +197,17 @@ package {
 	
 		
 		/**
-		 * Commences load of the first playlist (kpl0). <br/>
-		 * This should only happen the first time we recieve kdpEmpty/kdpReady 
+		 * Commences load of the first playlist (vpl0). <br/>
+		 * This should only happen the first time we recieve vdpEmpty/vdpReady 
 		 */
 		public function loadFirstPlaylist():void {
 			if (playlistAutoInsert && !_initialLoad) {
-				if (this.kpl0Id)
+				if (this.vpl0Id)
 				{
-					loadV3Playlist(this.kpl0Id);
+					loadV3Playlist(this.vpl0Id);
 				}
-				else if (this.kpl0Url) {
-					loadPlaylist(this.kpl0Name, this.kpl0Url);
+				else if (this.vpl0Url) {
+					loadPlaylist(this.vpl0Name, this.vpl0Url);
 				}
 				_initialLoad = true;
 			}
@@ -241,7 +241,7 @@ package {
 			
 			_playlistName = name;
 			url = unescape(url); // in case the URL got here ecsaped
-			_playlistUrl = url.replace("{ks}", _playlistAPIMediator.ks);
+			_playlistUrl = url.replace("{vs}", _playlistAPIMediator.vs);
 			var filteredUrl:String = _playlistUrl;
 			var i:int = 1;
 			//apply filters
@@ -267,50 +267,50 @@ package {
 		
 		/**
 		 * Create a data provider from a non-mrss response and assign it to the view.
-		 * @param evt KalturaEvent
+		 * @param evt VidiunEvent
 		 */
-		private function onDataLoadedNotMRSS(evt:KalturaEvent):void {
+		private function onDataLoadedNotMRSS(evt:VidiunEvent):void {
 			var mediaEntries:Array = evt.data as Array;
-			dataProvider = new KDataProvider(mediaEntries);
+			dataProvider = new VDataProvider(mediaEntries);
 			_dataProvider.addEventListener(Event.CHANGE, onChangeItem, false, 0, true);
 			_playlistAPIMediator.sendNotification(PlaylistNotificationType.PLAYLIST_READY);
 		}
 		
 		
-		// written by almog @ kaltura
+		// written by almog @ vidiun
 		private function mrssToMediaEntryArray():Array {
 			var itemToList:Array = _akamaiMRSS.itemArray;
 			var entries:Array = [];
 		
 			for each (var itemTo:ItemTO in itemToList) {
-				var kalturaEntry:KalturaPlayableEntry = new KalturaPlayableEntry();
+				var vidiunEntry:VidiunPlayableEntry = new VidiunPlayableEntry();
 				
 				var media:Media = itemTo.media;
 				var contentTo:ContentTO = media.contentArray[0];
 				for (var itemProperty:String in itemTo) {
-					kalturaEntry[itemProperty] = KConfigUtil.getDefaultValue2(itemTo[itemProperty], kalturaEntry, itemProperty);
+					vidiunEntry[itemProperty] = VConfigUtil.getDefaultValue2(itemTo[itemProperty], vidiunEntry, itemProperty);
 				}
-				kalturaEntry.duration = parseInt(contentTo.duration);
+				vidiunEntry.duration = parseInt(contentTo.duration);
 				if (itemTo.media.thumbnail)
 				{
-					kalturaEntry.thumbnailUrl = itemTo.media.thumbnail.url;
-					if (kalturaEntry.thumbnailUrl.indexOf( "thumbnail/entry_id" ) != -1)
+					vidiunEntry.thumbnailUrl = itemTo.media.thumbnail.url;
+					if (vidiunEntry.thumbnailUrl.indexOf( "thumbnail/entry_id" ) != -1)
 					{
-						kalturaEntry.thumbnailUrl +=  URLUtils.getThumbURLPostfix((Facade.getInstance().retrieveProxy(ConfigProxy.NAME) as ConfigProxy).vo.flashvars, 
-						_kc.ks);
+						vidiunEntry.thumbnailUrl +=  URLUtils.getThumbURLPostfix((Facade.getInstance().retrieveProxy(ConfigProxy.NAME) as ConfigProxy).vo.flashvars, 
+						_vc.vs);
 					}
 					
 				}
-				kalturaEntry.name = itemTo.media.title;
-				kalturaEntry.description = itemTo.media.description;
-				kalturaEntry['partnerLandingPage'] = itemTo.link;
-				kalturaEntry.createdAt = itemTo.createdAtInt;
+				vidiunEntry.name = itemTo.media.title;
+				vidiunEntry.description = itemTo.media.description;
+				vidiunEntry['partnerLandingPage'] = itemTo.link;
+				vidiunEntry.createdAt = itemTo.createdAtInt;
 				
-				if (!kalturaEntry.id)
-					kalturaEntry.id = contentTo.url;
-				kalturaEntry['seekFromStart'] = KConfigUtil.getDefaultValue(itemTo.seekFromStart, 0);
-				kalturaEntry['mediaType'] = MediaTypes.translateServerType(MediaTypes.translateStringTypeToInt(contentTo.medium.toUpperCase()), true);
-				var playlistVO:PlaylistEntryVO = new PlaylistEntryVO (kalturaEntry);
+				if (!vidiunEntry.id)
+					vidiunEntry.id = contentTo.url;
+				vidiunEntry['seekFromStart'] = VConfigUtil.getDefaultValue(itemTo.seekFromStart, 0);
+				vidiunEntry['mediaType'] = MediaTypes.translateServerType(MediaTypes.translateStringTypeToInt(contentTo.medium.toUpperCase()), true);
+				var playlistVO:PlaylistEntryVO = new PlaylistEntryVO (vidiunEntry);
 				entries.push(playlistVO);
 			}
 			
@@ -343,7 +343,7 @@ package {
 			}
 			
 			//create new data provider
-			dataProvider = new KDataProvider(mediaEntries);
+			dataProvider = new VDataProvider(mediaEntries);
 			if (initItemEntryId && mediaEntries)
 			{
 				for (var i:int = 0; i< mediaEntries.length; i++)
@@ -562,20 +562,20 @@ package {
 		
 		/**
 		 * Initialize plugin mediator and data, use pluginCode as view.
-		 * @param facade	KDP application facade
+		 * @param facade	VDP application facade
 		 */
 		public function initializePlugin(facade:IFacade):void {
 			_playlistAPIMediator = new PlaylistAPIMediator(this);
-			_kc = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vo.kalturaClient;
+			_vc = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vo.vidiunClient;
 			var dataArray:Array = new Array();
 			var i:int = 0;
-			while (this["kpl" + i + "Id"]) {
-				dataArray[i] = {playlistId: this["kpl" + i + "Id"], 
+			while (this["vpl" + i + "Id"]) {
+				dataArray[i] = {playlistId: this["vpl" + i + "Id"], 
 								index: i + 1, 
 								width: 160};
 				i++;
 			}
-			//get playlist names from kalturaPlaylist object
+			//get playlist names from vidiunPlaylist object
 			if (i!=0)
 			{
 				_isV3 = true;
@@ -585,9 +585,9 @@ package {
 			{
 				_isV3 = false;
 				// save all the playlists to the multiplaylist dp 
-				while (this["kpl" + i + "Url"] != null) {
-					dataArray[i] = {label: this["kpl" + i + "Name"], 
-						data: this["kpl" + i + "Url"], 
+				while (this["vpl" + i + "Url"] != null) {
+					dataArray[i] = {label: this["vpl" + i + "Name"], 
+						data: this["vpl" + i + "Url"], 
 						index: i + 1, 
 							width: 160};
 					i++;
@@ -625,8 +625,8 @@ package {
 				return mm + seperator + dd + seperator + yyyy;
 			}	
 			
-			//in case "kdpEmtpy" was sent before this plugin was initialized
-			if ((facade.retrieveProxy(PlayerStatusProxy.NAME) as PlayerStatusProxy).vo.kdpStatus)
+			//in case "vdpEmtpy" was sent before this plugin was initialized
+			if ((facade.retrieveProxy(PlayerStatusProxy.NAME) as PlayerStatusProxy).vo.vdpStatus)
 			{
 				loadFirstPlaylist();
 			}
@@ -641,7 +641,7 @@ package {
 		/**
 		 * @private
 		 */
-		public function set dataProvider(value:KDataProvider):void {
+		public function set dataProvider(value:VDataProvider):void {
 			_dataProvider = value;
 		}
 		
@@ -649,7 +649,7 @@ package {
 		/**
 		 * Data provider for this list
 		 */
-		public function get dataProvider():KDataProvider {
+		public function get dataProvider():VDataProvider {
 			return (_dataProvider);
 		}
 		
@@ -772,7 +772,7 @@ package {
 			_playlistId = playlistId;
 			//apply filters
 			var filteredString:String = playlistId;
-			var filter:KalturaMediaEntryFilterForPlaylist = new KalturaMediaEntryFilterForPlaylist();
+			var filter:VidiunMediaEntryFilterForPlaylist = new VidiunMediaEntryFilterForPlaylist();
 			for (var filt:String in _filters) {
 				if (_filters[filt]) {
 					filteredString += "::" + filt + "=" + _filters[filt];
@@ -786,9 +786,9 @@ package {
 					_playlistUrl = filteredString
 					var execPlaylist:PlaylistExecute = new PlaylistExecute(playlistId, "", null, filter);
 					
-					execPlaylist.addEventListener(KalturaEvent.COMPLETE, onExecuteResult);
-					execPlaylist.addEventListener(KalturaEvent.FAILED, onExecuteFailed);
-					_kc.post(execPlaylist);
+					execPlaylist.addEventListener(VidiunEvent.COMPLETE, onExecuteResult);
+					execPlaylist.addEventListener(VidiunEvent.FAILED, onExecuteFailed);
+					_vc.post(execPlaylist);
 				
 			}
 			else
@@ -803,22 +803,22 @@ package {
 		}
 		
 		/**
-		 * get all kalturaPlaylist objects
+		 * get all vidiunPlaylist objects
 		 * 
 		 */		
 		private function getPlaylists():void
 		{
 			var mr:MultiRequest = new MultiRequest();
 			var i:int = 0;
-			while (this["kpl"+i+"Id"])
+			while (this["vpl"+i+"Id"])
 			{
-				var getPlaylist:PlaylistGet = new PlaylistGet(this["kpl"+i+"Id"]);
+				var getPlaylist:PlaylistGet = new PlaylistGet(this["vpl"+i+"Id"]);
 				mr.addAction(getPlaylist);
 				i++;
 			}
-			mr.addEventListener(KalturaEvent.COMPLETE, onGetPlaylistsResult);
-			mr.addEventListener(KalturaEvent.FAILED, onGetPlaylistsFault);
-			_kc.post(mr);
+			mr.addEventListener(VidiunEvent.COMPLETE, onGetPlaylistsResult);
+			mr.addEventListener(VidiunEvent.FAILED, onGetPlaylistsFault);
+			_vc.post(mr);
 		}
 		
 		/**
@@ -826,15 +826,15 @@ package {
 		 * @param event
 		 * 
 		 */		
-		private function onExecuteResult(event:KalturaEvent):void
+		private function onExecuteResult(event:VidiunEvent):void
 		{
-			if(event.data is KalturaError || (event.data.hasOwnProperty("error")))
+			if(event.data is VidiunError || (event.data.hasOwnProperty("error")))
 				trace ("error in execute playlist");
 			else
 			{
 				var resArr:Array = event.data as Array;
 				var mediaEntries:Array = new Array();
-				for each (var entry:KalturaMediaEntry in resArr)
+				for each (var entry:VidiunMediaEntry in resArr)
 				{
 					var playlistVo:PlaylistEntryVO = new PlaylistEntryVO(entry);
 					mediaEntries.push(playlistVo);
@@ -848,31 +848,31 @@ package {
 		 * @param event
 		 * 
 		 */		
-		private function onGetPlaylistsResult(event:KalturaEvent):void{
+		private function onGetPlaylistsResult(event:VidiunEvent):void{
 			
 			if (event.data.length)
 			{
 				for (var i:int = 0; i < event.data.length; i++)
 				{
-					if(event.data[i] is KalturaError || (event.data[i].hasOwnProperty("error")))
+					if(event.data[i] is VidiunError || (event.data[i].hasOwnProperty("error")))
 					{
-						trace ("failed to get kdp"+i+"id name");	
+						trace ("failed to get vdp"+i+"id name");	
 						
 					}
 					else
 					{
-						multiPlaylistDataProvider.getItemAt(i)["label"] = (event.data[i] as KalturaPlaylist).name;
+						multiPlaylistDataProvider.getItemAt(i)["label"] = (event.data[i] as VidiunPlaylist).name;
 					}
 				}
 				multiPlaylistDataProvider.invalidate();
 			}
 		}
 
-		private function onExecuteFailed(event:KalturaEvent):void{
+		private function onExecuteFailed(event:VidiunEvent):void{
 			trace ("failed to execute playlist");
 		}
 		
-		private function onGetPlaylistsFault(event:KalturaEvent):void{
+		private function onGetPlaylistsFault(event:VidiunEvent):void{
 			trace ("failed to get playlists");
 		}
 		

@@ -9,13 +9,13 @@
 	NOTICE: Adobe permits you to use, modify, and distribute this file
 	in accordance with the terms of the license agreement accompanying it.
 
-	Kaltura's default flex-config, please mark which changes are important
+	Vidiun's default flex-config, please mark which changes are important
 	
 -->
 
 <flex-config>
     <!-- Specifies the minimum player version that will run the compiled SWF. -->
-	<!-- Kaltura requires player 10.0.1 -->
+	<!-- Vidiun requires player 10.0.1 -->
     <target-player>10.0.124</target-player>
 
    <compiler>

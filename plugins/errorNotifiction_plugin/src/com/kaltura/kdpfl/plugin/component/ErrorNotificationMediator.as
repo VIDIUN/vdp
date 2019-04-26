@@ -1,11 +1,11 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.stats.StatsReportError;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.commands.stats.StatsReportError;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.ServicesProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
 	
 	import flash.net.URLRequestMethod;
 	
@@ -35,13 +35,13 @@ package com.kaltura.kdpfl.plugin.component
 		 */		
 		public var resourceUrl:String;
 		
-		private var _kc:KalturaClient;
+		private var _vc:VidiunClient;
 		private var _hasStarted:Boolean = false;
 		
 		public function ErrorNotificationMediator(viewComponent:Object = null)
 		{
 			super(NAME, viewComponent);
-			_kc = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).kalturaClient;
+			_vc = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vidiunClient;
 		}
 		
 		/**
@@ -68,7 +68,7 @@ package com.kaltura.kdpfl.plugin.component
 			{
 				case NotificationType.MEDIA_ERROR:
 					//notify the server - for troubleshooting
-					var player:MediaPlayer = (facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).player;
+					var player:MediaPlayer = (facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator).player;
 					var data:MediaErrorEvent = note.getBody().errorEvent as MediaErrorEvent;
 					var message:String = "resourceUrl: " + resourceUrl +"| Flavor index : " + player.currentDynamicStreamIndex +"| Error ID: "+ data.error.errorID +"| Error Message: "+ data.error.message +  "| Stack Trace: " + data.error.getStackTrace();
 					//if error occured before first play, send also the initial bitrate index
@@ -80,7 +80,7 @@ package com.kaltura.kdpfl.plugin.component
 					var sendError:StatsReportError = new StatsReportError(NotificationType.MEDIA_ERROR, message);
 					sendError.method = URLRequestMethod.POST;
 					
-					_kc.post(sendError);	
+					_vc.post(sendError);	
 					
 					break;
 				case NotificationType.PLAYER_PLAYED:

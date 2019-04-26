@@ -1,5 +1,5 @@
 /**
- * KListPlugin
+ * VListPlugin
  *
  * @langversion 3.0
  * @playerversion Flash 9.0.28.0
@@ -7,10 +7,10 @@
  */ 
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.IDataProvider;
-	import com.kaltura.kdpfl.plugin.component.KList;
-	import com.kaltura.kdpfl.plugin.component.KListItem;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.IDataProvider;
+	import com.vidiun.vdpfl.plugin.component.VList;
+	import com.vidiun.vdpfl.plugin.component.VListItem;
 	
 	import fl.core.UIComponent;
 	import fl.data.DataProvider;
@@ -23,7 +23,7 @@ package
 	public class listPluginCode extends UIComponent implements IPlugin
 	{
 		private var _facade:IFacade;
-		private var _klist:KList;
+		private var _vlist:VList;
 		private var _dataProvider:IDataProvider;
 		private var _itemRendererId:String;
 		public var rowHeight:Number = 80;	
@@ -47,20 +47,20 @@ package
 		 */			
 		public function listPluginCode()
 		{
-			_klist = new KList();
+			_vlist = new VList();
 			
-			_klist.addEventListener( MouseEvent.CLICK , onListItemClick, false, 0, true );
+			_vlist.addEventListener( MouseEvent.CLICK , onListItemClick, false, 0, true );
 			this.addEventListener( MouseEvent.CLICK , onListPluginClick, false, 0, true );
-			_klist.addEventListener( Event.CHANGE, onListChange, false, 0, true );
-			_klist.addEventListener( Event.ADDED_TO_STAGE , resizeKdp );
+			_vlist.addEventListener( Event.CHANGE, onListChange, false, 0, true );
+			_vlist.addEventListener( Event.ADDED_TO_STAGE , resizeVdp );
 
-			addChild( _klist );		
+			addChild( _vlist );		
 		}
 
 		public function setSkin( styleName:String, setSkinSize:Boolean=false ):void
 		{
 			_styleName = styleName;
-			_klist.setSkin( styleName, setSkinSize );
+			_vlist.setSkin( styleName, setSkinSize );
 		}	
 		
 		/**
@@ -72,29 +72,29 @@ package
 		{
 			_facade = facade;	
 			if (supportNewStyle && _styleName)
-			 	KListItem.stylName = _styleName;
-			_klist.setStyle('cellRenderer', KListItem ); 
-			_klist.rowHeight = rowHeight;
-			_klist.setDisabledAlpha(listDisabledAlpha);
+			 	VListItem.stylName = _styleName;
+			_vlist.setStyle('cellRenderer', VListItem ); 
+			_vlist.rowHeight = rowHeight;
+			_vlist.setDisabledAlpha(listDisabledAlpha);
 			
 			// TODO error handling				
 			var buildLayout:Function = facade.retrieveProxy("layoutProxy")["buildLayout"];
-			var kml:XML = facade.retrieveProxy("layoutProxy")["vo"]["layoutXML"];
-			var itemLayout:XML = kml.descendants().renderer.(@id == this.itemRenderer)[0];
+			var vml:XML = facade.retrieveProxy("layoutProxy")["vo"]["layoutXML"];
+			var itemLayout:XML = vml.descendants().renderer.(@id == this.itemRenderer)[0];
 			itemLayout = itemLayout.children()[0];
 
-			_klist.itemContentFactory = buildLayout; 
-			_klist.itemContentLayout = itemLayout;
-			_klist.leftScrollBar = useLeftScrollbar;
+			_vlist.itemContentFactory = buildLayout; 
+			_vlist.itemContentLayout = itemLayout;
+			_vlist.leftScrollBar = useLeftScrollbar;
 			
-			resizeKdp();
+			resizeVdp();
 		}	
 		
 		public function onListChange( evt:Event ):void
 		{ 
-			_dataProvider.selectedIndex = _klist.selectedIndex;
-			_facade.sendNotification("relatedItemClicked", {index: _klist.selectedIndex});
-			_klist.scrollToSelected();
+			_dataProvider.selectedIndex = _vlist.selectedIndex;
+			_facade.sendNotification("relatedItemClicked", {index: _vlist.selectedIndex});
+			_vlist.scrollToSelected();
 			
 		}
 	
@@ -128,31 +128,31 @@ package
 			{
 				_dataProvider = data as IDataProvider;
 				_dataProvider.addEventListener( Event.CHANGE, onDataProviderItemChange, false, 0, true );
-				_klist.dataProvider = data;
+				_vlist.dataProvider = data;
 			}
 		}
 		
 		public function onDataProviderItemChange( evt:Event = null ):void
 		{
-			if(_dataProvider&&_dataProvider.selectedIndex<_klist.length){
-				_klist.selectedIndex = _dataProvider.selectedIndex;
-			    _klist.scrollToIndex(_dataProvider.selectedIndex);
+			if(_dataProvider&&_dataProvider.selectedIndex<_vlist.length){
+				_vlist.selectedIndex = _dataProvider.selectedIndex;
+			    _vlist.scrollToIndex(_dataProvider.selectedIndex);
 			}
 		}
 		
 		public function get dataProvider():DataProvider
 		{
-			return _klist.dataProvider;
+			return _vlist.dataProvider;
 		}				
 		
  		override public function set width( value:Number ):void
 		{
-			 _klist.width = super.width = value;	
+			 _vlist.width = super.width = value;	
 		} 
 	
 		override public function set height( value:Number ):void
 		{
-			_klist.height = super.height = value;
+			_vlist.height = super.height = value;
 		} 
 		
 		override public function toString():String
@@ -165,7 +165,7 @@ package
 		 * @param event
 		 * 
 		 */		
-		private function resizeKdp( event : Event = null ) : void
+		private function resizeVdp( event : Event = null ) : void
 		{	
 			if(_facade)
 				_facade.retrieveMediator("stageMediator")["onResize"]();
@@ -173,7 +173,7 @@ package
 		
 		override public function set enabled(value:Boolean):void
 		{
-			_klist.enabled = value;
+			_vlist.enabled = value;
 		}
 		
 	}

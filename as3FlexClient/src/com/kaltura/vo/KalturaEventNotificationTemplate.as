@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.BaseFlexVo;
+	import com.vidiun.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaEventNotificationTemplate extends BaseFlexVo
+	public dynamic class VidiunEventNotificationTemplate extends BaseFlexVo
 	{
 		/**
 		**/
@@ -53,12 +53,12 @@ package com.kaltura.vo
 		public var description : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaEventNotificationTemplateType
+		* @see com.vidiun.types.VidiunEventNotificationTemplateType
 		**/
 		public var type : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaEventNotificationTemplateStatus
+		* @see com.vidiun.types.VidiunEventNotificationTemplateStatus
 		**/
 		public var status : int = int.MIN_VALUE;
 
@@ -73,28 +73,28 @@ package com.kaltura.vo
 		/**
 		* Define that the template could be dispatched manually from the API
 		* 
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var manualDispatchEnabled : Boolean;
 
 		/**
 		* Define that the template could be dispatched automatically by the system
 		* 
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var automaticDispatchEnabled : Boolean;
 
 		/**
 		* Define the event that should trigger this notification
 		* 
-		* @see com.kaltura.types.KalturaEventNotificationEventType
+		* @see com.vidiun.types.VidiunEventNotificationEventType
 		**/
 		public var eventType : String = null;
 
 		/**
 		* Define the object that raied the event that should trigger this notification
 		* 
-		* @see com.kaltura.types.KalturaEventNotificationEventObjectType
+		* @see com.vidiun.types.VidiunEventNotificationEventObjectType
 		**/
 		public var eventObjectType : String = null;
 
@@ -157,13 +157,13 @@ package com.kaltura.vo
 			var result:String = '';
 			switch (arrayName) {
 				case 'eventConditions':
-					result = 'KalturaCondition';
+					result = 'VidiunCondition';
 					break;
 				case 'contentParameters':
-					result = 'KalturaEventNotificationParameter';
+					result = 'VidiunEventNotificationParameter';
 					break;
 				case 'userParameters':
-					result = 'KalturaEventNotificationParameter';
+					result = 'VidiunEventNotificationParameter';
 					break;
 			}
 			return result;

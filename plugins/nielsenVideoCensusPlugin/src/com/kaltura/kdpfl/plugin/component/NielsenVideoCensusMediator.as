@@ -1,11 +1,11 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.types.KalturaAdType;
-	import com.kaltura.vo.KalturaAdCuePoint;
-	import com.kaltura.vo.KalturaCuePoint;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
+	import com.vidiun.types.VidiunAdType;
+	import com.vidiun.vo.VidiunAdCuePoint;
+	import com.vidiun.vo.VidiunCuePoint;
 	
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -37,7 +37,7 @@ package com.kaltura.kdpfl.plugin.component
 		}
 		
 		/**
-		 * Hook to the relevant KDP notifications
+		 * Hook to the relevant VDP notifications
 		 */
 		override public function listNotificationInterests():Array
 		{
@@ -115,7 +115,7 @@ package com.kaltura.kdpfl.plugin.component
 					_midSequenceComplete				= true;
 					_segmentsCounter++;
 					_prevStartTime						= _newStartTime;
-					_newStartTime						= Math.round((facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).getCurrentTime());
+					_newStartTime						= Math.round((facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator).getCurrentTime());
 					break;
 				
 				case NotificationType.CUE_POINTS_RECEIVED:
@@ -128,8 +128,8 @@ package com.kaltura.kdpfl.plugin.component
 							var cpArray:Array = cuePointsMap[inTime];
 							//if at least one cuePoint represents a midroll
 							for (var i:int = 0; i<cpArray.length; i++) {
-								if ((cpArray[i] is KalturaAdCuePoint) &&
-									(cpArray[i] as KalturaAdCuePoint).adType == KalturaAdType.VIDEO)
+								if ((cpArray[i] is VidiunAdCuePoint) &&
+									(cpArray[i] as VidiunAdCuePoint).adType == VidiunAdType.VIDEO)
 								{
 									_numOfSegments++;
 									break;
@@ -157,7 +157,7 @@ package com.kaltura.kdpfl.plugin.component
 		
 		private function getEndTime(data:Object, id:Number):Number{
 			if(data[id] != null){
-				return Number((data[id][0] as KalturaCuePoint).startTime);
+				return Number((data[id][0] as VidiunCuePoint).startTime);
 			}else{
 				return (facade.retrieveProxy( MediaProxy.NAME ) as MediaProxy).vo.entry.msDuration;
 			}

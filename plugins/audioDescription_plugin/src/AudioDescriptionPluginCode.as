@@ -1,7 +1,7 @@
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.AudioDescription;
-	import com.kaltura.kdpfl.plugin.component.AudioDescriptionMediator;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.AudioDescription;
+	import com.vidiun.vdpfl.plugin.component.AudioDescriptionMediator;
 	
 	import fl.core.UIComponent;
 	

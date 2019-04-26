@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users 
+This file is part of the Vidiun Collaborative Media Suite which allows users 
 to do with audio, video, and animation what Wiki platfroms allow them to do with 
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,9 +20,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.kdpfl.util
+package com.vidiun.vdpfl.util
 {
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.vidiun.vdpfl.view.controls.VTrace;
 	
 	import mx.binding.utils.ChangeWatcher;
 	import mx.utils.ObjectUtil;
@@ -41,7 +41,7 @@ package com.kaltura.kdpfl.util
 		// the object to which the actual function belong		
 		private var host:Object;
 		
-		// the actual function name (or an internal function like KTextParser concat)		
+		// the actual function name (or an internal function like VTextParser concat)		
 		private var funcName:Object;
 		
 		// the properties chain leading to the actual function
@@ -152,7 +152,7 @@ package com.kaltura.kdpfl.util
 			var func:Object; 
 			var obj:Object = host;
 			
-			// in case of an internal kTextParser function like concat
+			// in case of an internal vTextParser function like concat
 			// we just want to execute the code
 			if (funcName is Function) 
 			{
@@ -191,7 +191,7 @@ package com.kaltura.kdpfl.util
 			catch(e:Error)
 			{
 				//trace(ObjectUtil.toString(e));
-				KTrace.getInstance().log(ObjectUtil.toString(e));
+				VTrace.getInstance().log(ObjectUtil.toString(e));
 			}
 			
 			return result;

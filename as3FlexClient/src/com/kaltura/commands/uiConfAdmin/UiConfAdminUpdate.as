@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.uiConfAdmin
+package com.vidiun.commands.uiConfAdmin
 {
-		import com.kaltura.vo.KalturaUiConfAdmin;
-	import com.kaltura.delegates.uiConfAdmin.UiConfAdminUpdateDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunUiConfAdmin;
+	import com.vidiun.delegates.uiConfAdmin.UiConfAdminUpdateDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Update an existing UIConf with no partner limitation
 	* 
 	**/
-	public class UiConfAdminUpdate extends KalturaCall
+	public class UiConfAdminUpdate extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param id int
-		* @param uiConf KalturaUiConfAdmin
+		* @param uiConf VidiunUiConfAdmin
 		**/
-		public function UiConfAdminUpdate( id : int,uiConf : KalturaUiConfAdmin )
+		public function UiConfAdminUpdate( id : int,uiConf : VidiunUiConfAdmin )
 		{
 			service= 'adminconsole_uiconfadmin';
 			action= 'update';
@@ -53,7 +53,7 @@ package com.kaltura.commands.uiConfAdmin
 			var keyValArr : Array = new Array();
 			keyArr.push('id');
 			valueArr.push(id);
-				keyValArr = kalturaObject2Arrays(uiConf, 'uiConf');
+				keyValArr = vidiunObject2Arrays(uiConf, 'uiConf');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

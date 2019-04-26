@@ -1,5 +1,5 @@
 package {
-	import com.kaltura.kdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.NotificationType;
 	
 	import fl.events.ComponentEvent;
 	
@@ -20,18 +20,18 @@ package {
 	
 	/**
 	 * @class ApplicationLoader
-	 * This class is the preloader of the kdp3 application and its document class (root). </br>
-	 * It delegates all calls to IKDP3 methods to the actual kdp3 instance, to enable
+	 * This class is the preloader of the vdp3 application and its document class (root). </br>
+	 * It delegates all calls to IVDP3 methods to the actual vdp3 instance, to enable
 	 * communication with loading applications, etc.
 	 * @author Atar
 	 *
 	 */
-	public class ApplicationLoader extends MovieClip implements IKDP3 {
+	public class ApplicationLoader extends MovieClip implements IVDP3 {
 		
 		/**
-		 * an instance of the created application (kdp3)
+		 * an instance of the created application (vdp3)
 		 */
-		protected var _app:IKDP3;
+		protected var _app:IVDP3;
 		
 		/**
 		 * the loader instance that loads the external swf preloader.
@@ -54,16 +54,16 @@ package {
 		
 		
 		/**
-		 * someone already asked to init the KDP
+		 * someone already asked to init the VDP
 		 */
 		protected var _shouldInit:Boolean;
 		
 		
 		/**
-		 * if someone asked to init with KML, save data here
+		 * if someone asked to init with VML, save data here
 		 */
 		
-		protected var _kml:XML;
+		protected var _vml:XML;
 		
 		/**
 		 * 
@@ -80,16 +80,16 @@ package {
 		 */		
 		private var _preloaderContent:Object;
 		
-		private var _kdp3Timer:Timer;
+		private var _vdp3Timer:Timer;
 		
 		/**
-		 * in case kdp3 class wasn't found will start a timer with this delay 
+		 * in case vdp3 class wasn't found will start a timer with this delay 
 		 */		
-		public static const KDP3_LOAD_TIMER_DELAY:int = 100;
+		public static const VDP3_LOAD_TIMER_DELAY:int = 100;
 		/**
-		 * in case kdp3 class wasn't found will start a timer and run this amount of times
+		 * in case vdp3 class wasn't found will start a timer and run this amount of times
 		 */
-		public static const KDP3_LOAD_TIMER_TRIES:int = 30;
+		public static const VDP3_LOAD_TIMER_TRIES:int = 30;
 		
 		
 		
@@ -127,7 +127,7 @@ package {
 				return parameters.preloaderPath;
 			}
 			var s:String = this.loaderInfo.url;
-			var i:int = s.indexOf("kdp3.swf");
+			var i:int = s.indexOf("vdp3.swf");
 			s = s.substring(0, i);
 			s += _path;
 			return s;
@@ -232,7 +232,7 @@ package {
 		}
 
 		/**
-		 * Starts the real application by creating an instance of kdp3.
+		 * Starts the real application by creating an instance of vdp3.
 		 */
 		protected function go(e:Event = null):void {
 			_isGoing = true;
@@ -243,27 +243,27 @@ package {
 			
 			try 
 			{
-				mainClass = Class(getDefinitionByName("kdp3"));
+				mainClass = Class(getDefinitionByName("vdp3"));
 			}
 			catch (e:Error)
 			{
-				//fix bug on linux & FF, after load, kdp3 class wasn't ready yet
-				trace ("kdp3 class wasn't found");
-				if (!_kdp3Timer)
+				//fix bug on linux & FF, after load, vdp3 class wasn't ready yet
+				trace ("vdp3 class wasn't found");
+				if (!_vdp3Timer)
 				{
-					_kdp3Timer = new Timer(KDP3_LOAD_TIMER_DELAY, KDP3_LOAD_TIMER_TRIES);
-					_kdp3Timer.addEventListener(TimerEvent.TIMER, go);
-					_kdp3Timer.addEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete);
-					_kdp3Timer.start();
+					_vdp3Timer = new Timer(VDP3_LOAD_TIMER_DELAY, VDP3_LOAD_TIMER_TRIES);
+					_vdp3Timer.addEventListener(TimerEvent.TIMER, go);
+					_vdp3Timer.addEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete);
+					_vdp3Timer.start();
 				}
 			}
 			
 			if (mainClass) {
-				if (_kdp3Timer)
+				if (_vdp3Timer)
 				{
-					_kdp3Timer.stop();
+					_vdp3Timer.stop();
 					onTimerComplete();
-					trace ("found kdp3 class");
+					trace ("found vdp3 class");
 				}
 				_app = new mainClass();
 				(_app as DisplayObject).addEventListener(Event.ADDED_TO_STAGE, onAppAddedToStage);
@@ -273,18 +273,18 @@ package {
 					_app.flashvars = _flashvars;
 				}
 				if (_shouldInit) {
-					_app.init(_kml);
+					_app.init(_vml);
 				}
 			}
 		}
 		
 		private function onTimerComplete(event:TimerEvent = null) : void
 		{
-			_kdp3Timer.removeEventListener(TimerEvent.TIMER, go);
-			_kdp3Timer.removeEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete);
+			_vdp3Timer.removeEventListener(TimerEvent.TIMER, go);
+			_vdp3Timer.removeEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete);
 			if (event)
 			{
-				trace ("kdp3 timer complete. Failed to load kdp3");
+				trace ("vdp3 timer complete. Failed to load vdp3");
 			}
 		}
 		
@@ -304,7 +304,7 @@ package {
 		
 		/* -----------------------------------------------------------------
 		* ------------------------------------------------------------------
-		*		  interface methods; delegated to the kdp3 instance
+		*		  interface methods; delegated to the vdp3 instance
 		* ------------------------------------------------------------------
 		* ------------------------------------------------------------------ */
 		
@@ -380,12 +380,12 @@ package {
 		}
 		
 		
-		public function init(kml:XML = null):void {
+		public function init(vml:XML = null):void {
 			if (_app) {
-				_app.init(kml);
+				_app.init(vml);
 			}
 			else {
-				_kml = kml;
+				_vml = vml;
 				_shouldInit = true;
 			}
 		}

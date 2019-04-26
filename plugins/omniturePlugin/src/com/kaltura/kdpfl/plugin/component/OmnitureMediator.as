@@ -1,12 +1,12 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.ExternalInterfaceProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.vo.KalturaPlayableEntry;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.ExternalInterfaceProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
+	import com.vidiun.vo.VidiunPlayableEntry;
 	import com.omniture.AppMeasurement;
 	
 	import flash.display.DisplayObject;
@@ -143,7 +143,7 @@ package com.kaltura.kdpfl.plugin.component
 			//this feature allows to extract the configuration from the page
 			if(dynamicConfig == "true")
 			{
-				eip.addCallback("omnitureKdpJsReady",omnitureKdpJsReady);
+				eip.addCallback("omnitureVdpJsReady",omnitureVdpJsReady);
 				return;
 			}	else
 			{
@@ -157,7 +157,7 @@ package com.kaltura.kdpfl.plugin.component
 			}
 			prepareAppMeasurement();
 		}
-		public function omnitureKdpJsReady():void
+		public function omnitureVdpJsReady():void
 		{
 			s.visitorNamespace = getOmniVar("com.TI.Metrics.tcNameSpace");
 			s.trackingServer = getOmniVar("com.TI.Metrics.tcTrackingServer");
@@ -180,8 +180,8 @@ package com.kaltura.kdpfl.plugin.component
 			s.pageURL = cp.vo.flashvars.referer;
 			s.Media.trackMilestones = trackMilestones;
 			s.trackClickMap = true;
-			if(cp.vo.kuiConf && cp.vo.kuiConf.name)
-				s.Media.playerName= cp.vo.kuiConf.name;
+			if(cp.vo.vuiConf && cp.vo.vuiConf.name)
+				s.Media.playerName= cp.vo.vuiConf.name;
 			else
 				s.Media.playerName= 'localPlayer';
 			_isReady = true;
@@ -193,7 +193,7 @@ package com.kaltura.kdpfl.plugin.component
 		}
 		
 		/**
-		 * Hook to the relevant KDP notifications
+		 * Hook to the relevant VDP notifications
 		 */
 		override public function listNotificationInterests():Array
 		{
@@ -219,7 +219,7 @@ package com.kaltura.kdpfl.plugin.component
 				"watermarkClick",
 				NotificationType.DO_PLAY,
 				NotificationType.DO_REPLAY,
-				NotificationType.KDP_READY,
+				NotificationType.VDP_READY,
 				NotificationType.DO_SEEK
 												
 											];
@@ -235,7 +235,7 @@ package com.kaltura.kdpfl.plugin.component
 		{
 			if (statsDis) return;
 			//trace("in handle notification: ", note.getName());
-			var kc: Object =  facade.retrieveProxy("servicesProxy")["kalturaClient"];
+			var vc: Object =  facade.retrieveProxy("servicesProxy")["vidiunClient"];
 			var data:Object = note.getBody();
 			var sequenceProxy : SequenceProxy = facade.retrieveProxy(SequenceProxy.NAME) as SequenceProxy;
 			switch(note.getName())
@@ -266,7 +266,7 @@ package com.kaltura.kdpfl.plugin.component
 					sendGeneralNotification(WATERMARK_CLICK);
 				break;
 				case "playerPlayEnd":
-					s.Media.close(cp.vo.kuiConf.name);
+					s.Media.close(cp.vo.vuiConf.name);
 					sendGeneralNotification(PLAYER_PLAY_END_EVENT);
 				break;
 				case NotificationType.PLAYER_PLAYED:
@@ -298,7 +298,7 @@ package com.kaltura.kdpfl.plugin.component
 				    	{
 							_mediaName = (facade.retrieveProxy(MediaProxy.NAME) as MediaProxy).vo.entry.name;
 							
-							var media:KalturaPlayableEntry = (facade.retrieveProxy(MediaProxy.NAME) as MediaProxy).vo.entry as KalturaPlayableEntry;
+							var media:VidiunPlayableEntry = (facade.retrieveProxy(MediaProxy.NAME) as MediaProxy).vo.entry as VidiunPlayableEntry;
 							if (media)
 								_duration = media.duration;
 				    		_played = false;
@@ -318,8 +318,8 @@ package com.kaltura.kdpfl.plugin.component
 					s.movieID = _lastId;
 					if(media)
 					{
-						s.Media.close(cp.vo.kuiConf.name);
-						s.Media.open(_mediaName,media.duration, cp.vo.kuiConf.name);
+						s.Media.close(cp.vo.vuiConf.name);
+						s.Media.open(_mediaName,media.duration, cp.vo.vuiConf.name);
 					}
 					
 					
@@ -333,9 +333,9 @@ package com.kaltura.kdpfl.plugin.component
 				break;	
 				case NotificationType.PLAYER_SEEK_END:
 					_inSeek = false;
-					var kmpm:KMediaPlayerMediator = (facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator);
-					trace("sent ",kmpm.getCurrentTime());
-					s.Media.play(_mediaName,kmpm.getCurrentTime());
+					var vmpm:VMediaPlayerMediator = (facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator);
+					trace("sent ",vmpm.getCurrentTime());
+					s.Media.play(_mediaName,vmpm.getCurrentTime());
 					//to see if we are passed 50% or not
 					return;
 				break;
@@ -362,7 +362,7 @@ package com.kaltura.kdpfl.plugin.component
 					}
 				break;
 				
-				case NotificationType.KDP_READY:
+				case NotificationType.VDP_READY:
 				//Ready should not occur more than once
 					if (_ready) return;
 					_ready = true;
@@ -381,7 +381,7 @@ package com.kaltura.kdpfl.plugin.component
 				break;
 				
 				case NotificationType.DO_REPLAY:
-					s.Media.open(_mediaName, _duration , cp.vo.kuiConf.name);
+					s.Media.open(_mediaName, _duration , cp.vo.vuiConf.name);
 					sendGeneralNotification(REPLAY_EVENT); //TODO, fix the seek event being sent after replay. at the current this relies on the replay command happening before the seek  
 					_isReplay = true;
 				break;
@@ -389,7 +389,7 @@ package com.kaltura.kdpfl.plugin.component
 					s.Media.play(_mediaName,_playheadPosition);
 				break;*/
 				case NotificationType.PLAYER_PAUSED:
-					var currentTime : Number = (facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).getCurrentTime();
+					var currentTime : Number = (facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator).getCurrentTime();
 					s.Media.stop(_mediaName,currentTime);
 				break;
 				

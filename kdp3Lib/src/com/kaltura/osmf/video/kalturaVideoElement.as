@@ -1,4 +1,4 @@
-package com.kaltura.osmf.video
+package com.vidiun.osmf.video
 {
 	import flash.events.NetStatusEvent;
 	import flash.net.NetStream;
@@ -8,11 +8,11 @@ package com.kaltura.osmf.video
 	import org.osmf.traits.LoadTrait;
 	import org.osmf.traits.MediaTraitType;
 	
-	public class kalturaVideoElement extends VideoElement
+	public class vidiunVideoElement extends VideoElement
 	{
 		private var stream:NetStream
 		
-		public function kalturaVideoElement(loader:NetLoader, resource:IMediaResource=null)
+		public function vidiunVideoElement(loader:NetLoader, resource:IMediaResource=null)
 		{
 			super(loader,resource);
 			
@@ -35,7 +35,7 @@ package com.kaltura.osmf.video
      	
      	override protected function createLoadTrait(loader:ILoader, resource:IMediaResource):LoadTrait
 		{
-			return new KalturaNetStreamLoadTrait(loader, resource);
+			return new VidiunNetStreamLoadTrait(loader, resource);
 		}
 		
 		

@@ -1,13 +1,13 @@
-package com.kaltura.kdpfl.plugin.component {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.type.AdsNotificationTypes;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.puremvc.as3.patterns.mediator.SequenceMultiMediator;
+package com.vidiun.vdpfl.plugin.component {
+	import com.vidiun.VidiunClient;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.ServicesProxy;
+	import com.vidiun.vdpfl.model.type.AdsNotificationTypes;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.SequenceContextType;
+	import com.vidiun.puremvc.as3.patterns.mediator.SequenceMultiMediator;
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
@@ -60,7 +60,7 @@ package com.kaltura.kdpfl.plugin.component {
 		 * for insertion into dynamic ad tags. </br>
 		 * Contents of the context parameter must be url encoded
 		 **/
-		public var k_adaptv_context:String = "";
+		public var v_adaptv_context:String = "";
 
 		/**
 		 * publisher key provided by Adap.tv.
@@ -135,7 +135,7 @@ package com.kaltura.kdpfl.plugin.component {
 
 		override public function handleNotification(note:INotification):void 
 		{
-			var kc:KalturaClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).kalturaClient;
+			var vc:VidiunClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vidiunClient;
 			var sequenceProxy:SequenceProxy = facade.retrieveProxy(SequenceProxy.NAME) as SequenceProxy;
 			var config:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var media:MediaProxy = facade.retrieveProxy(MediaProxy.NAME) as MediaProxy;

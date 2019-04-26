@@ -1,11 +1,11 @@
-package com.kaltura.kdpfl.util
+package com.vidiun.vdpfl.util
 {
 	import flash.display.DisplayObject;
 	import flash.geom.ColorTransform;
 	
-	public class KColorUtil
+	public class VColorUtil
 	{
-		public function KColorUtil()
+		public function VColorUtil()
 		{
 		}
 

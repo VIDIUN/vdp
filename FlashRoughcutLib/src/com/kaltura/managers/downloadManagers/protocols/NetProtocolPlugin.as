@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Vidiun Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,19 +20,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.managers.downloadManagers.protocols
+package com.vidiun.managers.downloadManagers.protocols
 {
-	import com.kaltura.application.KalturaApplication;
-	import com.kaltura.assets.abstracts.AbstractAsset;
-	import com.kaltura.base.types.MediaTypes;
-	import com.kaltura.managers.downloadManagers.pluginManager.PluginLoadingModes;
-	import com.kaltura.managers.downloadManagers.pluginManager.PluginMultiton;
-	import com.kaltura.managers.downloadManagers.pluginManager.events.PluginFactoryEvent;
-	import com.kaltura.managers.downloadManagers.protocols.interfaces.INetProtocol;
-	import com.kaltura.model.KalturaModelLocator;
-	import com.kaltura.net.loaders.interfaces.IMediaSourceLoader;
-	import com.kaltura.plugin.logic.Plugin;
-	import com.kaltura.utils.url.URLProccessing;
+	import com.vidiun.application.VidiunApplication;
+	import com.vidiun.assets.abstracts.AbstractAsset;
+	import com.vidiun.base.types.MediaTypes;
+	import com.vidiun.managers.downloadManagers.pluginManager.PluginLoadingModes;
+	import com.vidiun.managers.downloadManagers.pluginManager.PluginMultiton;
+	import com.vidiun.managers.downloadManagers.pluginManager.events.PluginFactoryEvent;
+	import com.vidiun.managers.downloadManagers.protocols.interfaces.INetProtocol;
+	import com.vidiun.model.VidiunModelLocator;
+	import com.vidiun.net.loaders.interfaces.IMediaSourceLoader;
+	import com.vidiun.plugin.logic.Plugin;
+	import com.vidiun.utils.url.URLProccessing;
 
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -40,7 +40,7 @@ package com.kaltura.managers.downloadManagers.protocols
 
 	public class NetProtocolPlugin extends EventDispatcher implements INetProtocol
 	{
-		static public var model:KalturaModelLocator = KalturaModelLocator.getInstance();
+		static public var model:VidiunModelLocator = VidiunModelLocator.getInstance();
 		static public var loadingMode:String = PluginLoadingModes.PLAYER_MODE;
 		private var pluginsFolder:String;
 
@@ -98,7 +98,7 @@ package com.kaltura.managers.downloadManagers.protocols
 			}
 
 			moduleId = _asset.mediaURL;
-			var debugFromIDE:Boolean = KalturaApplication.getInstance().applicationConfig.debugFromIDE;
+			var debugFromIDE:Boolean = VidiunApplication.getInstance().applicationConfig.debugFromIDE;
 			var baseUrl:String = URLProccessing.prepareURL (pluginsFolder + moduleFolder, !debugFromIDE, false);
 			PluginMultiton.getInstance().addEventListener(PluginFactoryEvent.LOGIC_INIT, pluginInstanceReady);
 			PluginMultiton.getInstance().create (baseUrl, _asset.mediaURL, _asset.assetUID, NetProtocolPlugin.loadingMode);

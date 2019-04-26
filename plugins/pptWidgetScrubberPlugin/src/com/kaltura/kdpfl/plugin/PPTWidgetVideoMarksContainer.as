@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin {
+package com.vidiun.vdpfl.plugin {
 	import fl.controls.Button;
 	import fl.core.InvalidationType;
 	import fl.core.UIComponent;

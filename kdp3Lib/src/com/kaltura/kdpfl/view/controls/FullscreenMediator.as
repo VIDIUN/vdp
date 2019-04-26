@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.vo.LayoutVO;
+	import com.vidiun.vdpfl.model.LayoutProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.vo.LayoutVO;
 	
 	import fl.controls.Button;
 	
@@ -13,7 +13,7 @@ package com.kaltura.kdpfl.view.controls
 	import org.puremvc.as3.patterns.mediator.Mediator;
 
 	/**
-	 * Mediator for the Full Screen button. This class is responsible for firing the required KDP notifications when the user clicks the full
+	 * Mediator for the Full Screen button. This class is responsible for firing the required VDP notifications when the user clicks the full
 	 * screen button, as well as controlling the button's <code>selected</code> property. 
 	 * @author Hila
 	 * 

@@ -1,21 +1,21 @@
 package
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.kdpfl.model.type.StreamerType;
-	import com.kaltura.kdpfl.plugin.WVLoadTrait;
-	import com.kaltura.kdpfl.plugin.WVPluginInfo;
-	import com.kaltura.kdpfl.view.controls.BufferAnimationMediator;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.vo.KalturaFlavorAsset;
-	import com.kaltura.vo.KalturaMediaEntry;
-	import com.kaltura.vo.KalturaWidevineFlavorAsset;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.ServicesProxy;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.type.EnableType;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.SequenceContextType;
+	import com.vidiun.vdpfl.model.type.StreamerType;
+	import com.vidiun.vdpfl.plugin.WVLoadTrait;
+	import com.vidiun.vdpfl.plugin.WVPluginInfo;
+	import com.vidiun.vdpfl.view.controls.BufferAnimationMediator;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
+	import com.vidiun.vo.VidiunFlavorAsset;
+	import com.vidiun.vo.VidiunMediaEntry;
+	import com.vidiun.vo.VidiunWidevineFlavorAsset;
 	import com.widevine.WvNetConnection;
 	
 	import flash.events.Event;
@@ -117,7 +117,7 @@ package
 					//get flavor asset ID
 					if (!_sequenceProxy.vo.isInSequence && _mediaProxy.vo.deliveryType==StreamerType.HTTP)
 					{
-						var flavors:Array = _mediaProxy.vo.kalturaMediaFlavorArray;
+						var flavors:Array = _mediaProxy.vo.vidiunMediaFlavorArray;
 						if (flavors && flavors.length)
 						{
 							var wvAssetId:String;
@@ -125,10 +125,10 @@ package
 							{
 								for (var i:int = 0; i<flavors.length; i++)
 								{
-									var flavor:KalturaFlavorAsset = flavors[i] as KalturaFlavorAsset;
+									var flavor:VidiunFlavorAsset = flavors[i] as VidiunFlavorAsset;
 									if (flavor.id == _mediaProxy.vo.selectedFlavorId)
 									{
-										if (flavor is KalturaWidevineFlavorAsset)
+										if (flavor is VidiunWidevineFlavorAsset)
 										{
 											wvAssetId = flavor.id;
 											
@@ -138,16 +138,16 @@ package
 								}
 							}
 								//if we don't have selected flavor ID we are playing the first one
-							else if (flavors[0] is KalturaWidevineFlavorAsset)
+							else if (flavors[0] is VidiunWidevineFlavorAsset)
 							{
-								wvAssetId = (flavors[0] as KalturaWidevineFlavorAsset).id;
+								wvAssetId = (flavors[0] as VidiunWidevineFlavorAsset).id;
 							}
 							
 							if (wvAssetId)
 							{
 								var referrerB64:String = (facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy).vo.flashvars.b64Referrer;
-								var kc:KalturaClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).kalturaClient;
-								var emmUrl:String = kc.protocol + kc.domain + "/api_v3/index.php?service=widevine_widevinedrm&action=getLicense&format=widevine&flavorAssetId=" + wvAssetId + "&ks=" +kc.ks + "&referrer=" + referrerB64;
+								var vc:VidiunClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vidiunClient;
+								var emmUrl:String = vc.protocol + vc.domain + "/api_v3/index.php?service=widevine_widevinedrm&action=getLicense&format=widevine&flavorAssetId=" + wvAssetId + "&vs=" +vc.vs + "&referrer=" + referrerB64;
 								ExternalInterface.call("WVSetEmmURL", emmUrl);		
 							}
 							
@@ -182,7 +182,7 @@ package
 				case NotificationType.PLAYER_PLAYED:
 					if (_isWv && !_sequenceProxy.vo.isInSequence)
 					{
-						var playerMediator:KMediaPlayerMediator = facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator;
+						var playerMediator:VMediaPlayerMediator = facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator;
 						//workaround for wv bug, netstream reports end before actual end
 						playerMediator.ignorePlaybackComplete = true;
 					}
@@ -235,20 +235,20 @@ package
 						}
 
 						_wvPluginInfo.wvMediaElement.netStream.selectTrack(index);
-						if (_mediaProxy.vo.kalturaMediaFlavorArray && _mediaProxy.vo.kalturaMediaFlavorArray.length > 1)
+						if (_mediaProxy.vo.vidiunMediaFlavorArray && _mediaProxy.vo.vidiunMediaFlavorArray.length > 1)
 							sendNotification( NotificationType.SWITCHING_CHANGE_STARTED, {currentIndex : String(index)});
 					}
 					break;
 				
 				case NotificationType.ENTRY_READY:
 					//if the first flavor is wv- all flavors are wv
-					if (_mediaProxy.vo.kalturaMediaFlavorArray && 
-						_mediaProxy.vo.kalturaMediaFlavorArray.length && 
-						(_mediaProxy.vo.kalturaMediaFlavorArray[0] is KalturaWidevineFlavorAsset))
+					if (_mediaProxy.vo.vidiunMediaFlavorArray && 
+						_mediaProxy.vo.vidiunMediaFlavorArray.length && 
+						(_mediaProxy.vo.vidiunMediaFlavorArray[0] is VidiunWidevineFlavorAsset))
 					{
 						_isWv = true;
 						//check if the flavor is packaging mbr
-						if ((_mediaProxy.vo.kalturaMediaFlavorArray[0] as KalturaWidevineFlavorAsset).tags.indexOf(_wvPluginCode.mbrTag)!=-1)
+						if ((_mediaProxy.vo.vidiunMediaFlavorArray[0] as VidiunWidevineFlavorAsset).tags.indexOf(_wvPluginCode.mbrTag)!=-1)
 						{
 							_mediaProxy.vo.forceDynamicStream = true;
 							_shouldSetFlavors = true;
@@ -280,17 +280,17 @@ package
 		
 		public function seekWvStream(seekTo:Number): void
 		{
-			var maxSeek:Number = (_mediaProxy.vo.entry as KalturaMediaEntry).duration - _bufferLength;
+			var maxSeek:Number = (_mediaProxy.vo.entry as VidiunMediaEntry).duration - _bufferLength;
 			//can't seek to complete end
 			_wvPluginInfo.wvMediaElement.netStream.seek( Math.min(seekTo, maxSeek));
 		}
 		
 		private function onWVElementCreated(e : Event) : void
 		{
-			if (_mediaProxy.vo.entry && _mediaProxy.vo.entry is KalturaMediaEntry)
+			if (_mediaProxy.vo.entry && _mediaProxy.vo.entry is VidiunMediaEntry)
 			{
-				_wvPluginInfo.wvMediaElement.w = (_mediaProxy.vo.entry as KalturaMediaEntry).width;
-				_wvPluginInfo.wvMediaElement.h = (_mediaProxy.vo.entry as KalturaMediaEntry).height;
+				_wvPluginInfo.wvMediaElement.w = (_mediaProxy.vo.entry as VidiunMediaEntry).width;
+				_wvPluginInfo.wvMediaElement.h = (_mediaProxy.vo.entry as VidiunMediaEntry).height;
 				
 			}
 			_wvPluginInfo.wvMediaElement.addEventListener(NetStatusEvent.NET_STATUS, onNetStatus, false, 0, true);
@@ -323,7 +323,7 @@ package
 		}
 		
 		/**
-		 * wvMediaElement bubbles up all netstatus event. Display proper KDP alerts accordingly.
+		 * wvMediaElement bubbles up all netstatus event. Display proper VDP alerts accordingly.
 		 * @param e
 		 * 
 		 */		
@@ -370,7 +370,7 @@ package
 				case "NetStream.Wv.SwitchUp":
 				case "NetStream.Wv.SwitchDown":
 					_wvPluginInfo.wvMediaElement.netStream.parseTransitionMsg(e.info.details);
-					//first time we get bitrates info - save it to kalturaflavorarray
+					//first time we get bitrates info - save it to vidiunflavorarray
 					if (_mediaProxy.vo.forceDynamicStream)
 					{
 						if (_shouldSetFlavors) 
@@ -381,11 +381,11 @@ package
 								var flvArray:Array = new Array();
 								for (var i:int = 0; i<bitrates.length; i++)
 								{
-									var fa : KalturaFlavorAsset = new KalturaFlavorAsset();
+									var fa : VidiunFlavorAsset = new VidiunFlavorAsset();
 									fa.bitrate = bitrates[i] * 8 / 1024;
 									flvArray.push(fa);
 								}
-								_mediaProxy.vo.kalturaMediaFlavorArray = flvArray;
+								_mediaProxy.vo.vidiunMediaFlavorArray = flvArray;
 							}
 							_mediaProxy.vo.autoSwitchFlavors = true;
 							//save main media in case we have ads
@@ -394,7 +394,7 @@ package
 						}
 
 						var newIndx:int = _wvPluginInfo.wvMediaElement.netStream.getCurrentQualityLevel() - 1;
-						_mediaProxy.vo.preferedFlavorBR = _mediaProxy.vo.kalturaMediaFlavorArray[newIndx].bitrate;
+						_mediaProxy.vo.preferedFlavorBR = _mediaProxy.vo.vidiunMediaFlavorArray[newIndx].bitrate;
 						sendNotification( NotificationType.SWITCHING_CHANGE_COMPLETE, {newIndex : newIndx , newBitrate: _mediaProxy.vo.preferedFlavorBR}  );
 						
 					}

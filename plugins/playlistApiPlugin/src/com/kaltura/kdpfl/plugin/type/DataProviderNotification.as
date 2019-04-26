@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.type {
+package com.vidiun.vdpfl.plugin.type {
 	/**
 	 * DataProviderNotification defines constants that are 
 	 * used as data provider notifications.

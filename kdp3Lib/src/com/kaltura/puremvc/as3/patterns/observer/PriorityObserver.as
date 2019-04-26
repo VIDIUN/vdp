@@ -1,4 +1,4 @@
-package com.kaltura.puremvc.as3.patterns.observer
+package com.vidiun.puremvc.as3.patterns.observer
 {
 	import org.puremvc.as3.patterns.observer.Observer;
 	

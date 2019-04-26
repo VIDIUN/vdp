@@ -5,11 +5,11 @@
  * @playerversion Flash 9.0.28.0
  * @author Dan Bacon / www.baconoppenheim.com
  */
-package com.kaltura.kdpfl.plugin.component {
+package com.vidiun.vdpfl.plugin.component {
 
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.type.PlaylistNotificationType;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.plugin.type.PlaylistNotificationType;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -47,7 +47,7 @@ package com.kaltura.kdpfl.plugin.component {
 
 		/**
 		 * Mediator's registration function. 
-		 * Sets KDP autoPlay value and the default image duration.
+		 * Sets VDP autoPlay value and the default image duration.
 		 */
 		override public function onRegister():void {
 			var mediaProxy:Object = facade.retrieveProxy("mediaProxy");
@@ -76,14 +76,14 @@ package com.kaltura.kdpfl.plugin.component {
 				case PlaylistNotificationType.PLAYLIST_PLAY_NEXT:		// next button in uiconf
 					playlistAPI.playNext();
 					break;
-				case NotificationType.KDP_EMPTY:
-				case NotificationType.KDP_READY:
+				case NotificationType.VDP_EMPTY:
+				case NotificationType.VDP_READY:
 					playlistAPI.loadFirstPlaylist();
 					break;
 				case PlaylistNotificationType.LOAD_PLAYLIST:
-					var name:String = note.getBody().kplName;
-					var url:String = note.getBody().kplUrl;
-					var id:String = note.getBody().kplId;
+					var name:String = note.getBody().vplName;
+					var url:String = note.getBody().vplUrl;
+					var id:String = note.getBody().vplId;
 					if ((name && url) || id)
 					{
 						playlistAPI.resetNewPlaylist();
@@ -95,7 +95,7 @@ package com.kaltura.kdpfl.plugin.component {
 					}
 					else
 					{
-						trace ("could not load playlist, kplName ,kplUrl or kplId values are invalid");
+						trace ("could not load playlist, vplName ,vplUrl or vplId values are invalid");
 					}
 					break;
 				case NotificationType.CHANGE_MEDIA: {
@@ -115,8 +115,8 @@ package com.kaltura.kdpfl.plugin.component {
 					NotificationType.PLAYER_PLAY_END,
 					PlaylistNotificationType.PLAYLIST_PLAY_PREVIOUS,
 					PlaylistNotificationType.PLAYLIST_PLAY_NEXT,
-					NotificationType.KDP_EMPTY,
-					NotificationType.KDP_READY,
+					NotificationType.VDP_EMPTY,
+					NotificationType.VDP_READY,
 					PlaylistNotificationType.LOAD_PLAYLIST,
 					NotificationType.CHANGE_MEDIA
 			];
@@ -132,11 +132,11 @@ package com.kaltura.kdpfl.plugin.component {
 
 		
 		/**
-		 * currently used ks 
+		 * currently used vs 
 		 */		
-		public function get ks():String {
-			var kc:Object = facade.retrieveProxy("servicesProxy")["kalturaClient"];
-			return kc.ks;
+		public function get vs():String {
+			var vc:Object = facade.retrieveProxy("servicesProxy")["vidiunClient"];
+			return vc.vs;
 		}
 
 		

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,35 +25,35 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.KalturaContextDataResult;
+	import com.vidiun.vo.VidiunContextDataResult;
 
 	[Bindable]
-	public dynamic class KalturaEntryContextDataResult extends KalturaContextDataResult
+	public dynamic class VidiunEntryContextDataResult extends VidiunContextDataResult
 	{
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var isSiteRestricted : Boolean;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var isCountryRestricted : Boolean;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var isSessionRestricted : Boolean;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var isIpAddressRestricted : Boolean;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var isUserAgentRestricted : Boolean;
 
@@ -62,12 +62,12 @@ package com.kaltura.vo
 		public var previewLength : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var isScheduledNow : Boolean;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var isAdmin : Boolean;
 
@@ -138,13 +138,13 @@ package com.kaltura.vo
 			var result:String = '';
 			switch (arrayName) {
 				case 'accessControlMessages':
-					result = 'KalturaString';
+					result = 'VidiunString';
 					break;
 				case 'accessControlActions':
-					result = 'KalturaRuleAction';
+					result = 'VidiunRuleAction';
 					break;
 				case 'flavorAssets':
-					result = 'KalturaFlavorAsset';
+					result = 'VidiunFlavorAsset';
 					break;
 				default:
 					result = super.getElementType(arrayName);

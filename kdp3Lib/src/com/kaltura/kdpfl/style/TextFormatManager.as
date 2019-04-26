@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.style
+package com.vidiun.vdpfl.style
 {
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.vidiun.vdpfl.view.controls.VTrace;
 	
 	import flash.display.DisplayObjectContainer;
 	import flash.display.MovieClip;
@@ -36,7 +36,7 @@ package com.kaltura.kdpfl.style
 				catch(e:Error)
 				{
 					textFormats[styleName] = new TextField();
-					KTrace.getInstance().log("getTextFormat", e);
+					VTrace.getInstance().log("getTextFormat", e);
 					//trace("getTextFormat", e);
 				}
 			}

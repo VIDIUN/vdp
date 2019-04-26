@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,20 +25,20 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.delegates.flavorAsset
+package com.vidiun.delegates.flavorAsset
 {
-	import com.kaltura.vo.KalturaFlavorAssetWithParams;KalturaFlavorAssetWithParams;;
+	import com.vidiun.vo.VidiunFlavorAssetWithParams;VidiunFlavorAssetWithParams;;
 
-	import com.kaltura.core.KClassFactory;
+	import com.vidiun.core.VClassFactory;
 
-	import com.kaltura.config.KalturaConfig;
-	import com.kaltura.net.KalturaCall;
-	import com.kaltura.delegates.WebDelegateBase;
+	import com.vidiun.config.VidiunConfig;
+	import com.vidiun.net.VidiunCall;
+	import com.vidiun.delegates.WebDelegateBase;
 	import flash.utils.getDefinitionByName;
 
 	public class FlavorAssetGetFlavorAssetsWithParamsDelegate extends WebDelegateBase
 	{
-		public function FlavorAssetGetFlavorAssetsWithParamsDelegate(call:KalturaCall, config:KalturaConfig)
+		public function FlavorAssetGetFlavorAssetsWithParamsDelegate(call:VidiunCall, config:VidiunConfig)
 		{
 			super(call, config);
 		}
@@ -48,8 +48,8 @@ package com.kaltura.delegates.flavorAsset
 			var arr : Array = new Array();
 			for( var i:int=0; i<result.result.children().length() ; i++)
 			{
-				var cls : Class = getDefinitionByName('com.kaltura.vo.'+ result.result.children()[i].objectType) as Class;
-				var obj : * = (new KClassFactory( cls )).newInstanceFromXML( XMLList(result.result.children()[i]) );
+				var cls : Class = getDefinitionByName('com.vidiun.vo.'+ result.result.children()[i].objectType) as Class;
+				var obj : * = (new VClassFactory( cls )).newInstanceFromXML( XMLList(result.result.children()[i]) );
 				arr.push(obj);
 			}
 			return arr;

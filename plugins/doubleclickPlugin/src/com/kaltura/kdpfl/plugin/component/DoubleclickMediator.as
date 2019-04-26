@@ -1,13 +1,13 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.AdsNotificationTypes;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.puremvc.as3.patterns.mediator.SequenceMultiMediator;
-	import com.kaltura.types.KalturaAdType;
-	import com.kaltura.vo.KalturaAdCuePoint;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.AdsNotificationTypes;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.SequenceContextType;
+	import com.vidiun.puremvc.as3.patterns.mediator.SequenceMultiMediator;
+	import com.vidiun.types.VidiunAdType;
+	import com.vidiun.vo.VidiunAdCuePoint;
 	
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -66,7 +66,7 @@ package com.kaltura.kdpfl.plugin.component
 		private var _currentVolume:Number = 100;
 		
 		/**
-		 * since the new enableGui mechanism in KDP counts calls to 
+		 * since the new enableGui mechanism in VDP counts calls to 
 		 * enable/disable gui, use this to not call too many of any of them. 
 		 */
 		private var _controlsEnabled:Boolean = true;
@@ -222,19 +222,19 @@ package com.kaltura.kdpfl.plugin.component
 			{
 				_adContext = cpData.context;
 				
-				var cuePoint : KalturaAdCuePoint = cpData.cuePoint as KalturaAdCuePoint;
+				var cuePoint : VidiunAdCuePoint = cpData.cuePoint as VidiunAdCuePoint;
 				
 				switch ( _adContext )
 				{
 					case SequenceContextType.PRE:
-						if ( cuePoint.adType == KalturaAdType.VIDEO)
+						if ( cuePoint.adType == VidiunAdType.VIDEO)
 						{
 							_plugin.cpAdTagUrl	= cuePoint.sourceUrl;
 							//								_plugin.adType		= "video";
 							sequenceProxy.vo.preSequenceArr.push(_plugin);
 							
 						}
-						else if(cuePoint.adType == KalturaAdType.OVERLAY)
+						else if(cuePoint.adType == VidiunAdType.OVERLAY)
 						{
 							sendNotification ("changeOverlayDisplayDuration" , {newDuration : (cuePoint.endTime - cuePoint.startTime)});
 							//								_plugin.adType		= "text_or_graphical"; //covers text overlays, text full slot, graphical overlay, or graphical full slot ads.
@@ -243,7 +243,7 @@ package com.kaltura.kdpfl.plugin.component
 						}
 						break;
 					case SequenceContextType.POST:
-						if (cuePoint.adType == KalturaAdType.VIDEO)
+						if (cuePoint.adType == VidiunAdType.VIDEO)
 						{
 							//_plugin.postrollUrlArr.push( cuePoint.sourceURL );
 							sequenceProxy.vo.postSequenceArr.push(_plugin);
@@ -256,10 +256,10 @@ package com.kaltura.kdpfl.plugin.component
 			}
 		}
 		
-		private function resolveMidrollAd( midrollObject : KalturaAdCuePoint , sequenceProxy: SequenceProxy) : void
+		private function resolveMidrollAd( midrollObject : VidiunAdCuePoint , sequenceProxy: SequenceProxy) : void
 		{
 			//check if this is a video or an overlay
-			if ( midrollObject.adType == KalturaAdType.VIDEO)
+			if ( midrollObject.adType == VidiunAdType.VIDEO)
 			{
 				sequenceProxy.vo.midrollArr.push(_plugin);
 				

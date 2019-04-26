@@ -1,8 +1,8 @@
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.kdpfl.plugin.ParallelElementMediator;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.IPluginFactory;
+	import com.vidiun.vdpfl.plugin.ParallelElementMediator;
 	
 	import flash.display.Sprite;
 	import flash.system.Security;

@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.model
+package com.vidiun.vdpfl.model
 {
-	import com.kaltura.kdpfl.util.DateTimeUtils;
-	import com.kaltura.kdpfl.util.KTextParser;
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.vidiun.vdpfl.util.DateTimeUtils;
+	import com.vidiun.vdpfl.util.VTextParser;
+	import com.vidiun.vdpfl.view.controls.VTrace;
 	
 	import flash.external.ExternalInterface;
 	import flash.net.URLRequest;
@@ -11,7 +11,7 @@ package com.kaltura.kdpfl.model
 	import org.puremvc.as3.patterns.proxy.Proxy;
 
 	/**
-	 *  The class FuncsProxy contains general functions used by the KDP. It can be accessed by the alias
+	 *  The class FuncsProxy contains general functions used by the VDP. It can be accessed by the alias
 	 * Functor.globalsFunctionsObject .
 	 * 
 	 */	
@@ -156,12 +156,12 @@ package com.kaltura.kdpfl.model
 			catch (e:Error)
 			{
 				//trace("failed navigating to "+url+"/n"+e.message);
-				KTrace.getInstance().log("failed navigating to "+url+"/n"+e.message);
+				VTrace.getInstance().log("failed navigating to "+url+"/n"+e.message);
 			}
 		}
 		
 		/**
-		 * The function calls an external js function and injects it with parameters from within the KDP. 
+		 * The function calls an external js function and injects it with parameters from within the VDP. 
 		 * @param args the arguments passed to the js function.
 		 * 
 		 */		
@@ -261,16 +261,16 @@ package com.kaltura.kdpfl.model
 		
 		
 		/**
-		 * KDP 3 Provide a way to set any data attribute using this function from JS
+		 * VDP 3 Provide a way to set any data attribute using this function from JS
 		 * @param componentName
 		 * @param prop
 		 * @param newValue
 		 * 
 		 */		
-		public function setKDPAttribute(componentName : String , prop : String , newValue : String):void
+		public function setVDPAttribute(componentName : String , prop : String , newValue : String):void
 		{
-			var site : Object =  KTextParser.evaluate(facade['bindObject'], '{' + componentName + '}');
-			KTextParser.bind( site , prop , facade['bindObject'], newValue);
+			var site : Object =  VTextParser.evaluate(facade['bindObject'], '{' + componentName + '}');
+			VTextParser.bind( site , prop , facade['bindObject'], newValue);
 			
 		}
 		

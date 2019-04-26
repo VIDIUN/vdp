@@ -1,20 +1,20 @@
 package
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.kdpfl.model.type.SourceType;
-	import com.kaltura.kdpfl.plugin.IMidrollSequencePlugin;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.ISequencePlugin;
-	import com.kaltura.kdpfl.plugin.KPluginEvent;
-	import com.kaltura.kdpfl.view.CuePointsMediator;
-	import com.kaltura.types.KalturaAdProtocolType;
-	import com.kaltura.types.KalturaAdType;
-	import com.kaltura.vo.KalturaAdCuePoint;
-	import com.kaltura.vo.KalturaCuePoint;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.SequenceContextType;
+	import com.vidiun.vdpfl.model.type.SourceType;
+	import com.vidiun.vdpfl.plugin.IMidrollSequencePlugin;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.ISequencePlugin;
+	import com.vidiun.vdpfl.plugin.VPluginEvent;
+	import com.vidiun.vdpfl.view.CuePointsMediator;
+	import com.vidiun.types.VidiunAdProtocolType;
+	import com.vidiun.types.VidiunAdType;
+	import com.vidiun.vo.VidiunAdCuePoint;
+	import com.vidiun.vo.VidiunCuePoint;
 	
 	import flash.display.Sprite;
 	import flash.events.TimerEvent;
@@ -32,8 +32,8 @@ package
 	import tv.freewheel.ad.behavior.ISlot;
 	import tv.freewheel.ad.loader.AdManagerLoader;
 	import tv.freewheel.logging.Logger;
-	import tv.freewheel.wrapper.kaltura.FreeWheelMediator;
-	import tv.freewheel.wrapper.kaltura.FreeWheelParameters;
+	import tv.freewheel.wrapper.vidiun.FreeWheelMediator;
+	import tv.freewheel.wrapper.vidiun.FreeWheelParameters;
 	import tv.freewheel.wrapper.osmf.slot.FWSlotElement;
 	
 	public class freeWheelPluginCode extends Sprite implements IPlugin, ISequencePlugin, IMidrollSequencePlugin
@@ -55,7 +55,7 @@ package
 		// Plugin attributes
 		public var postSequence:Number;
 		public var preSequence:Number;
-		public var asyncInit:Boolean = true;  // required by KDP for async init plugin
+		public var asyncInit:Boolean = true;  // required by VDP for async init plugin
 		
 		// states of this plugin
 		private var mediator:FreeWheelMediator;
@@ -86,7 +86,7 @@ package
 		private var _overlays:Object;
 		private var _currentBaseUnit:String;
 		private var _autoContinue:Boolean = true;
-		private var _useKalturaTemporalSlots:Boolean = false;
+		private var _useVidiunTemporalSlots:Boolean = false;
 		private var _cuePointTags:String = "";
 		private var _allowScanOnPage:Boolean = true;
 		private var _playAdsByOrder:Boolean;
@@ -110,7 +110,7 @@ package
 		public function freeWheelPluginCode()
 		{
 			flash.system.Security.allowDomain('*');
-			this.logger = Logger.getSimpleLogger("KDPPlugin ");
+			this.logger = Logger.getSimpleLogger("VDPPlugin ");
 			this.parameters = new FreeWheelParameters();
 		}
 		
@@ -143,18 +143,18 @@ package
 		
 		[Bindable]
 		/**
-		 * Wether to use kalturaCuePoints 
+		 * Wether to use vidiunCuePoints 
 		 * @return 
 		 * 
 		 */		
-		public function get useKalturaTemporalSlots():Boolean
+		public function get useVidiunTemporalSlots():Boolean
 		{
-			return _useKalturaTemporalSlots;
+			return _useVidiunTemporalSlots;
 		}
 		
-		public function set useKalturaTemporalSlots(value:Boolean):void
+		public function set useVidiunTemporalSlots(value:Boolean):void
 		{
-			_useKalturaTemporalSlots = value;
+			_useVidiunTemporalSlots = value;
 			if (!value)
 				this.mediator.waitingForCuePoints = false;
 		}
@@ -254,12 +254,12 @@ package
 		private function signalPluginLoaded(success:Boolean):void{
 			this.logger.debug('signalPluginLoaded(' + success + ')');
 			if (success){
-				this.dispatchEvent(new KPluginEvent(KPluginEvent.KPLUGIN_INIT_COMPLETE));
+				this.dispatchEvent(new VPluginEvent(VPluginEvent.VPLUGIN_INIT_COMPLETE));
 			}
 			else{
-				this.dispatchEvent(new KPluginEvent(KPluginEvent.KPLUGIN_INIT_FAILED));
+				this.dispatchEvent(new VPluginEvent(VPluginEvent.VPLUGIN_INIT_FAILED));
 				// set flags so that the plugin can work transparently without hanging the main video
-				// this should have been handled by kdp! :(
+				// this should have been handled by vdp! :(
 				// OK, so now they are said to handle it, but I leave this switch here just in case.
 				this.enable = false;
 			}
@@ -287,7 +287,7 @@ package
 				this.parameters.parseParameters(this.configProxy.vo.flashvars, this.mediator.entryMetadata, this.mediator.entryCuePoints);
 				this.logger.debug(this.parameters.toString());
 				if (!this.parameters.validate()){
-					this.logger.error("\n##########\nKDPPlugin is disabled because: " + this.parameters.errors.join(' ') + '\n##########');
+					this.logger.error("\n##########\nVDPPlugin is disabled because: " + this.parameters.errors.join(' ') + '\n##########');
 					this.enable = false;
 					return;
 				}
@@ -334,7 +334,7 @@ package
 			//ad manager will not return ads in this case, so don't send the request for nothing
 			if (duration==0)
 			{
-				this.logger.error("\n##########\nKDPPlugin is disabled because:  asset duration is 0\n##########");
+				this.logger.error("\n##########\nVDPPlugin is disabled because:  asset duration is 0\n##########");
 				this.enable = false;
 				return;
 			}
@@ -390,9 +390,9 @@ package
 			var cuePointSeq:int = 1;
 			_cpStatus = new Object();
 			
-			if (useKalturaTemporalSlots) {
+			if (useVidiunTemporalSlots) {
 				for (var cuePointId:String in this.parameters.cuePoints){
-					var cuePoint:KalturaAdCuePoint = this.parameters.cuePoints[cuePointId] as KalturaAdCuePoint;
+					var cuePoint:VidiunAdCuePoint = this.parameters.cuePoints[cuePointId] as VidiunAdCuePoint;
 					var adUnit:String = findAdUnit(cuePoint);
 					
 					this.am.addTemporalSlot(cuePoint.id,
@@ -414,13 +414,13 @@ package
 			}
 		}
 		
-		private function findAdUnit(cp:KalturaCuePoint):String 
+		private function findAdUnit(cp:VidiunCuePoint):String 
 		{
 			if (cp.startTime==0)
 				return this.constants.ADUNIT_PREROLL;
 			if (cp.startTime == mediaProxy.vo.entry.msDuration)
 				return this.constants.ADUNIT_POSTROLL;
-			if (cp.adType == KalturaAdType.OVERLAY)
+			if (cp.adType == VidiunAdType.OVERLAY)
 				return this.constants.ADUNIT_OVERLAY;
 			else
 				return this.constants.ADUNIT_MIDROLL;
@@ -492,18 +492,18 @@ package
 			for each (var slot:ISlot in this.am.getTemporalSlots()){
 				var tp:Number = slot.getTimePosition();
 				//create cue points according to freewheel response
-				if (!useKalturaTemporalSlots) 
+				if (!useVidiunTemporalSlots) 
 				{
-					var cp:KalturaAdCuePoint = new KalturaAdCuePoint;
+					var cp:VidiunAdCuePoint = new VidiunAdCuePoint;
 					cp.startTime = tp;
 					cp.id = slot.getCustomId();
 					cp.tags = cuePointTags;
-					cp.protocolType = KalturaAdProtocolType.CUSTOM;
+					cp.protocolType = VidiunAdProtocolType.CUSTOM;
 					cp[FROM_FREEWHEEL] = true;
 					if (slot.getTimePositionClass()==this.constants.TIME_POSITION_CLASS_OVERLAY)
-						cp.adType = KalturaAdType.OVERLAY;
+						cp.adType = VidiunAdType.OVERLAY;
 					else
-						cp.adType = KalturaAdType.VIDEO;
+						cp.adType = VidiunAdType.VIDEO;
 					
 					fwCuePoints.push(cp);
 					_cpStatus[cp.id] = CP_NOT_VIEWED;
@@ -536,27 +536,27 @@ package
 			}
 			_orderedAds.sortOn("tp", Array.NUMERIC);
 			//in case of using freewheel cue points, register them
-			if (!useKalturaTemporalSlots) {
+			if (!useVidiunTemporalSlots) {
 				//STAB:
-				/*	var cup:KalturaAdCuePoint = new KalturaAdCuePoint();
+				/*	var cup:VidiunAdCuePoint = new VidiunAdCuePoint();
 				cup.id = "preroll";
 				cup.startTime = 0;
-				cup.adType = KalturaAdType.VIDEO;
-				cup.protocolType = KalturaAdProtocolType.CUSTOM;
+				cup.adType = VidiunAdType.VIDEO;
+				cup.protocolType = VidiunAdProtocolType.CUSTOM;
 				cup[FROM_FREEWHEEL] = true;
 				fwCuePoints.push(cup);
-				var cup1:KalturaAdCuePoint = new KalturaAdCuePoint();
+				var cup1:VidiunAdCuePoint = new VidiunAdCuePoint();
 				cup1.id = "midroll";
 				cup1.startTime = 13;
-				cup1.adType = KalturaAdType.VIDEO;
-				cup1.protocolType = KalturaAdProtocolType.CUSTOM;
+				cup1.adType = VidiunAdType.VIDEO;
+				cup1.protocolType = VidiunAdProtocolType.CUSTOM;
 				cup1[FROM_FREEWHEEL] = true;
 				fwCuePoints.push(cup1);
-				var cup2:KalturaAdCuePoint = new KalturaAdCuePoint();
+				var cup2:VidiunAdCuePoint = new VidiunAdCuePoint();
 				cup2.id = "postroll";
 				cup2.startTime = mediaProxy.vo.entry.duration;
-				cup2.adType = KalturaAdType.VIDEO;
-				cup2.protocolType = KalturaAdProtocolType.CUSTOM;
+				cup2.adType = VidiunAdType.VIDEO;
+				cup2.protocolType = VidiunAdProtocolType.CUSTOM;
 				cup2[FROM_FREEWHEEL] = true;
 				fwCuePoints.push(cup2);*/
 				
@@ -597,13 +597,13 @@ package
 			return this.am.getSlotByCustomId(customId);
 		}
 		
-		public function onCuePoint(cuePoint:KalturaAdCuePoint):void{
+		public function onCuePoint(cuePoint:VidiunAdCuePoint):void{
 			var slot:ISlot = this.am.getSlotByCustomId(cuePoint.id);
 			if (!slot)
 				return;
 			this.logger.debug('onCuePoint(' + slot.getTimePosition() + ')');
 			
-			if (cuePoint.adType==KalturaAdType.VIDEO) {
+			if (cuePoint.adType==VidiunAdType.VIDEO) {
 				if (playAdsByOrder) {
 					if (_cpStatus[cuePoint.id]==CP_VIEWED)
 						return;
@@ -700,7 +700,7 @@ package
 			}
 			
 			
-			// the following strange logic is used to ensure the correct KDP workflow
+			// the following strange logic is used to ensure the correct VDP workflow
 			// when there's no ad in a linear slot.
 			if (this.mediator.sequenceContext == SequenceContextType.PRE){
 				if (this.nextPreroll && this.nextPreroll.numAds == 0){
@@ -758,8 +758,8 @@ package
 		}
 		
 		/**
-		 * Returns whether the Sequence Plugin plays within the KDP or loads its own media over it. 
-		 * @return The function returns <code>true</code> if the plugin media plays within the KDP
+		 * Returns whether the Sequence Plugin plays within the VDP or loads its own media over it. 
+		 * @return The function returns <code>true</code> if the plugin media plays within the VDP
 		 *  and <code>false</code> otherwise.
 		 * 
 		 */		
@@ -770,7 +770,7 @@ package
 		/**
 		 * Function for retrieving the entry id of the plugin media
 		 * @return The function returns the entry id of the plugin media. If the plugin does not play
-		 * 			a kaltura-based entry, the return value is the URL of the media of the plugin.
+		 * 			a vidiun-based entry, the return value is the URL of the media of the plugin.
 		 */		
 		public function get entryId () : String {
 			return null;
@@ -778,7 +778,7 @@ package
 		
 		/**
 		 * Function for retrieving the source type of the plugin media (url or entryId) 
-		 * @return If the plugin plays a Kaltura-Based entry the function returns <code>entryId</script>.
+		 * @return If the plugin plays a Vidiun-Based entry the function returns <code>entryId</script>.
 		 * Otherwise the return value is <code>url</script>
 		 * 
 		 */		
@@ -786,8 +786,8 @@ package
 			return "url";
 		}
 		/**
-		 * Function to retrieve the MediaElement the plugin will play in the KDP. 
-		 * @return returns the MediaElement that the plugin will play in the KDP. 
+		 * Function to retrieve the MediaElement the plugin will play in the VDP. 
+		 * @return returns the MediaElement that the plugin will play in the VDP. 
 		 * 
 		 */		
 		public function get mediaElement () : Object {

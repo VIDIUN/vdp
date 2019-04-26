@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,13 +25,13 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.media
+package com.vidiun.commands.media
 {
 		import flash.net.FileReference;
-		import com.kaltura.net.KalturaFileCall;
-		import com.kaltura.vo.KalturaBulkUploadJobData;
-		import com.kaltura.vo.KalturaBulkUploadEntryData;
-	import com.kaltura.delegates.media.MediaBulkUploadAddDelegate;
+		import com.vidiun.net.VidiunFileCall;
+		import com.vidiun.vo.VidiunBulkUploadJobData;
+		import com.vidiun.vo.VidiunBulkUploadEntryData;
+	import com.vidiun.delegates.media.MediaBulkUploadAddDelegate;
 
 	/**
 	* Add new bulk upload batch job
@@ -39,17 +39,17 @@ package com.kaltura.commands.media
 	* If no conversion profile was specified, partner's default will be used
 	* 
 	**/
-	public class MediaBulkUploadAdd extends KalturaFileCall
+	public class MediaBulkUploadAdd extends VidiunFileCall
 	{
 		public var fileData:Object;
 
 		
 		/**
 		* @param fileData Object - FileReference or ByteArray
-		* @param bulkUploadData KalturaBulkUploadJobData
-		* @param bulkUploadEntryData KalturaBulkUploadEntryData
+		* @param bulkUploadData VidiunBulkUploadJobData
+		* @param bulkUploadEntryData VidiunBulkUploadEntryData
 		**/
-		public function MediaBulkUploadAdd( fileData : Object,bulkUploadData : KalturaBulkUploadJobData=null,bulkUploadEntryData : KalturaBulkUploadEntryData=null )
+		public function MediaBulkUploadAdd( fileData : Object,bulkUploadData : VidiunBulkUploadJobData=null,bulkUploadEntryData : VidiunBulkUploadEntryData=null )
 		{
 			service= 'media';
 			action= 'bulkUploadAdd';
@@ -59,12 +59,12 @@ package com.kaltura.commands.media
 			var keyValArr : Array = new Array();
 			this.fileData = fileData;
 			if (bulkUploadData) { 
-				keyValArr = kalturaObject2Arrays(bulkUploadData, 'bulkUploadData');
+				keyValArr = vidiunObject2Arrays(bulkUploadData, 'bulkUploadData');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 
 			if (bulkUploadEntryData) { 
-				keyValArr = kalturaObject2Arrays(bulkUploadEntryData, 'bulkUploadEntryData');
+				keyValArr = vidiunObject2Arrays(bulkUploadEntryData, 'bulkUploadEntryData');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

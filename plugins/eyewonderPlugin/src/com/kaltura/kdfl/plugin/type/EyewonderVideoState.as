@@ -1,4 +1,4 @@
-package com.kaltura.kdfl.plugin.type
+package com.vidiun.vdfl.plugin.type
 {
 	public class EyewonderVideoState
 	{

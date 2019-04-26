@@ -1,12 +1,12 @@
-package com.kaltura.kdpfl.plugin
+package com.vidiun.vdpfl.plugin
 {
 	import com.yahoo.astra.fl.controls.Carousel;
 	
 	import fl.data.DataProvider;
 
-	public class KCarousel extends Carousel
+	public class VCarousel extends Carousel
 	{
-		public function KCarousel()
+		public function VCarousel()
 		{
 			super();
 			

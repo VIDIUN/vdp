@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,28 +25,28 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.varConsole
+package com.vidiun.commands.varConsole
 {
-		import com.kaltura.vo.KalturaPartnerFilter;
-		import com.kaltura.vo.KalturaReportInputFilter;
-		import com.kaltura.vo.KalturaFilterPager;
-	import com.kaltura.delegates.varConsole.VarConsoleGetPartnerUsageDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunPartnerFilter;
+		import com.vidiun.vo.VidiunReportInputFilter;
+		import com.vidiun.vo.VidiunFilterPager;
+	import com.vidiun.delegates.varConsole.VarConsoleGetPartnerUsageDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Function which calulates partner usage of a group of a VAR's sub-publishers
 	* 
 	**/
-	public class VarConsoleGetPartnerUsage extends KalturaCall
+	public class VarConsoleGetPartnerUsage extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param partnerFilter KalturaPartnerFilter
-		* @param usageFilter KalturaReportInputFilter
-		* @param pager KalturaFilterPager
+		* @param partnerFilter VidiunPartnerFilter
+		* @param usageFilter VidiunReportInputFilter
+		* @param pager VidiunFilterPager
 		**/
-		public function VarConsoleGetPartnerUsage( partnerFilter : KalturaPartnerFilter=null,usageFilter : KalturaReportInputFilter=null,pager : KalturaFilterPager=null )
+		public function VarConsoleGetPartnerUsage( partnerFilter : VidiunPartnerFilter=null,usageFilter : VidiunReportInputFilter=null,pager : VidiunFilterPager=null )
 		{
 			service= 'varconsole_varconsole';
 			action= 'getPartnerUsage';
@@ -55,17 +55,17 @@ package com.kaltura.commands.varConsole
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
 			if (partnerFilter) { 
-				keyValArr = kalturaObject2Arrays(partnerFilter, 'partnerFilter');
+				keyValArr = vidiunObject2Arrays(partnerFilter, 'partnerFilter');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 
 			if (usageFilter) { 
-				keyValArr = kalturaObject2Arrays(usageFilter, 'usageFilter');
+				keyValArr = vidiunObject2Arrays(usageFilter, 'usageFilter');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 
 			if (pager) { 
-				keyValArr = kalturaObject2Arrays(pager, 'pager');
+				keyValArr = vidiunObject2Arrays(pager, 'pager');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 
