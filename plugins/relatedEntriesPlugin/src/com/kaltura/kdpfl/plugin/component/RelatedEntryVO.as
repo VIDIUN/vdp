@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.vo.KalturaBaseEntry;
+	import com.vidiun.vo.VidiunBaseEntry;
 	
 	import mx.utils.ObjectProxy;
 
@@ -13,9 +13,9 @@ package com.kaltura.kdpfl.plugin.component
 	public class RelatedEntryVO extends ObjectProxy
 	{
 		/**
-		 * Kaltura entry object 
+		 * Vidiun entry object 
 		 */		
-		public var entry:KalturaBaseEntry;
+		public var entry:VidiunBaseEntry;
 		/**
 		 * is this the next selected entry 
 		 */		
@@ -23,7 +23,7 @@ package com.kaltura.kdpfl.plugin.component
 		
 		public var isOver:Boolean;
 		
-		public function RelatedEntryVO(entry:KalturaBaseEntry, isUpNext:Boolean = false)
+		public function RelatedEntryVO(entry:VidiunBaseEntry, isUpNext:Boolean = false)
 		{
 			this.entry = entry;
 			this.isUpNext = isUpNext;

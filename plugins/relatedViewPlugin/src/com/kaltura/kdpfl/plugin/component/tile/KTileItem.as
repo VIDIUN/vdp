@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.plugin.component.tile
+package com.vidiun.vdpfl.plugin.component.tile
 {
 
-import com.kaltura.kdpfl.view.controls.KTrace;
+import com.vidiun.vdpfl.view.controls.VTrace;
 
 import fl.controls.listClasses.CellRenderer;
 import fl.controls.listClasses.ListData;
@@ -13,13 +13,13 @@ import flash.events.MouseEvent;
 import mx.utils.ObjectProxy;
 
 
-public class KTileItem extends CellRenderer
+public class VTileItem extends CellRenderer
 {
 	protected var _content:UIComponent;
-	private var _kData:ObjectProxy = null;
+	private var _vData:ObjectProxy = null;
 
 	
-	public function KTileItem()
+	public function VTileItem()
 	{		
 	}
 
@@ -51,7 +51,7 @@ public class KTileItem extends CellRenderer
 	override public function set data(value:Object):void
 	{
 		super.data = ObjectProxy( value );
-		kData = ObjectProxy(data);
+		vData = ObjectProxy(data);
 		invalidate( InvalidationType.DATA );
 		this.addEventListener(MouseEvent.ROLL_OVER, onOver);
 		this.addEventListener(MouseEvent.ROLL_OUT, onOut);
@@ -67,15 +67,15 @@ public class KTileItem extends CellRenderer
 		super.data["isOver"] = false;
 	}
 	
-	public function get kData():ObjectProxy
+	public function get vData():ObjectProxy
 	{
-		return _kData;
+		return _vData;
 	}
 	
 	[Bindable]
-	public function set kData(kData:ObjectProxy):void
+	public function set vData(vData:ObjectProxy):void
 	{
-		_kData = kData;
+		_vData = vData;
 	}
 	
 	override protected function configUI():void
@@ -121,7 +121,7 @@ public class KTileItem extends CellRenderer
 		if( _content && this.contains( _content ) ) 
 			this.removeChild( _content );
 		
-		_content = contentFactory( contentLayout, kData );
+		_content = contentFactory( contentLayout, vData );
 		_content.mouseEnabled = true;
 		this.mouseChildren = true;
 		addChild( _content ); 

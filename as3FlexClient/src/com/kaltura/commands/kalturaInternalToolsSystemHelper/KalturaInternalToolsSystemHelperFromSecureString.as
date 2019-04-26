@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.kalturaInternalToolsSystemHelper
+package com.vidiun.commands.vidiunInternalToolsSystemHelper
 {
-	import com.kaltura.delegates.kalturaInternalToolsSystemHelper.KalturaInternalToolsSystemHelperFromSecureStringDelegate;
-	import com.kaltura.net.KalturaCall;
+	import com.vidiun.delegates.vidiunInternalToolsSystemHelper.VidiunInternalToolsSystemHelperFromSecureStringDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
-	* KS from Secure String
+	* VS from Secure String
 	* 
 	**/
-	public class KalturaInternalToolsSystemHelperFromSecureString extends KalturaCall
+	public class VidiunInternalToolsSystemHelperFromSecureString extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param str String
 		**/
-		public function KalturaInternalToolsSystemHelperFromSecureString( str : String )
+		public function VidiunInternalToolsSystemHelperFromSecureString( str : String )
 		{
-			service= 'kalturainternaltools_kalturainternaltoolssystemhelper';
+			service= 'vidiuninternaltools_vidiuninternaltoolssystemhelper';
 			action= 'fromSecureString';
 
 			var keyArr : Array = new Array();
@@ -57,7 +57,7 @@ package com.kaltura.commands.kalturaInternalToolsSystemHelper
 		override public function execute() : void
 		{
 			setRequestArgument('filterFields', filterFields);
-			delegate = new KalturaInternalToolsSystemHelperFromSecureStringDelegate( this , config );
+			delegate = new VidiunInternalToolsSystemHelperFromSecureStringDelegate( this , config );
 		}
 	}
 }

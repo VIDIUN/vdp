@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,18 +25,18 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.KalturaDistributionJobProviderData;
+	import com.vidiun.vo.VidiunDistributionJobProviderData;
 
-	import com.kaltura.vo.KalturaEntryDistribution;
+	import com.vidiun.vo.VidiunEntryDistribution;
 
-	import com.kaltura.vo.KalturaDistributionProfile;
+	import com.vidiun.vo.VidiunDistributionProfile;
 
-	import com.kaltura.vo.KalturaJobData;
+	import com.vidiun.vo.VidiunJobData;
 
 	[Bindable]
-	public dynamic class KalturaDistributionJobData extends KalturaJobData
+	public dynamic class VidiunDistributionJobData extends VidiunJobData
 	{
 		/**
 		**/
@@ -44,7 +44,7 @@ package com.kaltura.vo
 
 		/**
 		**/
-		public var distributionProfile : KalturaDistributionProfile;
+		public var distributionProfile : VidiunDistributionProfile;
 
 		/**
 		**/
@@ -52,7 +52,7 @@ package com.kaltura.vo
 
 		/**
 		**/
-		public var entryDistribution : KalturaEntryDistribution;
+		public var entryDistribution : VidiunEntryDistribution;
 
 		/**
 		* Id of the media in the remote system
@@ -61,7 +61,7 @@ package com.kaltura.vo
 		public var remoteId : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaDistributionProviderType
+		* @see com.vidiun.types.VidiunDistributionProviderType
 		**/
 		public var providerType : String = null;
 
@@ -69,7 +69,7 @@ package com.kaltura.vo
 		* Additional data that relevant for the provider only
 		* 
 		**/
-		public var providerData : KalturaDistributionJobProviderData;
+		public var providerData : VidiunDistributionJobProviderData;
 
 		/**
 		* The results as returned from the remote destination
@@ -128,7 +128,7 @@ package com.kaltura.vo
 					result = '';
 					break;
 				case 'mediaFiles':
-					result = 'KalturaDistributionRemoteMediaFile';
+					result = 'VidiunDistributionRemoteMediaFile';
 					break;
 				default:
 					result = super.getElementType(arrayName);

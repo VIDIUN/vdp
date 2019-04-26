@@ -1,6 +1,6 @@
-package com.kaltura.utils
+package com.vidiun.utils
 {
-	public class KStringUtil
+	public class VStringUtil
 	{
 	    /**
 	     *  Camel case a hyphenated string.  Ex.  “chicken_head” becomes “chickenHead”,
@@ -21,7 +21,7 @@ package com.kaltura.utils
 				if(i == 0 && lowerCamelized)
 					camelizeStr = camelizeStr.concat( strArr[i].toLowerCase() );
 				else
-					camelizeStr = camelizeStr.concat( KStringUtil.capitalize(strArr[i]) );
+					camelizeStr = camelizeStr.concat( VStringUtil.capitalize(strArr[i]) );
 			}
 
 			return camelizeStr;

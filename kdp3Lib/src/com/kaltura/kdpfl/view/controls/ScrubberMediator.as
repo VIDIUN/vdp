@@ -5,13 +5,13 @@
  * @playerversion Flash 9.0.28.0
  * @author Dan X Bacon		baconoppenheim.com
  */
- package com.kaltura.kdpfl.view.controls
+ package com.vidiun.vdpfl.view.controls
 {
 	
-import com.kaltura.kdpfl.model.ConfigProxy;
-import com.kaltura.kdpfl.model.type.NotificationType;
-import com.kaltura.vo.KalturaLiveStreamEntry;
-import com.kaltura.vo.KalturaPlayableEntry;
+import com.vidiun.vdpfl.model.ConfigProxy;
+import com.vidiun.vdpfl.model.type.NotificationType;
+import com.vidiun.vo.VidiunLiveStreamEntry;
+import com.vidiun.vo.VidiunPlayableEntry;
 
 import flash.events.Event;
 
@@ -19,7 +19,7 @@ import org.puremvc.as3.interfaces.INotification;
 import org.puremvc.as3.patterns.mediator.Mediator;
 
 /**
- * Mediator for the scrubber component of the KDP. 
+ * Mediator for the scrubber component of the VDP. 
  * @author Hila
  * 
  */
@@ -52,11 +52,11 @@ public class ScrubberMediator extends Mediator
 		var configProxy : ConfigProxy = facade.retrieveProxy( ConfigProxy.NAME ) as ConfigProxy;
 		_flashvars = configProxy.vo.flashvars;
 
-		scrubber.addEventListener( KScrubber.EVENT_SEEK, onSeek, false, 0, true );
-		scrubber.addEventListener( KScrubber.EVENT_SEEK_START, onSeekStart, false, 0, true );
-		scrubber.addEventListener( KScrubber.EVENT_SEEK_END, onSeekEnd, false, 0, true );
-		scrubber.addEventListener( KScrubber.EVENT_DRAG, onStartDrag, false, 0, true );
-		scrubber.addEventListener( KScrubber.EVENT_DRAG_END, onEndDrag, false, 0, true );
+		scrubber.addEventListener( VScrubber.EVENT_SEEK, onSeek, false, 0, true );
+		scrubber.addEventListener( VScrubber.EVENT_SEEK_START, onSeekStart, false, 0, true );
+		scrubber.addEventListener( VScrubber.EVENT_SEEK_END, onSeekEnd, false, 0, true );
+		scrubber.addEventListener( VScrubber.EVENT_DRAG, onStartDrag, false, 0, true );
+		scrubber.addEventListener( VScrubber.EVENT_DRAG_END, onEndDrag, false, 0, true );
 	}
 	/**
 	 * Event handler for the Scubber dragging event. 
@@ -84,8 +84,8 @@ public class ScrubberMediator extends Mediator
 		//sendNotification( NotificationType.DO_PAUSE );
 	}
 	/**
-	 *  Handler for the <code> KScrubber.EVENT_SEEK_START</code> event.
-	 * @param evt - event of type  KScrubber.EVENT_SEEK_STAR
+	 *  Handler for the <code> VScrubber.EVENT_SEEK_START</code> event.
+	 * @param evt - event of type  VScrubber.EVENT_SEEK_STAR
 	 * 
 	 */
 	private function onSeek( evt:Event ):void
@@ -95,8 +95,8 @@ public class ScrubberMediator extends Mediator
 	}
 
 	/**
- 	*  Handler for the <code> KScrubber.EVENT_SEEK_END</code> event.
- 	* @param evt - event of type  KScrubber.EVENT_SEEK_END
+ 	*  Handler for the <code> VScrubber.EVENT_SEEK_END</code> event.
+ 	* @param evt - event of type  VScrubber.EVENT_SEEK_END
 	 *	 
  	*/
 	private function onSeekEnd( evt:Event ):void
@@ -114,7 +114,7 @@ public class ScrubberMediator extends Mediator
 	{	
 		switch( note.getName() )
 		{
-			case NotificationType.KDP_READY:
+			case NotificationType.VDP_READY:
 				_state = STATE_READY;
 			break;
 		
@@ -157,8 +157,8 @@ public class ScrubberMediator extends Mediator
 				break;
 			case NotificationType.ENTRY_READY:
 				var entry:object = note.getBody();
-				if (!(entry is KalturaLiveStreamEntry))
-					scrubber.duration = entry is KalturaPlayableEntry ? (entry as KalturaPlayableEntry).duration : 0;  
+				if (!(entry is VidiunLiveStreamEntry))
+					scrubber.duration = entry is VidiunPlayableEntry ? (entry as VidiunPlayableEntry).duration : 0;  
 				break;
 			
 			case NotificationType.POST_SEQUENCE_COMPLETE:
@@ -172,7 +172,7 @@ public class ScrubberMediator extends Mediator
 	override public function listNotificationInterests():Array
 	{
 		return [
-				NotificationType.KDP_READY,
+				NotificationType.VDP_READY,
 				NotificationType.PLAYER_PLAYED,
 				NotificationType.PLAYER_PAUSED,
 				NotificationType.PLAYER_UPDATE_PLAYHEAD,
@@ -186,9 +186,9 @@ public class ScrubberMediator extends Mediator
 			   ];
 	}
 			
-	public function get scrubber():KScrubber
+	public function get scrubber():VScrubber
 	{
-		return( viewComponent as KScrubber );
+		return( viewComponent as VScrubber );
 	}		
 }
 }

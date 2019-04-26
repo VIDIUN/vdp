@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Vidiun Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -21,24 +21,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 @ignore
 */
 
-package com.kaltura.model
+package com.vidiun.model
 {
 
 	import com.adobe.cairngorm.model.IModelLocator;
-	import com.kaltura.KalturaClient;
-	import com.kaltura.base.context.KalturaApplicationConfig;
-	import com.kaltura.base.context.PartnerInfo;
-	import com.kaltura.dataStructures.HashMap;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.base.context.VidiunApplicationConfig;
+	import com.vidiun.base.context.PartnerInfo;
+	import com.vidiun.dataStructures.HashMap;
 	
 	import mx.collections.ArrayCollection;
 
 	/**
-	 *a singleton manager for managing the kaltura application model.
+	 *a singleton manager for managing the vidiun application model.
 	 */
 	//[Bindable]
-	public class KalturaModelLocator implements IModelLocator
+	public class VidiunModelLocator implements IModelLocator
 	{
-		static private var modelLocator : KalturaModelLocator;
+		static private var modelLocator : VidiunModelLocator;
 
 		//-----------------------------------------------------------
 		/**
@@ -56,16 +56,16 @@ package com.kaltura.model
 		}
 
 		//-----------------------------------------------------------
-		public static function getInstance():KalturaModelLocator
+		public static function getInstance():VidiunModelLocator
 		{
 			if ( modelLocator == null )
-				modelLocator = new KalturaModelLocator();
+				modelLocator = new VidiunModelLocator();
 
 			return modelLocator;
 		}
 
 		//-----------------------------------------------------------
-		public function KalturaModelLocator():void
+		public function VidiunModelLocator():void
 		{
 			if ( modelLocator != null )
 				throw new Error( 'Only one ModelLocator instance should be instantiated' );
@@ -73,15 +73,15 @@ package com.kaltura.model
 
 		// MODELS ===================================================
 		/**
-		 *the kaltura client reference, this client is responsible for the callbacks to the kaltura server.
+		 *the vidiun client reference, this client is responsible for the callbacks to the vidiun server.
 		 */
-		public var kalturaClient : KalturaClient;
+		public var vidiunClient : VidiunClient;
 		/**
 		*the application config.xml data, this holds information specific to the server to access, partner etc.
 		*/
-		public var applicationConfig:KalturaApplicationConfig = new KalturaApplicationConfig ();
+		public var applicationConfig:VidiunApplicationConfig = new VidiunApplicationConfig ();
 		/**
-		*the partner information of this kaltura application.
+		*the partner information of this vidiun application.
 		*/
 		public var partnerInfo:PartnerInfo = null;
 		/**

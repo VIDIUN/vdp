@@ -10,7 +10,7 @@ SAVE_EVENT (doDownload)
 SHARE_EVENT (doGigya)
 MEDIA_READY_EVENT
 SEEK_EVENT
-REPLAY_EVENT (only if it gets this notification – this is not part of the KDP normal behavior) 
+REPLAY_EVENT (only if it gets this notification – this is not part of the VDP normal behavior) 
 
 Each of these events can get dynamic omniture custom event, with custom eVars and custom props.
  I created a mechanism that parses dynamic attributes that are written in the UiConf and pushes
@@ -28,7 +28,7 @@ event22, eVar18:actual name, eVar19:actualUrl , prop33: actual name , prop32:act
 
 advantages: 
 very dynamicly. 
-Can get access to every exposed data from the KDP, including custom flashvars (this is very
+Can get access to every exposed data from the VDP, including custom flashvars (this is very
  important, cause if the page holds some information it is very easy to pass it to the Omniture
  through the binding). 
 Up to 9 Evars and event props per single event

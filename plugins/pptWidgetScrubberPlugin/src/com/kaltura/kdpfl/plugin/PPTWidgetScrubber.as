@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.plugin 
+package com.vidiun.vdpfl.plugin 
 {
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.view.controls.KScrubber;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.view.controls.VScrubber;
 	
 	import flash.events.*;
 	
@@ -13,7 +13,7 @@ package com.kaltura.kdpfl.plugin
 	 * @author Hila
 	 * 
 	 */	
-	public dynamic class PPTWidgetScrubber extends KScrubber implements IPlugin
+	public dynamic class PPTWidgetScrubber extends VScrubber implements IPlugin
 	{	
 		
 		

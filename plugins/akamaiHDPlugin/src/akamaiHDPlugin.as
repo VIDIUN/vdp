@@ -1,11 +1,11 @@
 package
 {
 	import com.akamai.osmf.AkamaiAdvancedStreamingPluginInfo;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.kdpfl.plugin.KPluginEvent;
-	import com.kaltura.kdpfl.plugin.akamaiHDMediator;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.IPluginFactory;
+	import com.vidiun.vdpfl.plugin.VPluginEvent;
+	import com.vidiun.vdpfl.plugin.akamaiHDMediator;
 	
 	import flash.display.Sprite;
 	import flash.system.Security;
@@ -56,7 +56,7 @@ package
 		protected function onOSMFPluginLoaded (e : MediaFactoryEvent) : void
 		{
 			e.target.removeEventListener(MediaFactoryEvent.PLUGIN_LOAD, onOSMFPluginLoaded);
-			dispatchEvent( new KPluginEvent (KPluginEvent.KPLUGIN_INIT_COMPLETE) );
+			dispatchEvent( new VPluginEvent (VPluginEvent.VPLUGIN_INIT_COMPLETE) );
 		}
 		/**
 		 * Listener for the LOAD_ERROR event.
@@ -66,7 +66,7 @@ package
 		protected function onOSMFPluginLoadError (e : MediaFactoryEvent) : void
 		{
 			e.target.removeEventListener(MediaFactoryEvent.PLUGIN_LOAD_ERROR, onOSMFPluginLoadError);
-			dispatchEvent( new KPluginEvent (KPluginEvent.KPLUGIN_INIT_FAILED) );
+			dispatchEvent( new VPluginEvent (VPluginEvent.VPLUGIN_INIT_FAILED) );
 		}
 		
 		public function setSkin(styleName:String, setSkinSize:Boolean=false):void

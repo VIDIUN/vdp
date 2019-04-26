@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Vidiun Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,33 +20,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.application
+package com.vidiun.application
 {
-	//xxx import com.adobe_kalturaprivate.adobe.cairngorm.control.CairngormEventDispatcher;
-	//xxx import com.kaltura.application.events.GetBaseEntryMultiRequestEvent;
-	//xxx import com.kaltura.application.events.InitKalturaApplicationEvent;
-	//xxx import com.kaltura.application.events.LoadPluginsEvent;
-	//xxx import com.kaltura.application.events.LoadRoughcutAssetsDataEvent;
-	//xxx import com.kaltura.application.events.SetEntryThumbnailEvent;
-	import com.kaltura.assets.AssetsFactory;
-	import com.kaltura.assets.abstracts.AbstractAsset;
-	import com.kaltura.base.context.KalturaApplicationConfig;
-	import com.kaltura.base.context.PartnerInfo;
-	import com.kaltura.base.types.MediaTypes;
-	import com.kaltura.base.vo.KalturaPluginInfo;
-	//xxx import com.kaltura.common.business.KalturaServices;
-	//xxx import com.kaltura.control.KalturaController;
-	import com.kaltura.dataStructures.HashMap;
-	import com.kaltura.model.KalturaModelLocator;
-	import com.kaltura.plugin.logic.effects.KEffect;
-	import com.kaltura.plugin.logic.overlays.Overlay;
-	import com.kaltura.plugin.logic.transitions.KTransition;
-	import com.kaltura.plugin.types.transitions.TransitionTypes;
-	import com.kaltura.roughcut.Roughcut;
-	//xxx import com.kaltura.utils.colors.ColorsUtil;
-	import com.kaltura.utils.url.URLProccessing;
-	//import com.kaltura.versions.KMFVersion;
-	import com.kaltura.vo.KalturaBaseEntry;
+	//xxx import com.adobe_vidiunprivate.adobe.cairngorm.control.CairngormEventDispatcher;
+	//xxx import com.vidiun.application.events.GetBaseEntryMultiRequestEvent;
+	//xxx import com.vidiun.application.events.InitVidiunApplicationEvent;
+	//xxx import com.vidiun.application.events.LoadPluginsEvent;
+	//xxx import com.vidiun.application.events.LoadRoughcutAssetsDataEvent;
+	//xxx import com.vidiun.application.events.SetEntryThumbnailEvent;
+	import com.vidiun.assets.AssetsFactory;
+	import com.vidiun.assets.abstracts.AbstractAsset;
+	import com.vidiun.base.context.VidiunApplicationConfig;
+	import com.vidiun.base.context.PartnerInfo;
+	import com.vidiun.base.types.MediaTypes;
+	import com.vidiun.base.vo.VidiunPluginInfo;
+	//xxx import com.vidiun.common.business.VidiunServices;
+	//xxx import com.vidiun.control.VidiunController;
+	import com.vidiun.dataStructures.HashMap;
+	import com.vidiun.model.VidiunModelLocator;
+	import com.vidiun.plugin.logic.effects.VEffect;
+	import com.vidiun.plugin.logic.overlays.Overlay;
+	import com.vidiun.plugin.logic.transitions.VTransition;
+	import com.vidiun.plugin.types.transitions.TransitionTypes;
+	import com.vidiun.roughcut.Roughcut;
+	//xxx import com.vidiun.utils.colors.ColorsUtil;
+	import com.vidiun.utils.url.URLProccessing;
+	//import com.vidiun.versions.VMFVersion;
+	import com.vidiun.vo.VidiunBaseEntry;
 
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -59,24 +59,24 @@ package com.kaltura.application
 	import mx.utils.URLUtil;
 
 	/**
-	 * Singleton manager that acts as a Facade to provide unified interface for managing a kaltura application, it's data and preforming operations on roughcuts.
+	 * Singleton manager that acts as a Facade to provide unified interface for managing a vidiun application, it's data and preforming operations on roughcuts.
 	 * Flow:
 	 * user application should call the loadServerConfig as the first call, and wait for it to init before calling any other facade operation.
 	 * </p>
-	 * KalturaEvents:
-	 * <p>KalturaApplication manager will dispatch an Result or Fault event for evenry completion of request.
-	 * In order to disable these events use: <code>KalturaApplication.getInstance().dispatchKalturaEvents = false;</code>
+	 * VidiunEvents:
+	 * <p>VidiunApplication manager will dispatch an Result or Fault event for evenry completion of request.
+	 * In order to disable these events use: <code>VidiunApplication.getInstance().dispatchVidiunEvents = false;</code>
 	 * Concurrency:
-	 * <p>KalturaCVE supports concurrency of requests. In order to have multiple asynchronous requests:
+	 * <p>VidiunCVE supports concurrency of requests. In order to have multiple asynchronous requests:
 	 * Whenever concurrency handling is needed, implement the <code>IResponder</code> interface and pass it as the responder parameter to that request.</p>
 	 * @see mx.rpc.IResponder
 	*/
-	public class KalturaApplication extends EventDispatcher
+	public class VidiunApplication extends EventDispatcher
 	{
 		//TODO: Find a way to remove these, we keep them here just for references in the link report.
 		static private var overlayEmbed:Overlay;
-		static private var effectEmbed:KEffect;
-		static private var transitionEmbed:KTransition;
+		static private var effectEmbed:VEffect;
+		static private var transitionEmbed:VTransition;
 		static public var nullAsset:AbstractAsset;
 
 		/**
@@ -103,8 +103,8 @@ package com.kaltura.application
 		/**
 		 *serve a repository of available transitions.
 		 * @return 		the available transitions.
-		 * @see com.kaltura.plugin.types.transitions.TransitionTypes
-		 * @see com.kaltura.vo.KalturaPluginInfo
+		 * @see com.vidiun.plugin.types.transitions.TransitionTypes
+		 * @see com.vidiun.vo.VidiunPluginInfo
 		 */
 		//xxx [Bindable]
 		public function get transitions ():ArrayCollection
@@ -123,7 +123,7 @@ package com.kaltura.application
 		/**
 		 *serve a repository of available overlays.
 		 * @return 		the available overlays.
-		 * @see com.kaltura.vo.KalturaPluginInfo
+		 * @see com.vidiun.vo.VidiunPluginInfo
 		 */
 		//xxx [Bindable]
 		public function get overlays ():ArrayCollection
@@ -142,7 +142,7 @@ package com.kaltura.application
 		/**
 		 *serve a repository of available text overlays.
 		 * @return 		the available text overlays.
-		 * @see com.kaltura.vo.KalturaPluginInfo
+		 * @see com.vidiun.vo.VidiunPluginInfo
 		 */
 		//xxx [Bindable]
 		public function get textOverlays ():ArrayCollection
@@ -161,7 +161,7 @@ package com.kaltura.application
 		/**
 		 *serve a repository of available effects.
 		 * @return 		the available effects.
-		 * @see com.kaltura.vo.KalturaPluginInfo
+		 * @see com.vidiun.vo.VidiunPluginInfo
 		 */
 		//xxx [Bindable]
 		public function get effects ():ArrayCollection
@@ -174,11 +174,11 @@ package com.kaltura.application
 		}
 
 		//if set to true, commands will cause manager to dispatch result and fault events.
-		public var dispatchKalturaEvents:Boolean = true;
+		public var dispatchVidiunEvents:Boolean = true;
 
-		//xxx protected var controller:KalturaController;
-		//xxx protected var services:KalturaServices;
-		protected var model:KalturaModelLocator;
+		//xxx protected var controller:VidiunController;
+		//xxx protected var services:VidiunServices;
+		protected var model:VidiunModelLocator;
 
 		//--------------------------------------------------------------------------------------
 		//Facade interfaces:
@@ -190,7 +190,7 @@ package com.kaltura.application
 		public var initPlayerHeight:Number = 480;
 
 		/**
-		 * loads the config.xml file and init the KalturaApplication model.
+		 * loads the config.xml file and init the VidiunApplication model.
 		 * <p>Support concurrency of requests - operation is asynchronous.</p>
 		 * @param config_file_url			the url of the xml config file to load.
 		 * @param partner_info				the partner info of this application, if null, JS function getPartnerInfo.
@@ -198,26 +198,26 @@ package com.kaltura.application
 		 * @param host_code					sets the host server with which the cve application will communicate.
 		 * @param debug_mode				sets debug mode for the application.
 		 * @param responder					for concurrency pass a request reponder.
-		 * @param cdn_host 					the kaltura cdn server domain name.
-		 * @tiptext	initialize the Kaltura application.
+		 * @param cdn_host 					the vidiun cdn server domain name.
+		 * @tiptext	initialize the Vidiun application.
 		 */
-		public function initKalturaApplication (config_file_url:String, partner_info:PartnerInfo, load_config:Boolean = false,
+		public function initVidiunApplication (config_file_url:String, partner_info:PartnerInfo, load_config:Boolean = false,
 							host_code:String = "1", debug_mode:Boolean = false, responder:IResponder = null,
-							locale_bundle_name:String = "kalturacvf", load_plugins:Boolean = false, cdn_host:String = "", client_tag:String = ''):void
+							locale_bundle_name:String = "vidiuncvf", load_plugins:Boolean = false, cdn_host:String = "", client_tag:String = ''):void
 		{
-			//xxx controller = new KalturaController ();
-			//xxx services = new KalturaServices ();
-		  	model = KalturaModelLocator.getInstance();
+			//xxx controller = new VidiunController ();
+			//xxx services = new VidiunServices ();
+		  	model = VidiunModelLocator.getInstance();
 			transitionsMap = new HashMap ();
 			overlaysMap = new HashMap ();
 			textOverlaysMap = new HashMap ();
 			effectsMap = new HashMap ();
 			nullAsset = AssetsFactory.create (MediaTypes.NULL, "null", '-1000', "NullAssets", "", "", 0, 0);
-			//trace ("**************\nKalturaCVF build version is: " + KMFVersion.VERSION + "\n**************");
+			//trace ("**************\nVidiunCVF build version is: " + VMFVersion.VERSION + "\n**************");
 			//set the locale bundle name:
-			//KalturaEntryStatus.localeBundleName = locale_bundle_name;
+			//VidiunEntryStatus.localeBundleName = locale_bundle_name;
 			MediaTypes.localeBundleName = locale_bundle_name;
-			//var evt:InitKalturaApplicationEvent = new InitKalturaApplicationEvent (responder, config_file_url, partner_info,
+			//var evt:InitVidiunApplicationEvent = new InitVidiunApplicationEvent (responder, config_file_url, partner_info,
 			//														load_config, host_code, debug_mode, load_plugins, cdn_host, client_tag);
 			//evt.dispatch();
 		}
@@ -242,9 +242,9 @@ package com.kaltura.application
 		 * the framework build version.
 		 * @return 	the compiled build version.
 		 */
-		public function get KalturaCVFVersion ():String
+		public function get VidiunCVFVersion ():String
 		{
-			return "";//KMFVersion.VERSION;
+			return "";//VMFVersion.VERSION;
 		}
 
 		/**
@@ -260,7 +260,7 @@ package com.kaltura.application
 		/**
 		 *loads and instantiates partner info on the model of this application.
 		 * @param partner_info		the partner info of this application, if null, function will read from JS function getPartnerInfo.
-		 * @see com.kaltura.common.context.PartnerInfo
+		 * @see com.vidiun.common.context.PartnerInfo
 		 */
 		public function readPartnerInfo (partner_info:PartnerInfo):void
 		{
@@ -272,7 +272,7 @@ package com.kaltura.application
 				model.logStatus = "got partner info:\n" + ObjectUtil.toString(_partnerInfo);
 				if (_partnerInfo != null)
 				{
-					model.partnerInfo.ks 					= 		_partnerInfo.ks;
+					model.partnerInfo.vs 					= 		_partnerInfo.vs;
 					model.partnerInfo.uid 					= 		_partnerInfo.uid;
 					model.partnerInfo.partnerId 			= 		_partnerInfo.partnerId;
 					model.partnerInfo.subpId 				= 		_partnerInfo.subpId;
@@ -282,9 +282,9 @@ package com.kaltura.application
 		}
 
 		/**
-		 *the partner information for this kaltura application.
+		 *the partner information for this vidiun application.
 		 * @return 	the partner info object.
-		 * @see com.kaltura.common.context.PartnerInfo
+		 * @see com.vidiun.common.context.PartnerInfo
 		 */
 		//xxx [Inspectable]
 		//xxx [Bindable]
@@ -299,17 +299,17 @@ package com.kaltura.application
 		}
 
 		/**
-		 *the kaltura application configurations.
-		 * @return 	the configuration of this kaltura application (as shown on config.xml).
-		 * @see com.kaltura.common.context.KalturaApplicationConfig
+		 *the vidiun application configurations.
+		 * @return 	the configuration of this vidiun application (as shown on config.xml).
+		 * @see com.vidiun.common.context.VidiunApplicationConfig
 		 */
 		//xxx [Inspectable]
 		//xxx [Bindable]
-		public function get applicationConfig ():KalturaApplicationConfig
+		public function get applicationConfig ():VidiunApplicationConfig
 		{
 			return model.applicationConfig;
 		}
-		public function set applicationConfig (application_config:KalturaApplicationConfig):void
+		public function set applicationConfig (application_config:VidiunApplicationConfig):void
 		{
 			model.applicationConfig = application_config;
 		}
@@ -331,8 +331,8 @@ package com.kaltura.application
 		 * @param entry_id				the id of the roughcut to load it's mediaSources.
 		 * @param entry_version			the version of the roughcut to load it's mediaSources.
 		 * @param streamingMode			determine the serving method used to get the media files.
-         * @see com.kaltura.managers.downloadManagers.types.StreamingModes
-		 * @see com.kaltura.assets.abstracts.AbstractAsset#mediaSource
+         * @see com.vidiun.managers.downloadManagers.types.StreamingModes
+		 * @see com.vidiun.assets.abstracts.AbstractAsset#mediaSource
 		 */
 		public function loadRoughcutAssetsMediaSource (entry_id:String, entry_version:int, streaming_mode:int = 0):void
 		{
@@ -340,13 +340,13 @@ package com.kaltura.application
 		}
 
 		/**
-		 *loads an entry by requesting a multirequest that is designed to get all related information for an entry and it's kshow.
+		 *loads an entry by requesting a multirequest that is designed to get all related information for an entry and it's vshow.
 		 * @param entry_id				the id of the entry to load.
 		 * @param entry_version			the version of the entry to load.
 		 * @param validate_sdl			specify if should validate sdl versus getallentries result.
 		 * @param checkPending			if true will check entries for validation (status).
 		 * @param responder				for concurrency pass a request reponder.
-		 * @see com.kaltura.base.types.ListTypes
+		 * @see com.vidiun.base.types.ListTypes
 		 */
 		public function loadEntryMultirequest (entry_id:String, entry_version:int = -1, validate_sdl:Boolean = true, checkPending:Boolean = true, responder:IResponder = null):void
 		{
@@ -359,31 +359,31 @@ package com.kaltura.application
 		 */
 		public function showBussyCursor (val:Boolean):void
 		{
-			//xxx KalturaServices.showBussyCursor = val;
+			//xxx VidiunServices.showBussyCursor = val;
 		}
 		//--------------------------------------------------------------------------------------
 		//internal framework managment.
 
 
 		/**
-		 * adds a new KalturaBaseEntry to the model.
-		 * @param kentry		the KalturaBaseEntry to add.
+		 * adds a new VidiunBaseEntry to the model.
+		 * @param ventry		the VidiunBaseEntry to add.
 		 */
-		public function addEntry (kentry:KalturaBaseEntry):void
+		public function addEntry (ventry:VidiunBaseEntry):void
 		{
 			if (model && model.entriesMap)
-				model.entriesMap.put (kentry.id.toLowerCase() + "." + kentry.version.toString(), kentry);
+				model.entriesMap.put (ventry.id.toLowerCase() + "." + ventry.version.toString(), ventry);
 		}
 
 		/**
-		 * get a KalturaBaseEntry.
-		 * @param entryId	the entry id of the KalturaBaseEntry.
-		 * @return 			the KalturaBaseEntry of the given entry_id.
+		 * get a VidiunBaseEntry.
+		 * @param entryId	the entry id of the VidiunBaseEntry.
+		 * @return 			the VidiunBaseEntry of the given entry_id.
 		 */
-		public function getEntry (entryId:String, entryVersion:String):KalturaBaseEntry
+		public function getEntry (entryId:String, entryVersion:String):VidiunBaseEntry
 		{
 			if (model && model.entriesMap)
-				return model.entriesMap.getValue(entryId.toLowerCase() + "." + entryVersion.toLowerCase()) as KalturaBaseEntry;
+				return model.entriesMap.getValue(entryId.toLowerCase() + "." + entryVersion.toLowerCase()) as VidiunBaseEntry;
 			return null;
 		}
 
@@ -484,7 +484,7 @@ package com.kaltura.application
 			var dirty:Boolean = ptype[2];
 			if (dirty)
 				buildPluginsMap (collection, map, media_type);
-			var pinfo:KalturaPluginInfo = map.getValue(plugin_id) as KalturaPluginInfo;
+			var pinfo:VidiunPluginInfo = map.getValue(plugin_id) as VidiunPluginInfo;
 			if (pinfo) {
 				return pinfo.label;
 			} else {
@@ -508,7 +508,7 @@ package com.kaltura.application
 			var dirty:Boolean = ptype[2];
 			if (dirty)
 				buildPluginsMap (collection, map, media_type);
-			var pinfo:KalturaPluginInfo = map.getValue(plugin_id) as KalturaPluginInfo;
+			var pinfo:VidiunPluginInfo = map.getValue(plugin_id) as VidiunPluginInfo;
 			if (pinfo)
 				return pinfo.thumbnailUrl;
 			else
@@ -526,7 +526,7 @@ package com.kaltura.application
 			var label:String = getPluginLabel (transition_id, MediaTypes.TRANSITION);
 			if (label === null)
 			{
-				var pinfo:KalturaPluginInfo = transitionsMap.getValue(TransitionTypes.NONE) as KalturaPluginInfo;
+				var pinfo:VidiunPluginInfo = transitionsMap.getValue(TransitionTypes.NONE) as VidiunPluginInfo;
 				if (pinfo)
 					return pinfo.label;
 			}
@@ -561,7 +561,7 @@ package com.kaltura.application
 			var i:int = 0;
 			for (; i < N; ++i)
 			{
-				var pinfo:KalturaPluginInfo = plugins.getItemAt(i) as KalturaPluginInfo;
+				var pinfo:VidiunPluginInfo = plugins.getItemAt(i) as VidiunPluginInfo;
 				map.put (pinfo.pluginId, pinfo);
 			}
 			switch (media_type)
@@ -585,7 +585,7 @@ package com.kaltura.application
 		//manager dispatcher:
 		override public function dispatchEvent(event:Event):Boolean
 		{
-			if (dispatchKalturaEvents)
+			if (dispatchVidiunEvents)
 			{
 				return super.dispatchEvent(event);
 			}
@@ -595,22 +595,22 @@ package com.kaltura.application
 
 		//--------------------------------------------------------------------------------------
 		//singleton instance
-		static private var kAppInstance:KalturaApplication;
-		static public function getInstance ():KalturaApplication
+		static private var vAppInstance:VidiunApplication;
+		static public function getInstance ():VidiunApplication
 		{
-			if (kAppInstance == null)
+			if (vAppInstance == null)
 			{
-				kAppInstance = new KalturaApplication ();
+				vAppInstance = new VidiunApplication ();
 				//xxx ColorsUtil.init();
 			}
-			return kAppInstance;
+			return vAppInstance;
 		}
 
-		public function KalturaApplication ():void
+		public function VidiunApplication ():void
 		{
-			if (kAppInstance != null)
+			if (vAppInstance != null)
 				throw (new Error ("Singleton: use getInstance instead."));
-			kAppInstance = this;
+			vAppInstance = this;
 		}
 		//--------------------------------------------------------------------------------------
 	}

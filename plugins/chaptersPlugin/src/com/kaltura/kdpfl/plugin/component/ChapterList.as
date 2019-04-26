@@ -1,10 +1,10 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
 	
-	import com.kaltura.kdpfl.plugin.events.ChapterEvent;
-	import com.kaltura.kdpfl.util.KAstraAdvancedLayoutUtil;
-	import com.kaltura.kdpfl.util.KColorUtil;
-	import com.kaltura.vo.KalturaAnnotation;
+	import com.vidiun.vdpfl.plugin.events.ChapterEvent;
+	import com.vidiun.vdpfl.util.VAstraAdvancedLayoutUtil;
+	import com.vidiun.vdpfl.util.VColorUtil;
+	import com.vidiun.vo.VidiunAnnotation;
 	import com.yahoo.astra.fl.containers.BoxPane;
 	
 	import fl.core.InvalidationType;
@@ -101,7 +101,7 @@ package com.kaltura.kdpfl.plugin.component
 			super.drawBackground();
 			if (this.background && _bgColor !=-1)
 			{
-				KColorUtil.colorDisplayObject(this.background,_bgColor);
+				VColorUtil.colorDisplayObject(this.background,_bgColor);
 				this.background.alpha = _bgAlpha;
 			}
 		}
@@ -139,7 +139,7 @@ package com.kaltura.kdpfl.plugin.component
 			_dataProvider = value;
 			if (_dataProvider && _dataProvider.length)
 			{
-				for each (var annotation : KalturaAnnotation in _dataProvider.toArray()) {
+				for each (var annotation : VidiunAnnotation in _dataProvider.toArray()) {
 					var chapter : Chapter = new Chapter();
 					chapter.setSkin("default");
 					this.addChild(chapter);

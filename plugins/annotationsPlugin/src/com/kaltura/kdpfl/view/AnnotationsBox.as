@@ -1,10 +1,10 @@
-package com.kaltura.kdpfl.view
+package com.vidiun.vdpfl.view
 {
 	
-	import com.kaltura.kdpfl.util.KAstraAdvancedLayoutUtil;
-	import com.kaltura.kdpfl.view.containers.KVBox;
-	import com.kaltura.kdpfl.view.strings.AnnotationStrings;
-	import com.kaltura.vo.KalturaAnnotation;
+	import com.vidiun.vdpfl.util.VAstraAdvancedLayoutUtil;
+	import com.vidiun.vdpfl.view.containers.VVBox;
+	import com.vidiun.vdpfl.view.strings.AnnotationStrings;
+	import com.vidiun.vo.VidiunAnnotation;
 	
 	import fl.controls.ScrollPolicy;
 	import fl.data.DataProvider;
@@ -13,7 +13,7 @@ package com.kaltura.kdpfl.view
 	
 	import flash.events.Event;
 	
-	public dynamic class AnnotationsBox extends KVBox
+	public dynamic class AnnotationsBox extends VVBox
 	{
 		private var _dataProvider : DataProvider;
 		
@@ -64,11 +64,11 @@ package com.kaltura.kdpfl.view
 					this.dispatchEvent( new Event(ANNOTATION_ADDED) );
 					this.dataProvider.sortOn("inTime",Array.NUMERIC);
 					var newAnnotation : Annotation = e.items[0].annotation;
-					KAstraAdvancedLayoutUtil.appendToLayoutAt(this, newAnnotation, dataProvider.getItemIndex(e.items[0]), 100, 100);
+					VAstraAdvancedLayoutUtil.appendToLayoutAt(this, newAnnotation, dataProvider.getItemIndex(e.items[0]), 100, 100);
 					break;
 				case DataChangeType.REMOVE:
 					var annotationToRemove : Annotation = e.items[0]["annotation"];
-					KAstraAdvancedLayoutUtil.removeFromLayout(this, annotationToRemove);
+					VAstraAdvancedLayoutUtil.removeFromLayout(this, annotationToRemove);
 					break;
 				case DataChangeType.CHANGE:
 					
@@ -187,22 +187,22 @@ package com.kaltura.kdpfl.view
 			return reArray;
 		}
 		/**
-		 * Method to retrieve the feedback session as an array of KalturaAnnotation objects.
-		 * @return Array of KalturaAnnotation objects.
+		 * Method to retrieve the feedback session as an array of VidiunAnnotation objects.
+		 * @return Array of VidiunAnnotation objects.
 		 * 
 		 */		
-		public function get annotationsAsKalturaAnnotationArray () : Array
+		public function get annotationsAsVidiunAnnotationArray () : Array
 		{
-			var kAnnotationArr : Array = new Array();
+			var vAnnotationArr : Array = new Array();
 			
 			var dpArray : Array = dataProvider.toArray();
 			
 			for (var i:int =0; i < dpArray.length; i++)
 			{
-				var kAnnotation : KalturaAnnotation = (dpArray[i]["annotation"] as Annotation).kalturaAnnotation;
-				kAnnotationArr.push(kAnnotation);
+				var vAnnotation : VidiunAnnotation = (dpArray[i]["annotation"] as Annotation).vidiunAnnotation;
+				vAnnotationArr.push(vAnnotation);
 			}
-			return kAnnotationArr;
+			return vAnnotationArr;
 		}
 		/**
 		 * Method to change the view mode of the entire feedback session.
@@ -235,7 +235,7 @@ package com.kaltura.kdpfl.view
 			{
 				annotation = dpArray[i]["annotation"] as Annotation;	
 				annotationXML = new XML ("<annotation><createdAt></createdAt><updatedAt></updatedAt><text>" + escape(annotation.annotationText) + "</text><startTime>"+ annotation.inTime +"</startTime>" +
-					"<endTime>" + annotation.kalturaAnnotation.endTime + "</endTime><userId>" + annotation.kalturaAnnotation.userId + "</userId></annotation>");
+					"<endTime>" + annotation.vidiunAnnotation.endTime + "</endTime><userId>" + annotation.vidiunAnnotation.userId + "</userId></annotation>");
 				feedbackSessionXML.appendChild( annotationXML );
 			}
 			
@@ -260,17 +260,17 @@ package com.kaltura.kdpfl.view
 			
 			for each(var annotationXML : XML in annotationsXMLList) 
 			{
-				var kalturaAnnotation : KalturaAnnotation = new KalturaAnnotation();
+				var vidiunAnnotation : VidiunAnnotation = new VidiunAnnotation();
 				var annotation : Annotation;
-				kalturaAnnotation.entryId = entryId;
-				kalturaAnnotation.partnerId = partnerId;
-				kalturaAnnotation.parentId = parentId;
+				vidiunAnnotation.entryId = entryId;
+				vidiunAnnotation.partnerId = partnerId;
+				vidiunAnnotation.parentId = parentId;
 				for each(var property : XML in annotationXML.children())
 				{
-					kalturaAnnotation[property.localName().toString()] = property.children()[0] ? unescape(property.children()[0].toString()) : "";
+					vidiunAnnotation[property.localName().toString()] = property.children()[0] ? unescape(property.children()[0].toString()) : "";
 				}
 				
-				annotation = new Annotation (AnnotationStrings.VIEW_MODE, -1,"","",kalturaAnnotation, initialTabIndex);
+				annotation = new Annotation (AnnotationStrings.VIEW_MODE, -1,"","",vidiunAnnotation, initialTabIndex);
 				this.addAnnotation( annotation );
 				
 			}

@@ -1,6 +1,6 @@
-Following is a summary of the expressions the KDP can evaluate.
+Following is a summary of the expressions the VDP can evaluate.
 
-1. The KDP evaluates expressions in four cases:
+1. The VDP evaluates expressions in four cases:
 
 	1. A layout component is set with an expression
 		e.g. setting a label to show the current entry name
@@ -8,16 +8,16 @@ Following is a summary of the expressions the KDP can evaluate.
 	
 	2. A layout component fires a command
 		e.g. clicking on a button should navigate to a url
-			<Button kClick="navigate(http://www.kaltura.com)" />
+			<Button vClick="navigate(http://www.vidiun.com)" />
 	
 	3. An external script calls the evaluate function
 		e.g. retrieve the current entry name 
 	
-		kdp.evaluate("{mediaProxy.entry.name}")
+		vdp.evaluate("{mediaProxy.entry.name}")
 
 	4. An external script calls the setAttribute function
 		e.g. setting a lebel with the id topLabel to show the current entry name 
-		kdp.setAttribute("topLabel", "text", "{mediaProxy.entry.name}")
+		vdp.setAttribute("topLabel", "text", "{mediaProxy.entry.name}")
 	
 2. Expression types
 
@@ -40,20 +40,20 @@ Following is a summary of the expressions the KDP can evaluate.
 	 	
 3. Scope
 	When an expression is used within an item renderer such as a playlist item the this keyword should be
-	used in order to instruct the KDP to retrieve the attribute of the curernt data provider.
+	used in order to instruct the VDP to retrieve the attribute of the curernt data provider.
 	
 	e.g. showing the name and thumbnail of a playlist item:
 	 	<Label text="{this.name}" />
 		<Image url="{this.thumbnailUrl}" />
 		
 4. Using functions
-	Expressions may include calling to an internal KDP function.
+	Expressions may include calling to an internal VDP function.
 	
 	e.g. formatting a the date of a playlist item
 		<Label text="{formatDate(this.duration, 'NN:SS')}" />
 		
 	or navigating to a given url
-		<Button kClick="navigate(http://www.kaltura.com)" />
+		<Button vClick="navigate(http://www.vidiun.com)" />
 		
 	The functions are action script functions written under the FuncsProxy class.
 	A function can be written specifically under a data provider by specfiying an _owner property
@@ -71,7 +71,7 @@ Following is a summary of the expressions the KDP can evaluate.
 	2.	navigate(url:String, window:String = null):void
 		Request the browser to navigate to a url with a specified window
 		
-		e.g. <Button kClick="navigate(http://www.kaltura.com)" />
+		e.g. <Button vClick="navigate(http://www.vidiun.com)" />
 		
 	3.	not
 		This function reverse a boolean value, or a string value with casting to boolean. 
@@ -84,7 +84,7 @@ Following is a summary of the expressions the KDP can evaluate.
 	4.	jsCall(...args):void
 		Call a javascript function
 		
-		e.g. <Button kClick="jsCall('alert', mediaProxy.entry.name)" />
+		e.g. <Button vClick="jsCall('alert', mediaProxy.entry.name)" />
 		
 		Javascript functions can be defined within the layout configuration xml under the "javaScript" node.
 		Each function is declared as an xml node with the id of the defined function.

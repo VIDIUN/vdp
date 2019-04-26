@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,23 +25,23 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.systemPartner
+package com.vidiun.commands.systemPartner
 {
-		import com.kaltura.vo.KalturaSystemPartnerConfiguration;
-	import com.kaltura.delegates.systemPartner.SystemPartnerUpdateConfigurationDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunSystemPartnerConfiguration;
+	import com.vidiun.delegates.systemPartner.SystemPartnerUpdateConfigurationDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	**/
-	public class SystemPartnerUpdateConfiguration extends KalturaCall
+	public class SystemPartnerUpdateConfiguration extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param partnerId int
-		* @param configuration KalturaSystemPartnerConfiguration
+		* @param configuration VidiunSystemPartnerConfiguration
 		**/
-		public function SystemPartnerUpdateConfiguration( partnerId : int,configuration : KalturaSystemPartnerConfiguration )
+		public function SystemPartnerUpdateConfiguration( partnerId : int,configuration : VidiunSystemPartnerConfiguration )
 		{
 			service= 'systempartner_systempartner';
 			action= 'updateConfiguration';
@@ -51,7 +51,7 @@ package com.kaltura.commands.systemPartner
 			var keyValArr : Array = new Array();
 			keyArr.push('partnerId');
 			valueArr.push(partnerId);
-				keyValArr = kalturaObject2Arrays(configuration, 'configuration');
+				keyValArr = vidiunObject2Arrays(configuration, 'configuration');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

@@ -1,9 +1,9 @@
 /*
-   This file is part of the Kaltura Collaborative Media Suite which allows users
+   This file is part of the Vidiun Collaborative Media Suite which allows users
    to do with audio, video, and animation what Wiki platfroms allow them to do with
    text.
 
-   Copyright (C) 2006-2008  Kaltura Inc.
+   Copyright (C) 2006-2008  Vidiun Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License as
@@ -20,13 +20,13 @@
 
    @ignore
  */
-package com.kaltura.net.streaming
+package com.vidiun.net.streaming
 {
-	import com.kaltura.net.interfaces.ILoadableObject;
-	import com.kaltura.net.interfaces.IMediaSource;
-	import com.kaltura.net.streaming.events.ExNetStreamEvent;
-	import com.kaltura.net.streaming.status.NetStatus;
-	import com.kaltura.utils.url.URLProccessing;
+	import com.vidiun.net.interfaces.ILoadableObject;
+	import com.vidiun.net.interfaces.IMediaSource;
+	import com.vidiun.net.streaming.events.ExNetStreamEvent;
+	import com.vidiun.net.streaming.status.NetStatus;
+	import com.vidiun.utils.url.URLProccessing;
 
 	import flash.display.BitmapData;
 	import flash.events.AsyncErrorEvent;
@@ -48,10 +48,10 @@ package com.kaltura.net.streaming
 	import mx.events.MetadataEvent;
 	import mx.events.VideoEvent;
 
-	[Event(name="OnStreamEnd", type="com.kaltura.net.streaming.ExNetStreamEvent")]
+	[Event(name="OnStreamEnd", type="com.vidiun.net.streaming.ExNetStreamEvent")]
 	[Event(name="progress", type="flash.events.ProgressEvent")]
 	[Event(name="complete", type="flash.events.Event")]
-	[Event(name="fixedSeekTime2keyframe", type="com.kaltura.net.streaming.ExNetStreamEvent")]
+	[Event(name="fixedSeekTime2keyframe", type="com.vidiun.net.streaming.ExNetStreamEvent")]
 
 	/**
 	 * ExNetStream is used for progressive download playing of video and audio.
@@ -783,7 +783,7 @@ package com.kaltura.net.streaming
 		 * so we make sure the buffer is actually empty after the stop event.
 		 * on other cases the buffer did not throw empty event till the 20 stop event... so we assume the end of play was
 		 * reached on the 6th play.stop event.
-		 * 25/08/2008 - When conversion doesn't go using Kaltura's conversion flow we get videos that the entry length
+		 * 25/08/2008 - When conversion doesn't go using Vidiun's conversion flow we get videos that the entry length
 		 * is larger by a 0.05~ of ms of the actual netStream time when the video ends play, so we check that we don't
 		 * miss it using the "NetStream.Play.Stop" event.
 		 */
@@ -932,7 +932,7 @@ package com.kaltura.net.streaming
 
 		/**
 		 * the state of the stream.
-		 * @see com.kaltura.net.streaming.PlayStatusStates
+		 * @see com.vidiun.net.streaming.PlayStatusStates
 		 */
 		public function get playStatus():uint
 		{

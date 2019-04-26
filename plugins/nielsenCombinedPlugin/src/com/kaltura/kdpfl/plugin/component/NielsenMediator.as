@@ -1,16 +1,16 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.AdsNotificationTypes;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.vo.*;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.types.KalturaAdType;
-	import com.kaltura.vo.KalturaAdCuePoint;
-	import com.kaltura.vo.KalturaCuePoint;
-	import com.kaltura.vo.KalturaMediaEntry;
-	import com.kaltura.vo.KalturaPlayableEntry;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.AdsNotificationTypes;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.vo.*;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
+	import com.vidiun.types.VidiunAdType;
+	import com.vidiun.vo.VidiunAdCuePoint;
+	import com.vidiun.vo.VidiunCuePoint;
+	import com.vidiun.vo.VidiunMediaEntry;
+	import com.vidiun.vo.VidiunPlayableEntry;
 	
 	import org.osmf.media.URLResource;
 	import org.puremvc.as3.interfaces.INotification;
@@ -24,7 +24,7 @@ package com.kaltura.kdpfl.plugin.component
 		private var _playheadPosition:Number = 0;
 		private var _intervalSentPos:Number = 0;
 		private var _duration:Number = 0;
-		private var _media:KalturaMediaEntry;
+		private var _media:VidiunMediaEntry;
 		private var _seeking:Boolean = false;
 		private var _seekStartEnd:Number = 0;
 		private var _cuePoints:Array;
@@ -83,7 +83,7 @@ package com.kaltura.kdpfl.plugin.component
 		override public function handleNotification(note:INotification):void
 		{
 			trace('note.getName() =kg= '+note.getName());
-			var curTime:Number = (facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).getCurrentTime();
+			var curTime:Number = (facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator).getCurrentTime();
 			if (!_sequenceProxy.vo.isInSequence && this._cuePoints && this._cuePoints.length && this._seg > 1)
 			{
 				curTime -= this._cuePoints[this._seg-2];
@@ -179,8 +179,8 @@ package com.kaltura.kdpfl.plugin.component
 						{
 							//will count the intime only if at least one of the cue points in this intime
 							//is a video
-							var cp:KalturaCuePoint = l_media.entryCuePoints[ii][j] as KalturaCuePoint;
-							if (cp && (cp is KalturaAdCuePoint) && ((cp as KalturaAdCuePoint).adType==KalturaAdType.VIDEO))
+							var cp:VidiunCuePoint = l_media.entryCuePoints[ii][j] as VidiunCuePoint;
+							if (cp && (cp is VidiunAdCuePoint) && ((cp as VidiunAdCuePoint).adType==VidiunAdType.VIDEO))
 							{
 								//cue points value is in milliseconds
 								_cuePoints.push(Number(ii) / 1000);
@@ -303,7 +303,7 @@ package com.kaltura.kdpfl.plugin.component
 		
 		private function getVideoInfoFromMetadata():String
 		{
-			var metadata:KalturaPlayableEntry = (facade.retrieveProxy("mediaProxy"))["vo"].entry;
+			var metadata:VidiunPlayableEntry = (facade.retrieveProxy("mediaProxy"))["vo"].entry;
 			_duration = isNaN(metadata.duration) ? _duration : metadata.msDuration / 1000;
 			var c_seg:Number = this.getSegmentFromCuePoints()-1;
 			if(this._cuePoints && this._cuePoints.length)

@@ -31,12 +31,12 @@
             <doc-sources path-element="${APP_ROOT}/src/statisticsPlugin.as"/> 
             <source-path path-element="${APP_ROOT}/src"/> 
 			<compiler.library-path dir="${APP_ROOT}" append="true"> 
-                <include name="kdp3Lib/bin" /> 
+                <include name="vdp3Lib/bin" /> 
                 <include name="libs" /> 
             </compiler.library-path> 
 			<external-library-path dir="${APP_ROOT}" append="true">
 				<include name="libs" /> 
-                <include name="kdp3Lib/bin" />
+                <include name="vdp3Lib/bin" />
 			</external-library-path>
         </asdoc> 
     </target> 

@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users 
+This file is part of the Vidiun Collaborative Media Suite which allows users 
 to do with audio, video, and animation what Wiki platfroms allow them to do with 
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.kdp.commands
+package com.vidiun.vdp.commands
 {
 	import flash.events.Event;
 	
@@ -35,36 +35,36 @@ package com.kaltura.kdp.commands
 		 */		
 		static public const QPOINT_ACTION:String = "qpointAction";
 		/**
-		 * pause event the kplayer shoots
+		 * pause event the vplayer shoots
 		 */		
 		static public const PLAYER_PAUSED:String = "playerPaused";
 		/**
-		 * play event the kplayer shoots
+		 * play event the vplayer shoots
 		 */		
 		static public const PLAYER_PLAYED:String = "playerPlayed";
 		/**
-		 * stop event the kplayer shoots
+		 * stop event the vplayer shoots
 		 */		
 		static public const PLAYER_STOPPED:String = "playerStopped";
 		/**
-		 * seek event the kplayer shoots. Addition data - object that holds the seek data
+		 * seek event the vplayer shoots. Addition data - object that holds the seek data
 		 */		
 		static public const PLAYER_SEEKED:String = "playerSeeked";
 		/**
-		 * do stop command to the kplayer
+		 * do stop command to the vplayer
 		 */		
 		static public const DO_PAUSE:String = "doPause";
 		
 		/**
-		 * do play command to the kplayer
+		 * do play command to the vplayer
 		 */		
 		static public const DO_PLAY:String = "doPlay";
 		/**
-		 * do stop command to the kplayer
+		 * do stop command to the vplayer
 		 */		
 		static public const DO_STOP:String = "doStop";
 		/**
-		 * do seek command to the kplayer. Addition data - object that holds the seek data
+		 * do seek command to the vplayer. Addition data - object that holds the seek data
 		 */		
 		static public const DO_SEEK:String = "doSeek";
 		/**
@@ -102,7 +102,7 @@ package com.kaltura.kdp.commands
 		/**
 		 * Click of button / linkButton / label  
 		 */		
-		static public const K_CLICK:String = "kClick";
+		static public const V_CLICK:String = "vClick";
 		/**
 		 * open full screen 
 		 */		
@@ -128,9 +128,9 @@ package com.kaltura.kdp.commands
 		 */
 		static public const CHANGE_THEME:String = "changeTheme";
 		/**
-		 *change the current kshow to another kshow. Addition data - int
+		 *change the current vshow to another vshow. Addition data - int
 		 */		
-		static public const  CHANGE_KSHOW:String = "changeKshow";
+		static public const  CHANGE_VSHOW:String = "changeVshow";
 		/**
 		 *enable/disable gui. Addition data - Boolean 
 		 */		

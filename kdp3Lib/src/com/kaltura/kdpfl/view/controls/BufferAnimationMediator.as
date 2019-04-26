@@ -1,9 +1,9 @@
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
-	import com.kaltura.kdpfl.controller.media.LiveStreamCommand;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
+	import com.vidiun.vdpfl.controller.media.LiveStreamCommand;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
 	
 	import flash.events.TimerEvent;
 	import flash.geom.ColorTransform;
@@ -23,7 +23,7 @@ package com.kaltura.kdpfl.view.controls
 	public class BufferAnimationMediator extends Mediator
 	{
 		public static const NAME:String = "spinnerMediator";
-		public static const SPINNER_CLASS : String = "kspin";
+		public static const SPINNER_CLASS : String = "vspin";
 		public var applicationLoadStyleName:String = '';
 		public var bufferingStyleName:String = '';
 		private var zeroPoint : Point = new Point( 0 , 0);
@@ -75,7 +75,7 @@ package com.kaltura.kdpfl.view.controls
 						spinner.setBufferingAnimation(applicationLoadStyleName == '' ? SPINNER_CLASS : applicationLoadStyleName );					
 					}
 					break;
-				case NotificationType.KDP_READY:
+				case NotificationType.VDP_READY:
 				case NotificationType.READY_TO_PLAY:
 					var spinnerColor:Number = -1;
 					if(flashvars.spinnerColorAttribute && flashvars[flashvars.spinnerColorAttribute] )
@@ -165,7 +165,7 @@ package com.kaltura.kdpfl.view.controls
 					//fix another OSMF bug: we are buffering even though movie plays
 					else if (spinner.visible)
 					{
-						var updateIntervalInSeconds:Number = (facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).player.currentTimeUpdateInterval / 1000;
+						var updateIntervalInSeconds:Number = (facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator).player.currentTimeUpdateInterval / 1000;
 						var curPos:Number = parseFloat(Number(note.getBody()).toFixed(2));
 						if ((curPos - _lastPlayheadPos)<=updateIntervalInSeconds)
 						{
@@ -192,7 +192,7 @@ package com.kaltura.kdpfl.view.controls
 					_reachedEnd=true;
 					fadeOutSpinner();
 					break;
-				case NotificationType.KDP_EMPTY:
+				case NotificationType.VDP_EMPTY:
 				case NotificationType.READY_TO_LOAD:
 					fadeOutSpinner();
 					_reachedEnd=false;
@@ -316,8 +316,8 @@ package com.kaltura.kdpfl.view.controls
 				NotificationType.ENTRY_FAILED,
 				NotificationType.CHANGE_MEDIA,
 				NotificationType.PLAYER_PLAY_END,
-				NotificationType.KDP_EMPTY,
-				NotificationType.KDP_READY,
+				NotificationType.VDP_EMPTY,
+				NotificationType.VDP_READY,
 				NotificationType.LAYOUT_READY,
 				NotificationType.LIVE_ENTRY,
 				LiveStreamCommand.LIVE_STREAM_READY,

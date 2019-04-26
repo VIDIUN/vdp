@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Vidiun Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,24 +20,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.managers.downloadManagers
+package com.vidiun.managers.downloadManagers
 {
-    import com.kaltura.assets.abstracts.AbstractAsset;
-    import com.kaltura.base.types.MediaTypes;
-    import com.kaltura.dataStructures.HashMap;
-    import com.kaltura.managers.downloadManagers.events.DownloadManagerStatusEvent;
-    import com.kaltura.managers.downloadManagers.imagesManager.ImagesManager;
-    //xxx import com.kaltura.managers.downloadManagers.protocols.NetProtocolBitmapSocket;
-    import com.kaltura.managers.downloadManagers.protocols.NetProtocolImage;
-    import com.kaltura.managers.downloadManagers.protocols.NetProtocolPlugin;
-    import com.kaltura.managers.downloadManagers.protocols.NetProtocolProgressiveDUAL;
-    import com.kaltura.managers.downloadManagers.protocols.NetProtocolProgressiveFLV;
-    import com.kaltura.managers.downloadManagers.protocols.NetProtocolSWFLoader;
-    import com.kaltura.managers.downloadManagers.protocols.NetProtocolSolidColor;
-    import com.kaltura.managers.downloadManagers.protocols.interfaces.INetProtocol;
-    import com.kaltura.managers.downloadManagers.types.StreamingModes;
-    import com.kaltura.net.downloading.LoadingStatus;
-    import com.kaltura.net.loaders.interfaces.IMediaSourceLoader;
+    import com.vidiun.assets.abstracts.AbstractAsset;
+    import com.vidiun.base.types.MediaTypes;
+    import com.vidiun.dataStructures.HashMap;
+    import com.vidiun.managers.downloadManagers.events.DownloadManagerStatusEvent;
+    import com.vidiun.managers.downloadManagers.imagesManager.ImagesManager;
+    //xxx import com.vidiun.managers.downloadManagers.protocols.NetProtocolBitmapSocket;
+    import com.vidiun.managers.downloadManagers.protocols.NetProtocolImage;
+    import com.vidiun.managers.downloadManagers.protocols.NetProtocolPlugin;
+    import com.vidiun.managers.downloadManagers.protocols.NetProtocolProgressiveDUAL;
+    import com.vidiun.managers.downloadManagers.protocols.NetProtocolProgressiveFLV;
+    import com.vidiun.managers.downloadManagers.protocols.NetProtocolSWFLoader;
+    import com.vidiun.managers.downloadManagers.protocols.NetProtocolSolidColor;
+    import com.vidiun.managers.downloadManagers.protocols.interfaces.INetProtocol;
+    import com.vidiun.managers.downloadManagers.types.StreamingModes;
+    import com.vidiun.net.downloading.LoadingStatus;
+    import com.vidiun.net.loaders.interfaces.IMediaSourceLoader;
 
     import flash.display.*;
     import flash.events.*;
@@ -47,7 +47,7 @@ package com.kaltura.managers.downloadManagers
     /**
      * Singleton that localizes, and standardizes loading and monitoring of media download.
      */
-     [Event(name="mediaLoaded", type="com.kaltura.managers.downloadManagers.events.DownloadManagerStatusEvent")]
+     [Event(name="mediaLoaded", type="com.vidiun.managers.downloadManagers.events.DownloadManagerStatusEvent")]
     public class DownloadManager extends EventDispatcher
     {
     	static private var meName:String = 'LoadUtility';
@@ -92,7 +92,7 @@ package com.kaltura.managers.downloadManagers
          * @param completeHandle			a function to be called when protocol dispatch finish loading (COMPLETE).
          * @param streamingMode				determine the serving method used to get the media files.
          * @param assetIndex				the asset's index in the timeline.
-         * @see com.kaltura.managers.downloadManagers.types.StreamingModes
+         * @see com.vidiun.managers.downloadManagers.types.StreamingModes
          */
         public function loadAsset (roughcut_entry_Id:String, roughcut_entry_version:int, asset:AbstractAsset, completeHandle:Function = null, streamingMode:int = 0, assetIndex:uint = 0):void
         {
@@ -156,7 +156,7 @@ package com.kaltura.managers.downloadManagers
 
         /**
          * when a net protocol finishs loading, this function dispatches MEDIA_LOADED event.
-         * @see com.kaltura.managers.downloadManagers.events.DownloadManagerStatusEvent
+         * @see com.vidiun.managers.downloadManagers.events.DownloadManagerStatusEvent
          */
         private function dispacthFinish (event:Event):void
         {
@@ -173,7 +173,7 @@ package com.kaltura.managers.downloadManagers
          * @param roughcut_entry_version	the version of the asssociated roughcut.
          * @param asset_uid					the uid of the asset it's mediaSource to load.
          * @param media_source_loader		the loader to index.
-         * @see com.kaltura.managers.downloadManagers.protocols.loaders.interfaces.IMediaSourceLoader
+         * @see com.vidiun.managers.downloadManagers.protocols.loaders.interfaces.IMediaSourceLoader
          */
         protected function addLoaderToTable (roughcut_entry_id:String, roughcut_entry_version:int, asset_uid:String, media_source_loader:IMediaSourceLoader):void
         {
@@ -209,7 +209,7 @@ package com.kaltura.managers.downloadManagers
          * @param roughcut_entry_id			the entry id of the roughcut this asset loader belongs to.
          * @param roughcut_entry_version	the version of the asssociated roughcut.
          * @param asset_uid					the uid of the related asset.
-         * @see com.kaltura.assets.abstracts.assetUID
+         * @see com.vidiun.assets.abstracts.assetUID
          */
         public function removeAssetLoader (roughcut_entry_id:String, roughcut_entry_version:int, asset_uid:String):void
         {

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.BaseFlexVo;
+	import com.vidiun.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaGenericDistributionProviderAction extends BaseFlexVo
+	public dynamic class VidiunGenericDistributionProviderAction extends BaseFlexVo
 	{
 		/**
 		* Auto generated
@@ -55,22 +55,22 @@ package com.kaltura.vo
 		public var genericDistributionProviderId : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaDistributionAction
+		* @see com.vidiun.types.VidiunDistributionAction
 		**/
 		public var action : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaGenericDistributionProviderStatus
+		* @see com.vidiun.types.VidiunGenericDistributionProviderStatus
 		**/
 		public var status : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaGenericDistributionProviderParser
+		* @see com.vidiun.types.VidiunGenericDistributionProviderParser
 		**/
 		public var resultsParser : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaDistributionProtocol
+		* @see com.vidiun.types.VidiunDistributionProtocol
 		**/
 		public var protocol : int = int.MIN_VALUE;
 

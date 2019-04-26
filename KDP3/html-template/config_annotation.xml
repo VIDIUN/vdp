@@ -1,7 +1,7 @@
-<layout id="full" skinPath="http://cdnbakmi.kaltura.com/content/uiconf/kaltura/kmc/appstudio/kdp3/falcon/skin/v3.6.13/skin508.swf">
+<layout id="full" skinPath="http://cdnbakmi.vidiun.com/content/uiconf/vidiun/vmc/appstudio/vdp3/falcon/skin/v3.6.13/skin508.swf">
 	<HBox id="topLevel" width="100%" height="100%">
 		<VBox id="player" width="100%" height="100%" styleName="black">
-			<Plugin id="kalturaMix" width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand"/>
+			<Plugin id="vidiunMix" width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand"/>
 			<Plugin id="captureThumbnail" width="0%" height="0%" includeInLayout="false"/>
 			<Plugin id="advanceSeek" width="0%" height="0%"/>
 			<!--Plugin id="audioDescription" width="0%" height="0%" includeInLayout="false"/-->
@@ -39,7 +39,7 @@
 				<HBox id="ControllerScreen" width="100%" height="50" horizontalGap="4" verticalAlign="middle">
 					<Spacer width="8"/>
 					<Button id="backButton" maxWidth="36" minHeight="30"
-							kClick="sendNotification ('seekBackwards', '5')" icon="Button_upIcon_previousBtn"
+							vClick="sendNotification ('seekBackwards', '5')" icon="Button_upIcon_previousBtn"
 							upIcon="Button_upIcon_previousBtn" overIcon="Button_overIcon_previousBtn"
 							downIcon="Button_downIcon_previousBtn" disabeledIcon="Button_disabledIcon_previousBtn"
 							selectedUpIcon="Button_selectedUpIcon_previousBtn"
@@ -72,7 +72,7 @@
 							emphasizedSelectedDisabledIcon="Button_selectedDisabledIcon_playBtn"
 							accessibilityName="click Control P to play or pause video" tooltip="Play/Pause Video - P"
 							tabIndex="1"/>
-					<Button id="fwdButton" maxWidth="36" minHeight="30" kClick="sendNotification ('seekForward', '5')"
+					<Button id="fwdButton" maxWidth="36" minHeight="30" vClick="sendNotification ('seekForward', '5')"
 							icon="Button_upIcon_nextBtn" upIcon="Button_upIcon_nextBtn"
 							overIcon="Button_overIcon_nextBtn" downIcon="Button_downIcon_nextBtn"
 							disabeledIcon="Button_disabledIcon_nextBtn" selectedUpIcon="Button_selectedUpIcon_nextBtn"
@@ -90,7 +90,7 @@
 							tabIndex="5"/>
 					<Spacer width="100%"/>
 					<Button id="muteButton" maxWidth="36" minHeight="30" toggle="true"
-							kClick="sendNotification ('volume508mute')" icon="Button_upIcon_volBtn"
+							vClick="sendNotification ('volume508mute')" icon="Button_upIcon_volBtn"
 							upIcon="Button_upIcon_volBtn" overIcon="Button_overIcon_volBtn"
 							downIcon="Button_downIcon_volBtn" disabeledIcon="Button_disabledIcon_volBtn"
 							selectedUpIcon="Button_selectedUpIcon_muteBtn"
@@ -105,7 +105,7 @@
 							emphasizedSelectedDownIcon="Button_selectedDownIcon_muteBtn"
 							emphasizedSelectedDisabledIcon="Button_selectedDisabledIcon_muteBtn"
 							accessibilityName="Mute sound - click F8" tooltip="Mute sound - M" padding="2" tabIndex="6"/>
-					<Button id="volDownButton" maxWidth="36" minHeight="30" kClick="sendNotification ('volume508down')"
+					<Button id="volDownButton" maxWidth="36" minHeight="30" vClick="sendNotification ('volume508down')"
 							icon="Button_upIcon_volDownBtn" upIcon="Button_upIcon_volDownBtn"
 							overIcon="Button_overIcon_volDownBtn" downIcon="Button_downIcon_volDownBtn"
 							disabeledIcon="Button_disabledIcon_volDownBtn"
@@ -122,7 +122,7 @@
 							emphasizedSelectedDisabledIcon="Button_selectedDisabledIcon_volDownBtn"
 							accessibilityName="Decrease Volume - click on F9" tooltip="Decrease Volume - D" tabIndex="7"/>
 					<Plugin id="volume508" width="54" height="44"/>
-					<Button id="volUpButton" maxWidth="36" minHeight="30" kClick="sendNotification ('volume508up')"
+					<Button id="volUpButton" maxWidth="36" minHeight="30" vClick="sendNotification ('volume508up')"
 							icon="Button_upIcon_volUpBtn" upIcon="Button_upIcon_volUpBtn"
 							overIcon="Button_overIcon_volUpBtn" downIcon="Button_downIcon_volUpBtn"
 							disabeledIcon="Button_disabledIcon_volUpBtn" selectedUpIcon="Button_selectedUpIcon_volUpBtn"
@@ -169,7 +169,7 @@
 				<HBox id="annotationsPluginContainer" styleName="darkBg" width="100%" height="100%" paddingLeft="12"
 					  paddingRight="12">
 					<Plugin id="annotations" width="100%" height="100%" userMode="editable" showAnnotationsPlugin="true"
-							maxChars="2000" submissionTarget="kaltura"/>
+							maxChars="2000" submissionTarget="vidiun"/>
 				</HBox>
 			</VBox>
 			<VBox id="reviewerControls" width="100%" height="30" styleName="darkBg" visible="{annotations.isReviewer}"
@@ -179,18 +179,18 @@
 					  includeInLayout="{annotations.inViewMode}">
 					<Button id="submitFeedbackBtn" buttonType="labelButton" label="Submit Feedback"
 							styleName="controllerScreen" minWidth="60" labelPlacement="top" maxHeight="25"
-							kClick="sendNotification('submitFeedbackSession')" color1="3223860" color2="0xFFFFFF"
+							vClick="sendNotification('submitFeedbackSession')" color1="3223860" color2="0xFFFFFF"
 							visible="{annotations.showAnnotationsPlugin}"
 							includeInLayout="{annotations.showAnnotationsPlugin}" padding="2"
 							tooltip="Submit Feedback - S"/>
 					<Button id="saveAsDraftBtn" buttonType="labelButton" label="Save As Draft"
 							styleName="controllerScreen" minWidth="60" labelPlacement="top" maxHeight="25"
-							kClick="sendNotification('saveAsDraft')" color1="3223860" color2="0xFFFFFF" visible="false"
+							vClick="sendNotification('saveAsDraft')" color1="3223860" color2="0xFFFFFF" visible="false"
 							includeInLayout="false" tooltip="Save As Draft - X"/>
 					<Spacer width="100%"/>
 					<Button id="addAnnotationBtn" buttonType="labelButton" styleName="controllerScreen"
 							label="Add Annotation" minWidth="60" maxHeight="25"
-							kClick="sendNotification('addAnnotation')" color1="3223860" color2="0xFFFFFF"
+							vClick="sendNotification('addAnnotation')" color1="3223860" color2="0xFFFFFF"
 							visible="{annotations.inViewMode}" includeInLayout="{annotations.inViewMode}"
 							tooltip="Add Annotation - N"/>
 				</HBox>
@@ -200,10 +200,10 @@
 					<Spacer width="100%"/>
 					<Button id="saveAnnotationBtn" buttonType="labelButton" styleName="controllerScreen"
 							label="Save Annotation" maxHeight="25" minWidth="60"
-							kClick="sendNotification('saveAnnotation')" color1="3223860" color2="0xFFFFFF"
+							vClick="sendNotification('saveAnnotation')" color1="3223860" color2="0xFFFFFF"
 							tooltip="Save Annotation"/>
 					<Button id="cancelAnnotationBtn" buttonType="labelButton" styleName="controllerScreen"
-							label="Cancel" maxHeight="25" minWidth="60" kClick="sendNotification('cancelAnnotation')"
+							label="Cancel" maxHeight="25" minWidth="60" vClick="sendNotification('cancelAnnotation')"
 							color1="3223860" color2="0xFFFFFF" tooltip="Cancel Changes"/>
 				</HBox>
 			</VBox>
@@ -215,7 +215,7 @@
 				<VBox id="startContainer" width="100%" height="100%" verticalAlign="top" horizontalAlign="right">
 					<Spacer width="100%" height="14"/>
 					<Button id="onVideoCC" minWidth="66" minHeight="62" toggle="true"
-							kClick="sendNotification ('closedCaptionsClicked')" upIcon="Button_upIcon_ccBtn"
+							vClick="sendNotification ('closedCaptionsClicked')" upIcon="Button_upIcon_ccBtn"
 							overIcon="Button_overIcon_ccBtn" downIcon="Button_downIcon_ccBtn"
 							disabeledIcon="Button_disabledIcon_ccBtn" selectedUpIcon="Button_selectedUpIcon_ccBtn"
 							selectedOverIcon="Button_selectedOverIcon_ccBtn"
@@ -232,7 +232,7 @@
 							tooltip="Closed Captions on/off - C" tabIndex="2"/>
 					<Spacer width="100%" height="8"/>
 					<Button id="onVideoAD" maxWidth="66" minHeight="62" toggle="true"
-							kClick="sendNotification ('audioDescriptionClicked')" upIcon="Button_upIcon_adBtn"
+							vClick="sendNotification ('audioDescriptionClicked')" upIcon="Button_upIcon_adBtn"
 							overIcon="Button_overIcon_adBtn" downIcon="Button_downIcon_adBtn"
 							disabeledIcon="Button_disabledIcon_adBtn" selectedUpIcon="Button_selectedUpIcon_adBtn"
 							selectedOverIcon="Button_selectedOverIcon_adBtn"

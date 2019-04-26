@@ -1,15 +1,15 @@
-package com.kaltura.osmf.kalturaMix
+package com.vidiun.osmf.vidiunMix
 {
-	import com.kaltura.vo.KalturaMixEntry;
+	import com.vidiun.vo.VidiunMixEntry;
 	
 	import org.osmf.media.IMediaResource;
 	import org.osmf.metadata.Metadata;
 
-	public class KalturaMixResource implements IMediaResource
+	public class VidiunMixResource implements IMediaResource
 	{
-		public var entry:KalturaMixEntry;
+		public var entry:VidiunMixEntry;
 		
-		public function KalturaMixResource(_entry:KalturaMixEntry)
+		public function VidiunMixResource(_entry:VidiunMixEntry)
 		{
 			entry = _entry;
 		}

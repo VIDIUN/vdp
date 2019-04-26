@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.EmailIngestionProfile
+package com.vidiun.commands.EmailIngestionProfile
 {
-		import com.kaltura.vo.KalturaEmailIngestionProfile;
-	import com.kaltura.delegates.EmailIngestionProfile.EmailIngestionProfileAddDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunEmailIngestionProfile;
+	import com.vidiun.delegates.EmailIngestionProfile.EmailIngestionProfileAddDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
-	* EmailIngestionProfile Add action allows you to add a EmailIngestionProfile to Kaltura DB
+	* EmailIngestionProfile Add action allows you to add a EmailIngestionProfile to Vidiun DB
 	* 
 	**/
-	public class EmailIngestionProfileAdd extends KalturaCall
+	public class EmailIngestionProfileAdd extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param EmailIP KalturaEmailIngestionProfile
+		* @param EmailIP VidiunEmailIngestionProfile
 		**/
-		public function EmailIngestionProfileAdd( EmailIP : KalturaEmailIngestionProfile )
+		public function EmailIngestionProfileAdd( EmailIP : VidiunEmailIngestionProfile )
 		{
 			service= 'emailingestionprofile';
 			action= 'add';
@@ -50,7 +50,7 @@ package com.kaltura.commands.EmailIngestionProfile
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(EmailIP, 'EmailIP');
+				keyValArr = vidiunObject2Arrays(EmailIP, 'EmailIP');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

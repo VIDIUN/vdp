@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
-	import com.kaltura.kdpfl.component.IComponent;
+	import com.vidiun.vdpfl.component.IComponent;
 	
 	import fl.containers.BaseScrollPane;
 	

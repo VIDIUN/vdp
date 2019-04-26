@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.KalturaFilter;
+	import com.vidiun.vo.VidiunFilter;
 
 	[Bindable]
-	public dynamic class KalturaBaseEntryBaseFilter extends KalturaFilter
+	public dynamic class VidiunBaseEntryBaseFilter extends VidiunFilter
 	{
 		/**
 		* This filter should be in use for retrieving only a specific entry (identified by its entryId).
@@ -73,13 +73,13 @@ package com.kaltura.vo
 		public var nameEqual : String = null;
 
 		/**
-		* This filter should be in use for retrieving only entries which were uploaded by/assigned to users of a specific Kaltura Partner (identified by Partner ID).
+		* This filter should be in use for retrieving only entries which were uploaded by/assigned to users of a specific Vidiun Partner (identified by Partner ID).
 		* 
 		**/
 		public var partnerIdEqual : int = int.MIN_VALUE;
 
 		/**
-		* This filter should be in use for retrieving only entries within Kaltura network which were uploaded by/assigned to users of few Kaltura Partners  (string should include comma separated list of PartnerIDs)
+		* This filter should be in use for retrieving only entries within Vidiun network which were uploaded by/assigned to users of few Vidiun Partners  (string should include comma separated list of PartnerIDs)
 		* 
 		**/
 		public var partnerIdIn : String = null;
@@ -160,19 +160,19 @@ package com.kaltura.vo
 		public var categoriesIdsNotContains : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaNullableBoolean
+		* @see com.vidiun.types.VidiunNullableBoolean
 		**/
 		public var categoriesIdsEmpty : int = int.MIN_VALUE;
 
 		/**
 		* This filter should be in use for retrieving only entries, at a specific {
-		* @see com.kaltura.types.KalturaEntryStatus
+		* @see com.vidiun.types.VidiunEntryStatus
 		**/
 		public var statusEqual : String = null;
 
 		/**
 		* This filter should be in use for retrieving only entries, not at a specific {
-		* @see com.kaltura.types.KalturaEntryStatus
+		* @see com.vidiun.types.VidiunEntryStatus
 		**/
 		public var statusNotEqual : String = null;
 
@@ -187,12 +187,12 @@ package com.kaltura.vo
 		public var statusNotIn : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaEntryModerationStatus
+		* @see com.vidiun.types.VidiunEntryModerationStatus
 		**/
 		public var moderationStatusEqual : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaEntryModerationStatus
+		* @see com.vidiun.types.VidiunEntryModerationStatus
 		**/
 		public var moderationStatusNotEqual : int = int.MIN_VALUE;
 
@@ -205,7 +205,7 @@ package com.kaltura.vo
 		public var moderationStatusNotIn : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaEntryType
+		* @see com.vidiun.types.VidiunEntryType
 		**/
 		public var typeEqual : String = null;
 
@@ -215,13 +215,13 @@ package com.kaltura.vo
 		public var typeIn : String = null;
 
 		/**
-		* This filter parameter should be in use for retrieving only entries which were created at Kaltura system after a specific time/date (standard timestamp format).
+		* This filter parameter should be in use for retrieving only entries which were created at Vidiun system after a specific time/date (standard timestamp format).
 		* 
 		**/
 		public var createdAtGreaterThanOrEqual : int = int.MIN_VALUE;
 
 		/**
-		* This filter parameter should be in use for retrieving only entries which were created at Kaltura system before a specific time/date (standard timestamp format).
+		* This filter parameter should be in use for retrieving only entries which were created at Vidiun system before a specific time/date (standard timestamp format).
 		* 
 		**/
 		public var createdAtLessThanOrEqual : int = int.MIN_VALUE;
@@ -323,7 +323,7 @@ package com.kaltura.vo
 		public var replacedEntryIdIn : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaEntryReplacementStatus
+		* @see com.vidiun.types.VidiunEntryReplacementStatus
 		**/
 		public var replacementStatusEqual : String = null;
 

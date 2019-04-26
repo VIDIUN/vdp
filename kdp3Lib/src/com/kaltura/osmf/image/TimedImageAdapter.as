@@ -1,4 +1,4 @@
-package com.kaltura.osmf.image
+package com.vidiun.osmf.image
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;

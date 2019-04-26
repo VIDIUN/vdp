@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin {
+package com.vidiun.vdpfl.plugin {
 
-	import com.kaltura.kdpfl.model.LayoutProxy;
+	import com.vidiun.vdpfl.model.LayoutProxy;
 	import com.yahoo.astra.fl.controls.carouselClasses.CarouselCellRenderer;
 	
 	import flash.display.DisplayObject;
@@ -15,7 +15,7 @@ package com.kaltura.kdpfl.plugin {
 	import org.puremvc.as3.patterns.facade.Facade;
 
 
-	public class KCarouselCellRenderer extends CarouselCellRenderer {
+	public class VCarouselCellRenderer extends CarouselCellRenderer {
 
 		private static var defaultStyles:Object = {imagePadding: 5,
 				itemSize: 50,
@@ -59,7 +59,7 @@ package com.kaltura.kdpfl.plugin {
 		protected var _foreground:Sprite;
 
 
-		public function KCarouselCellRenderer() {
+		public function VCarouselCellRenderer() {
 			this.addEventListener(MouseEvent.MOUSE_OVER, onMouseOver);
 			this.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
 

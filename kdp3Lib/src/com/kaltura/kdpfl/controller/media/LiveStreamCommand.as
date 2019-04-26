@@ -1,16 +1,16 @@
-package com.kaltura.kdpfl.controller.media
+package com.vidiun.vdpfl.controller.media
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.liveStream.LiveStreamIsLive;
-	import com.kaltura.config.KalturaConfig;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.net.KalturaCall;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.commands.liveStream.LiveStreamIsLive;
+	import com.vidiun.config.VidiunConfig;
+	import com.vidiun.events.VidiunEvent;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.ServicesProxy;
+	import com.vidiun.vdpfl.model.type.EnableType;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
+	import com.vidiun.net.VidiunCall;
 	
 	import flash.events.Event;
 	import flash.events.NetStatusEvent;
@@ -56,7 +56,7 @@ package com.kaltura.kdpfl.controller.media
 		private var _nc : NetConnection;
 		private var _resource : URLResource;
 		private var _mediaProxy:MediaProxy;	
-		private var _kc:KalturaClient;
+		private var _vc:VidiunClient;
 		private var _player:MediaPlayer;
 			
 		/**
@@ -69,8 +69,8 @@ package com.kaltura.kdpfl.controller.media
 		public function LiveStreamCommand()
 		{
 			_mediaProxy = facade.retrieveProxy(MediaProxy.NAME) as MediaProxy;
-			_player = (facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).player;
-			_kc = ( facade.retrieveProxy( ServicesProxy.NAME ) as ServicesProxy ).kalturaClient;
+			_player = (facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator).player;
+			_vc = ( facade.retrieveProxy( ServicesProxy.NAME ) as ServicesProxy ).vidiunClient;
 			_flashvars = (facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy).vo.flashvars;
 			var interval:int = _flashvars.liveStreamCheckInterval ? _flashvars.liveStreamCheckInterval : DEFAULT_IS_LIVE_INTERVAL;
 			if (_mediaProxy.vo.isHds)
@@ -122,14 +122,14 @@ package com.kaltura.kdpfl.controller.media
 			if (_mediaProxy.vo.isLive && _mediaProxy.vo.isHds && !_player.playing)
 			{
 				var isLive:LiveStreamIsLive = new LiveStreamIsLive(_mediaProxy.vo.entry.id, _mediaProxy.vo.deliveryType);
-				var ks:String = _kc.ks;
-				//islive should be sent without ks
-				_kc.ks = null;
-				isLive.addEventListener(KalturaEvent.COMPLETE, onIsLive);
-				isLive.addEventListener(KalturaEvent.FAILED, onIsLiveError);
-				_kc.post(isLive);
-				//restore ks for other api calls
-				_kc.ks = ks;
+				var vs:String = _vc.vs;
+				//islive should be sent without vs
+				_vc.vs = null;
+				isLive.addEventListener(VidiunEvent.COMPLETE, onIsLive);
+				isLive.addEventListener(VidiunEvent.FAILED, onIsLiveError);
+				_vc.post(isLive);
+				//restore vs for other api calls
+				_vc.vs = vs;
 			}
 			else
 			{
@@ -142,7 +142,7 @@ package com.kaltura.kdpfl.controller.media
 		 * @param event
 		 * 
 		 */		
-		private function onIsLive(event:KalturaEvent):void {
+		private function onIsLive(event:VidiunEvent):void {
 			if (event.data=="1") //broadcasting now
 			{
 				if (!_wasLive)
@@ -171,7 +171,7 @@ package com.kaltura.kdpfl.controller.media
 		 * @param event
 		 * 
 		 */		
-		private function onIsLiveError(event:KalturaEvent):void{
+		private function onIsLiveError(event:VidiunEvent):void{
 			trace ("error calling isLive");
 			stopIsLiveCalls();
 		}
@@ -275,7 +275,7 @@ package com.kaltura.kdpfl.controller.media
 	
 		/**
 		 * Function checks whether the NetStream connected to the target live-stream  has an FPS.
-		 * If the FPS is greater than 0, then the stream is currently active and can be shown in the KDP.
+		 * If the FPS is greater than 0, then the stream is currently active and can be shown in the VDP.
 		 * @param e
 		 * 
 		 */		

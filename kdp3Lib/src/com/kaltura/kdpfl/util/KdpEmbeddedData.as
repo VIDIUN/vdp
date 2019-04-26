@@ -1,17 +1,17 @@
-package com.kaltura.kdpfl.util
+package com.vidiun.vdpfl.util
 {
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.vidiun.vdpfl.view.controls.VTrace;
 	
 	import flash.utils.ByteArray;
 
-	public class KdpEmbeddedData 
+	public class VdpEmbeddedData 
 	{
-		private static var singleton:KdpEmbeddedData = null;
-		[Embed(source="KdpEmbeddedDataBin.bin", mimeType="application/octet-stream")]
+		private static var singleton:VdpEmbeddedData = null;
+		[Embed(source="VdpEmbeddedDataBin.bin", mimeType="application/octet-stream")]
 		private const embeddedData:Class;
 		public var embeddedModules:Object  = new Object();
 		
-		public function KdpEmbeddedData()
+		public function VdpEmbeddedData()
 		{
 			var embeddedDataBA: ByteArray = new embeddedData() as ByteArray;
 			
@@ -46,7 +46,7 @@ package com.kaltura.kdpfl.util
 						if (ba)
 						{
 							//trace("loaded embedded module: " + key);
-							KTrace.getInstance().log("loaded embedded module: " + key);
+							VTrace.getInstance().log("loaded embedded module: " + key);
 							return ba;
 						}
 						break;
@@ -61,10 +61,10 @@ package com.kaltura.kdpfl.util
 		 *  @private
 		 *  Typed as Object, for now. Ideally this should be IModuleManager.
 		 */
-		public static function getSingleton():KdpEmbeddedData
+		public static function getSingleton():VdpEmbeddedData
 		{
 			if (!singleton)
-				singleton = new KdpEmbeddedData();
+				singleton = new VdpEmbeddedData();
 			
 			return singleton;
 		}

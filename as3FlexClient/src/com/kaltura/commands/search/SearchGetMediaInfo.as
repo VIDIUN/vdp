@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.search
+package com.vidiun.commands.search
 {
-		import com.kaltura.vo.KalturaSearchResult;
-	import com.kaltura.delegates.search.SearchGetMediaInfoDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunSearchResult;
+	import com.vidiun.delegates.search.SearchGetMediaInfoDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Retrieve extra information about media found in search action
 	* Some providers return only part of the fields needed to create entry from, use this action to get the rest of the fields.
 	* 
 	**/
-	public class SearchGetMediaInfo extends KalturaCall
+	public class SearchGetMediaInfo extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param searchResult KalturaSearchResult
+		* @param searchResult VidiunSearchResult
 		**/
-		public function SearchGetMediaInfo( searchResult : KalturaSearchResult )
+		public function SearchGetMediaInfo( searchResult : VidiunSearchResult )
 		{
 			service= 'search';
 			action= 'getMediaInfo';
@@ -51,7 +51,7 @@ package com.kaltura.commands.search
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(searchResult, 'searchResult');
+				keyValArr = vidiunObject2Arrays(searchResult, 'searchResult');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

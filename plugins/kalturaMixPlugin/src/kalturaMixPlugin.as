@@ -1,9 +1,9 @@
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.osmf.kalturaMix.KalturaMixElement;
-	import com.kaltura.osmf.kalturaMix.KalturaMixPluginInfo;
-	import com.kaltura.osmf.kalturaMix.KalturaMixSprite;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.IPluginFactory;
+	import com.vidiun.osmf.vidiunMix.VidiunMixElement;
+	import com.vidiun.osmf.vidiunMix.VidiunMixPluginInfo;
+	import com.vidiun.osmf.vidiunMix.VidiunMixSprite;
 	
 	import flash.display.Sprite;
 	import flash.system.Security;
@@ -17,7 +17,7 @@ package {
 	 * 
 	 * @author Atar
 	 */
-	public class kalturaMixPlugin extends Sprite implements IPlugin, IPluginFactory {
+	public class vidiunMixPlugin extends Sprite implements IPlugin, IPluginFactory {
 		
 		/**
 		 * the url from where to load required plugins
@@ -35,9 +35,9 @@ package {
 		/**
 		 * Constructor
 		 */
-		public function kalturaMixPlugin() {
+		public function vidiunMixPlugin() {
 			Security.allowDomain("*");
-			var k:KalturaMixElement;
+			var v:VidiunMixElement;
 		}
 
 
@@ -56,10 +56,10 @@ package {
 		 * @param facade	Application Facade
 		 */
 		public function initializePlugin(facade:IFacade):void {
-			KalturaMixSprite.facade = facade;
+			VidiunMixSprite.facade = facade;
 			var mediaProxy:Object = facade.retrieveProxy("mediaProxy");
 			var pluginManager:PluginManager = mediaProxy.vo.osmfPluginManager;
-			var pluginResource:PluginInfoResource = new PluginInfoResource(new KalturaMixPluginInfo(disableUrlHashing));
+			var pluginResource:PluginInfoResource = new PluginInfoResource(new VidiunMixPluginInfo(disableUrlHashing));
 			pluginManager.loadPlugin(pluginResource);
 		}
 

@@ -1,6 +1,6 @@
-package com.kaltura.net.streaming.events
+package com.vidiun.net.streaming.events
 {
-	import com.kaltura.net.streaming.parsers.StreamSourceVO;
+	import com.vidiun.net.streaming.parsers.StreamSourceVO;
 
 	import flash.events.Event;
 

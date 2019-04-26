@@ -1,11 +1,11 @@
-package com.kaltura.kdpfl.plugin
+package com.vidiun.vdpfl.plugin
 {
 	import com.akamai.osmf.elements.AkamaiVideoElement;
 	import com.akamai.osmf.utils.AkamaiStrings;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
 	import org.osmf.media.MediaElement;
 	import org.osmf.elements.ProxyElement;
 	
@@ -63,7 +63,7 @@ package com.kaltura.kdpfl.plugin
 					//workaround to display the bitrate that was automatically detected by akamai
 					if (_flashvars.hdnetworkEnableBRDetection && _flashvars.hdnetworkEnableBRDetection=="true")
 					{
-						_mediaProxy.notifyStartingIndexChanged((facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).player.currentDynamicStreamIndex);
+						_mediaProxy.notifyStartingIndexChanged((facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator).player.currentDynamicStreamIndex);
 					}
 					break;
 				
@@ -155,7 +155,7 @@ package com.kaltura.kdpfl.plugin
 			if (e.traitType==MediaTraitType.DVR)
 			{
 				var dvrTrait:DVRTrait = _mediaProxy.vo.media.getTrait(MediaTraitType.DVR) as DVRTrait;
-				(facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).dvrWinSize = dvrTrait.windowDuration;
+				(facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator).dvrWinSize = dvrTrait.windowDuration;
 				_mediaProxy.vo.media.removeEventListener(MediaElementEvent.TRAIT_ADD, onMediaTraitAdd);
 			}
 			

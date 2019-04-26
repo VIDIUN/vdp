@@ -1,7 +1,7 @@
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.NielsenMediator;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.NielsenMediator;
 	
 	import flash.display.Sprite;
 	
@@ -86,7 +86,7 @@ package
 					nolTags: this.nolTags,
 					swfAddress: this.ggSwfAddress
 			};
-			trace("Nielsen/Kaltura Plugin Loaded");
+			trace("Nielsen/Vidiun Plugin Loaded");
 			
 			ggCom.getInstance( _nolggGlobalParams ).setNOLconfigparams(_nolggGlobalParams);
 			_nielsenMediator = new NielsenMediator();

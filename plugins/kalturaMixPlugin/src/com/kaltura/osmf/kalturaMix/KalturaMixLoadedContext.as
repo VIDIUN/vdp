@@ -1,9 +1,9 @@
-package com.kaltura.osmf.kalturaMix
+package com.vidiun.osmf.vidiunMix
 {
 	
-	public class KalturaMixLoadedContext 
+	public class VidiunMixLoadedContext 
 	{
-		public function KalturaMixLoadedContext()
+		public function VidiunMixLoadedContext()
 		{
 		}
 

@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.view.media
+package com.vidiun.vdpfl.view.media
 {
-	import com.kaltura.kdpfl.component.IComponent;
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.vidiun.vdpfl.component.IComponent;
+	import com.vidiun.vdpfl.view.controls.VTrace;
 	
 	import fl.core.UIComponent;
 	
@@ -14,7 +14,7 @@ package com.kaltura.kdpfl.view.media
 	import flash.system.LoaderContext;
 	import flash.system.SecurityDomain;
 
-	public dynamic class KThumbnail extends UIComponent implements IComponent
+	public dynamic class VThumbnail extends UIComponent implements IComponent
 	{
 		public static const THUMBNAIL_LOADED : String = "thumbnailLoaded";
 		/**
@@ -31,7 +31,7 @@ package com.kaltura.kdpfl.view.media
 		private var _firstTimeIOError : Boolean = true;
 		
 		/**
-		 *The flashvars of the KDP 
+		 *The flashvars of the VDP 
 		 */		
 		private var _flashvars : Object;
 		
@@ -56,7 +56,7 @@ package com.kaltura.kdpfl.view.media
 		 * Prepearing and adding the thumbnail to the displaylist 
 		 * 
 		 */			
-		public function KThumbnail()
+		public function VThumbnail()
 		{
 			_loader = new Loader();
 			_loader.contentLoaderInfo.addEventListener(Event.COMPLETE , onThumbLoaded );
@@ -150,7 +150,7 @@ package com.kaltura.kdpfl.view.media
 		
 		private function onSecurityErrorEvent (event : SecurityErrorEvent = null) : void
 		{
-			KTrace.getInstance().log("Security error has occurred");
+			VTrace.getInstance().log("Security error has occurred");
 			//trace ("Security error has occurred");
 		}
 	}

@@ -4,7 +4,7 @@ Following is the list of message strings that can be overriden via the configura
 	UNAUTHORIZED_COUNTRY_TITLE 			= "Unauthorized country"
 	UNAUTHORIZED_IP_ADDRESS_TITLE		= "Unauthorized IP address";
 	OUT_OF_SCHEDULING_TITLE    			= "Out of scheduling  "
-	NO_KS_TITLE				 			= "No KS where KS is required "
+	NO_VS_TITLE				 			= "No VS where VS is required "
 	ENTRY_CONVERTING_TITLE     			= "Entry is converting"
 	ENTRY_REJECTED_TITLE  	 			= "Entry is rejected"
 	ENTRY_DELETED_TITLE					= "Entry is deleted "
@@ -26,7 +26,7 @@ Following is the list of message strings that can be overriden via the configura
 	UNAUTHORIZED_COUNTRY				= "We're sorry, this content is only available in certain countries."
 	UNAUTHORIZED_IP_ADDRESS				= "We're sorry, this content is only available for ceratin IP addresses.";
 	OUT_OF_SCHEDULING    				= "We're sorry, this content is currently unavailable."
-	NO_KS  				 				= "We're sorry, access to this content is restricted. "
+	NO_VS  				 				= "We're sorry, access to this content is restricted. "
 	ENTRY_CONVERTING     				= "Media is currently being converted, please try again in a few minutes."
 	ENTRY_REJECTED  	 				= "We're sorry, this content was removed"
 	ENTRY_DELETED						= "We're sorry, this content is no longer available."

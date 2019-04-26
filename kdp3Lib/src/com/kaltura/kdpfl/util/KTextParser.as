@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Vidiun Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,18 +20,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.kdpfl.util
+package com.vidiun.vdpfl.util
 {
-	//import com.kaltura.kdp.managers.KdpManager;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	//import com.vidiun.vdp.managers.VdpManager;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.view.controls.VTrace;
 	
 	import mx.binding.utils.BindingUtils;
 	import mx.core.Application;
 	
 	import org.puremvc.as3.patterns.facade.Facade;
 
-	public class KTextParser
+	public class VTextParser
 	{
 		// enumeration for different parsing methods
 
@@ -54,7 +54,7 @@ package com.kaltura.kdpfl.util
 		// count of quoted string
 		private var quotedStringsCount:int = 0;
 
-		public function KTextParser(_mode:int)
+		public function VTextParser(_mode:int)
 		{
 			mode = _mode;
 			var cp:ConfigProxy = Facade.getInstance().retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -218,7 +218,7 @@ package com.kaltura.kdpfl.util
 
 			if (arg is Array)
 			{
-				// in case the site is a Functor (created internaly by kTextParser for concatenating texts)
+				// in case the site is a Functor (created internaly by vTextParser for concatenating texts)
 				// add the argument to the Functor
 				if (site is Functor)
 					(site as Functor).addArgument(arg);
@@ -258,7 +258,7 @@ package com.kaltura.kdpfl.util
 		// the host is the root object the text belongs to
 		static public function execute(host:Object, text:String):Object
 		{
-			var parser:KTextParser = new KTextParser(PARSER_MODE_EXECUTE);
+			var parser:VTextParser = new VTextParser(PARSER_MODE_EXECUTE);
 			return parser.parse(null, null, host, text);
 		}
 
@@ -268,11 +268,11 @@ package com.kaltura.kdpfl.util
 		{
 			var value:Object;
 			try {
-				var parser:KTextParser = new KTextParser(PARSER_MODE_EVAL);
+				var parser:VTextParser = new VTextParser(PARSER_MODE_EVAL);
 				value = parser.parse(null, null, host, text);
 			} 
 			catch (e:Error) {
-				trace ("KTextParser:: failed to evaluate " + text );
+				trace ("VTextParser:: failed to evaluate " + text );
 			}
 			return value;
 
@@ -282,7 +282,7 @@ package com.kaltura.kdpfl.util
 		// the host is the root object the text belongs to
 		static public function bind(site:Object, prop:String, host:Object, text:String):Object
 		{
-			var parser:KTextParser = new KTextParser(PARSER_MODE_BIND);
+			var parser:VTextParser = new VTextParser(PARSER_MODE_BIND);
 			return parser.parse(site, prop, host, text);
 		}
 
@@ -306,13 +306,13 @@ package com.kaltura.kdpfl.util
 			catch(e:Error)
 			{
 				if(debugMode) {
-					KTrace.getInstance().log("setProperty: " , site , ":" + prop , "=" , value, " ", e); 
+					VTrace.getInstance().log("setProperty: " , site , ":" + prop , "=" , value, " ", e); 
 				//	trace("setProperty: " , site , ":" + prop , "=" , value, " ", e); 					
 				}
 			}
 			
 			if (!site) {
-				KTrace.getInstance().log("setProperty: null site, prop:" + prop , "=" , value);
+				VTrace.getInstance().log("setProperty: null site, prop:" + prop , "=" , value);
 				//trace ("setProperty: null site, prop:" + prop , "=" , value);
 				return null;
 			}
@@ -333,7 +333,7 @@ package com.kaltura.kdpfl.util
 				else if (mode == PARSER_MODE_EVAL)
 					return text;
 	 		}
-	 		else if (text.indexOf("{ks}") != -1) // hack for disregarding {ks} 
+	 		else if (text.indexOf("{vs}") != -1) // hack for disregarding {vs} 
 				return setProperty(site, prop, text);
 
 			// replace the single quoted strings with markers (__n)
@@ -436,7 +436,7 @@ package com.kaltura.kdpfl.util
 					// bind function result if necessary
 					if (mode == PARSER_MODE_BIND)
 					{
-						// in case the site is a Functor (created internaly by kTextParser for concatenating texts)
+						// in case the site is a Functor (created internaly by vTextParser for concatenating texts)
 						// add the result to the Functor as an argument
 						if (site is Functor)
 							(site as Functor).addArgument([f, "result"]);

@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.view.media
+package com.vidiun.vdpfl.view.media
 {
-	import com.kaltura.kdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
 	
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -12,7 +12,7 @@ package com.kaltura.kdpfl.view.media
 	import org.puremvc.as3.interfaces.IFacade;
 	
 	/**
-	 * Class PostLiveStreamAssist is designed to test whetherthe LiveStream being played in the KDP is active or disconnected.
+	 * Class PostLiveStreamAssist is designed to test whetherthe LiveStream being played in the VDP is active or disconnected.
 	 * @author Hila
 	 * 
 	 */	

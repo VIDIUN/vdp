@@ -1,6 +1,6 @@
-package com.kaltura.puremvc.as3.patterns.mediator
+package com.vidiun.puremvc.as3.patterns.mediator
 {
-	import com.kaltura.puremvc.as3.interfaces.IPriorityMediator;
+	import com.vidiun.puremvc.as3.interfaces.IPriorityMediator;
 	
 	import mx.events.CloseEvent;
 	

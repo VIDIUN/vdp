@@ -1,4 +1,4 @@
-﻿package com.kaltura.controls
+﻿package com.vidiun.controls
 {
 	import flash.display.MovieClip;
 	import flash.events.Event;

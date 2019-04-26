@@ -1,4 +1,4 @@
-package com.kaltura.osmf.kalturaMix
+package com.vidiun.osmf.vidiunMix
 {
 	import flash.system.LoaderContext;
 	
@@ -7,9 +7,9 @@ package com.kaltura.osmf.kalturaMix
 	import org.osmf.traits.LoadTrait;
 	import org.osmf.traits.LoaderBase;
 
-	public class KalturaMixLoadTrait extends LoadTrait
+	public class VidiunMixLoadTrait extends LoadTrait
 	{
-		public function KalturaMixLoadTrait(loader:LoaderBase, resource:MediaResourceBase)
+		public function VidiunMixLoadTrait(loader:LoaderBase, resource:MediaResourceBase)
 		{
 			super(loader, resource);
 		}

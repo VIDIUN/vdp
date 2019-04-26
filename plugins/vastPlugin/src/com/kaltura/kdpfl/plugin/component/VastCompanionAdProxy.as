@@ -1,10 +1,10 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
 	
-	import com.kaltura.kdpfl.plugin.model.UniformCompanionAd;
-	import com.kaltura.kdpfl.plugin.model.type.VASTAdResourceType;
-	import com.kaltura.kdpfl.plugin.util.CompanionAdParser;
-	import com.kaltura.kdpfl.plugin.view.CompanionContainer;
+	import com.vidiun.vdpfl.plugin.model.UniformCompanionAd;
+	import com.vidiun.vdpfl.plugin.model.type.VASTAdResourceType;
+	import com.vidiun.vdpfl.plugin.util.CompanionAdParser;
+	import com.vidiun.vdpfl.plugin.view.CompanionContainer;
 	
 	import fl.core.UIComponent;
 	
@@ -36,8 +36,8 @@ package com.kaltura.kdpfl.plugin.component
 		public static const FIRST_CHILD : String = "firstChild";
 		public static const LAST_CHILD : String = "lastChild";
 		
-		public var flashCompsConfig : Array; //Array containing the configuration of the flash companion ads in the KDP
-		public var htmlCompsConfig : Array; //Array containing the configuration of the html companion ads in the page surrounding the kdp
+		public var flashCompsConfig : Array; //Array containing the configuration of the flash companion ads in the VDP
+		public var htmlCompsConfig : Array; //Array containing the configuration of the html companion ads in the page surrounding the vdp
 		
 		private var flashCompanionMap : Object = {}; //Map Object connecting the flash uicomponents on the stage to their designated companion ads.
 		private var htmlCompanionMap : Object = {}; //Map Object connecting the html components on the stage to their designated companion ads.

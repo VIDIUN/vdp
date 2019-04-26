@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Vidiun Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.utils.url
+package com.vidiun.utils.url
 {
 	//xxx import mx.core.Application;
 	import mx.utils.URLUtil;
@@ -76,15 +76,15 @@ package com.kaltura.utils.url
 		 */
 		static public var partnerServicesUrl:String = "/index.php/partnerservices2";
 		/**
-		 * the path for the keditorServices (such as flvStreamer).
+		 * the path for the veditorServices (such as flvStreamer).
 		 */
-		static public var keditorServicesUrl:String = "index.php/keditorservices";
+		static public var veditorServicesUrl:String = "index.php/veditorservices";
 		/**
 		 * the path for the clipper service.
 		 */
 		static public var urlClipVideo:String = "flvclipper/entry_id/";
 		/**
-		 * the kaltura server domain, without protocol and optional subdomain (kaldev is mandatory, www is optional) as defined by the config.
+		 * the vidiun server domain, without protocol and optional subdomain (viddev is mandatory, www is optional) as defined by the config.
 		 */
 		static public var serverDomain:String = '$urlUnDefined$';
 		/**
@@ -228,19 +228,19 @@ package com.kaltura.utils.url
 		 * @param start					if the asset is a stream (video/audio) use this to cut the stream to specific start millisecond.
 		 * @param length				if the asset is a stream (video/audio) use this to cut the stream to specific length millisecond.
 		 * @param partnerPart			the partner info, used for tracking when using cdn.
-		 * @param ks					for secured connections a valid ks must be provided.
+		 * @param vs					for secured connections a valid vs must be provided.
 		 * @param entry_version			if specified will fetch the specifc version of the entry.
 		 * @return 						the clipper service url to load the desired asset.
 		 */
-		static public function clipperServiceUrl (entry_id:String, start:int = -1, length:int = -1, flavor:String = '0', partnerPart:String = '', ks:String = '', entry_version:int = -1, add_domain:Boolean = true):String
+		static public function clipperServiceUrl (entry_id:String, start:int = -1, length:int = -1, flavor:String = '0', partnerPart:String = '', vs:String = '', entry_version:int = -1, add_domain:Boolean = true):String
 		{
 			var url:String = "";
 			if (start > 0 || length >= 0)
 				url = (add_domain ? serverURL : '') + (partnerPart != '' ? partnerPart : '/') + urlClipVideo + entry_id + "/clip_from/" + ((start * 1000)>>0).toString() + "/clip_to/" + (((start + length) * 1000)>>0).toString() + '/flavor/' + flavor;
 			else
 				url = (add_domain ? cdnURL : '') + (partnerPart != '' ? partnerPart : '/') + urlClipVideo + entry_id + '/flavor/' + flavor;
-			if (ks != '')
-				url = url + '/ks/' + ks;
+			if (vs != '')
+				url = url + '/vs/' + vs;
 			if (entry_version != -1)
 				url = url + '/version/' + entry_version;
 			return url;
@@ -300,7 +300,7 @@ package com.kaltura.utils.url
 		 * @param thumb_height	the height of the thumbnail to create.
 		 * @param partnerPart	if the request require tracking, use the getPartnerPartForTracking method to create a valid partnerPart for the request.
 		 * @return 				a request url to get the desired thumbnail.
-		 * @see com.kaltura.utils.url.URLProccessing#getPartnerPartForTracking
+		 * @see com.vidiun.utils.url.URLProccessing#getPartnerPartForTracking
 		 */
 		static public function getThumbnail (entry_id:String, entry_version:String, thumb_width:int = 640, thumb_height:int = 480, partnerPart:String = ''):String
 		{
@@ -425,11 +425,11 @@ package com.kaltura.utils.url
  			switch (host_code)
 			{
  				case "0":
- 				case "kaldev.kaltura.com":
-					hostURL = "kaldev.kaltura.com";
-					URLProccessing.serverDomain = "kaldev.kaltura.com";
-					URLProccessing.serverURL = protocol + "://kaldev.kaltura.com";
-					URLProccessing.cdnURL = protocol + "://cdnkaldev.kaltura.com";
+ 				case "viddev.vidiun.com":
+					hostURL = "viddev.vidiun.com";
+					URLProccessing.serverDomain = "viddev.vidiun.com";
+					URLProccessing.serverURL = protocol + "://viddev.vidiun.com";
+					URLProccessing.cdnURL = protocol + "://cdnviddev.vidiun.com";
 				break;
 
 				case null:
@@ -437,13 +437,13 @@ package com.kaltura.utils.url
 				case undefined:
 				case "":                        
 				case "1":
-				case "www.kaltura.com":
-				case "corp.kaltura.com":
-				case "kaltura.com":
-					hostURL = "www.kaltura.com";
-    				URLProccessing.serverDomain = "kaltura.com";
-					URLProccessing.serverURL = protocol + "://www.kaltura.com";
-					URLProccessing.cdnURL = protocol + "://cdn.kaltura.com";
+				case "www.vidiun.com":
+				case "corp.vidiun.com":
+				case "vidiun.com":
+					hostURL = "www.vidiun.com";
+    				URLProccessing.serverDomain = "vidiun.com";
+					URLProccessing.serverURL = protocol + "://www.vidiun.com";
+					URLProccessing.cdnURL = protocol + "://cdn.vidiun.com";
 				break;
 
 				case "2":
@@ -455,11 +455,11 @@ package com.kaltura.utils.url
 				break;
 
 				case "3":
-				case "sandbox.kaltura.com":
-					hostURL = "sandbox.kaltura.com";
-					URLProccessing.serverDomain = "sandbox.kaltura.com";
-					URLProccessing.serverURL = "http://sandbox.kaltura.com";
-					URLProccessing.cdnURL = "http://cdnsandbox.kaltura.com";
+				case "sandbox.vidiun.com":
+					hostURL = "sandbox.vidiun.com";
+					URLProccessing.serverDomain = "sandbox.vidiun.com";
+					URLProccessing.serverURL = "http://sandbox.vidiun.com";
+					URLProccessing.cdnURL = "http://cdnsandbox.vidiun.com";
 				break;
 
 				default:
@@ -478,8 +478,8 @@ package com.kaltura.utils.url
 		/**
 		 *completes a given url, replaces binding parameters in a given url.
 		 * <p>parmeters available:</p>
-		 * <code>{DOMAIN_NAME} - the domain (only, not protocol or optional subdomains) of the kaltura server the client is working with.</code>
-		 * <code>{SERVER_URL} - the full url (no protocol) of the kaltura server the client is working with.</code>
+		 * <code>{DOMAIN_NAME} - the domain (only, not protocol or optional subdomains) of the vidiun server the client is working with.</code>
+		 * <code>{SERVER_URL} - the full url (no protocol) of the vidiun server the client is working with.</code>
 		 * <code>{CDN_SERVER_URL} - the full url of the CDN the client is working with.</code>
 		 * @param url					source string to replace binding codes in.
 		 * @param binding_code			the code to replace, see description for available codes.

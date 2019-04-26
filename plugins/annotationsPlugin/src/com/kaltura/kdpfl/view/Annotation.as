@@ -1,9 +1,9 @@
-package com.kaltura.kdpfl.view {
-	import com.kaltura.kdpfl.view.containers.KHBox;
-	import com.kaltura.kdpfl.view.controls.KButton;
-	import com.kaltura.kdpfl.view.events.AnnotationEvent;
-	import com.kaltura.kdpfl.view.strings.AnnotationStrings;
-	import com.kaltura.vo.KalturaAnnotation;
+package com.vidiun.vdpfl.view {
+	import com.vidiun.vdpfl.view.containers.VHBox;
+	import com.vidiun.vdpfl.view.controls.VButton;
+	import com.vidiun.vdpfl.view.events.AnnotationEvent;
+	import com.vidiun.vdpfl.view.strings.AnnotationStrings;
+	import com.vidiun.vo.VidiunAnnotation;
 	
 	import fl.core.UIComponent;
 	
@@ -24,7 +24,7 @@ package com.kaltura.kdpfl.view {
 	public class Annotation extends UIComponent {
 		protected var _viewMode:String;
 		
-		private var _kalturaAnnotation:KalturaAnnotation;
+		private var _vidiunAnnotation:VidiunAnnotation;
 		
 		public static var userMode:String;
 		public static const ANNOTATION_HEIGHT:int = 40;
@@ -32,7 +32,7 @@ package com.kaltura.kdpfl.view {
 		public static const ANNOTATION_PROMPT:String = "Enter your annotation text here...";
 		
 		private var annotationTextField:TextField = new TextField();
-		private var _annotaionBox:KHBox = new KHBox();
+		private var _annotaionBox:VHBox = new VHBox();
 		
 		private var annotationTextFormat:TextFormat = new TextFormat("Arial", 11);
 		
@@ -52,21 +52,21 @@ package com.kaltura.kdpfl.view {
 		private var _textExceedsLength:Boolean = false;
 		
 		
-		public function Annotation(n_viewMode:String, n_inTime:Number = -1, n_annotationText:String = ANNOTATION_PROMPT, n_entryId:String = "", n_kalturaAnnotation:KalturaAnnotation = null, tabIndex:int = 0) {
+		public function Annotation(n_viewMode:String, n_inTime:Number = -1, n_annotationText:String = ANNOTATION_PROMPT, n_entryId:String = "", n_vidiunAnnotation:VidiunAnnotation = null, tabIndex:int = 0) {
 			annotationTextField.defaultTextFormat = annotationTextFormat;
 			_annotaionBox.horizontalScrollPolicy = "off";
 			_annotaionBox.verticalAlign = "middle";
 			_annotaionBox.paddingTop = 0;
 			_annotaionBox.height = ANNOTATION_HEIGHT;
 			_initialTabIndex = tabIndex;
-			if (!n_kalturaAnnotation) {
-				_kalturaAnnotation = new KalturaAnnotation();
-				_kalturaAnnotation.text = n_annotationText;
-				_kalturaAnnotation.startTime = n_inTime;
-				_kalturaAnnotation.entryId = n_entryId;
+			if (!n_vidiunAnnotation) {
+				_vidiunAnnotation = new VidiunAnnotation();
+				_vidiunAnnotation.text = n_annotationText;
+				_vidiunAnnotation.startTime = n_inTime;
+				_vidiunAnnotation.entryId = n_entryId;
 			}
 			else {
-				_kalturaAnnotation = n_kalturaAnnotation;
+				_vidiunAnnotation = n_vidiunAnnotation;
 			}
 			this.viewMode = n_viewMode;
 			annotationTextField.autoSize = TextFieldAutoSize.LEFT;
@@ -75,7 +75,7 @@ package com.kaltura.kdpfl.view {
 
 			annotationTextField.addEventListener(Event.CHANGE, onTextFieldEdit);
 			
-			if (_kalturaAnnotation.text == Annotation.ANNOTATION_PROMPT) {
+			if (_vidiunAnnotation.text == Annotation.ANNOTATION_PROMPT) {
 				annotationTextField.addEventListener(MouseEvent.CLICK, onAnnotationClick);
 				annotationTextField.addEventListener(KeyboardEvent.KEY_DOWN, onAnnotationClick);
 			}
@@ -99,32 +99,32 @@ package com.kaltura.kdpfl.view {
 		
 		
 		public function get annotationText():String {
-			return _kalturaAnnotation.text;
+			return _vidiunAnnotation.text;
 		}
 		
 		
 		public function set annotationText(value:String):void {
-			_kalturaAnnotation.text = value;
+			_vidiunAnnotation.text = value;
 		}
 		
 		
 		public function get inTime():Number {
-			return _kalturaAnnotation.startTime;
+			return _vidiunAnnotation.startTime;
 		}
 		
 		
 		public function set inTime(value:Number):void {
-			_kalturaAnnotation.startTime = value;
+			_vidiunAnnotation.startTime = value;
 		}
 		
 		
 		public function set entryId(n_entryId:String):void {
-			_kalturaAnnotation.entryId = n_entryId;
+			_vidiunAnnotation.entryId = n_entryId;
 		}
 		
 		
 		public function get entryId():String {
-			return _kalturaAnnotation.entryId;
+			return _vidiunAnnotation.entryId;
 		}
 		
 		
@@ -143,7 +143,7 @@ package com.kaltura.kdpfl.view {
 		
 		protected function gotoViewMode():void {
 			removeAllChildren();
-			addKButton ("intime", parseInTimeString(), _initialTabIndex);
+			addVButton ("intime", parseInTimeString(), _initialTabIndex);
 			//add annotation text
 			annotationTextField.selectable = false;
 			annotationTextField.setTextFormat(annotationTextFormat);
@@ -151,22 +151,22 @@ package com.kaltura.kdpfl.view {
 			_annotaionBox.addChild(annotationTextField);
 
 			if (userMode == AnnotationStrings.REVIEWER) {
-				addKButton("edit", "Edit", _initialTabIndex + 1);
-				addKButton("delete", "Delete", _initialTabIndex + 2);
+				addVButton("edit", "Edit", _initialTabIndex + 1);
+				addVButton("delete", "Delete", _initialTabIndex + 2);
 			}
 			addChild(_annotaionBox);
 		}
 		
 		/**
 		 * 
-		 * Create a new KButton with the given attributes and add it to _annotationBox container
+		 * Create a new VButton with the given attributes and add it to _annotationBox container
 		 * */
-		private function addKButton(btnId:String, btnLabel:String, tabIndx:int) : void {
-			var btn:KButton = new KButton();
+		private function addVButton(btnId:String, btnLabel:String, tabIndx:int) : void {
+			var btn:VButton = new VButton();
 			btn.id = btnId;
 			//to support 508 button behavior
 			btn.setSkin("onScreenBtn" , true);
-			//btn.buttonType = KButton.LABEL_BUTTON;
+			//btn.buttonType = VButton.LABEL_BUTTON;
 			btn.label = btnLabel;
 			btn.maxHeight = 18;
 			btn.buttonMode = true;
@@ -217,9 +217,9 @@ package com.kaltura.kdpfl.view {
 		
 		
 		private function parseInTimeString():String {
-			var hrs:Number = Math.floor(_kalturaAnnotation.startTime / 3600);
-			var mins:Number = Math.floor((_kalturaAnnotation.startTime - hrs * 3600) / 60);
-			var secs:Number = Math.round((_kalturaAnnotation.startTime - hrs * 3600 - mins * 60));
+			var hrs:Number = Math.floor(_vidiunAnnotation.startTime / 3600);
+			var mins:Number = Math.floor((_vidiunAnnotation.startTime - hrs * 3600) / 60);
+			var secs:Number = Math.round((_vidiunAnnotation.startTime - hrs * 3600 - mins * 60));
 			var hrsString:String = hrs.toString();
 			var minsString:String = mins.toString();
 			var secsString:String = secs.toString();
@@ -293,8 +293,8 @@ package com.kaltura.kdpfl.view {
 		}
 		
 		
-		public function get kalturaAnnotation():KalturaAnnotation {
-			return _kalturaAnnotation;
+		public function get vidiunAnnotation():VidiunAnnotation {
+			return _vidiunAnnotation;
 		}
 
 	}

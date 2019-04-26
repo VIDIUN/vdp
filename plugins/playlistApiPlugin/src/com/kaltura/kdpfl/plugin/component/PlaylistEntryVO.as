@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.vo.KalturaPlayableEntry;
+	import com.vidiun.vo.VidiunPlayableEntry;
 	
 	import mx.utils.ObjectProxy;
 	
@@ -13,13 +13,13 @@ package com.kaltura.kdpfl.plugin.component
 	public class PlaylistEntryVO extends ObjectProxy
 	{
 		/**
-		 * Kaltura entry object 
+		 * Vidiun entry object 
 		 */		
-		public var entry:KalturaPlayableEntry;
+		public var entry:VidiunPlayableEntry;
 		
 		public var isOver:Boolean;
 		
-		public function PlaylistEntryVO(entry:KalturaPlayableEntry)
+		public function PlaylistEntryVO(entry:VidiunPlayableEntry)
 		{
 			this.entry = entry;
 

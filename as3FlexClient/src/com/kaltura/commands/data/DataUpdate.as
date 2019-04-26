@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.data
+package com.vidiun.commands.data
 {
-		import com.kaltura.vo.KalturaDataEntry;
-	import com.kaltura.delegates.data.DataUpdateDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunDataEntry;
+	import com.vidiun.delegates.data.DataUpdateDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Update data entry. Only the properties that were set will be updated.
 	* 
 	**/
-	public class DataUpdate extends KalturaCall
+	public class DataUpdate extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param entryId String
-		* @param documentEntry KalturaDataEntry
+		* @param documentEntry VidiunDataEntry
 		**/
-		public function DataUpdate( entryId : String,documentEntry : KalturaDataEntry )
+		public function DataUpdate( entryId : String,documentEntry : VidiunDataEntry )
 		{
 			service= 'data';
 			action= 'update';
@@ -53,7 +53,7 @@ package com.kaltura.commands.data
 			var keyValArr : Array = new Array();
 			keyArr.push('entryId');
 			valueArr.push(entryId);
-				keyValArr = kalturaObject2Arrays(documentEntry, 'documentEntry');
+				keyValArr = vidiunObject2Arrays(documentEntry, 'documentEntry');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

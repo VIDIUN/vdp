@@ -6,11 +6,11 @@
  * @author Dan X Bacon		baconoppenheim.com
  * @author Dwight Bridges 	astra.yahoo.com 
  */
-package com.kaltura.kdpfl.view.controls 
+package com.vidiun.vdpfl.view.controls 
 {
 
-import com.kaltura.kdpfl.component.IComponent;
-import com.kaltura.kdpfl.util.KColorUtil;
+import com.vidiun.vdpfl.component.IComponent;
+import com.vidiun.vdpfl.util.VColorUtil;
 
 import fl.controls.BaseButton;
 import fl.core.InvalidationType;
@@ -26,7 +26,7 @@ import flash.utils.getDefinitionByName;
  * @author Hila
  * 
  */
-public dynamic class KScrubber extends UIComponent implements IComponent
+public dynamic class VScrubber extends UIComponent implements IComponent
 {			
 
 	static public const EVENT_SEEK:String 		= "seek";
@@ -185,7 +185,7 @@ public dynamic class KScrubber extends UIComponent implements IComponent
      * @langversion 3.0
      * @playerversion Flash 9.0.28.0
      */
-	public function KScrubber()
+	public function VScrubber()
 	{
 		super();
 		_scrubbing = false;
@@ -365,7 +365,7 @@ public dynamic class KScrubber extends UIComponent implements IComponent
 	 */
 	protected function drawProgressIndicator():void
 	{
-		//KTrace.getInstance().log(" >>>>>>>>>>> drawProgressIndicator");
+		//VTrace.getInstance().log(" >>>>>>>>>>> drawProgressIndicator");
 		var oldIndicator:Sprite = _progressIndicator;
 		var oldClickStrip:Sprite = _clickStrip;
 		_progressIndicator = getDisplayObjectInstance(getStyleValue("progressIndicatorSkin")) as Sprite;
@@ -430,14 +430,14 @@ public dynamic class KScrubber extends UIComponent implements IComponent
 		_thumb.y = (height - _thumb.height)/2;	
 		// this displayobject is the buffering sprite
 		if(_loadIndicator && color1!=-1)
-			KColorUtil.colorDisplayObject(_loadIndicator , color1);
+			VColorUtil.colorDisplayObject(_loadIndicator , color1);
 
 		// this displayobject is the track displayObject
   		if(_progressIndicator && color2!=-1)
-			KColorUtil.colorDisplayObject(_progressIndicator , color2);
+			VColorUtil.colorDisplayObject(_progressIndicator , color2);
 		
 		if(_thumb && color3!=-1)
-			KColorUtil.colorDisplayObject(_thumb , color3);
+			VColorUtil.colorDisplayObject(_thumb , color3);
 		
 		if (_allowMouseClicks)
 		{
@@ -571,9 +571,9 @@ public dynamic class KScrubber extends UIComponent implements IComponent
 	 	//check if this is a track click or a button click
 	 	//if(event.target is BaseButton)
 	 		_isDragging = true;
-			var evtDragStart:Event = new Event( KScrubber.EVENT_DRAG, true, true );
+			var evtDragStart:Event = new Event( VScrubber.EVENT_DRAG, true, true );
 			this.dispatchEvent( evtDragStart );	
-		var evt:Event = new Event( KScrubber.EVENT_SEEK_START, true, true );
+		var evt:Event = new Event( VScrubber.EVENT_SEEK_START, true, true );
 		this.dispatchEvent( evt );
 
 		_thumb.x = Math.max(0, Math.min(_range, mouseX - (_thumb.width/2)));
@@ -589,7 +589,7 @@ public dynamic class KScrubber extends UIComponent implements IComponent
 		_mouseDownX = _thumb.mouseX;
 		_mouseDownRightPadding = _thumb.width - _mouseDownX;
 
-		evt = new Event( KScrubber.EVENT_SEEK, true, true );
+		evt = new Event( VScrubber.EVENT_SEEK, true, true );
 		this.dispatchEvent( evt );
 		
 		this.stage.addEventListener(MouseEvent.MOUSE_UP, scrubButtonMouseUpHandler, false, 0, true);
@@ -609,7 +609,7 @@ public dynamic class KScrubber extends UIComponent implements IComponent
 		if (_isDragging)
 		{
 			_isDragging = false;
-			var evtStopDrag:Event = new Event( KScrubber.EVENT_DRAG_END, true, true );
+			var evtStopDrag:Event = new Event( VScrubber.EVENT_DRAG_END, true, true );
 			this.dispatchEvent( evtStopDrag );
 		}
 		//set _scrubbing to false
@@ -621,10 +621,10 @@ public dynamic class KScrubber extends UIComponent implements IComponent
 		
 		if( !liveScrubbing )
 		{
-			var evt:Event = new Event( KScrubber.EVENT_SEEK, true, true );
+			var evt:Event = new Event( VScrubber.EVENT_SEEK, true, true );
 			this.dispatchEvent( evt );
 		}
-		evt = new Event( KScrubber.EVENT_SEEK_END, true, true );
+		evt = new Event( VScrubber.EVENT_SEEK_END, true, true );
 		this.dispatchEvent( evt );
 	}
 	
@@ -648,7 +648,7 @@ public dynamic class KScrubber extends UIComponent implements IComponent
 		
 		if( liveScrubbing )
 		{
-			var evt:Event = new Event( KScrubber.EVENT_SEEK, true, true );
+			var evt:Event = new Event( VScrubber.EVENT_SEEK, true, true );
 			this.dispatchEvent( evt );
 		}
 	}

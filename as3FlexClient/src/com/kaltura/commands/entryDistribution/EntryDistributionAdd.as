@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.entryDistribution
+package com.vidiun.commands.entryDistribution
 {
-		import com.kaltura.vo.KalturaEntryDistribution;
-	import com.kaltura.delegates.entryDistribution.EntryDistributionAddDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunEntryDistribution;
+	import com.vidiun.delegates.entryDistribution.EntryDistributionAddDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Add new Entry Distribution
 	* 
 	**/
-	public class EntryDistributionAdd extends KalturaCall
+	public class EntryDistributionAdd extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param entryDistribution KalturaEntryDistribution
+		* @param entryDistribution VidiunEntryDistribution
 		**/
-		public function EntryDistributionAdd( entryDistribution : KalturaEntryDistribution )
+		public function EntryDistributionAdd( entryDistribution : VidiunEntryDistribution )
 		{
 			service= 'contentdistribution_entrydistribution';
 			action= 'add';
@@ -50,7 +50,7 @@ package com.kaltura.commands.entryDistribution
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(entryDistribution, 'entryDistribution');
+				keyValArr = vidiunObject2Arrays(entryDistribution, 'entryDistribution');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

@@ -1,10 +1,10 @@
 package
 {
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.kdpfl.plugin.KPluginEvent;
-	import com.kaltura.osmf.kontiki.KontikiPluginInfo;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.IPluginFactory;
+	import com.vidiun.vdpfl.plugin.VPluginEvent;
+	import com.vidiun.osmf.kontiki.KontikiPluginInfo;
 	
 	import flash.display.Sprite;
 	
@@ -50,7 +50,7 @@ package
 		protected function onOSMFPluginLoaded (e : MediaFactoryEvent) : void
 		{
 			_localMediaFactory.removeEventListener(MediaFactoryEvent.PLUGIN_LOAD, onOSMFPluginLoaded);
-			dispatchEvent( new KPluginEvent (KPluginEvent.KPLUGIN_INIT_COMPLETE) );
+			dispatchEvent( new VPluginEvent (VPluginEvent.VPLUGIN_INIT_COMPLETE) );
 		}
 		/**
 		 * Listener for the LOAD_ERROR event.
@@ -60,7 +60,7 @@ package
 		protected function onOSMFPluginLoadError (e : MediaFactoryEvent) : void
 		{
 			_localMediaFactory.removeEventListener(MediaFactoryEvent.PLUGIN_LOAD_ERROR, onOSMFPluginLoadError);
-			dispatchEvent( new KPluginEvent (KPluginEvent.KPLUGIN_INIT_FAILED) );
+			dispatchEvent( new VPluginEvent (VPluginEvent.VPLUGIN_INIT_FAILED) );
 		}
 		
 		

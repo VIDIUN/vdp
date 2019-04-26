@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,27 +25,27 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.types
+package com.vidiun.types
 {
-	public class KalturaMailType
+	public class VidiunMailType
 	{
-		public static const MAIL_TYPE_KALTURA_NEWSLETTER : String = '10';
+		public static const MAIL_TYPE_VIDIUN_NEWSLETTER : String = '10';
 		public static const MAIL_TYPE_ADDED_TO_FAVORITES : String = '11';
 		public static const MAIL_TYPE_ADDED_TO_CLIP_FAVORITES : String = '12';
 		public static const MAIL_TYPE_NEW_COMMENT_IN_PROFILE : String = '13';
-		public static const MAIL_TYPE_CLIP_ADDED_YOUR_KALTURA : String = '20';
+		public static const MAIL_TYPE_CLIP_ADDED_YOUR_VIDIUN : String = '20';
 		public static const MAIL_TYPE_VIDEO_ADDED : String = '21';
 		public static const MAIL_TYPE_ROUGHCUT_CREATED : String = '22';
-		public static const MAIL_TYPE_ADDED_KALTURA_TO_YOUR_FAVORITES : String = '23';
-		public static const MAIL_TYPE_NEW_COMMENT_IN_KALTURA : String = '24';
+		public static const MAIL_TYPE_ADDED_VIDIUN_TO_YOUR_FAVORITES : String = '23';
+		public static const MAIL_TYPE_NEW_COMMENT_IN_VIDIUN : String = '24';
 		public static const MAIL_TYPE_CLIP_ADDED : String = '30';
 		public static const MAIL_TYPE_VIDEO_CREATED : String = '31';
-		public static const MAIL_TYPE_ADDED_KALTURA_TO_HIS_FAVORITES : String = '32';
-		public static const MAIL_TYPE_NEW_COMMENT_IN_KALTURA_YOU_CONTRIBUTED : String = '33';
+		public static const MAIL_TYPE_ADDED_VIDIUN_TO_HIS_FAVORITES : String = '32';
+		public static const MAIL_TYPE_NEW_COMMENT_IN_VIDIUN_YOU_CONTRIBUTED : String = '33';
 		public static const MAIL_TYPE_CLIP_CONTRIBUTED : String = '40';
 		public static const MAIL_TYPE_ROUGHCUT_CREATED_SUBSCRIBED : String = '41';
-		public static const MAIL_TYPE_ADDED_KALTURA_TO_HIS_FAVORITES_SUBSCRIBED : String = '42';
-		public static const MAIL_TYPE_NEW_COMMENT_IN_KALTURA_YOU_SUBSCRIBED : String = '43';
+		public static const MAIL_TYPE_ADDED_VIDIUN_TO_HIS_FAVORITES_SUBSCRIBED : String = '42';
+		public static const MAIL_TYPE_NEW_COMMENT_IN_VIDIUN_YOU_SUBSCRIBED : String = '43';
 		public static const MAIL_TYPE_REGISTER_CONFIRM : String = '50';
 		public static const MAIL_TYPE_PASSWORD_RESET : String = '51';
 		public static const MAIL_TYPE_LOGIN_MAIL_RESET : String = '52';

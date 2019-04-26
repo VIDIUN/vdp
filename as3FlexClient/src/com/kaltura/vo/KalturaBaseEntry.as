@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.BaseFlexVo;
+	import com.vidiun.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaBaseEntry extends BaseFlexVo
+	public dynamic class VidiunBaseEntry extends BaseFlexVo
 	{
 		/**
 		* Auto generated 10 characters alphanumeric string
@@ -91,14 +91,14 @@ package com.kaltura.vo
 		public var categoriesIds : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaEntryStatus
+		* @see com.vidiun.types.VidiunEntryStatus
 		**/
 		public var status : String = null;
 
 		/**
 		* Entry moderation status
 		* 
-		* @see com.kaltura.types.KalturaEntryModerationStatus
+		* @see com.vidiun.types.VidiunEntryModerationStatus
 		**/
 		public var moderationStatus : int = int.MIN_VALUE;
 
@@ -111,7 +111,7 @@ package com.kaltura.vo
 		/**
 		* The type of the entry, this is auto filled by the derived entry object
 		* 
-		* @see com.kaltura.types.KalturaEntryType
+		* @see com.vidiun.types.VidiunEntryType
 		**/
 		public var type : String = null;
 
@@ -170,7 +170,7 @@ package com.kaltura.vo
 		/**
 		* License type used for this entry
 		* 
-		* @see com.kaltura.types.KalturaLicenseType
+		* @see com.vidiun.types.VidiunLicenseType
 		**/
 		public var licenseType : int = int.MIN_VALUE;
 
@@ -225,7 +225,7 @@ package com.kaltura.vo
 		/**
 		* Status of the replacement readiness and approval
 		* 
-		* @see com.kaltura.types.KalturaEntryReplacementStatus
+		* @see com.vidiun.types.VidiunEntryReplacementStatus
 		**/
 		public var replacementStatus : String = null;
 
@@ -324,7 +324,7 @@ package com.kaltura.vo
 			var result:String = '';
 			switch (arrayName) {
 				case 'operationAttributes':
-					result = 'KalturaOperationAttributes';
+					result = 'VidiunOperationAttributes';
 					break;
 			}
 			return result;

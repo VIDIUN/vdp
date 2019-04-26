@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Vidiun Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,11 +20,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.net.loaders
+package com.vidiun.net.loaders
 {
-	import com.kaltura.net.downloading.LoadingStatus;
-	import com.kaltura.net.interfaces.ILoadableObject;
-	import com.kaltura.net.loaders.interfaces.IMediaSourceLoader;
+	import com.vidiun.net.downloading.LoadingStatus;
+	import com.vidiun.net.interfaces.ILoadableObject;
+	import com.vidiun.net.loaders.interfaces.IMediaSourceLoader;
 
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -44,7 +44,7 @@ package com.kaltura.net.loaders
 		 * @param loaded_object		the ILoadableObject to monitor.
 		 * @param asset_uid			the uid of the asset whos media to load.
 		 * @param asset_url			the url of the media to load.
-		 * @see com.kaltura.net.interfaces.ILoadableObject
+		 * @see com.vidiun.net.interfaces.ILoadableObject
 		 */
 		public function MediaSourceLoader(loaded_object:ILoadableObject, asset_uid:String, asset_url:String):void
 		{

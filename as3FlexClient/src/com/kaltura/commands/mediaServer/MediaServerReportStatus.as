@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.mediaServer
+package com.vidiun.commands.mediaServer
 {
-		import com.kaltura.vo.KalturaMediaServerStatus;
-	import com.kaltura.delegates.mediaServer.MediaServerReportStatusDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunMediaServerStatus;
+	import com.vidiun.delegates.mediaServer.MediaServerReportStatusDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Update media server status
 	* 
 	**/
-	public class MediaServerReportStatus extends KalturaCall
+	public class MediaServerReportStatus extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param hostname String
-		* @param mediaServerStatus KalturaMediaServerStatus
+		* @param mediaServerStatus VidiunMediaServerStatus
 		**/
-		public function MediaServerReportStatus( hostname : String,mediaServerStatus : KalturaMediaServerStatus )
+		public function MediaServerReportStatus( hostname : String,mediaServerStatus : VidiunMediaServerStatus )
 		{
 			service= 'mediaserver';
 			action= 'reportStatus';
@@ -53,7 +53,7 @@ package com.kaltura.commands.mediaServer
 			var keyValArr : Array = new Array();
 			keyArr.push('hostname');
 			valueArr.push(hostname);
-				keyValArr = kalturaObject2Arrays(mediaServerStatus, 'mediaServerStatus');
+				keyValArr = vidiunObject2Arrays(mediaServerStatus, 'mediaServerStatus');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

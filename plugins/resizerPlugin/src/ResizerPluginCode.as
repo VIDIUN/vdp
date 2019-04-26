@@ -1,8 +1,8 @@
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.ResizerMediator;
-	import com.kaltura.kdpfl.view.controls.KSlider;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.ResizerMediator;
+	import com.vidiun.vdpfl.view.controls.VSlider;
 	
 	import fl.controls.SliderDirection;
 	import fl.core.InvalidationType;
@@ -34,7 +34,7 @@ package
 		
 		protected var _sliderBackground:DisplayObject;
 		
-		protected var _slider : KSlider;
+		protected var _slider : VSlider;
 		
 		[Bindable]
 		public var color1 : Number;
@@ -57,7 +57,7 @@ package
 			_resizerMediator = new ResizerMediator (null, this);
 			facade.registerMediator( _resizerMediator );
 			// initialize the component attributes
-			_slider = new KSlider;
+			_slider = new VSlider;
 			this.addChild( _slider );
 			_slider.snapInterval = 0.05;
 			_slider.maximum = 1;

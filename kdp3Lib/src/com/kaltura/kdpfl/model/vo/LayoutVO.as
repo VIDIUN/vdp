@@ -1,11 +1,11 @@
-package com.kaltura.kdpfl.model.vo
+package com.vidiun.vdpfl.model.vo
 {
-	import com.kaltura.kdpfl.view.containers.KCanvas;
+	import com.vidiun.vdpfl.view.containers.VCanvas;
 	
 	import mx.utils.ObjectProxy;
 	
 	/**
-	 * Class LayoutVO holds parameters related to the visual layout of the KDP. 
+	 * Class LayoutVO holds parameters related to the visual layout of the VDP. 
 	 * @author Hila
 	 * 
 	 */	
@@ -23,7 +23,7 @@ package com.kaltura.kdpfl.model.vo
 		 * This is a foreground layer that components and plugins could use to place a 
 		 * displayObject on a layer over the main layout
 		 */		
-		public var foreground:KCanvas 
+		public var foreground:VCanvas 
 		
 		[Bindable]
 		/**

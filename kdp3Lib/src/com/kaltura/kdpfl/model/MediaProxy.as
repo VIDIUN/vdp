@@ -1,28 +1,28 @@
-package com.kaltura.kdpfl.model
+package com.vidiun.vdpfl.model
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.kdpfl.model.strings.MessageStrings;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SourceType;
-	import com.kaltura.kdpfl.model.type.StreamerType;
-	import com.kaltura.kdpfl.model.vo.MediaVO;
-	import com.kaltura.kdpfl.model.vo.SequenceVO;
-	import com.kaltura.kdpfl.model.vo.StorageProfileVO;
-	import com.kaltura.kdpfl.util.KTextParser;
-	import com.kaltura.kdpfl.util.URLUtils;
-	import com.kaltura.kdpfl.view.controls.KTrace;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.osmf.buffering.DualThresholdBufferingProxyElement;
-	import com.kaltura.osmf.events.KSwitchingProxyEvent;
-	import com.kaltura.osmf.events.KSwitchingProxySwitchContext;
-	import com.kaltura.osmf.image.TimedImageElement;
-	import com.kaltura.osmf.kaltura.KalturaBaseEntryResource;
-	import com.kaltura.osmf.proxy.KSwitchingProxyElement;
-	import com.kaltura.types.KalturaMediaType;
-	import com.kaltura.vo.KalturaFlavorAsset;
-	import com.kaltura.vo.KalturaMediaEntry;
-	import com.kaltura.vo.KalturaMixEntry;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.vdpfl.model.strings.MessageStrings;
+	import com.vidiun.vdpfl.model.type.EnableType;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.SourceType;
+	import com.vidiun.vdpfl.model.type.StreamerType;
+	import com.vidiun.vdpfl.model.vo.MediaVO;
+	import com.vidiun.vdpfl.model.vo.SequenceVO;
+	import com.vidiun.vdpfl.model.vo.StorageProfileVO;
+	import com.vidiun.vdpfl.util.VTextParser;
+	import com.vidiun.vdpfl.util.URLUtils;
+	import com.vidiun.vdpfl.view.controls.VTrace;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
+	import com.vidiun.osmf.buffering.DualThresholdBufferingProxyElement;
+	import com.vidiun.osmf.events.VSwitchingProxyEvent;
+	import com.vidiun.osmf.events.VSwitchingProxySwitchContext;
+	import com.vidiun.osmf.image.TimedImageElement;
+	import com.vidiun.osmf.vidiun.VidiunBaseEntryResource;
+	import com.vidiun.osmf.proxy.VSwitchingProxyElement;
+	import com.vidiun.types.VidiunMediaType;
+	import com.vidiun.vo.VidiunFlavorAsset;
+	import com.vidiun.vo.VidiunMediaEntry;
+	import com.vidiun.vo.VidiunMixEntry;
 	
 	import flash.events.Event;
 	import flash.net.URLLoader;
@@ -64,7 +64,7 @@ package com.kaltura.kdpfl.model
 		
 		private var _sendMediaReady : Boolean;
 		private var _flashvars : Object;
-		private var _client : KalturaClient;
+		private var _client : VidiunClient;
 		private var _isElementLoaded : Boolean;
 		/**
 		 * indicates if this is a new media and we should wait for mediaElementReady notification
@@ -87,14 +87,14 @@ package com.kaltura.kdpfl.model
 			
 		}
 		/**
-		 * Function prepares a new media element according to the information from the kaltura MediaEntry
+		 * Function prepares a new media element according to the information from the vidiun MediaEntry
 		 * @param seekFrom - optional parameter, passed if the video being loaded is a response to intelligent seeking.
 		 * 
 		 */		
 		public function prepareMediaElement(seekFrom :uint = 0) : void
 		{
 			if (!_client)
-				_client = (facade.retrieveProxy( ServicesProxy.NAME ) as ServicesProxy ).kalturaClient as KalturaClient;
+				_client = (facade.retrieveProxy( ServicesProxy.NAME ) as ServicesProxy ).vidiunClient as VidiunClient;
 			var resource:MediaResourceBase;
 			var sourceType : String = _flashvars.sourceType;
 			switch (sourceType) 
@@ -118,26 +118,26 @@ package com.kaltura.kdpfl.model
 					}
 					
 					//When using a mix entry the load is still done using flvclipper
-					if (vo.entry is KalturaMixEntry)
+					if (vo.entry is VidiunMixEntry)
 					{
 						resource = new URLResource(vo.entry.dataUrl);
 						addMetadataToResource(resource);
-						vo.media = vo.mediaFactory.createMediaElement(new KalturaBaseEntryResource( vo.entry ));
+						vo.media = vo.mediaFactory.createMediaElement(new VidiunBaseEntryResource( vo.entry ));
 						break;
 					}	
 					
 					//when loading a media entry we still use the flvclipper
-					if((vo.entry is KalturaMediaEntry) && (vo.entry as KalturaMediaEntry).mediaType == KalturaMediaType.IMAGE)
+					if((vo.entry is VidiunMediaEntry) && (vo.entry as VidiunMediaEntry).mediaType == VidiunMediaType.IMAGE)
 					{
 						if (vo.entry.width < 0)
 						{
-							vo.entry.width = (facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).kMediaPlayer.width; 
+							vo.entry.width = (facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator).vMediaPlayer.width; 
 						}
 						if (vo.entry.height < 0)
 						{
-							vo.entry.height = (facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).kMediaPlayer.height; 
+							vo.entry.height = (facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator).vMediaPlayer.height; 
 						}
-						var imgUrl:String = vo.entry.thumbnailUrl+"/width/" + vo.entry.width + "/height/"+vo.entry.height+"/.a.jpg" +  URLUtils.getThumbURLPostfix(_flashvars, _client.ks);  
+						var imgUrl:String = vo.entry.thumbnailUrl+"/width/" + vo.entry.width + "/height/"+vo.entry.height+"/.a.jpg" +  URLUtils.getThumbURLPostfix(_flashvars, _client.vs);  
 						resource = new URLResource( imgUrl );
 						addMetadataToResource (resource);
 						if(vo.supportImageDuration)
@@ -268,7 +268,7 @@ package com.kaltura.kdpfl.model
 				addMetadataToResource(resource);
 				var f4mLoader : F4MLoader = new F4MLoader(vo.mediaFactory);
 				//to set initial flavor we should disable auto switch, we return it after first play
-				(facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).player.autoDynamicStreamSwitch = false;
+				(facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator).player.autoDynamicStreamSwitch = false;
 				if (preferedIndex!=-1)
 				{
 					resource.addMetadataValue(MetadataNamespaces.RESOURCE_INITIAL_INDEX, preferedIndex);
@@ -530,7 +530,7 @@ package com.kaltura.kdpfl.model
 		
 		/**
 		 * Function stores the array of key frames from the media meta data on the MediaVO.
-		 * @param info the Meta Data for the kaltura media.
+		 * @param info the Meta Data for the vidiun media.
 		 * 
 		 */       
 		private function onMetadata(info:Object):void// reads metadata..
@@ -546,13 +546,13 @@ package com.kaltura.kdpfl.model
 		 */	   
 		private function onError(evt:MediaErrorEvent):void
 		{
-			KTrace.getInstance().log("media error", evt.error ? evt.error.errorID: '', evt.error ? evt.error.detail: '');
+			VTrace.getInstance().log("media error", evt.error ? evt.error.errorID: '', evt.error ? evt.error.detail: '');
 			
 			if(evt.type==MediaErrorEvent.MEDIA_ERROR)
 			{
 				if (evt.error && (evt.error.errorID == MediaErrorCodes.NETSTREAM_PLAY_FAILED)) 
 				{
-					KTrace.getInstance().log("media error", evt.error.errorID, evt.error.detail);
+					VTrace.getInstance().log("media error", evt.error.errorID, evt.error.detail);
 				}
 				else 
 				{
@@ -563,32 +563,32 @@ package com.kaltura.kdpfl.model
 			}
 		}
 		
-		protected function onSwitchPerformed (e : KSwitchingProxyEvent) : void
+		protected function onSwitchPerformed (e : VSwitchingProxyEvent) : void
 		{
 			var sequenceProxy : SequenceProxy = facade.retrieveProxy(SequenceProxy.NAME) as SequenceProxy;
 			var curContext:String;
-			if (e.switchingProxySwitchContext == KSwitchingProxySwitchContext.SECONDARY)
+			if (e.switchingProxySwitchContext == VSwitchingProxySwitchContext.SECONDARY)
 			{
 				sequenceProxy.vo.isInSequence = true;
 				sequenceProxy.vo.isAdSkip = true;
 				//we will replace to secondary, current is main
-				curContext = KSwitchingProxySwitchContext.MAIN;
+				curContext = VSwitchingProxySwitchContext.MAIN;
 			}
 			else
 			{
 				sequenceProxy.vo.isInSequence = false;
 				sequenceProxy.vo.isAdSkip = false;
-				curContext = KSwitchingProxySwitchContext.SECONDARY;
+				curContext = VSwitchingProxySwitchContext.SECONDARY;
 			}
 			sendNotification(NotificationType.SWITCHING_MEDIA_ELEMENTS_STARTED, {currentContext: curContext});
 		}
 		
-		protected function onSwitchCompleted (e: KSwitchingProxyEvent) : void 
+		protected function onSwitchCompleted (e: VSwitchingProxyEvent) : void 
 		{
 			sendNotification(NotificationType.SWITCHING_MEDIA_ELEMENTS_COMPLETED, {currentContext: e.switchingProxySwitchContext});
 		}
 		
-		protected function onSwitchFailed (e: KSwitchingProxyEvent) : void 
+		protected function onSwitchFailed (e: VSwitchingProxyEvent) : void 
 		{
 			sendNotification(NotificationType.SWITCHING_MEDIA_ELEMENTS_FAILED);
 		}
@@ -603,21 +603,21 @@ package com.kaltura.kdpfl.model
 		public function findDynamicStreamIndexByProp(preferedBitrate : int , propName : String="bitrate") : int
 		{
 			var foundStreamIndex:int = -1;
-			if (!vo.kalturaMediaFlavorArray)
+			if (!vo.vidiunMediaFlavorArray)
 				return foundStreamIndex;
 			
-			if (vo.kalturaMediaFlavorArray.length > 0)
+			if (vo.vidiunMediaFlavorArray.length > 0)
 			{
-				for(var i:int = 0; i < vo.kalturaMediaFlavorArray.length; i++)
+				for(var i:int = 0; i < vo.vidiunMediaFlavorArray.length; i++)
 				{
 					var lastb:Number;
 					if(i!=0)
 					{
-						lastb = vo.kalturaMediaFlavorArray[i-1].bitrate;
+						lastb = vo.vidiunMediaFlavorArray[i-1].bitrate;
 						lastb = Math.round(lastb/100) * 100;
 					}
 					
-					var b:Number = vo.kalturaMediaFlavorArray[i].bitrate;
+					var b:Number = vo.vidiunMediaFlavorArray[i].bitrate;
 					b = Math.round(b/100) * 100;
 					
 					if (b == preferedBitrate)
@@ -648,7 +648,7 @@ package com.kaltura.kdpfl.model
 							return foundStreamIndex;
 						}
 					}
-					else if(i == vo.kalturaMediaFlavorArray.length-1 && preferedBitrate >= b)
+					else if(i == vo.vidiunMediaFlavorArray.length-1 && preferedBitrate >= b)
 					{
 						//if this is the last index and the prefered bitrate is still bigger then the last one
 						foundStreamIndex = i;
@@ -669,7 +669,7 @@ package com.kaltura.kdpfl.model
 		 */		
 		public function getManifestUrl(seekFrom :uint = 0, storageProfileId : String = null):String {
 			//Media Manifest construction
-			var entryManifestUrl : String = _flashvars.httpProtocol + _flashvars.host + "/p/" + _flashvars.partnerId + "/sp/" + _flashvars.subpId + "/playManifest/entryId/" + vo.entry.id + ((_flashvars.deliveryCode) ? "/deliveryCode/" + _flashvars.deliveryCode : "") + ((vo.deliveryType == StreamerType.HTTP && vo.selectedFlavorId) ? "/flavorId/" + vo.selectedFlavorId : "") + (seekFrom ? "/seekFrom/" + seekFrom*1000 : "") + "/format/" + (vo.deliveryType != StreamerType.LIVE ? vo.deliveryType : StreamerType.RTMP) + "/protocol/" + (vo.mediaProtocol) + (_flashvars.cdnHost ? "/cdnHost/" + _flashvars.cdnHost : "") + (storageProfileId ? "/storageId/" + storageProfileId : "") + (_client.ks ? "/ks/" + _client.ks : "") + (_flashvars.uiConfId ? "/uiConfId/" + _flashvars.uiConfId : "") + (_flashvars.referrerSig ? "/referrerSig/" + _flashvars.referrerSig : "") + (_flashvars.flavorTags ? "/tags/" + _flashvars.flavorTags : "") + "/a/a.f4m" + "?"+ (_flashvars.b64Referrer ? "referrer=" + _flashvars.b64Referrer : "") ;
+			var entryManifestUrl : String = _flashvars.httpProtocol + _flashvars.host + "/p/" + _flashvars.partnerId + "/sp/" + _flashvars.subpId + "/playManifest/entryId/" + vo.entry.id + ((_flashvars.deliveryCode) ? "/deliveryCode/" + _flashvars.deliveryCode : "") + ((vo.deliveryType == StreamerType.HTTP && vo.selectedFlavorId) ? "/flavorId/" + vo.selectedFlavorId : "") + (seekFrom ? "/seekFrom/" + seekFrom*1000 : "") + "/format/" + (vo.deliveryType != StreamerType.LIVE ? vo.deliveryType : StreamerType.RTMP) + "/protocol/" + (vo.mediaProtocol) + (_flashvars.cdnHost ? "/cdnHost/" + _flashvars.cdnHost : "") + (storageProfileId ? "/storageId/" + storageProfileId : "") + (_client.vs ? "/vs/" + _client.vs : "") + (_flashvars.uiConfId ? "/uiConfId/" + _flashvars.uiConfId : "") + (_flashvars.referrerSig ? "/referrerSig/" + _flashvars.referrerSig : "") + (_flashvars.flavorTags ? "/tags/" + _flashvars.flavorTags : "") + "/a/a.f4m" + "?"+ (_flashvars.b64Referrer ? "referrer=" + _flashvars.b64Referrer : "") ;
 			//in case it was configured to add additional parameter to manifest URL
 			if (_flashvars.manifestParam && _flashvars.manifestParamValue)
 			{
@@ -693,7 +693,7 @@ package com.kaltura.kdpfl.model
 						{
 							currVar = currVar.concat(_flashvars.manifestTemplate.charAt(i));
 							
-							ccVarValue = KTextParser.evaluate(facade["bindObject"], currVar );
+							ccVarValue = VTextParser.evaluate(facade["bindObject"], currVar );
 							replacedTemplate = replacedTemplate.replace( currVar, ccVarValue );
 							
 							currVar = "";
@@ -727,11 +727,11 @@ package com.kaltura.kdpfl.model
 		 */		
 		public function getFlavorByBitrate(bitrate:int):int {
 			var foundStreamIndex:int = -1;
-			var flavorsArr:Array = vo.kalturaMediaFlavorArray;
+			var flavorsArr:Array = vo.vidiunMediaFlavorArray;
 			if (flavorsArr && flavorsArr.length) {
 				for(var i:int = 0; i < flavorsArr.length; i++)
 				{
-					var b:int = (flavorsArr[i] as KalturaFlavorAsset).bitrate;
+					var b:int = (flavorsArr[i] as VidiunFlavorAsset).bitrate;
 					if ( b==bitrate)
 						foundStreamIndex = i;
 						
@@ -740,7 +740,7 @@ package com.kaltura.kdpfl.model
 							foundStreamIndex = 0;
 						}
 						else {
-							var oldb:int = (flavorsArr[i-1] as KalturaFlavorAsset).bitrate; 
+							var oldb:int = (flavorsArr[i-1] as VidiunFlavorAsset).bitrate; 
 							if ((bitrate - oldb) > (b - bitrate))
 								foundStreamIndex = i;
 							else
@@ -759,15 +759,15 @@ package com.kaltura.kdpfl.model
 		
 		
 		/**
-		 * Set the starting index and notify KFlavorComboBox on the new index 
+		 * Set the starting index and notify VFlavorComboBox on the new index 
 		 * @param index
 		 * 
 		 */		
 		public function notifyStartingIndexChanged(index:int):void 
 		{
 			startingIndex = index;
-			//to display correct value in KFlavorComboBox
-			sendNotification( NotificationType.SWITCHING_CHANGE_COMPLETE, {newIndex : index, newBitrate: (vo.kalturaMediaFlavorArray[index] as KalturaFlavorAsset).bitrate}  );	
+			//to display correct value in VFlavorComboBox
+			sendNotification( NotificationType.SWITCHING_CHANGE_COMPLETE, {newIndex : index, newBitrate: (vo.vidiunMediaFlavorArray[index] as VidiunFlavorAsset).bitrate}  );	
 		}
 		
 		
@@ -829,19 +829,19 @@ package com.kaltura.kdpfl.model
 			
 			if (shouldCreateSwitchingProxy)
 			{
-				//wrap the media element created above in a KSwitcingProxy in order to enable midrolls.
-				var switchingMediaElement : KSwitchingProxyElement = new KSwitchingProxyElement();
+				//wrap the media element created above in a VSwitcingProxy in order to enable midrolls.
+				var switchingMediaElement : VSwitchingProxyElement = new VSwitchingProxyElement();
 				switchingMediaElement.mainMediaElement = vo.media;
-				//set the KSwitcingProxyElement as the vo.media
+				//set the VSwitcingProxyElement as the vo.media
 				vo.media = switchingMediaElement;
 				//if its a new media and not a bumper entry
 				var sequenceVo:SequenceVO = (facade.retrieveProxy(SequenceProxy.NAME) as SequenceProxy).vo;
 				if (!sequenceVo.isInSequence)
 					sequenceVo.mainMediaVO = null;
-				//add event listener for a switch between the main and secondary elements in the KSwitcingProxyElement.
-				vo.media.addEventListener(KSwitchingProxyEvent.ELEMENT_SWITCH_PERFORMED, onSwitchPerformed );
-				vo.media.addEventListener(KSwitchingProxyEvent.ELEMENT_SWITCH_COMPLETED, onSwitchCompleted );
-				vo.media.addEventListener(KSwitchingProxyEvent.ELEMENT_SWITCH_FAILED, onSwitchFailed );
+				//add event listener for a switch between the main and secondary elements in the VSwitcingProxyElement.
+				vo.media.addEventListener(VSwitchingProxyEvent.ELEMENT_SWITCH_PERFORMED, onSwitchPerformed );
+				vo.media.addEventListener(VSwitchingProxyEvent.ELEMENT_SWITCH_COMPLETED, onSwitchCompleted );
+				vo.media.addEventListener(VSwitchingProxyEvent.ELEMENT_SWITCH_FAILED, onSwitchFailed );
 				
 				
 			}

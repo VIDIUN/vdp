@@ -1,15 +1,15 @@
-package com.kaltura.kdpfl.plugin
+package com.vidiun.vdpfl.plugin
 {
 	import com.akamai.playeranalytics.AnalyticsPluginLoader;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.PlayerStatusProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.StreamerType;
-	import com.kaltura.types.KalturaMediaType;
-	import com.kaltura.vo.KalturaBaseEntry;
-	import com.kaltura.vo.KalturaFlavorAsset;
-	import com.kaltura.vo.KalturaMediaEntry;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.PlayerStatusProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.StreamerType;
+	import com.vidiun.types.VidiunMediaType;
+	import com.vidiun.vo.VidiunBaseEntry;
+	import com.vidiun.vo.VidiunFlavorAsset;
+	import com.vidiun.vo.VidiunMediaEntry;
 	
 	import flash.system.Capabilities;
 	
@@ -47,33 +47,33 @@ package com.kaltura.kdpfl.plugin
 				case NotificationType.MEDIA_READY:
 					//populate analytics metadata
 					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-					var entry:KalturaBaseEntry = _mediaProxy.vo.entry;			
+					var entry:VidiunBaseEntry = _mediaProxy.vo.entry;			
 					
 					AnalyticsPluginLoader.setData("publisherId", configProxy.vo.flashvars.partnerId);
-					AnalyticsPluginLoader.setData("playerVersion", facade["kdpVersion"]);
-					AnalyticsPluginLoader.setData("playerId", _pluginCode.playerId || configProxy.vo.kuiConf.id);
+					AnalyticsPluginLoader.setData("playerVersion", facade["vdpVersion"]);
+					AnalyticsPluginLoader.setData("playerId", _pluginCode.playerId || configProxy.vo.vuiConf.id);
 					AnalyticsPluginLoader.setData("device", Capabilities.os );
 					AnalyticsPluginLoader.setData("playerLoadtime",(facade.retrieveProxy(PlayerStatusProxy.NAME) as PlayerStatusProxy).vo.loadTime);
 					
 					
-					if (entry is KalturaMediaEntry)
+					if (entry is VidiunMediaEntry)
 					{
 						AnalyticsPluginLoader.setData("title", _pluginCode.title || entry.id);
 						
-						var mediaEntry:KalturaMediaEntry = entry as KalturaMediaEntry;
+						var mediaEntry:VidiunMediaEntry = entry as VidiunMediaEntry;
 						AnalyticsPluginLoader.setData("contentLength", mediaEntry.msDuration);
 						
 						//find content type
 						var contentType:String;
 						switch (mediaEntry.mediaType)
 						{
-							case KalturaMediaType.VIDEO:
+							case VidiunMediaType.VIDEO:
 								contentType = "video";
 								break;
-							case KalturaMediaType.AUDIO:
+							case VidiunMediaType.AUDIO:
 								contentType = "audio";
 								break;
-							case KalturaMediaType.IMAGE:
+							case VidiunMediaType.IMAGE:
 								contentType = "image";
 								break;
 							default:
@@ -105,9 +105,9 @@ package com.kaltura.kdpfl.plugin
 						flavorAssetId = getFlavorIdByIndex(_mediaProxy.startingIndex);
 					}
 					
-					for each (var kfa:KalturaFlavorAsset in _mediaProxy.vo.kalturaMediaFlavorArray) {
-						if (kfa.id == flavorAssetId) {
-							flavorParamsId = kfa.flavorParamsId.toString();
+					for each (var vfa:VidiunFlavorAsset in _mediaProxy.vo.vidiunMediaFlavorArray) {
+						if (vfa.id == flavorAssetId) {
+							flavorParamsId = vfa.flavorParamsId.toString();
 							break;
 						}
 					}
@@ -141,10 +141,10 @@ package com.kaltura.kdpfl.plugin
 			var flavorId:String;
 			
 			if (index >= 0 && 
-				_mediaProxy.vo.kalturaMediaFlavorArray &&
-				index < _mediaProxy.vo.kalturaMediaFlavorArray.length)	{
+				_mediaProxy.vo.vidiunMediaFlavorArray &&
+				index < _mediaProxy.vo.vidiunMediaFlavorArray.length)	{
 				
-				flavorId = (_mediaProxy.vo.kalturaMediaFlavorArray[index] as KalturaFlavorAsset).id;
+				flavorId = (_mediaProxy.vo.vidiunMediaFlavorArray[index] as VidiunFlavorAsset).id;
 			}
 			
 			return flavorId;

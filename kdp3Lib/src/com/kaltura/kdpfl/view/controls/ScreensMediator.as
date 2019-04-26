@@ -5,14 +5,14 @@
  * @playerversion Flash 9.0.28.0
  * @author Eitan Avgil
  */
- package com.kaltura.kdpfl.view.controls
+ package com.vidiun.vdpfl.view.controls
 {
-	import com.kaltura.kdpfl.ApplicationFacade;
-	import com.kaltura.kdpfl.controller.media.LiveStreamCommand;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.ApplicationFacade;
+	import com.vidiun.vdpfl.controller.media.LiveStreamCommand;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.LayoutProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
 	
 	import org.osmf.media.MediaPlayerState;
 	import org.puremvc.as3.interfaces.INotification;
@@ -27,11 +27,11 @@
 	{
 		public static const NAME:String = "ScreensMediator";
 		
-		public static const KDP_STARTED:String = "kdpStarted";
-		public static const KDP_PLAYED:String = "kdpPlayed";
-		public static const KDP_PAUSED:String = "kdpPaused";
-		public static const KDP_ENDED:String = "kdpEnded";
-		public static const KDP_CHANGE_PROCESS:String = "kdpChangeProcess";
+		public static const VDP_STARTED:String = "vdpStarted";
+		public static const VDP_PLAYED:String = "vdpPlayed";
+		public static const VDP_PAUSED:String = "vdpPaused";
+		public static const VDP_ENDED:String = "vdpEnded";
+		public static const VDP_CHANGE_PROCESS:String = "vdpChangeProcess";
 	
 		public var _isInDrag:Boolean;
 		
@@ -67,11 +67,11 @@
 					//switch to start state
 					if (note.getName() == NotificationType.READY_TO_PLAY && flashvars.autoPlay == "true")
 					{
-						_state = KDP_PLAYED;
+						_state = VDP_PLAYED;
 					}
 					else
 					{
-						_state = KDP_STARTED;
+						_state = VDP_STARTED;
 					}
 					renderState();
 				break;
@@ -79,20 +79,20 @@
 				//when the pre/post mechanism is on
 				case NotificationType.PLAYER_PLAY_END:
 						_screens.visible = true;
-						_state = KDP_ENDED;
+						_state = VDP_ENDED;
 						renderState();
 				break;
 				case NotificationType.PLAYER_PAUSED:
 					//switch to pause state only if this is not a scrubber dragging
 					if(!_isInDrag)
 					{
-						_state = KDP_PAUSED;
+						_state = VDP_PAUSED;
 						renderState();
 					} 
 				break;
 				case NotificationType.DO_PLAY:
 					//switch to playing state
-					_state = KDP_PLAYED;
+					_state = VDP_PLAYED;
 					renderState();
 				break;
 				case NotificationType.SCRUBBER_DRAG_END:
@@ -116,12 +116,12 @@
 					}
 					else if (note.getBody() == MediaPlayerState.PLAYING)
 					{
-						_state = KDP_PLAYED;
+						_state = VDP_PLAYED;
 						renderState();
 					}
 				break;
 				case NotificationType.CHANGE_MEDIA_PROCESS_STARTED:
-					_state=KDP_CHANGE_PROCESS;
+					_state=VDP_CHANGE_PROCESS;
 					renderState();
 				break;
 			}

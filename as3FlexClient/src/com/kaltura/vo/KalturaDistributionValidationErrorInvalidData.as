@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.KalturaDistributionValidationError;
+	import com.vidiun.vo.VidiunDistributionValidationError;
 
 	[Bindable]
-	public dynamic class KalturaDistributionValidationErrorInvalidData extends KalturaDistributionValidationError
+	public dynamic class VidiunDistributionValidationErrorInvalidData extends VidiunDistributionValidationError
 	{
 		/**
 		**/
 		public var fieldName : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaDistributionValidationErrorType
+		* @see com.vidiun.types.VidiunDistributionValidationErrorType
 		**/
 		public var validationErrorType : int = int.MIN_VALUE;
 
 		/**
 		* Parameter of the validation error
-		* For example, minimum value for KalturaDistributionValidationErrorType::STRING_TOO_SHORT validation error
+		* For example, minimum value for VidiunDistributionValidationErrorType::STRING_TOO_SHORT validation error
 		* 
 		**/
 		public var validationErrorParam : String = null;

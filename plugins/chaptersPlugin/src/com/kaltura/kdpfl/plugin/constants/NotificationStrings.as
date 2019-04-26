@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.constants
+package com.vidiun.vdpfl.plugin.constants
 {
 	public class NotificationStrings
 	{

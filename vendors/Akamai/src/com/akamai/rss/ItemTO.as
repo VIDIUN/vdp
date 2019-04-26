@@ -23,7 +23,7 @@
 		public var media:Media;
 		public var link:String;
 
-		//kaltura patches, under namespace: xmlns:kaltura="http://kaltura.com/playlist/1.0":
+		//vidiun patches, under namespace: xmlns:vidiun="http://vidiun.com/playlist/1.0":
 /* 		public var adminTags:String;
 		public var credit:String;
 		public var createdAt:String;
@@ -37,6 +37,6 @@
 		public var uploaderUid:String
 		public var views:String;
 		public var votes:String; */
-		//end of kaltura patches
+		//end of vidiun patches
 	}
 }

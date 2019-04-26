@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.KalturaReportInputBaseFilter;
+	import com.vidiun.vo.VidiunReportInputBaseFilter;
 
 	[Bindable]
-	public dynamic class KalturaReportInputFilter extends KalturaReportInputBaseFilter
+	public dynamic class VidiunReportInputFilter extends VidiunReportInputBaseFilter
 	{
 		/**
 		* Search keywords to filter objects
@@ -41,14 +41,14 @@ package com.kaltura.vo
 		/**
 		* Search keywords in onjects tags
 		* 
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var searchInTags : Boolean;
 
 		/**
 		* Search keywords in onjects admin tags
 		* 
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var searchInAdminTags : Boolean;
 
@@ -67,7 +67,7 @@ package com.kaltura.vo
 		/**
 		* Aggregated results according to interval
 		* 
-		* @see com.kaltura.types.KalturaReportInterval
+		* @see com.vidiun.types.VidiunReportInterval
 		**/
 		public var interval : String = null;
 

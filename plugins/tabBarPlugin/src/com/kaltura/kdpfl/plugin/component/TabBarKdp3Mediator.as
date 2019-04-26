@@ -1,15 +1,15 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
 	import flash.display.DisplayObject;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 
-	public class TabBarKdp3Mediator extends Mediator
+	public class TabBarVdp3Mediator extends Mediator
 	{
-		public static const NAME:String = "TabBarKdp3Mediator";
+		public static const NAME:String = "TabBarVdp3Mediator";
 		
-		public function TabBarKdp3Mediator(viewComponent:Object=null)
+		public function TabBarVdp3Mediator(viewComponent:Object=null)
 		{
 			super(NAME, viewComponent);
 		}

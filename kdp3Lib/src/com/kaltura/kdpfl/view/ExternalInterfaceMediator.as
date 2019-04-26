@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.view
+package com.vidiun.vdpfl.view
 {
-	import com.kaltura.kdpfl.model.ExternalInterfaceProxy;
+	import com.vidiun.vdpfl.model.ExternalInterfaceProxy;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;

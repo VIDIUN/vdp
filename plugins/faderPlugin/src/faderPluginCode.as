@@ -1,8 +1,8 @@
 package {
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.plugin.DisplayObjectArray;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.util.KTextParser;
+	import com.vidiun.vdpfl.model.LayoutProxy;
+	import com.vidiun.vdpfl.plugin.DisplayObjectArray;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.util.VTextParser;
 	
 	import fl.core.UIComponent;
 	import fl.events.ComponentEvent;

@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Vidiun Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,22 +20,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.roughcut.sdl
+package com.vidiun.roughcut.sdl
 {
-	import com.kaltura.application.KalturaApplication;
-	import com.kaltura.assets.AssetsFactory;
-	import com.kaltura.assets.abstracts.AbstractAsset;
-	import com.kaltura.assets.assets.PluginAsset;
-	import com.kaltura.base.IDisposable;
-	import com.kaltura.base.types.MediaTypes;
-	import com.kaltura.dataStructures.HashMap;
-	import com.kaltura.plugin.logic.effects.KEffect;
-	import com.kaltura.plugin.logic.overlays.Overlay;
-	import com.kaltura.plugin.types.transitions.TransitionTypes;
-	import com.kaltura.roughcut.Roughcut;
-	import com.kaltura.roughcut.assets.RoughcutTimelinesAssets;
-	import com.kaltura.roughcut.soundtrack.AudioPlayPolicy;
-	import com.kaltura.utils.url.URLProccessing;
+	import com.vidiun.application.VidiunApplication;
+	import com.vidiun.assets.AssetsFactory;
+	import com.vidiun.assets.abstracts.AbstractAsset;
+	import com.vidiun.assets.assets.PluginAsset;
+	import com.vidiun.base.IDisposable;
+	import com.vidiun.base.types.MediaTypes;
+	import com.vidiun.dataStructures.HashMap;
+	import com.vidiun.plugin.logic.effects.VEffect;
+	import com.vidiun.plugin.logic.overlays.Overlay;
+	import com.vidiun.plugin.types.transitions.TransitionTypes;
+	import com.vidiun.roughcut.Roughcut;
+	import com.vidiun.roughcut.assets.RoughcutTimelinesAssets;
+	import com.vidiun.roughcut.soundtrack.AudioPlayPolicy;
+	import com.vidiun.utils.url.URLProccessing;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -79,7 +79,7 @@ package com.kaltura.roughcut.sdl
 		/**
 		 * in case an admin, deleted entries from the system, we mark these entries as deleted.
 		 * contains DeletedEntry instances.
-		 * @see com.kaltura.base.vo.DeletedEntry
+		 * @see com.vidiun.base.vo.DeletedEntry
 		 */
 		public var deletedEntries:ArrayCollection = new ArrayCollection ();
 
@@ -200,7 +200,7 @@ package com.kaltura.roughcut.sdl
 			var addbytes:Array = [0,0];
 			var addTime:Array = [0,0];
 
-			var nullTransitionLabel:String = KalturaApplication.getInstance().getTransitionLabel(TransitionTypes.NONE);
+			var nullTransitionLabel:String = VidiunApplication.getInstance().getTransitionLabel(TransitionTypes.NONE);
 
 			for each (var p:XML in originalSDL.VideoAssets.vidAsset)
 			{
@@ -230,11 +230,11 @@ package com.kaltura.roughcut.sdl
 					// The following actions are similiar for video and image assets:
 					case MediaTypes.VIDEO:
 					case MediaTypes.IMAGE:
-						validAsset = all_assets.getValue(p.@k_id);									//get the original asset to validate with.
+						validAsset = all_assets.getValue(p.@v_id);									//get the original asset to validate with.
 				 		//create a base asset to work with:
 				 		transitionId = String(p.EndTransition.@type);
 				 		transitionIdlower = transitionId.toLowerCase();
-				 		transitionThumbnail = KalturaApplication.getInstance().getTransitionThumbnail(transitionId);
+				 		transitionThumbnail = VidiunApplication.getInstance().getTransitionThumbnail(transitionId);
 				 		transitionLength = (Number(p.StreamInfo.@len_time) - Number(p.EndTransition.@StartTime));
 				 		// for historic resons we used thumbnail validation to make sure this transition is still valid
 				 		// ie, the partner has authorized the use of this plugin ...
@@ -267,14 +267,14 @@ package com.kaltura.roughcut.sdl
 					 		if (!validate_sdl)
 					 		{
 					 			// use a template (returned from the server instead of the validAsset):
- 								tempAsset = AssetsFactory.create(origineType, 'null', p.@k_id, p.@name, '',
+ 								tempAsset = AssetsFactory.create(origineType, 'null', p.@v_id, p.@name, '',
 	 								p.@url, Number(p.StreamInfo.@len_time), tempMaxLength, Number(p.StreamInfo.@start_time),
 	 								Number(p.StreamInfo.@pan), transitionId, transitionLength);
 					 		} else {
 					 			// null the asset, so it'll be removed from the roughcut.
 					 			tempAsset = null;
 					 		}
-					 		//xxx deletedEntries.addItem (new DeletedEntry (p.@k_id, p.@name, Number(p.StreamInfo.@len_time), transitionId, transitionLength));
+					 		//xxx deletedEntries.addItem (new DeletedEntry (p.@v_id, p.@name, Number(p.StreamInfo.@len_time), transitionId, transitionLength));
 					 	}
 
 					 	if (tempAsset != null)
@@ -322,7 +322,7 @@ package com.kaltura.roughcut.sdl
 							solidColor = uint(p.StreamInfo.@file_name);
 						else
 							solidColor = uint(testColor);
-						bd = new BitmapData (KalturaApplication.getInstance().initPlayerWidth, KalturaApplication.getInstance().initPlayerHeight, false, solidColor);
+						bd = new BitmapData (VidiunApplication.getInstance().initPlayerWidth, VidiunApplication.getInstance().initPlayerHeight, false, solidColor);
 						bmp = new Bitmap (bd);
 						colorName = ""; //xxx ColorsUtil.getName(solidColor)[1];									//get the name of that color
 						tempAsset = AssetsFactory.create (MediaTypes.SOLID, 'null', "solid-" + MediaTypes.SOLID.toString(),
@@ -337,14 +337,14 @@ package com.kaltura.roughcut.sdl
 					case MediaTypes.SWF:
 				 		transitionId = String(p.EndTransition.@type);
 				 		transitionIdlower = transitionId.toLowerCase();
-				 		transitionThumbnail = KalturaApplication.getInstance().getTransitionThumbnail(transitionId);
+				 		transitionThumbnail = VidiunApplication.getInstance().getTransitionThumbnail(transitionId);
 				 		transitionLength = (Number(p.StreamInfo.@len_time) - Number(p.EndTransition.@StartTime));
 				 		if ((transitionNone == transitionIdlower) || (transitionThumbnail == TransitionTypes.NONE))
 				 		{
 				 			transitionId = TransitionTypes.NONE;
 				 			transitionLength = 0;
 				 		}
-						tempAsset = AssetsFactory.create(origineType, 'null', p.@k_id, p.@name, '',
+						tempAsset = AssetsFactory.create(origineType, 'null', p.@v_id, p.@name, '',
 	 								p.@url, Number(p.StreamInfo.@len_time), tempMaxLength, Number(p.StreamInfo.@start_time),
 	 								Number(p.StreamInfo.@pan), transitionId, transitionLength);
 						tempAsset.maxLength = maxStaticLength;
@@ -355,13 +355,13 @@ package com.kaltura.roughcut.sdl
 				{
 					if ( ! Roughcut.mediaTypesSettings.transitionsClearRoughcut)
 					{
-						tempAsset.transitionLabel = KalturaApplication.getInstance().getTransitionLabel(tempAsset.transitionPluginID);
+						tempAsset.transitionLabel = VidiunApplication.getInstance().getTransitionLabel(tempAsset.transitionPluginID);
 						pluginAssetXml = p.EndTransition.arguments[0];
 						tempAsset.pluginAssetXml = pluginAssetXml != '' && pluginAssetXml != null ? pluginAssetXml : null;
 					} else {
 						tempAsset.transitionPluginID = TransitionTypes.NONE;
 						tempAsset.transitionCross = false;
-						tempAsset.transitionLabel = KalturaApplication.getInstance().getTransitionLabel(tempAsset.transitionPluginID);
+						tempAsset.transitionLabel = VidiunApplication.getInstance().getTransitionLabel(tempAsset.transitionPluginID);
 						if (tempAsset.transitionPluginID.toLowerCase() != TransitionTypes.NONE.toLowerCase()) {
 							if (tempAsset.transitionLabel == nullTransitionLabel) {
 								//transition doesn't really exist -
@@ -371,7 +371,7 @@ package com.kaltura.roughcut.sdl
 						tempAsset.transitionLength = 0;
 						transitionAsset = AssetsFactory.create (MediaTypes.TRANSITION, "null", '0',
 												tempAsset.entryName + ".AssetTransition",
-												KalturaApplication.getInstance().getTransitionThumbnail(tempAsset.transitionPluginID), tempAsset.transitionPluginID,
+												VidiunApplication.getInstance().getTransitionThumbnail(tempAsset.transitionPluginID), tempAsset.transitionPluginID,
 												tempAsset.transitionLength, tempAsset.transitionLength, 0, 0, tempAsset.transitionPluginID, tempAsset.transitionLength);
 						tempAsset.transitionAsset = transitionAsset;
 						tempAsset.transitionAsset.transitionCross = tempAsset.transitionCross;
@@ -441,7 +441,7 @@ package com.kaltura.roughcut.sdl
 					//we use the rule "not == silence" so in the future we can handle different types of audio assets.
 
 					//get the original asset to validate with:
-					validAsset = all_assets.getValue(p.@k_id);
+					validAsset = all_assets.getValue(p.@v_id);
 					origineType = MediaTypes.AUDIO;
 					if (validAsset != null)
 					{					//AUDIO:
@@ -451,7 +451,7 @@ package com.kaltura.roughcut.sdl
 					} else {
 						if (!validate_sdl)
 						{
-							tempAsset = AssetsFactory.create (origineType, 'null', p.@k_id, p.@name, '', p.@url,
+							tempAsset = AssetsFactory.create (origineType, 'null', p.@v_id, p.@name, '', p.@url,
 														Number(p.StreamInfo.@len_time), Number(p.StreamInfo.@len_time), Number(p.StreamInfo.@start_time),
 														Number(p.StreamInfo.@pan), String(p.EndTransition.@type), Number(p.StreamInfo.@len_time) - Number(p.EndTransition.@StartTime));
 						}
@@ -503,7 +503,7 @@ package com.kaltura.roughcut.sdl
 			for each (p in originalSDL.Plugins.Overlays.Plugin)
 			{
 				duration = Number(p.@length);
-				tempThumbUrl = KalturaApplication.getInstance().getPluginThumbnail(p.@type, MediaTypes.OVERLAY);
+				tempThumbUrl = VidiunApplication.getInstance().getPluginThumbnail(p.@type, MediaTypes.OVERLAY);
 				pluginAsset = AssetsFactory.create (MediaTypes.OVERLAY, 'null', '-1', p.name, tempThumbUrl, p.@type, duration, duration,
 												 0, 0, TransitionTypes.NONE, 0);
 				pluginAsset.seqStartPlayTime = Number(p.@StartTime);
@@ -516,7 +516,7 @@ package com.kaltura.roughcut.sdl
 			for each (p in originalSDL.Plugins.Effects.Plugin)
 			{
 				duration = Number(p.@length);
-				tempThumbUrl = KalturaApplication.getInstance().getPluginThumbnail(p.@type, MediaTypes.OVERLAY);
+				tempThumbUrl = VidiunApplication.getInstance().getPluginThumbnail(p.@type, MediaTypes.OVERLAY);
 				pluginAsset = AssetsFactory.create (MediaTypes.EFFECT, 'null', '-1', p.name, tempThumbUrl, p.@type, duration, duration,
 												 0, 0, TransitionTypes.NONE, 0);
 				pluginAsset.seqStartPlayTime = Number(p.@StartTime);
@@ -526,7 +526,7 @@ package com.kaltura.roughcut.sdl
 				sequenceEffectsData.push (pluginAsset);
 			}
 
-			// The kshow_id provided has no sequence edited.
+			// The vshow_id provided has no sequence edited.
 			if (sequenceVideoData.length == 0 && sequenceAudioData.length == 0)
 			{
 				trace ("\n\n ====== Loaded empty show ======= \n\n");
@@ -559,7 +559,7 @@ package com.kaltura.roughcut.sdl
 								<MetaData>
 									<Publish>
 										<Application>
-											{(editorType == 1 ? 'kalturaSimpleEditor' : 'kalturaAdvancedEditor')}
+											{(editorType == 1 ? 'vidiunSimpleEditor' : 'vidiunAdvancedEditor')}
 										</Application>
 									</Publish>
 									<SeqDuration>
@@ -642,7 +642,7 @@ package com.kaltura.roughcut.sdl
 				} else {
 					vidURLRelative = parsedAsset.thumbnailURL;
 				}
-				VidAsset = <vidAsset k_id={parsedAsset.entryId} type={MediaTypes.translateIntTypeToString(parsedAsset.mediaType)} name={parsedAsset.entryName} url={parsedAsset.mediaURL}>
+				VidAsset = <vidAsset v_id={parsedAsset.entryId} type={MediaTypes.translateIntTypeToString(parsedAsset.mediaType)} name={parsedAsset.entryName} url={parsedAsset.mediaURL}>
 								<StreamInfo file_name={vidURLRelative}
 									posX="0" posY="0" start_byte="-1" end_byte="-1" total_bytes="-1" real_seek_time="-1" start_time={parsedAsset.startTime} len_time={parsedAsset.length}
 									volume={parsedAsset.audioGraph.getAverageVolume()} pan={parsedAsset.audioBalance} isSingleFrame="0" Clipped_Start={parsedAsset.startTime} Clipped_Len={parsedAsset.length} />
@@ -668,7 +668,7 @@ package com.kaltura.roughcut.sdl
 					vidURLRelative = parsedAsset.clipedStreamURL.substring(relativeURLIdx, parsedAsset.clipedStreamURL.length);
 				}
 				assetType = MediaTypes.translateIntTypeToString(parsedAsset.mediaType);
-				AudAsset = <AudAsset k_id={parsedAsset.entryId} type={assetType} name={parsedAsset.entryName} url={parsedAsset.mediaURL}>
+				AudAsset = <AudAsset v_id={parsedAsset.entryId} type={assetType} name={parsedAsset.entryName} url={parsedAsset.mediaURL}>
 								<StreamInfo file_name={vidURLRelative}
 									start_byte="-1" end_byte="-1" total_bytes="-1" real_seek_time="-1" start_time={parsedAsset.startTime} len_time={parsedAsset.length}
 									volume={parsedAsset.audioGraph.getAverageVolume()} pan={parsedAsset.audioBalance} />
@@ -693,7 +693,7 @@ package com.kaltura.roughcut.sdl
 				}
 			}
 			PluginAsset = null;
-			var tempE:KEffect;
+			var tempE:VEffect;
 			N = roughcutTimelines.effectsAssets.length;
 			for (i = 0; i < N; ++i)
 			{
@@ -714,19 +714,19 @@ package com.kaltura.roughcut.sdl
 }
 
 /*
-<vidAsset k_id={entry id on kaltura server} type={VIDEO | AUDIO | SOLID | IMAGE | SILENCE | VOICE} name={name of entry on kaltura server} url={url of file}>
+<vidAsset v_id={entry id on vidiun server} type={VIDEO | AUDIO | SOLID | IMAGE | SILENCE | VOICE} name={name of entry on vidiun server} url={url of file}>
 	<StreamInfo file_name={file name} posX="0" posY="0" start_byte="-1" end_byte="-1" total_bytes="-1" real_seek_time="-1" start_time={0-maximum length of original file} len_time={length in seconds} volume={the volume specific to the asset} pan={the audio balance specific to the asset} Clipped_Start={the time we cut the asset relative to the original stream} Clipped_Len={the duration we cut the asset relative to the original stream} />
-	<EndTransition cross={1 if this transition performs cross between this asset and the following or 0 if it affect only this asset} type={type of transition - the id of the plugin on kaltura server} StartTime={the time in seconds relative to the asset duration on which the transition should start} length={the duration of the transition - in seconds}>
+	<EndTransition cross={1 if this transition performs cross between this asset and the following or 0 if it affect only this asset} type={type of transition - the id of the plugin on vidiun server} StartTime={the time in seconds relative to the asset duration on which the transition should start} length={the duration of the transition - in seconds}>
 		{transition plugin specific values and description}
 	</EndTransition>
-	<AssetEffect type={type of effect - the id of the plugin on kaltura server} StartTime={the time in seconds relative to the asset duration on which the effect should start} length={the duration of the effect - in seconds}>
+	<AssetEffect type={type of effect - the id of the plugin on vidiun server} StartTime={the time in seconds relative to the asset duration on which the effect should start} length={the duration of the effect - in seconds}>
 		{effect plugin specific values and description}
 	</AssetEffect>
 	<VolumePoints>
 		<VolumePoint time={0-length} volume={0-1} />
 	</VolumePoints>
 </vidAsset>
-<Plugin type={type of plugin on the kaltura server} StartTime={the global sequence time in seconds at which plugin starts to affect} length={the duration of the plugin in seconds}>
+<Plugin type={type of plugin on the vidiun server} StartTime={the global sequence time in seconds at which plugin starts to affect} length={the duration of the plugin in seconds}>
 	{specific plugin elements}
 </Plugin>
 */

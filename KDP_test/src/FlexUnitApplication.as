@@ -2,7 +2,7 @@ package
 {
 	import Array;
 	
-	import com.kaltura.kdpfl.DummySuit;
+	import com.vidiun.vdpfl.DummySuit;
 	
 	import flash.display.Sprite;
 	
@@ -19,13 +19,13 @@ package
 		{
 			var testRunner:FlexUnitTestRunnerUIAS=new FlexUnitTestRunnerUIAS();
 			this.addChild(testRunner); 
-			testRunner.runWithFlexUnit4Runner(currentRunTestSuite(), "KDP_test");
+			testRunner.runWithFlexUnit4Runner(currentRunTestSuite(), "VDP_test");
 		}
 		
 		public function currentRunTestSuite():Array
 		{
 			var testsToRun:Array = new Array();
-			testsToRun.push(com.kaltura.kdpfl.DummySuit);
+			testsToRun.push(com.vidiun.vdpfl.DummySuit);
 			return testsToRun;
 		}
 	}

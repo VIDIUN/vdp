@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.BaseFlexVo;
+	import com.vidiun.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaCategory extends BaseFlexVo
+	public dynamic class VidiunCategory extends BaseFlexVo
 	{
 		/**
 		* The id of the Category
@@ -102,35 +102,35 @@ package com.kaltura.vo
 		/**
 		* If category will be returned for list action.
 		* 
-		* @see com.kaltura.types.KalturaAppearInListType
+		* @see com.vidiun.types.VidiunAppearInListType
 		**/
 		public var appearInList : int = int.MIN_VALUE;
 
 		/**
 		* defines the privacy of the entries that assigned to this category
 		* 
-		* @see com.kaltura.types.KalturaPrivacyType
+		* @see com.vidiun.types.VidiunPrivacyType
 		**/
 		public var privacy : int = int.MIN_VALUE;
 
 		/**
 		* If Category members are inherited from parent category or set manualy.
 		* 
-		* @see com.kaltura.types.KalturaInheritanceType
+		* @see com.vidiun.types.VidiunInheritanceType
 		**/
 		public var inheritanceType : int = int.MIN_VALUE;
 
 		/**
 		* Who can ask to join this category
 		* 
-		* @see com.kaltura.types.KalturaUserJoinPolicyType
+		* @see com.vidiun.types.VidiunUserJoinPolicyType
 		**/
 		public var userJoinPolicy : int = int.MIN_VALUE;
 
 		/**
 		* Default permissionLevel for new users
 		* 
-		* @see com.kaltura.types.KalturaCategoryUserPermissionLevel
+		* @see com.vidiun.types.VidiunCategoryUserPermissionLevel
 		**/
 		public var defaultPermissionLevel : int = int.MIN_VALUE;
 
@@ -155,7 +155,7 @@ package com.kaltura.vo
 		/**
 		* who can assign entries to this category
 		* 
-		* @see com.kaltura.types.KalturaContributionPolicyType
+		* @see com.vidiun.types.VidiunContributionPolicyType
 		**/
 		public var contributionPolicy : int = int.MIN_VALUE;
 
@@ -186,7 +186,7 @@ package com.kaltura.vo
 		/**
 		* Status
 		* 
-		* @see com.kaltura.types.KalturaCategoryStatus
+		* @see com.vidiun.types.VidiunCategoryStatus
 		**/
 		public var status : int = int.MIN_VALUE;
 
@@ -211,7 +211,7 @@ package com.kaltura.vo
 		/**
 		* Enable client side applications to define how to sort the category child categories
 		* 
-		* @see com.kaltura.types.KalturaCategoryOrderBy
+		* @see com.vidiun.types.VidiunCategoryOrderBy
 		**/
 		public var defaultOrderBy : String = null;
 
@@ -224,7 +224,7 @@ package com.kaltura.vo
 		/**
 		* Moderation to add entries to this category by users that are not of permission level Manager or Moderator.
 		* 
-		* @see com.kaltura.types.KalturaNullableBoolean
+		* @see com.vidiun.types.VidiunNullableBoolean
 		**/
 		public var moderation : int = int.MIN_VALUE;
 

@@ -3,7 +3,7 @@
 	<name>visualDemoPlugin</name>
 	<comment></comment>
 	<projects>
-		<project>kdp</project>
+		<project>vdp</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

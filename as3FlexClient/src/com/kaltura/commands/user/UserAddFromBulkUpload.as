@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,27 +25,27 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.user
+package com.vidiun.commands.user
 {
 		import flash.net.FileReference;
-		import com.kaltura.net.KalturaFileCall;
-		import com.kaltura.vo.KalturaBulkUploadJobData;
-		import com.kaltura.vo.KalturaBulkUploadUserData;
-	import com.kaltura.delegates.user.UserAddFromBulkUploadDelegate;
+		import com.vidiun.net.VidiunFileCall;
+		import com.vidiun.vo.VidiunBulkUploadJobData;
+		import com.vidiun.vo.VidiunBulkUploadUserData;
+	import com.vidiun.delegates.user.UserAddFromBulkUploadDelegate;
 
 	/**
 	**/
-	public class UserAddFromBulkUpload extends KalturaFileCall
+	public class UserAddFromBulkUpload extends VidiunFileCall
 	{
 		public var fileData:Object;
 
 		
 		/**
 		* @param fileData Object - FileReference or ByteArray
-		* @param bulkUploadData KalturaBulkUploadJobData
-		* @param bulkUploadUserData KalturaBulkUploadUserData
+		* @param bulkUploadData VidiunBulkUploadJobData
+		* @param bulkUploadUserData VidiunBulkUploadUserData
 		**/
-		public function UserAddFromBulkUpload( fileData : Object,bulkUploadData : KalturaBulkUploadJobData=null,bulkUploadUserData : KalturaBulkUploadUserData=null )
+		public function UserAddFromBulkUpload( fileData : Object,bulkUploadData : VidiunBulkUploadJobData=null,bulkUploadUserData : VidiunBulkUploadUserData=null )
 		{
 			service= 'user';
 			action= 'addFromBulkUpload';
@@ -55,12 +55,12 @@ package com.kaltura.commands.user
 			var keyValArr : Array = new Array();
 			this.fileData = fileData;
 			if (bulkUploadData) { 
-				keyValArr = kalturaObject2Arrays(bulkUploadData, 'bulkUploadData');
+				keyValArr = vidiunObject2Arrays(bulkUploadData, 'bulkUploadData');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 
 			if (bulkUploadUserData) { 
-				keyValArr = kalturaObject2Arrays(bulkUploadUserData, 'bulkUploadUserData');
+				keyValArr = vidiunObject2Arrays(bulkUploadUserData, 'bulkUploadUserData');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

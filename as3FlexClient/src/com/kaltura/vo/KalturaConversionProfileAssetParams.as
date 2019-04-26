@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.BaseFlexVo;
+	import com.vidiun.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaConversionProfileAssetParams extends BaseFlexVo
+	public dynamic class VidiunConversionProfileAssetParams extends BaseFlexVo
 	{
 		/**
 		* The id of the conversion profile
@@ -47,14 +47,14 @@ package com.kaltura.vo
 		/**
 		* The ingestion origin of the asset params
 		* 
-		* @see com.kaltura.types.KalturaFlavorReadyBehaviorType
+		* @see com.vidiun.types.VidiunFlavorReadyBehaviorType
 		**/
 		public var readyBehavior : int = int.MIN_VALUE;
 
 		/**
 		* The ingestion origin of the asset params
 		* 
-		* @see com.kaltura.types.KalturaAssetParamsOrigin
+		* @see com.vidiun.types.VidiunAssetParamsOrigin
 		**/
 		public var origin : int = int.MIN_VALUE;
 
@@ -67,14 +67,14 @@ package com.kaltura.vo
 		/**
 		* Starts conversion even if the decision layer reduced the configuration to comply with the source
 		* 
-		* @see com.kaltura.types.KalturaNullableBoolean
+		* @see com.vidiun.types.VidiunNullableBoolean
 		**/
 		public var forceNoneComplied : int = int.MIN_VALUE;
 
 		/**
 		* Specifies how to treat the flavor after conversion is finished
 		* 
-		* @see com.kaltura.types.KalturaAssetParamsDeletePolicy
+		* @see com.vidiun.types.VidiunAssetParamsDeletePolicy
 		**/
 		public var deletePolicy : int = int.MIN_VALUE;
 

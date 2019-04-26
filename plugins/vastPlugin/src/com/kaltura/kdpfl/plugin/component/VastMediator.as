@@ -1,14 +1,14 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.ApplicationFacade;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.kdpfl.view.controls.KTrace;
-	import com.kaltura.puremvc.as3.patterns.mediator.SequenceMultiMediator;
-	import com.kaltura.types.KalturaAdProtocolType;
-	import com.kaltura.types.KalturaAdType;
-	import com.kaltura.vo.KalturaAdCuePoint;
+	import com.vidiun.vdpfl.ApplicationFacade;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.SequenceContextType;
+	import com.vidiun.vdpfl.view.controls.VTrace;
+	import com.vidiun.puremvc.as3.patterns.mediator.SequenceMultiMediator;
+	import com.vidiun.types.VidiunAdProtocolType;
+	import com.vidiun.types.VidiunAdType;
+	import com.vidiun.vo.VidiunAdCuePoint;
 	
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -179,21 +179,21 @@ package com.kaltura.kdpfl.plugin.component
 					{
 						var adContext : String = notification.getBody().context;
 						
-						var cuePoint : KalturaAdCuePoint = notification.getBody().cuePoint as KalturaAdCuePoint;
+						var cuePoint : VidiunAdCuePoint = notification.getBody().cuePoint as VidiunAdCuePoint;
 						
-						if ( cuePoint.protocolType == KalturaAdProtocolType.VAST || cuePoint.protocolType == KalturaAdProtocolType.VAST_2_0)
+						if ( cuePoint.protocolType == VidiunAdProtocolType.VAST || cuePoint.protocolType == VidiunAdProtocolType.VAST_2_0)
 						{
 							switch ( adContext )
 							{
 								case SequenceContextType.PRE:
-									if (cuePoint.adType == KalturaAdType.VIDEO)
+									if (cuePoint.adType == VidiunAdType.VIDEO)
 									{
 											_pluginCode.prerollUrlArr.push( cuePoint.sourceUrl );
 											sequenceProxy.vo.preSequenceArr.push(_pluginCode);
 									}
 									break;
 								case SequenceContextType.POST:
-									if (cuePoint.adType == KalturaAdType.VIDEO)
+									if (cuePoint.adType == VidiunAdType.VIDEO)
 									{
 										_pluginCode.postrollUrlArr.push( cuePoint.sourceURL );
 										sequenceProxy.vo.postSequenceArr.push(_pluginCode);
@@ -244,9 +244,9 @@ package com.kaltura.kdpfl.plugin.component
 			sequenceProxy.playNextInSequence();
 		}
 		
-		private function resolveMidrollAd( midrollObject : KalturaAdCuePoint , sequenceProxy: SequenceProxy) : void
+		private function resolveMidrollAd( midrollObject : VidiunAdCuePoint , sequenceProxy: SequenceProxy) : void
 		{
-			if ( midrollObject.adType == KalturaAdType.VIDEO )
+			if ( midrollObject.adType == VidiunAdType.VIDEO )
 			{
 				sendNotification( NotificationType.DO_PAUSE );
 				
@@ -292,7 +292,7 @@ package com.kaltura.kdpfl.plugin.component
 		 * @param o progress notification body
 		 */		
 		private function handlePlayhead(o:Object):void {
-			var duration:Number = (facade.retrieveMediator("kMediaPlayerMediator"))["player"]["duration"];
+			var duration:Number = (facade.retrieveMediator("vMediaPlayerMediator"))["player"]["duration"];
 			var fraction:Number = (o as Number) / duration;
 			if (!_reached25 && fraction > 0.25) {
 				sendNotification("firstQuartileOfAd", {timeSlot:getTimeSlot()});

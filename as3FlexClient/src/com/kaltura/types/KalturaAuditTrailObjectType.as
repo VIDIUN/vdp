@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,14 +25,14 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.types
+package com.vidiun.types
 {
-	public class KalturaAuditTrailObjectType
+	public class VidiunAuditTrailObjectType
 	{
 		public static const BATCH_JOB : String = 'BatchJob';
 		public static const EMAIL_INGESTION_PROFILE : String = 'EmailIngestionProfile';
 		public static const FILE_SYNC : String = 'FileSync';
-		public static const KSHOW_KUSER : String = 'KshowKuser';
+		public static const VSHOW_VUSER : String = 'VshowVuser';
 		public static const METADATA : String = 'Metadata';
 		public static const METADATA_PROFILE : String = 'MetadataProfile';
 		public static const PARTNER : String = 'Partner';
@@ -48,8 +48,8 @@ package com.kaltura.types
 		public static const FLAVOR_PARAMS : String = 'flavorParams';
 		public static const FLAVOR_PARAMS_CONVERSION_PROFILE : String = 'flavorParamsConversionProfile';
 		public static const FLAVOR_PARAMS_OUTPUT : String = 'flavorParamsOutput';
-		public static const KSHOW : String = 'kshow';
-		public static const KUSER : String = 'kuser';
+		public static const VSHOW : String = 'vshow';
+		public static const VUSER : String = 'vuser';
 		public static const MEDIA_INFO : String = 'mediaInfo';
 		public static const MODERATION : String = 'moderation';
 		public static const ROUGHCUT : String = 'roughcutEntry';

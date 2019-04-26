@@ -1,10 +1,10 @@
 package
 {
-	import com.kaltura.kdpfl.model.ExternalInterfaceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.AnnotationsDataMediator;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.strings.NotificationStrings;
+	import com.vidiun.vdpfl.model.ExternalInterfaceProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.plugin.AnnotationsDataMediator;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.strings.NotificationStrings;
 	
 	import fl.core.UIComponent;
 	

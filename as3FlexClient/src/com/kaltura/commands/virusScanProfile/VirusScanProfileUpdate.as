@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.virusScanProfile
+package com.vidiun.commands.virusScanProfile
 {
-		import com.kaltura.vo.KalturaVirusScanProfile;
-	import com.kaltura.delegates.virusScanProfile.VirusScanProfileUpdateDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunVirusScanProfile;
+	import com.vidiun.delegates.virusScanProfile.VirusScanProfileUpdateDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Update exisitng virus scan profile, it is possible to update the virus scan profile id too
 	* 
 	**/
-	public class VirusScanProfileUpdate extends KalturaCall
+	public class VirusScanProfileUpdate extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param virusScanProfileId int
-		* @param virusScanProfile KalturaVirusScanProfile
+		* @param virusScanProfile VidiunVirusScanProfile
 		**/
-		public function VirusScanProfileUpdate( virusScanProfileId : int,virusScanProfile : KalturaVirusScanProfile )
+		public function VirusScanProfileUpdate( virusScanProfileId : int,virusScanProfile : VidiunVirusScanProfile )
 		{
 			service= 'virusscan_virusscanprofile';
 			action= 'update';
@@ -53,7 +53,7 @@ package com.kaltura.commands.virusScanProfile
 			var keyValArr : Array = new Array();
 			keyArr.push('virusScanProfileId');
 			valueArr.push(virusScanProfileId);
-				keyValArr = kalturaObject2Arrays(virusScanProfile, 'virusScanProfile');
+				keyValArr = vidiunObject2Arrays(virusScanProfile, 'virusScanProfile');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

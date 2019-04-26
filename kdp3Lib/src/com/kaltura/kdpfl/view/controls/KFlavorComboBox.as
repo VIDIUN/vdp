@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.type.StreamerType;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.type.StreamerType;
 	
 	import fl.data.DataProvider;
 	
@@ -13,13 +13,13 @@ package com.kaltura.kdpfl.view.controls
 	import org.puremvc.as3.patterns.facade.Facade;
 	
 	/**
-	 * Class KFlavorComboBox represents the uinique Kaltura ComboBox which allows the user to toggle the
-	 * video quality. This ComboBox wil be empty of flavor bitrate values in case the media playing in the KDP is a KalturaMixEntry. 
+	 * Class VFlavorComboBox represents the uinique Vidiun ComboBox which allows the user to toggle the
+	 * video quality. This ComboBox wil be empty of flavor bitrate values in case the media playing in the VDP is a VidiunMixEntry. 
 	 * The data in the ComboBox is displayed in units of kbps (kilo-bytes per second).
 	 * @author Hila
 	 * 
 	 */	
-	public class KFlavorComboBox extends KComboBox
+	public class VFlavorComboBox extends VComboBox
 	{
 		public static const HD_LIMIT:int = 540;
 		public static const HEIGHT_ARRAY:Array = [240, 360, 480, 540, 720, 1080];
@@ -69,7 +69,7 @@ package com.kaltura.kdpfl.view.controls
 		 */		
 		private var _isHttpStreaming : Boolean = false;
 		/**
-		 * This property stands for the current transmission mode of the KDP. Values are "http" (progressive download), "rtmp" (adaptive streaming) or "live" (live streaming media).
+		 * This property stands for the current transmission mode of the VDP. Values are "http" (progressive download), "rtmp" (adaptive streaming) or "live" (live streaming media).
 		 */		
 		private var _streamerType : String;
 		/**
@@ -81,7 +81,7 @@ package com.kaltura.kdpfl.view.controls
 		 */		
 		private var _autoMessage : String = "Automatically Switches Between Bitrates";
 		
-		public var kisOpen : Boolean = false;
+		public var visOpen : Boolean = false;
 		
 		/**
 		 * whether the dropdown is currently displayed 
@@ -138,7 +138,7 @@ package com.kaltura.kdpfl.view.controls
 		 * Constructor 
 		 * 
 		 */	
-		public function KFlavorComboBox()
+		public function VFlavorComboBox()
 		{
 			super();
 			this.labelFunction = flavorLabelFunction;
@@ -255,7 +255,7 @@ package com.kaltura.kdpfl.view.controls
 		{
 			var labelLength : int = data.label.length-this.bitratePostFix.length;
 			var preferedFlavorBitrate : int = parseInt(String(data.label).substr(0,labelLength));
-			if(data == this.selectedItem && !kisOpen){ 
+			if(data == this.selectedItem && !visOpen){ 
 				if (!_flavorArray || !_flavorArray.length)
 				{
 					return "";

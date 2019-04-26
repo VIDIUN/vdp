@@ -3,7 +3,7 @@
 	<name>adaptvPlugin</name>
 	<comment></comment>
 	<projects>
-		<project>KDP3</project>
+		<project>VDP3</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -19,7 +19,7 @@
 		<link>
 			<name>bin-debug</name>
 			<type>2</type>
-			<locationURI>DOCUMENTS/KDP3/html-template/plugins</locationURI>
+			<locationURI>DOCUMENTS/VDP3/html-template/plugins</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

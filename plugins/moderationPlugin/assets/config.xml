@@ -1,8 +1,8 @@
 <layout id="full" skinPath="assets/skin.swf">
 
 	<VBox id="player" width="100%" height="100%" styleName="">
-		<!-- So that a player would be able to play Kaltura mixes -->
-		<Plugin id="kalturaMix" width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand"/>
+		<!-- So that a player would be able to play Vidiun mixes -->
+		<Plugin id="vidiunMix" width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand"/>
 		<!-- this plugins sends statistics events-->
 		<Plugin id="statistics" width="0%" height="0%" includeInLayout="false"/>
 		
@@ -40,7 +40,7 @@
 			<Button id="playBtnControllerScreen" command="play" buttonType="iconButton" focusRectPadding="0"
 					icon="playIcon" overIcon="playIcon" downIcon="playIcon" disabeledIcon="playIcon"
 					selectedUpIcon="pauseIcon" selectedOverIcon="pauseIcon" selectedDownIcon="pauseIcon"
-					selectedDisabledIcon="pauseIcon" k_buttonType="buttonIconControllerArea" color1="11184810"
+					selectedDisabledIcon="pauseIcon" v_buttonType="buttonIconControllerArea" color1="11184810"
 					color2="16777215" color3="16777215" color4="11184810" color5="0" font="Arial"/>
 			<Button id="liveToggleStatus" toggle="true" color1="0xFF0000" color2="0xFF0000" upIcon="onAirIcon"
 					overIcon="onAirIcon" downIcon="onAirIcon" disabeledIcon="onAirIcon" selectedUpIcon="offlineIcon"
@@ -64,25 +64,25 @@
 			<VolumeBar id="volumeBar" styleName="volumeBtn" width="20" buttonType="iconButton" color1="11184810"
 					   color2="16777215" color3="16777215" color4="11184810" color5="0" font="Arial"/>
 			<!-- volume controller: mute/unmute and volume bar  -->
-			<Button id="shareBtnControllerScreen" buttonType="iconButton" kClick="sendNotification('doGigya')"
+			<Button id="shareBtnControllerScreen" buttonType="iconButton" vClick="sendNotification('doGigya')"
 					height="22" styleName="controllerScreen" focusRectPadding="0" icon="shareIcon"
-					k_buttonType="buttonIconControllerArea" tooltip="share with friends" color1="11184810"
+					v_buttonType="buttonIconControllerArea" tooltip="share with friends" color1="11184810"
 					color2="16777215" color3="16777215" color4="11184810" color5="0" font="Arial"/>
 			<!-- flagging button  -->
-			<Button id="flagBtnControllerScreen" buttonType="iconButton" kClick="sendNotification('flagForReview')"
+			<Button id="flagBtnControllerScreen" buttonType="iconButton" vClick="sendNotification('flagForReview')"
 					height="22" styleName="controllerScreen" focusRectPadding="0" icon="flagIcon"
-					k_buttonType="buttonIconControllerArea" tooltip="flag content" color1="11184810"
+					v_buttonType="buttonIconControllerArea" tooltip="flag content" color1="11184810"
 					color2="16777215" color3="16777215" color4="11184810" color5="0" font="Arial"/>
 			<!-- toggle fullscreen mode button  -->
 			<Button id="fullScreenBtnControllerScreen" command="fullScreen" buttonType="iconButton" height="22"
 					styleName="controllerScreen" icon="openFullScreenIcon" selectedUpIcon="closeFullScreenIcon"
 					selectedOverIcon="closeFullScreenIcon" selectedDownIcon="closeFullScreenIcon"
 					selectedDisabledIcon="closeFullScreenIcon" focusRectPadding="0"
-					k_buttonType="buttonIconControllerArea" upTooltip="open fullscreen"
+					v_buttonType="buttonIconControllerArea" upTooltip="open fullscreen"
 					selectedTooltip="close fullscreen" color1="11184810" color2="16777215" color3="16777215"
 					color4="11184810" color5="0" font="Arial"/>
-			<Button id="kalturaLogo" height="50" width="100" kClick="navigate('http://www.kaltura.com')"
-					styleName="controllerScreen" icon="kalturaLogo"/>
+			<Button id="vidiunLogo" height="50" width="100" vClick="navigate('http://www.vidiun.com')"
+					styleName="controllerScreen" icon="vidiunLogo"/>
 		</HBox>
 	</VBox>
 	<screens>
@@ -95,11 +95,11 @@
 							labelPlacement="top" label="Play" styleName="onScreenBtn" upIcon="playIcon"
 							overIcon="playIcon" downIcon="playIcon" disabeledIcon="playIcon" selectedUpIcon="playIcon"
 							selectedOverIcon="playIcon" selectedDownIcon="playIcon" selectedDisabledIcon="playIcon"
-							k_buttonType="buttonIconControllerArea" tooltip="Play video" color1="14540253"
+							v_buttonType="buttonIconControllerArea" tooltip="Play video" color1="14540253"
 							color2="16777215" color3="3355443" color4="10066329" color5="16777215" font="Arial"/>
-					<Button id="shareBtnStartScreen" kClick="sendNotification('doGigya')" buttonType="onScreenButton"
+					<Button id="shareBtnStartScreen" vClick="sendNotification('doGigya')" buttonType="onScreenButton"
 							minWidth="60" labelPlacement="top" label="Share" styleName="onScreenBtn" upIcon="shareIcon"
-							k_buttonType="buttonIconControllerArea" tooltip="share with friends" uiconfId="48502"
+							v_buttonType="buttonIconControllerArea" tooltip="share with friends" uiconfId="48502"
 							color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215"
 							font="Arial"/>
 				</Tile>
@@ -115,11 +115,11 @@
 							labelPlacement="top" label="Play" styleName="onScreenBtn" upIcon="playIcon"
 							overIcon="playIcon" downIcon="playIcon" disabeledIcon="playIcon" selectedUpIcon="playIcon"
 							selectedOverIcon="playIcon" selectedDownIcon="playIcon" selectedDisabledIcon="playIcon"
-							k_buttonType="buttonIconControllerArea" tooltip="Play video" color1="14540253"
+							v_buttonType="buttonIconControllerArea" tooltip="Play video" color1="14540253"
 							color2="16777215" color3="3355443" color4="10066329" color5="16777215" font="Arial"/>
-					<Button id="shareBtnPauseScreen" kClick="sendNotification('doGigya')" buttonType="onScreenButton"
+					<Button id="shareBtnPauseScreen" vClick="sendNotification('doGigya')" buttonType="onScreenButton"
 							minWidth="60" labelPlacement="top" label="Share" styleName="onScreenBtn" upIcon="shareIcon"
-							k_buttonType="buttonIconControllerArea" tooltip="share with friends" uiconfId="48502"
+							v_buttonType="buttonIconControllerArea" tooltip="share with friends" uiconfId="48502"
 							color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215"
 							font="Arial"/>
 				</Tile>
@@ -131,9 +131,9 @@
 			<VBox id="playContainer" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
 				<Spacer height="100%"/>
 				<Tile id="playTile" width="100%" verticalGap="10" verticalAlign="middle" horizontalAlign="center">
-					<Button id="shareBtnPlayScreen" kClick="sendNotification('doGigya')" buttonType="onScreenButton"
+					<Button id="shareBtnPlayScreen" vClick="sendNotification('doGigya')" buttonType="onScreenButton"
 							minWidth="60" labelPlacement="top" label="Share" styleName="onScreenBtn" upIcon="shareIcon"
-							k_buttonType="buttonIconControllerArea" tooltip="share with friends" uiconfId="48502"
+							v_buttonType="buttonIconControllerArea" tooltip="share with friends" uiconfId="48502"
 							color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215"
 							font="Arial"/>
 				</Tile>
@@ -145,14 +145,14 @@
 			<VBox id="endContainer" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
 				<Spacer height="100%"/>
 				<Tile id="endTile" width="100%" verticalGap="10" verticalAlign="middle" horizontalAlign="center">
-					<Button id="replayBtnEndScreen" kClick="sendNotification('doPlay')" buttonType="onScreenButton"
+					<Button id="replayBtnEndScreen" vClick="sendNotification('doPlay')" buttonType="onScreenButton"
 							minWidth="60" labelPlacement="top" label="replay" styleName="onScreenBtn"
-							upIcon="replayIcon" k_buttonType="buttonIconControllerArea" tooltip="replay"
+							upIcon="replayIcon" v_buttonType="buttonIconControllerArea" tooltip="replay"
 							color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215"
 							font="Arial"/>
-					<Button id="shareBtnEndScreen" kClick="sendNotification('doGigya')" buttonType="onScreenButton"
+					<Button id="shareBtnEndScreen" vClick="sendNotification('doGigya')" buttonType="onScreenButton"
 							minWidth="60" labelPlacement="top" label="Share" styleName="onScreenBtn" upIcon="shareIcon"
-							k_buttonType="buttonIconControllerArea" tooltip="share with friends" uiconfId="48502"
+							v_buttonType="buttonIconControllerArea" tooltip="share with friends" uiconfId="48502"
 							color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215"
 							font="Arial"/>
 				</Tile>

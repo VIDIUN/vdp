@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,17 +25,17 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.baseEntry
+package com.vidiun.commands.baseEntry
 {
 		import flash.net.FileReference;
-		import com.kaltura.net.KalturaFileCall;
-	import com.kaltura.delegates.baseEntry.BaseEntryUploadDelegate;
+		import com.vidiun.net.VidiunFileCall;
+	import com.vidiun.delegates.baseEntry.BaseEntryUploadDelegate;
 
 	/**
-	* Upload a file to Kaltura, that can be used to create an entry.
+	* Upload a file to Vidiun, that can be used to create an entry.
 	* 
 	**/
-	public class BaseEntryUpload extends KalturaFileCall
+	public class BaseEntryUpload extends VidiunFileCall
 	{
 		public var fileData:Object;
 

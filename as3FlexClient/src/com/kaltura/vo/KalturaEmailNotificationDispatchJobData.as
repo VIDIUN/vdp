@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,20 +25,20 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.KalturaEmailNotificationRecipientJobData;
+	import com.vidiun.vo.VidiunEmailNotificationRecipientJobData;
 
-	import com.kaltura.vo.KalturaEmailNotificationRecipientJobData;
+	import com.vidiun.vo.VidiunEmailNotificationRecipientJobData;
 
-	import com.kaltura.vo.KalturaEmailNotificationRecipientJobData;
+	import com.vidiun.vo.VidiunEmailNotificationRecipientJobData;
 
-	import com.kaltura.vo.KalturaEmailNotificationRecipientJobData;
+	import com.vidiun.vo.VidiunEmailNotificationRecipientJobData;
 
-	import com.kaltura.vo.KalturaEventNotificationDispatchJobData;
+	import com.vidiun.vo.VidiunEventNotificationDispatchJobData;
 
 	[Bindable]
-	public dynamic class KalturaEmailNotificationDispatchJobData extends KalturaEventNotificationDispatchJobData
+	public dynamic class VidiunEmailNotificationDispatchJobData extends VidiunEventNotificationDispatchJobData
 	{
 		/**
 		* Define the email sender email
@@ -56,30 +56,30 @@ package com.kaltura.vo
 		* Email recipient emails and names, key is mail address and value is the name
 		* 
 		**/
-		public var to : KalturaEmailNotificationRecipientJobData;
+		public var to : VidiunEmailNotificationRecipientJobData;
 
 		/**
 		* Email cc emails and names, key is mail address and value is the name
 		* 
 		**/
-		public var cc : KalturaEmailNotificationRecipientJobData;
+		public var cc : VidiunEmailNotificationRecipientJobData;
 
 		/**
 		* Email bcc emails and names, key is mail address and value is the name
 		* 
 		**/
-		public var bcc : KalturaEmailNotificationRecipientJobData;
+		public var bcc : VidiunEmailNotificationRecipientJobData;
 
 		/**
 		* Email addresses that a replies should be sent to, key is mail address and value is the name
 		* 
 		**/
-		public var replyTo : KalturaEmailNotificationRecipientJobData;
+		public var replyTo : VidiunEmailNotificationRecipientJobData;
 
 		/**
 		* Define the email priority
 		* 
-		* @see com.kaltura.types.KalturaEmailNotificationTemplatePriority
+		* @see com.vidiun.types.VidiunEmailNotificationTemplatePriority
 		**/
 		public var priority : int = int.MIN_VALUE;
 
@@ -158,10 +158,10 @@ package com.kaltura.vo
 					result = '';
 					break;
 				case 'customHeaders':
-					result = 'KalturaKeyValue';
+					result = 'VidiunKeyValue';
 					break;
 				case 'contentParameters':
-					result = 'KalturaKeyValue';
+					result = 'VidiunKeyValue';
 					break;
 				default:
 					result = super.getElementType(arrayName);

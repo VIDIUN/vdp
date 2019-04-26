@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
 
-import com.kaltura.kdpfl.component.IComponent;
-import com.kaltura.kdpfl.util.KColorUtil;
+import com.vidiun.vdpfl.component.IComponent;
+import com.vidiun.vdpfl.util.VColorUtil;
 
 import fl.controls.Slider;
 import fl.controls.SliderDirection;
@@ -12,7 +12,7 @@ import flash.display.Sprite;
 import flash.utils.getDefinitionByName;
 
 
-public class KSlider extends Slider implements IComponent
+public class VSlider extends Slider implements IComponent
 {
 	public var progress:Sprite;
 	/**
@@ -47,7 +47,7 @@ public class KSlider extends Slider implements IComponent
 		return mergeStyles( defaultStyles, Slider.getStyleDefinition() );
 	}
 	
-	public function KSlider()
+	public function VSlider()
 	{
 		super();
 	}
@@ -121,10 +121,10 @@ public class KSlider extends Slider implements IComponent
 		addChildAt( progress, 1 );
 		//color the progress bar
 		if(oldProgress && color1!=-1)
-			 KColorUtil.colorDisplayObject(oldProgress , color1);
+			 VColorUtil.colorDisplayObject(oldProgress , color1);
 		if(progress  && color1!=-1)
 		{
-			 KColorUtil.colorDisplayObject(progress , color1);
+			 VColorUtil.colorDisplayObject(progress , color1);
 		}
 		
 		if( oldProgress!=null && oldProgress!=progress )
@@ -133,12 +133,12 @@ public class KSlider extends Slider implements IComponent
 		}
 		if(track && color2!=-1)
 		{
-			 KColorUtil.colorDisplayObject(track , color2); 
+			 VColorUtil.colorDisplayObject(track , color2); 
 		}
 		
 		if(thumb && color3!=-1)
 		{
-			KColorUtil.colorDisplayObject(thumb , color3); 
+			VColorUtil.colorDisplayObject(thumb , color3); 
 		}
 		progress.width = track.width;
 		progress.alpha = 1;

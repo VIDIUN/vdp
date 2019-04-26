@@ -1,8 +1,8 @@
-package com.kaltura
+package com.vidiun
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.ISequencePlugin;
-	import com.kaltura.vo.KalturaMetadata;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.ISequencePlugin;
+	import com.vidiun.vo.VidiunMetadata;
 	
 	import flash.display.Sprite;
 	

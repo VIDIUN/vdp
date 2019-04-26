@@ -1,4 +1,4 @@
-package com.kaltura.osmf.image
+package com.vidiun.osmf.image
 {
 	import org.osmf.elements.ImageElement;
 	import org.osmf.elements.ImageLoader;ImageLoader;

@@ -5,17 +5,17 @@
 
 package
 {
-	import com.kaltura.kdpfl.dummy.testcase1;
+	import com.vidiun.vdpfl.dummy.testcase1;
 	
 	import flash.display.Sprite;
-	import com.kaltura.kdpfl.dummy.testcase2;
-	import com.kaltura.kdpfl.DummySuit;
+	import com.vidiun.vdpfl.dummy.testcase2;
+	import com.vidiun.vdpfl.DummySuit;
 	
 	public class FlexUnitCompilerApplication extends Sprite {
-		private var com_kaltura_kdpfl_DummySuit_obj:com.kaltura.kdpfl.DummySuit;
-		private var com_kaltura_kdpfl_dummy_testcase2_obj:com.kaltura.kdpfl.dummy.testcase2;
+		private var com_vidiun_vdpfl_DummySuit_obj:com.vidiun.vdpfl.DummySuit;
+		private var com_vidiun_vdpfl_dummy_testcase2_obj:com.vidiun.vdpfl.dummy.testcase2;
 		
 		
-		private var com_kaltura_kdpfl_testcase1_obj:com.kaltura.kdpfl.dummy.testcase1;
+		private var com_vidiun_vdpfl_testcase1_obj:com.vidiun.vdpfl.dummy.testcase1;
 	}
 }

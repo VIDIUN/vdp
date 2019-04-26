@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,14 +25,14 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.KalturaAuditTrailInfo;
+	import com.vidiun.vo.VidiunAuditTrailInfo;
 
-	import com.kaltura.vo.BaseFlexVo;
+	import com.vidiun.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaAuditTrail extends BaseFlexVo
+	public dynamic class VidiunAuditTrail extends BaseFlexVo
 	{
 		/**
 		**/
@@ -49,12 +49,12 @@ package com.kaltura.vo
 		public var parsedAt : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaAuditTrailStatus
+		* @see com.vidiun.types.VidiunAuditTrailStatus
 		**/
 		public var status : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaAuditTrailObjectType
+		* @see com.vidiun.types.VidiunAuditTrailObjectType
 		**/
 		public var auditObjectType : String = null;
 
@@ -67,7 +67,7 @@ package com.kaltura.vo
 		public var relatedObjectId : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaAuditTrailObjectType
+		* @see com.vidiun.types.VidiunAuditTrailObjectType
 		**/
 		public var relatedObjectType : String = null;
 
@@ -92,20 +92,20 @@ package com.kaltura.vo
 		public var userId : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaAuditTrailAction
+		* @see com.vidiun.types.VidiunAuditTrailAction
 		**/
 		public var action : String = null;
 
 		/**
 		**/
-		public var data : KalturaAuditTrailInfo;
+		public var data : VidiunAuditTrailInfo;
 
 		/**
 		**/
-		public var ks : String = null;
+		public var vs : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaAuditTrailContext
+		* @see com.vidiun.types.VidiunAuditTrailContext
 		**/
 		public var context : int = int.MIN_VALUE;
 

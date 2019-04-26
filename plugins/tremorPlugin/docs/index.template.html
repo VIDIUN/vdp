@@ -42,8 +42,8 @@ var requiredRevision = ${version_revision};
 
  function doLoadVideo() {
 	my_entry = document.getElementById("my_entry").value;
-	my_kdp = document.getElementById("${swf}");
-	my_kdp.sendNotification("changeMedia",{entryId:my_entry.toString(),flavorId:my_entry2.toString()});
+	my_vdp = document.getElementById("${swf}");
+	my_vdp.sendNotification("changeMedia",{entryId:my_entry.toString(),flavorId:my_entry2.toString()});
  }
  
  function get(el) {
@@ -51,8 +51,8 @@ var requiredRevision = ${version_revision};
  }
  
  function play() {
- 	my_kdp = document.getElementById("${swf}");
- 	my_kdp.sendNotification("doPlay");
+ 	my_vdp = document.getElementById("${swf}");
+ 	my_vdp.sendNotification("doPlay");
  }
  function gotoEditorWindow(a) {
 	alert('gotoEditorWindow with entry : '+a);
@@ -76,14 +76,14 @@ var requiredRevision = ${version_revision};
 	alert('customFunc5 with entry : '+a);
  }
  function hideAndShow(component,val) {
- 	my_kdp = document.getElementById("${swf}");
-	my_kdp.sendNotification("showUiElement",{id:component, show:val});
+ 	my_vdp = document.getElementById("${swf}");
+	my_vdp.sendNotification("showUiElement",{id:component, show:val});
  }
  function jsCallBackReady(parm){
- 	alert('kdp ready');
+ 	alert('vdp ready');
  }
  function cleanMedia() {
- 	my_kdp.sendNotification("cleanMedia");
+ 	my_vdp.sendNotification("cleanMedia");
  }
 // -->
 </script>
@@ -141,12 +141,12 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 	// if we've detected an acceptable version
 	// embed the Flash Content SWF when all tests are passed
 
-	var pl = escape("http://cdnkaldev.kaltura.com/index.php/partnerservices2/executeplaylist%3Fuid%3D%26format%3D8%26playlist_id%3D0_mybhrtmj%26partner_id%3D569%26subp_id%3D56900%26ks%3D%7Bks%7D");
-	var playlistUrl =  escape( "http://kaldev.kaltura.com/index.php/partnerservices2/executeplaylist?uid=&format=8&subp_id=56900&ks={ks}&playlist_id=0_azj5yzj4&partner_id=569");
-	var playlistUrl1 = escape( "http://kaldev.kaltura.com/index.php/partnerservices2/executeplaylist?uid=&partner_id=1&subp_id=100&format=8&ks={ks}&playlist_id=0_ugfsgu6q");
-	var playlistUrl2 = escape( "http://kaldev.kaltura.com/index.php/partnerservices2/executeplaylist?uid=&format=8&subp_id=100&ks={ks}&playlist_id=00_2594arsy1g&partner_id=1");
-	var playlistUrl3 = escape( "http://kaldev.kaltura.com/index.php/partnerservices2/executeplaylist?uid=&format=8&subp_id=100&ks={ks}&playlist_id=00_gv5ymvgkox&partner_id=1");
-	var dcaplaylistUrl =  escape("http://www.kaltura.co.cc/index.php/partnerservices2/executeplaylist?uid=&partner_id=331&subp_id=33100&format=8&ks={ks}&playlist_id=0_bgyuos9k&{FLAVOR}");
+	var pl = escape("http://cdnviddev.vidiun.com/index.php/partnerservices2/executeplaylist%3Fuid%3D%26format%3D8%26playlist_id%3D0_mybhrtmj%26partner_id%3D569%26subp_id%3D56900%26vs%3D%7Bvs%7D");
+	var playlistUrl =  escape( "http://viddev.vidiun.com/index.php/partnerservices2/executeplaylist?uid=&format=8&subp_id=56900&vs={vs}&playlist_id=0_azj5yzj4&partner_id=569");
+	var playlistUrl1 = escape( "http://viddev.vidiun.com/index.php/partnerservices2/executeplaylist?uid=&partner_id=1&subp_id=100&format=8&vs={vs}&playlist_id=0_ugfsgu6q");
+	var playlistUrl2 = escape( "http://viddev.vidiun.com/index.php/partnerservices2/executeplaylist?uid=&format=8&subp_id=100&vs={vs}&playlist_id=00_2594arsy1g&partner_id=1");
+	var playlistUrl3 = escape( "http://viddev.vidiun.com/index.php/partnerservices2/executeplaylist?uid=&format=8&subp_id=100&vs={vs}&playlist_id=00_gv5ymvgkox&partner_id=1");
+	var dcaplaylistUrl =  escape("http://www.vidiun.co.cc/index.php/partnerservices2/executeplaylist?uid=&partner_id=331&subp_id=33100&format=8&vs={vs}&playlist_id=0_bgyuos9k&{FLAVOR}");
 	
 	AC_FL_RunContent(
 			"src", "${swf}",
@@ -161,30 +161,30 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 			"allowScriptAccess","always", 
 			"type", "application/x-shockwave-flash",
 			"flashvars","sourceType=entryId"+
-						"&host=kaldev.kaltura.com"+
+						"&host=viddev.vidiun.com"+
 						"&autoPlay=true"+
 						//"&entryId=0_tikujaq2"+ //00_x5hndh91//image = 00_r4ei4ohges
-						"&cdnHost=cdnkaldev.kaltura.com"+
+						"&cdnHost=cdnviddev.vidiun.com"+
 						//"&httpProtocol=https"+
 						"&clientTag=cache_st:20000000"+
 						//"&playlistAPI.autoPlay=true"+
 						"&playlistAPI.autoContinue=true"+
-						"&playlistAPI.kpl0Url=" + pl +
-						"&playlistAPI.kpl0Name=ABCDEFG"+
-						//"&playlistAPI.kpl1Url=" + playlistUrl +
-						//"&playlistAPI.kpl1Name=W27SE0g"+
+						"&playlistAPI.vpl0Url=" + pl +
+						"&playlistAPI.vpl0Name=ABCDEFG"+
+						//"&playlistAPI.vpl1Url=" + playlistUrl +
+						//"&playlistAPI.vpl1Name=W27SE0g"+
 						"&debugMode=false"+
-						//"&kalturaMix.mixPluginsBaseUrl=http://hilacomp/kdp3/mixplugins/v2.0/"+
+						//"&vidiunMix.mixPluginsBaseUrl=http://hilacomp/vdp3/mixplugins/v2.0/"+
 						"&fileSystemMode=true"+
 						"&uiConfId=48503"+
 						"&widgetId=_569"+
 						"&partnerId=569"+
 						"&subpId=56900"+
 						"&pluginDomain=plugins/"+
-						"&kml=local"+
+						"&vml=local"+
 						"&loop=false"+
 						//"&streamerUrl=rtmp://cp77659.live.edgefcs.net/live"+
-						"&streamerUrl=rtmp://rtmp.kaltura.co.cc/ondemand/"+
+						"&streamerUrl=rtmp://rtmp.vidiun.co.cc/ondemand/"+
 						"&streamerType=http"+ //if the file is a flv/mp4 or similar
 						//"&rtmpFlavors=1"+
 						//"&streamName=ariel_test@17712"+
@@ -192,10 +192,10 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 						"&externalInterfaceDisabled=false"+
 						"&autoRewind=false"+
 						//"&localSkin=assets/skin.swf"+
-						"&referer=http://kaldev.kaltura.com"+
+						"&referer=http://viddev.vidiun.com"+
 						//"&jsCallBackReadyFunc=baba"+
 						"&playerBgColor=0x010101"+
-						//"&ks=MTNlNDg3NGNkNzVkMGU0ZDIxYzA3NjAyZjNmNmZjMmE2Njg3YzY2M3wxOzE7MTI2NDcwNzA5OTsyOzEyNjIxMTUwOTkuMDQ7X19BRE1JTl9fMDsq"+
+						//"&vs=MTNlNDg3NGNkNzVkMGU0ZDIxYzA3NjAyZjNmNmZjMmE2Njg3YzY2M3wxOzE7MTI2NDcwNzA5OTsyOzEyNjIxMTUwOTkuMDQ7X19BRE1JTl9fMDsq"+
 						
 						"&playerBgAlpha=0.9",
 			"pluginspage", "http://www.adobe.com/go/getflashplayer"

@@ -1,7 +1,7 @@
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.Search;
-	import com.kaltura.kdpfl.plugin.component.SearchMediator;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.Search;
+	import com.vidiun.vdpfl.plugin.component.SearchMediator;
 	
 	import fl.core.UIComponent;
 	import fl.data.DataProvider;

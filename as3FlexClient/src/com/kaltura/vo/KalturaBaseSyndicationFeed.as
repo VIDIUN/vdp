@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.BaseFlexVo;
+	import com.vidiun.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaBaseSyndicationFeed extends BaseFlexVo
+	public dynamic class VidiunBaseSyndicationFeed extends BaseFlexVo
 	{
 		/**
 		**/
@@ -60,14 +60,14 @@ package com.kaltura.vo
 		/**
 		* feed status
 		* 
-		* @see com.kaltura.types.KalturaSyndicationFeedStatus
+		* @see com.vidiun.types.VidiunSyndicationFeedStatus
 		**/
 		public var status : int = int.MIN_VALUE;
 
 		/**
 		* feed type
 		* 
-		* @see com.kaltura.types.KalturaSyndicationFeedType
+		* @see com.vidiun.types.VidiunSyndicationFeedType
 		**/
 		public var type : int = int.MIN_VALUE;
 
@@ -90,12 +90,12 @@ package com.kaltura.vo
 		* it is applied on the video-player_loc property in the XML (google)
 		* and addes media-player tag (yahoo)
 		* 
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var allowEmbed : Boolean;
 
 		/**
-		* Select a uiconf ID as player skin to include in the kwidget url
+		* Select a uiconf ID as player skin to include in the vwidget url
 		* 
 		**/
 		public var playerUiconfId : int = int.MIN_VALUE;
@@ -105,12 +105,12 @@ package com.kaltura.vo
 		public var flavorParamId : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var transcodeExistingContent : Boolean;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var addToDefaultConversionProfile : Boolean;
 
@@ -123,14 +123,14 @@ package com.kaltura.vo
 		public var storageId : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaSyndicationFeedEntriesOrderBy
+		* @see com.vidiun.types.VidiunSyndicationFeedEntriesOrderBy
 		**/
 		public var entriesOrderBy : String = null;
 
 		/**
 		* Should enforce entitlement on feed entries
 		* 
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.vidiun.types.vidiunBoolean
 		**/
 		public var enforceEntitlement : Boolean;
 

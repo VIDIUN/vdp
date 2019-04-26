@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
 	public class CallbackObject
 	{
@@ -21,7 +21,7 @@ package com.kaltura.kdpfl.plugin.component
 	        // Note that the player should start with controls disabled
 	        // and the video should not begin playing until the Ad Player calls this function
 
-			var media : Object = _facade.retrieveMediator("kMediaPlayerMediator");
+			var media : Object = _facade.retrieveMediator("vMediaPlayerMediator");
 			
 			_facade.sendNotification(_resumeEvent);				
 			_facade.sendNotification("enableGui", true);

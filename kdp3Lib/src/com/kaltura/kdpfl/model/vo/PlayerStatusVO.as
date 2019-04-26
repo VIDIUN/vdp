@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.model.vo
+package com.vidiun.vdpfl.model.vo
 {
 	/**
 	 * This class contains information related to the player in general. 
@@ -10,11 +10,11 @@ package com.kaltura.kdpfl.model.vo
 		/**
 		 *  Status of the player - "ready", "empty" or null.
 		 */		
-		public var kdpStatus : String;
+		public var vdpStatus : String;
 		/**
 		 * Version of the player.
 		 */		
-		public var kdpVersion : String;
+		public var vdpVersion : String;
 		/**
 		 * Player load time(sec).
 		 */		
@@ -30,7 +30,7 @@ package com.kaltura.kdpfl.model.vo
 		 */		
 		public function PlayerStatusVO(version : String)
 		{
-			kdpVersion  = version;
+			vdpVersion  = version;
 		}
 	}
 }

@@ -1,5 +1,5 @@
-package com.kaltura.kdpfl.plugin.controller {
-	import com.kaltura.kdpfl.plugin.model.SoundProxy;
+package com.vidiun.vdpfl.plugin.controller {
+	import com.vidiun.vdpfl.plugin.model.SoundProxy;
 	
 	import flash.media.Sound;
 	

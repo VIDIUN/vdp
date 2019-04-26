@@ -1,11 +1,11 @@
 package
 {
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.AbstractView;
-	import com.kaltura.kdpfl.plugin.component.RelatedViewMediator;
-	import com.kaltura.kdpfl.plugin.component.TileView;
-	import com.kaltura.kdpfl.plugin.component.ViewType;
+	import com.vidiun.vdpfl.model.LayoutProxy;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.AbstractView;
+	import com.vidiun.vdpfl.plugin.component.RelatedViewMediator;
+	import com.vidiun.vdpfl.plugin.component.TileView;
+	import com.vidiun.vdpfl.plugin.component.ViewType;
 	
 	import fl.core.UIComponent;
 	import fl.data.DataProvider;
@@ -80,7 +80,7 @@ package
 			if (view && value)
 				view.dataProvider = _dataProvider;
 			
-			resizeKdp();
+			resizeVdp();
 		}
 
 		public function get itemRenderer():String
@@ -135,7 +135,7 @@ package
 			facade.registerMediator(_mediator);	
 			createView();
 			
-			resizeKdp();
+			resizeVdp();
 		}
 		
 		private function createView():void {	
@@ -173,7 +173,7 @@ package
 				{
 					view.itemRendererXML = _itemRendererXML;
 				}
-				view.addEventListener( Event.ADDED_TO_STAGE , resizeKdp );
+				view.addEventListener( Event.ADDED_TO_STAGE , resizeVdp );
 				view.width = width;
 				view.height = height;
 				view.addEventListener(AbstractView.ITEM_CHANGED, onViewItemChanged);
@@ -198,10 +198,10 @@ package
 		 */		
 		private function getRendererXML():void 
 		{
-			var kml:XML = (_facade.retrieveProxy(LayoutProxy.NAME) as LayoutProxy).vo.layoutXML;
+			var vml:XML = (_facade.retrieveProxy(LayoutProxy.NAME) as LayoutProxy).vo.layoutXML;
 			try
 			{
-				var itemLayout:XML = kml.descendants().renderer.(@id == _itemRenderer)[0];
+				var itemLayout:XML = vml.descendants().renderer.(@id == _itemRenderer)[0];
 				_itemRendererXML = itemLayout.children()[0];
 			}
 			catch (e:Error)
@@ -215,7 +215,7 @@ package
 		 * @param event
 		 * 
 		 */		
-		private function resizeKdp( event : Event = null ) : void
+		private function resizeVdp( event : Event = null ) : void
 		{	
 			/*if(_facade)
 				_facade.retrieveMediator("stageMediator")["onResize"]();		*/

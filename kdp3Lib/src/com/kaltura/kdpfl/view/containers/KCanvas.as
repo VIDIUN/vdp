@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.view.containers
+package com.vidiun.vdpfl.view.containers
 {
-	import com.kaltura.kdpfl.component.IComponent;
+	import com.vidiun.vdpfl.component.IComponent;
 	import com.yahoo.astra.utils.NumberUtil;
 	
 	import fl.containers.BaseScrollPane;
@@ -8,11 +8,11 @@ package com.kaltura.kdpfl.view.containers
 	import flash.display.DisplayObject;
 	import flash.utils.getDefinitionByName;
 	/**
-	 * Class KCanvas extends Astra's BaseScrollPane and provides a canvas, which is a container that positions
+	 * Class VCanvas extends Astra's BaseScrollPane and provides a canvas, which is a container that positions
 	 * its children absolutely - one on top of the next. 
 	 * 
 	 */	
-	public dynamic class KCanvas extends BaseScrollPane implements IComponent
+	public dynamic class VCanvas extends BaseScrollPane implements IComponent
 	{
 		/**
 		 * configuration for canvas - holds the canvas children with their configurations
@@ -20,7 +20,7 @@ package com.kaltura.kdpfl.view.containers
 		 */
 		private var _configuration:Array;
 
-		public function KCanvas(configuration:Array=null)
+		public function VCanvas(configuration:Array=null)
 		{
 			super();
 			//super(configuration);

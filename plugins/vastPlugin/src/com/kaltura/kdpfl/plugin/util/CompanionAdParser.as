@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.util
+package com.vidiun.vdpfl.plugin.util
 {
 	public class CompanionAdParser
 	{

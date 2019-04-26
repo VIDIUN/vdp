@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,26 +25,26 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.metadataProfile
+package com.vidiun.commands.metadataProfile
 {
-		import com.kaltura.vo.KalturaMetadataProfile;
-	import com.kaltura.delegates.metadataProfile.MetadataProfileAddDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunMetadataProfile;
+	import com.vidiun.delegates.metadataProfile.MetadataProfileAddDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
-	* Allows you to add a metadata profile object and metadata profile content associated with Kaltura object type
+	* Allows you to add a metadata profile object and metadata profile content associated with Vidiun object type
 	* 
 	**/
-	public class MetadataProfileAdd extends KalturaCall
+	public class MetadataProfileAdd extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param metadataProfile KalturaMetadataProfile
+		* @param metadataProfile VidiunMetadataProfile
 		* @param xsdData String
 		* @param viewsData String
 		**/
-		public function MetadataProfileAdd( metadataProfile : KalturaMetadataProfile,xsdData : String,viewsData : String = null )
+		public function MetadataProfileAdd( metadataProfile : VidiunMetadataProfile,xsdData : String,viewsData : String = null )
 		{
 			service= 'metadata_metadataprofile';
 			action= 'add';
@@ -52,7 +52,7 @@ package com.kaltura.commands.metadataProfile
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(metadataProfile, 'metadataProfile');
+				keyValArr = vidiunObject2Arrays(metadataProfile, 'metadataProfile');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			keyArr.push('xsdData');

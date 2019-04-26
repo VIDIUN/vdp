@@ -1,18 +1,18 @@
-package com.kaltura.kdpfl.util
+package com.vidiun.vdpfl.util
 {	
 	import fl.containers.BaseScrollPane;
 	
 	import flash.display.DisplayObject;
 	/**
-	 * Class KAstraAdvancedLayoutUtil is designed to allow a developer to easily and 
+	 * Class VAstraAdvancedLayoutUtil is designed to allow a developer to easily and 
 	 * quickly add children to Astra-based containers that have the <code>configuration</code> property.
 	 * The configuration property allows for the parent container to easily position and resize its children.
 	 * @author Hila
 	 * 
 	 */
-	public class KAstraAdvancedLayoutUtil
+	public class VAstraAdvancedLayoutUtil
 	{
-		public function KAstraAdvancedLayoutUtil()
+		public function VAstraAdvancedLayoutUtil()
 		{
 		}
 		

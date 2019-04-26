@@ -1,21 +1,21 @@
 package
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.attachmentAsset.AttachmentAssetGetUrl;
-	import com.kaltura.commands.attachmentAsset.AttachmentAssetList;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.kdpfl.view.containers.KCanvas;
-	import com.kaltura.kdpfl.view.containers.KHBox;
-	import com.kaltura.kdpfl.view.containers.KVBox;
-	import com.kaltura.kdpfl.view.controls.KButton;
-	import com.kaltura.kdpfl.view.controls.KLabel;
-	import com.kaltura.kdpfl.view.controls.KTextField;
-	import com.kaltura.kdpfl.view.controls.ToolTipManager;
-	import com.kaltura.vo.KalturaAssetFilter;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.commands.attachmentAsset.AttachmentAssetGetUrl;
+	import com.vidiun.commands.attachmentAsset.AttachmentAssetList;
+	import com.vidiun.events.VidiunEvent;
+	import com.vidiun.vdpfl.model.type.EnableType;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.IPluginFactory;
+	import com.vidiun.vdpfl.view.containers.VCanvas;
+	import com.vidiun.vdpfl.view.containers.VHBox;
+	import com.vidiun.vdpfl.view.containers.VVBox;
+	import com.vidiun.vdpfl.view.controls.VButton;
+	import com.vidiun.vdpfl.view.controls.VLabel;
+	import com.vidiun.vdpfl.view.controls.VTextField;
+	import com.vidiun.vdpfl.view.controls.ToolTipManager;
+	import com.vidiun.vo.VidiunAssetFilter;
 	import com.yahoo.astra.fl.containers.VBoxPane;
 	import com.yahoo.astra.layout.modes.HorizontalAlignment;
 	import com.yahoo.astra.layout.modes.VerticalAlignment;
@@ -30,13 +30,13 @@ package
 	
 	import org.puremvc.as3.interfaces.IFacade;
 	
-	public class downloadRelatedPlugin extends KVBox implements IPluginFactory, IPlugin 
+	public class downloadRelatedPlugin extends VVBox implements IPluginFactory, IPlugin 
 	{
 		public var ar:AssetsRefferencer;
 		private var _mediator:DownloadRelatedMediator;
-		private var _mainVBox:KVBox;
+		private var _mainVBox:VVBox;
 		public var files:Array;
-		public var client:KalturaClient; 
+		public var client:VidiunClient; 
 		
 		public var vboxVerticalGap:Number = 10;
 		public var vboxLeftPadding:Number = 10;
@@ -67,7 +67,7 @@ package
 			visible = true;
 		}
 		public var headerText:String = 'Featured Resources:';
-		private var headerHbox:KHBox;
+		private var headerHbox:VHBox;
 		
 		 private var _originalWidth:Number = ToolTipManager.getInstance().tooltipWidth;
 		 private var _originalXoffset:Number = ToolTipManager.getInstance().offsetX ;
@@ -131,18 +131,18 @@ package
 		
 		public function fetchAttachments(entryId:String):void
 		{
-			var attachmentFilter:KalturaAssetFilter = new KalturaAssetFilter();
+			var attachmentFilter:VidiunAssetFilter = new VidiunAssetFilter();
 			attachmentFilter.entryIdIn = entryId;
 			var attachments:AttachmentAssetList = new AttachmentAssetList(attachmentFilter);
-			attachments.addEventListener(KalturaEvent.COMPLETE , onComplete);
-			attachments.addEventListener(KalturaEvent.FAILED , onFailed);
+			attachments.addEventListener(VidiunEvent.COMPLETE , onComplete);
+			attachments.addEventListener(VidiunEvent.FAILED , onFailed);
 			client.post(attachments);
 		}
-		public function onFailed(event:KalturaEvent):void
+		public function onFailed(event:VidiunEvent):void
 		{
 			trace('onFailed');	
 		}
-		public function onComplete(event:KalturaEvent):void
+		public function onComplete(event:VidiunEvent):void
 		{
 			if(event.data && event.data.hasOwnProperty('objects') && ((event.data.objects) is Array) && (event.data.objects as Array).length > 0 )
 			{
@@ -166,7 +166,7 @@ package
 			var items:Number = _mainVBox.numChildren;
 			for (var j:uint;j<items;j++)
 			{
-				if(_mainVBox.getChildAt(0) is KHBox)
+				if(_mainVBox.getChildAt(0) is VHBox)
 					_mainVBox.removeChild(_mainVBox.getChildAt(0));
 			}
 		}
@@ -178,7 +178,7 @@ package
 				for (var i:uint = 0; i<files.length ; i++)
 				{
 					
-					var hbox:KHBox = new KHBox(); 
+					var hbox:VHBox = new VHBox(); 
 					hbox.horizontalAlign = HorizontalAlignment.LEFT;
 					hbox.verticalAlign = VerticalAlignment.MIDDLE;
 					hbox.paddingLeft = 0;
@@ -199,7 +199,7 @@ package
 					
 					_mainVBox.addChild(hbox);
 					
-					var icon:KVBox = new KVBox();
+					var icon:VVBox = new VVBox();
 					icon.width = iconWidth;
 					icon.height = iconHeight;
 					var spacer:UIComponent = new UIComponent();
@@ -275,35 +275,35 @@ package
 						output+="FileSize: "+formatFileSize(int(fileSize))+"\n";
 					output+="Date: "+dateString;
 			
-					var klabel:KLabel = new KLabel();
-					klabel.setSkin(labelSkin); 
-					klabel.height = 23;
+					var vlabel:VLabel = new VLabel();
+					vlabel.setSkin(labelSkin); 
+					vlabel.height = 23;
 					
-					klabel.width = hbox.width - 50;
+					vlabel.width = hbox.width - 50;
 					if(title)
-						klabel.text = title;
+						vlabel.text = title;
 					else
-						klabel.text = fileName;
+						vlabel.text = fileName;
 						
-					klabel.name = files[i]['id'];
+					vlabel.name = files[i]['id'];
 					
 					if(output)
-						klabel.tooltip = output;
+						vlabel.tooltip = output;
 
 					icon.name = files[i]['id'];
 					icon.addEventListener(MouseEvent.CLICK, onClick);
-					klabel.addEventListener(MouseEvent.CLICK, onClick);
+					vlabel.addEventListener(MouseEvent.CLICK, onClick);
 					hbox.name = files[i]['id'];
-					hbox.addChild(klabel);
+					hbox.addChild(vlabel);
 					
 					//enforce no tooltip
 					if(files[i]["description"])
-						klabel.tooltip = '';
+						vlabel.tooltip = '';
 					
-					klabel.mouseChildren = false;
-					klabel.buttonMode = true;
-					klabel.useHandCursor = true;
-					klabel.mouseEnabled = true;
+					vlabel.mouseChildren = false;
+					vlabel.buttonMode = true;
+					vlabel.useHandCursor = true;
+					vlabel.mouseEnabled = true;
 					
 					
 					icon.mouseChildren = false;
@@ -319,12 +319,12 @@ package
 			var item:UIComponent = evt.currentTarget as UIComponent;
 			var fileId:String = item.name;
 			var url:AttachmentAssetGetUrl = new AttachmentAssetGetUrl(fileId);
-			url.addEventListener(KalturaEvent.COMPLETE , onRecievedUrl);
-			url.addEventListener(KalturaEvent.FAILED , onFailedRecievingUrl);
+			url.addEventListener(VidiunEvent.COMPLETE , onRecievedUrl);
+			url.addEventListener(VidiunEvent.FAILED , onFailedRecievingUrl);
 			client.post(url);
 		} 
 		
-		private function onRecievedUrl(event:KalturaEvent):void{
+		private function onRecievedUrl(event:VidiunEvent):void{
 			var request:URLRequest = new URLRequest(event.data as String);
 
 			try {
@@ -333,7 +333,7 @@ package
 				trace("Error occurred!");
 			}
 		}
-		private function onFailedRecievingUrl(event:KalturaEvent):void{
+		private function onFailedRecievingUrl(event:VidiunEvent):void{
 			
 			trace(1);
 		}
@@ -357,7 +357,7 @@ package
 			{
 				ready = true; //loaded flag
 				
-				headerHbox = new KHBox();
+				headerHbox = new VHBox();
 				headerHbox.horizontalAlign = HorizontalAlignment.LEFT;
 				headerHbox.name = "headerHbox";
 				headerHbox.paddingLeft = 5;
@@ -368,26 +368,26 @@ package
 				
 				addChild(headerHbox);
 				
-				var lbl:KLabel = new KLabel();
+				var lbl:VLabel = new VLabel();
 				lbl.name = "windowTitle";
 				lbl.text = headerText;
 				lbl.width = headerTextWidth;
 				lbl.setSkin("rel_title");
 				headerHbox.addChild(lbl);
 				
-				var spacer:KVBox = new KVBox(); 
+				var spacer:VVBox = new VVBox(); 
 				spacer.width = headerHbox.width - headerTextWidth - 40 ;  
 				spacer.height = 1;
 				headerHbox.addChild(spacer);
 				
-				/*			var lbl1:KLabel = new KLabel();
+				/*			var lbl1:VLabel = new VLabel();
 				lbl1.name = "closeText";
 				lbl1.text = _closeText;
 				lbl1.width = _closeTextWidth;
 				headerHbox.addChild(lbl1);*/
 				
-				var btn:KButton;
-				btn = new KButton();
+				var btn:VButton;
+				btn = new VButton();
 				btn.name = "closeBtn";
 				btn.height = 15;
 				btn.minHeight = 15;
@@ -399,7 +399,7 @@ package
 				
 				
 				
-				_mainVBox = new KVBox();
+				_mainVBox = new VVBox();
 				
 				_mainVBox.setSkin("List_background_default");
 				

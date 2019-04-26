@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.plugin
+package com.vidiun.vdpfl.plugin
 {
 	/**
-	 * Interface for the KDP PluginFactory class. 
+	 * Interface for the VDP PluginFactory class. 
 	 * @author Hila
 	 * 
 	 */	

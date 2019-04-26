@@ -9,13 +9,13 @@
 	NOTICE: Adobe permits you to use, modify, and distribute this file
 	in accordance with the terms of the license agreement accompanying it.
 
-	Kaltura's default flex-config, please mark which changes are important
+	Vidiun's default flex-config, please mark which changes are important
 	
 -->
 
 <flex-config>
 
-	<output>bin/kdp3.swf</output>
+	<output>bin/vdp3.swf</output>
 
 	<compiler>
 
@@ -25,12 +25,12 @@
 
 		<!--include-libraries -->
 			<!--library>../../bin/as3FlexClient.swc</library-->
-			<!--library>../../bin/kdp3Lib.swc</library -->
+			<!--library>../../bin/vdp3Lib.swc</library -->
 			<!--library>../../bin/vendors/OSMF.swc</library-->
 		<!-- /include-libraries -->
 
 		<library-path dir="bin" append="true">
-				<path-element name="kdp3Lib.swc" />
+				<path-element name="vdp3Lib.swc" />
 		</library-path>
 		<library-path dir="${FLEX_HOME}/frameworks/libs" append="true">
 				<path-element name="*.swc" />

@@ -1,11 +1,11 @@
-package com.kaltura.kdpfl.model.vo
+package com.vidiun.vdpfl.model.vo
 {
 
-	import com.kaltura.kdpfl.model.type.StreamerType;
+	import com.vidiun.vdpfl.model.type.StreamerType;
 	
 	import org.osmf.media.pluginClasses.PluginManager;PluginManager;
-	import com.kaltura.vo.KalturaBaseEntry;
-	import com.kaltura.vo.KalturaEntryContextDataResult;
+	import com.vidiun.vo.VidiunBaseEntry;
+	import com.vidiun.vo.VidiunEntryContextDataResult;
 	import org.osmf.media.MediaElement;MediaElement;
 	import org.osmf.media.MediaFactory;MediaFactory;
 	import org.osmf.media.MediaResourceBase;
@@ -15,7 +15,7 @@ package com.kaltura.kdpfl.model.vo
 	
 	
 	/**
-	 * Class MediaVO holds parameters related to the media that the KDP plays. 
+	 * Class MediaVO holds parameters related to the media that the VDP plays. 
 	 * 
 	 */	
 	public class MediaVO
@@ -34,16 +34,16 @@ package com.kaltura.kdpfl.model.vo
 		
 		[Bindable] 
 		/**
-		 * entry already loaded entryLoadedBeforeChangeMedia by kdp first multirequest 
+		 * entry already loaded entryLoadedBeforeChangeMedia by vdp first multirequest 
 		 */
 		public var entryLoadedBeforeChangeMedia:Boolean = false;
 		
 		[Bindable] 
 		/** 
-		 * Kaltura Entry hold all the Metadata about the Entry from witch a URLResource
+		 * Vidiun Entry hold all the Metadata about the Entry from witch a URLResource
 		 * can be created and a MediaElemnt can be built
 		 */		
-		public var entry:KalturaBaseEntry;
+		public var entry:VidiunBaseEntry;
 		
 		private var _selectedFlavorId:String;
 		
@@ -64,7 +64,7 @@ package com.kaltura.kdpfl.model.vo
 		/**
 		 * Extra data the we might want to know about the current entry 
 		 */		
-		public var entryExtraData:KalturaEntryContextDataResult;
+		public var entryExtraData:VidiunEntryContextDataResult;
 		
 		[Bindable] 
 		/**
@@ -81,9 +81,9 @@ package com.kaltura.kdpfl.model.vo
 		
 		[Bindable] 
 		/**
-		 * Array that contains the Kaltura Flavor Asset collection as objects. 
+		 * Array that contains the Vidiun Flavor Asset collection as objects. 
 		 */		
-		public var kalturaMediaFlavorArray:Array;
+		public var vidiunMediaFlavorArray:Array;
 		
 		[Bindable] 
 		/**
@@ -93,7 +93,7 @@ package com.kaltura.kdpfl.model.vo
 		
 		[Bindable]
 		/**
-		 *Placeholder for the KDP meta-data. 
+		 *Placeholder for the VDP meta-data. 
 		 */		
 		public var entryMetadata : Object;
 		
@@ -144,7 +144,7 @@ package com.kaltura.kdpfl.model.vo
 		[Bindable] 
 		/**
 		 * When we get an entry with a valid restriction, we don't event want it loaded
-		 * to the kdp3.
+		 * to the vdp3.
 		 */	
 		 public var isMediaDisabled : Boolean = false;
 		 

@@ -1,10 +1,10 @@
-package com.kaltura.kdpfl.view.containers
+package com.vidiun.vdpfl.view.containers
 {
-	import com.kaltura.kdpfl.component.IComponent;
-	import com.kaltura.kdpfl.util.KColorUtil;
+	import com.vidiun.vdpfl.component.IComponent;
+	import com.vidiun.vdpfl.util.VColorUtil;
 	import com.yahoo.astra.fl.containers.VBoxPane;
 
-	public dynamic class KVBox extends VBoxPane implements IComponent
+	public dynamic class VVBox extends VBoxPane implements IComponent
 	{
 		private var _bgColor:Number = -1;
 		private var _bgAlpha:Number = 1;
@@ -14,7 +14,7 @@ package com.kaltura.kdpfl.view.containers
 		[Bindable]
 		public var maxHeight:Number = -1;
 		
-		public function KVBox(configuration:Array=null)
+		public function VVBox(configuration:Array=null)
 		{
 			super(configuration);
 			mouseEnabled = false;
@@ -41,7 +41,7 @@ package com.kaltura.kdpfl.view.containers
 		}
 		
 		
-		//These two functions are a TEMPORARY workaround for a problem that exists in the ktextparser: the parser does not accept the ! operator.
+		//These two functions are a TEMPORARY workaround for a problem that exists in the vtextparser: the parser does not accept the ! operator.
 		// Once the issue is fixed, this workaround will be removed.
 		[Bindable]
 		public function set notVisible(value:Boolean):void
@@ -86,7 +86,7 @@ package com.kaltura.kdpfl.view.containers
 			super.drawBackground();
 			if (this.background && _bgColor !=-1)
 			{
-				KColorUtil.colorDisplayObject(this.background,_bgColor);
+				VColorUtil.colorDisplayObject(this.background,_bgColor);
 				this.background.alpha = _bgAlpha;
 			}
 		}	

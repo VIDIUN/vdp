@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.util
+package com.vidiun.vdpfl.util
 {
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.vidiun.vdpfl.view.controls.VTrace;
 	
 	import flash.net.SharedObject;
 
@@ -35,7 +35,7 @@ package com.kaltura.kdpfl.util
 				}
 				catch (e : Error)
 				{
-					KTrace.getInstance().log("No access to user's file system");
+					VTrace.getInstance().log("No access to user's file system");
 				}
 				
 			}

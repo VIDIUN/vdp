@@ -1,11 +1,11 @@
 package
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.KPluginEvent;
-	import com.kaltura.kdpfl.plugin.WVPluginInfo;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.LayoutProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.VPluginEvent;
+	import com.vidiun.vdpfl.plugin.WVPluginInfo;
 	
 	import flash.display.Sprite;
 	
@@ -55,7 +55,7 @@ package
 			/*var lp:LayoutProxy = (facade.retrieveProxy(LayoutProxy.NAME) as LayoutProxy);
 			for each( var i:Object in lp.components)
 			{
-				if(i.hasOwnProperty("className") && i.className == "KMediaPlayer" )
+				if(i.hasOwnProperty("className") && i.className == "VMediaPlayer" )
 				{
 					trace(i.ui.width,i.ui.height );
 					WVPluginInfo.mediaWidth = i.ui.width;
@@ -82,7 +82,7 @@ package
 		protected function onOSMFPluginLoaded (e : MediaFactoryEvent) : void
 		{
 			_localMediaFactory.removeEventListener(MediaFactoryEvent.PLUGIN_LOAD, onOSMFPluginLoaded);
-			dispatchEvent( new KPluginEvent (KPluginEvent.KPLUGIN_INIT_COMPLETE) );
+			dispatchEvent( new VPluginEvent (VPluginEvent.VPLUGIN_INIT_COMPLETE) );
 		}
 		/**
 		 * Listener for the LOAD_ERROR event.
@@ -92,7 +92,7 @@ package
 		protected function onOSMFPluginLoadError (e : MediaFactoryEvent) : void
 		{
 			_localMediaFactory.removeEventListener(MediaFactoryEvent.PLUGIN_LOAD_ERROR, onOSMFPluginLoadError);
-			dispatchEvent( new KPluginEvent (KPluginEvent.KPLUGIN_INIT_FAILED) );
+			dispatchEvent( new VPluginEvent (VPluginEvent.VPLUGIN_INIT_FAILED) );
 		}
 		public function setSkin(styleName:String, setSkinSize:Boolean=false):void
 		{

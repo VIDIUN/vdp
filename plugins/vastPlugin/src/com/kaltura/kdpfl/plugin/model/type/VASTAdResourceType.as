@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.model.type
+package com.vidiun.vdpfl.plugin.model.type
 {
 
 	public class VASTAdResourceType

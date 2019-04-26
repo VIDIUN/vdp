@@ -1,4 +1,4 @@
-package com.kaltura.puremvc.as3.patterns.mediator
+package com.vidiun.puremvc.as3.patterns.mediator
 {
 	public class SequenceMultiMediator extends MultiMediator
 	{

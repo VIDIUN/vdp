@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,26 +25,26 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.genericDistributionProviderAction
+package com.vidiun.commands.genericDistributionProviderAction
 {
-		import com.kaltura.vo.KalturaGenericDistributionProviderAction;
-	import com.kaltura.delegates.genericDistributionProviderAction.GenericDistributionProviderActionUpdateByProviderIdDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunGenericDistributionProviderAction;
+	import com.vidiun.delegates.genericDistributionProviderAction.GenericDistributionProviderActionUpdateByProviderIdDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Update Generic Distribution Provider Action by provider id
 	* 
 	**/
-	public class GenericDistributionProviderActionUpdateByProviderId extends KalturaCall
+	public class GenericDistributionProviderActionUpdateByProviderId extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param genericDistributionProviderId int
 		* @param actionType int
-		* @param genericDistributionProviderAction KalturaGenericDistributionProviderAction
+		* @param genericDistributionProviderAction VidiunGenericDistributionProviderAction
 		**/
-		public function GenericDistributionProviderActionUpdateByProviderId( genericDistributionProviderId : int,actionType : int,genericDistributionProviderAction : KalturaGenericDistributionProviderAction )
+		public function GenericDistributionProviderActionUpdateByProviderId( genericDistributionProviderId : int,actionType : int,genericDistributionProviderAction : VidiunGenericDistributionProviderAction )
 		{
 			service= 'contentdistribution_genericdistributionprovideraction';
 			action= 'updateByProviderId';
@@ -56,7 +56,7 @@ package com.kaltura.commands.genericDistributionProviderAction
 			valueArr.push(genericDistributionProviderId);
 			keyArr.push('actionType');
 			valueArr.push(actionType);
-				keyValArr = kalturaObject2Arrays(genericDistributionProviderAction, 'genericDistributionProviderAction');
+				keyValArr = vidiunObject2Arrays(genericDistributionProviderAction, 'genericDistributionProviderAction');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

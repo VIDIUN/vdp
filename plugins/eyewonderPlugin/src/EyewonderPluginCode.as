@@ -1,9 +1,9 @@
 package
 {
-	import com.kaltura.kdfl.plugin.component.Eyewonder;
-	import com.kaltura.kdfl.plugin.component.EyewonderMediator;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.ISequencePlugin;
+	import com.vidiun.vdfl.plugin.component.Eyewonder;
+	import com.vidiun.vdfl.plugin.component.EyewonderMediator;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.ISequencePlugin;
 	
 	import fl.core.UIComponent;
 	
@@ -97,7 +97,7 @@ package
 		}
 		
 		/**
-		 * KDP triggers this function to initialize the plugin. 
+		 * VDP triggers this function to initialize the plugin. 
 		 * @param facade	pureMVC facade
 		 */		
 		public function initializePlugin( facade : IFacade ) : void

@@ -1,20 +1,20 @@
-package com.kaltura.kdpfl.model
+package com.vidiun.vdpfl.model
 {
 
-	import com.kaltura.kdpfl.component.ComponentData;
-	import com.kaltura.kdpfl.component.ComponentFactory;
-	import com.kaltura.kdpfl.component.IComponent;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.PluginStatus;
-	import com.kaltura.kdpfl.model.vo.LayoutVO;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.Plugin;
-	import com.kaltura.kdpfl.plugin.PluginManager;
-	import com.kaltura.kdpfl.util.KTextParser;
-	import com.kaltura.kdpfl.util.ObjectUtils;
-	import com.kaltura.kdpfl.util.URLUtils;
-	import com.kaltura.kdpfl.view.containers.KCanvas;
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.vidiun.vdpfl.component.ComponentData;
+	import com.vidiun.vdpfl.component.ComponentFactory;
+	import com.vidiun.vdpfl.component.IComponent;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.PluginStatus;
+	import com.vidiun.vdpfl.model.vo.LayoutVO;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.Plugin;
+	import com.vidiun.vdpfl.plugin.PluginManager;
+	import com.vidiun.vdpfl.util.VTextParser;
+	import com.vidiun.vdpfl.util.ObjectUtils;
+	import com.vidiun.vdpfl.util.URLUtils;
+	import com.vidiun.vdpfl.view.containers.VCanvas;
+	import com.vidiun.vdpfl.view.controls.VTrace;
 	import com.yahoo.astra.fl.containers.layoutClasses.AdvancedLayoutPane;
 	import com.yahoo.astra.fl.utils.XMLUtil;
 	
@@ -31,7 +31,7 @@ package com.kaltura.kdpfl.model
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	/**
-	 * The class LayoutProxy is responsible for building the KDP visual layout.
+	 * The class LayoutProxy is responsible for building the VDP visual layout.
 	 * 
 	 */	
 	public class LayoutProxy extends Proxy
@@ -39,7 +39,7 @@ package com.kaltura.kdpfl.model
 		public static const NAME:String = "layoutProxy";
 		
 		/**
-		 * Holds every component data that was build in this KDP in this array 
+		 * Holds every component data that was build in this VDP in this array 
 		 */		
 		public var components:Array = new Array();
 		
@@ -77,7 +77,7 @@ package com.kaltura.kdpfl.model
 		
 		
 		/**
-		 * Main KDP view builder, this function gets a uiconf xml, and instantiates the KDP classes according
+		 * Main VDP view builder, this function gets a uiconf xml, and instantiates the VDP classes according
 		 * to the mapping found on the ComponentFactory class.
 		 * @param xml - the layout xml.
 		 * @itemRendererData - if the function is constructing an item according to an item renderer, then the "scope" of the data that can be used for binding
@@ -163,7 +163,7 @@ package com.kaltura.kdpfl.model
 				//save plugin xml data, it will be overriden once the plugin is loaded.
 				facade['bindObject'][xml.@id] = pluginObj;
 			}
-			else//this is a kdp component
+			else//this is a vdp component
 				uiComponent = componentFactory.getComponent(type);
 				
 			if(!uiComponent) return null; //exit if the component is not supported 
@@ -178,8 +178,8 @@ package com.kaltura.kdpfl.model
 			if( !isPlugIn ) //isComponent?
 			{	
 				//AdvancedLayoutPane for VBox & HBox and the canvas has an implementation out of Astra 
-				//in the KDP (see Kcanvas class) 	
-				if(uiComponent is AdvancedLayoutPane ||uiComponent is KCanvas ) isContainer = true;
+				//in the VDP (see Vcanvas class) 	
+				if(uiComponent is AdvancedLayoutPane ||uiComponent is VCanvas ) isContainer = true;
 
 				// split cases - a container or a simple uicomponent
 				if(isContainer)
@@ -422,7 +422,7 @@ package com.kaltura.kdpfl.model
 			delete (tempXml.@path);
 			delete (tempXml.@styleName);
 			delete (tempXml.@command);
-			delete (tempXml.@kClick);
+			delete (tempXml.@vClick);
 			delete (tempXml.@width);
 			delete (tempXml.@height);
 
@@ -450,11 +450,11 @@ package com.kaltura.kdpfl.model
 				// and we should try binding to its value
 				try
 				{
-					KTextParser.bind(comp, attrName , host, attrValue);
+					VTextParser.bind(comp, attrName , host, attrValue);
 				}
 				catch(e:Error){
 					if(debugMode)
-						KTrace.getInstance().log("could not push",attrName,"=",attrValue,"to",comp);
+						VTrace.getInstance().log("could not push",attrName,"=",attrValue,"to",comp);
 						//trace("could not push",attrName,"=",attrValue,"to",comp);
 				}
 			}

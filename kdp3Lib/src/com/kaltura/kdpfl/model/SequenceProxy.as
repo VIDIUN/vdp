@@ -1,20 +1,20 @@
-package com.kaltura.kdpfl.model
+package com.vidiun.vdpfl.model
 {
-	import com.kaltura.kdpfl.model.type.AdOpportunityType;
-	import com.kaltura.kdpfl.model.type.AdsNotificationTypes;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.kdpfl.model.vo.MediaVO;
-	import com.kaltura.kdpfl.model.vo.SequenceVO;
-	import com.kaltura.kdpfl.plugin.IMidrollSequencePlugin;
-	import com.kaltura.kdpfl.plugin.ISequencePlugin;
-	import com.kaltura.kdpfl.plugin.Plugin;
-	import com.kaltura.kdpfl.util.Cloner;
-	import com.kaltura.kdpfl.view.controls.KTrace;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.osmf.proxy.KSwitchingProxyElement;
-	import com.kaltura.vo.KalturaCuePoint;
+	import com.vidiun.vdpfl.model.type.AdOpportunityType;
+	import com.vidiun.vdpfl.model.type.AdsNotificationTypes;
+	import com.vidiun.vdpfl.model.type.EnableType;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.SequenceContextType;
+	import com.vidiun.vdpfl.model.vo.MediaVO;
+	import com.vidiun.vdpfl.model.vo.SequenceVO;
+	import com.vidiun.vdpfl.plugin.IMidrollSequencePlugin;
+	import com.vidiun.vdpfl.plugin.ISequencePlugin;
+	import com.vidiun.vdpfl.plugin.Plugin;
+	import com.vidiun.vdpfl.util.Cloner;
+	import com.vidiun.vdpfl.view.controls.VTrace;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
+	import com.vidiun.osmf.proxy.VSwitchingProxyElement;
+	import com.vidiun.vo.VidiunCuePoint;
 	
 	//We include parallel element to support backward compatibility. This should be removed in the future, Once
 	//we know who is using CUSTOM vast and freeWheel plugins that might break if we remove this import.
@@ -79,7 +79,7 @@ package com.kaltura.kdpfl.model
 				mediaVo[prop] = describeVO[prop];
 			}
 			
-			var player:MediaPlayer = (facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).player;
+			var player:MediaPlayer = (facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator).player;
 			if (mediaVo.useParallelElement) 
 			{
 				sendNotification(NotificationType.RESTORE_MAIN_PARALLEL_ELEMENT);
@@ -87,8 +87,8 @@ package com.kaltura.kdpfl.model
 		}
 		
 		/**
-		 * Function which checks whether the sequence plugin lined up to play plays withing the KDP or as an independent swf. 
-		 * @return <code>true</code> if the plugin plays in the KDP; <code>false</code> otherwise.
+		 * Function which checks whether the sequence plugin lined up to play plays withing the VDP or as an independent swf. 
+		 * @return <code>true</code> if the plugin plays in the VDP; <code>false</code> otherwise.
 		 * 
 		 */        
 		public function hasMediaElement () : Boolean
@@ -120,12 +120,12 @@ package com.kaltura.kdpfl.model
 		/**
 		 * Function checks whether the sequence plugin lined up to play
 		 * has been loaded into the MediaPlayer (this check is performed only if the
-		 * sequence plugin plays in the MediaPlayer of the KDP and not as a custom swf.
+		 * sequence plugin plays in the MediaPlayer of the VDP and not as a custom swf.
 		 * 
 		 */        
 		public function hasMediaLoaded () : Boolean
 		{
-			//Check whether the plugin media is loaded into the KDP.
+			//Check whether the plugin media is loaded into the VDP.
 			
 			var mediaProxy : MediaProxy = facade.retrieveProxy(MediaProxy.NAME) as MediaProxy;
 			
@@ -366,7 +366,7 @@ package com.kaltura.kdpfl.model
 		
 		/**
 		 * Function evaluates the pre sequence index to 0
-		 * if the kdp has pre sequence configured. 
+		 * if the vdp has pre sequence configured. 
 		 * 
 		 */		
 		public function initPreIndex() : void
@@ -484,9 +484,9 @@ package com.kaltura.kdpfl.model
 				}
 				else
 				{
-					if ((mediaProxy.vo.media as KSwitchingProxyElement).proxiedElement != (mediaProxy.vo.media as KSwitchingProxyElement).mainMediaElement)
+					if ((mediaProxy.vo.media as VSwitchingProxyElement).proxiedElement != (mediaProxy.vo.media as VSwitchingProxyElement).mainMediaElement)
 					{
-						(mediaProxy.vo.media as KSwitchingProxyElement).switchElements();
+						(mediaProxy.vo.media as VSwitchingProxyElement).switchElements();
 					}
 					playNextInSequence()
 				}
@@ -550,8 +550,8 @@ package com.kaltura.kdpfl.model
 			}
 		
 			enableGui(false);
-			var player:MediaPlayer = (facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).player;
-			var spe:KSwitchingProxyElement = player.media as KSwitchingProxyElement;
+			var player:MediaPlayer = (facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator).player;
+			var spe:VSwitchingProxyElement = player.media as VSwitchingProxyElement;
 			spe.secondaryMediaElement = element;
 			
 			if (element is SWFElement)
@@ -587,7 +587,7 @@ package com.kaltura.kdpfl.model
 				}
 			}
 		
-			var playerMediator:KMediaPlayerMediator = facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator;
+			var playerMediator:VMediaPlayerMediator = facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator;
 			var mediaProxy:MediaProxy = facade.retrieveProxy(MediaProxy.NAME) as MediaProxy;
 			
 			//improve user experience: if we play live stream we can start connect to it during the preroll play
@@ -624,11 +624,11 @@ package com.kaltura.kdpfl.model
 		 */		
 		private function onAdPlayable (e:MediaPlayerCapabilityChangeEvent) : void
 		{	
-			var kmediaPlayer:KMediaPlayerMediator = facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator;
+			var vmediaPlayer:VMediaPlayerMediator = facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator;
 			if (e.enabled)
 			{
-				kmediaPlayer.playContent();
-				kmediaPlayer.player.removeEventListener( MediaPlayerCapabilityChangeEvent.CAN_PLAY_CHANGE , onAdPlayable );
+				vmediaPlayer.playContent();
+				vmediaPlayer.player.removeEventListener( MediaPlayerCapabilityChangeEvent.CAN_PLAY_CHANGE , onAdPlayable );
 			}
 		}
 		
@@ -660,7 +660,7 @@ package com.kaltura.kdpfl.model
 				facade['bindObject']['volumeBar'].enabled = true;
 			}
 			catch (e:Error){
-				KTrace.getInstance().log('Enabling volumeBar caught error: ' + e.toString());
+				VTrace.getInstance().log('Enabling volumeBar caught error: ' + e.toString());
 			}
 		}
 		
@@ -671,7 +671,7 @@ package com.kaltura.kdpfl.model
 		 * @param cuePointObj - cue point object that will be send on AD_PPORUNITY 
 		 * 
 		 */		
-		public function startMidSequence(sendAdOpportunity:Boolean, cuePointObj:KalturaCuePoint = null):void 
+		public function startMidSequence(sendAdOpportunity:Boolean, cuePointObj:VidiunCuePoint = null):void 
 		{
 			if (sendAdOpportunity)
 			{

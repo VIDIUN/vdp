@@ -1,11 +1,11 @@
-package com.kaltura.kdpfl.model.strings
+package com.vidiun.vdpfl.model.strings
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.ConfigProxy;
 	
 	import org.puremvc.as3.interfaces.IFacade;
 	
 	/**
-	 * Class MessageStrings holds constants for messages displayed by the KDP.
+	 * Class MessageStrings holds constants for messages displayed by the VDP.
 	 * 
 	 */		
 	public class MessageStrings
@@ -16,7 +16,7 @@ package com.kaltura.kdpfl.model.strings
 
 		/**
 		 * Function initiates the class. 
-		 * @param o - the KDP flashvars.
+		 * @param o - the VDP flashvars.
 		 * 
 		 */		
 		public static function init(o:Object):void {
@@ -26,7 +26,7 @@ package com.kaltura.kdpfl.model.strings
 		
 
 		/**
-		 * The function returns the string of a KDP message according to a particular key.
+		 * The function returns the string of a VDP message according to a particular key.
 		 * @param key The key of the desired message string.
 		 * @return The function returns the required message string according to the key that was passed.
 		 * 
@@ -45,7 +45,7 @@ package com.kaltura.kdpfl.model.strings
 		private static var UNAUTHORIZED_COUNTRY_TITLE 	: String = "Unauthorized country";
 		private static var UNAUTHORIZED_IP_ADDRESS_TITLE 	: String = "Unauthorized IP address";
 		private static var OUT_OF_SCHEDULING_TITLE    	: String = "Out of scheduling  ";
-		private static var NO_KS_TITLE				 	: String = "No KS where KS is required ";
+		private static var NO_VS_TITLE				 	: String = "No VS where VS is required ";
 		private static var USER_AGENT_RESTRICTED_TITLE	: String = "Unauthorized user agent";
 		private static var ENTRY_CONVERTING_TITLE     	: String = "Entry is converting";
 		private static var ENTRY_REJECTED_TITLE  	 	: String = "Entry is rejected";
@@ -69,7 +69,7 @@ package com.kaltura.kdpfl.model.strings
 		private static var UNAUTHORIZED_COUNTRY 			: String = "We're sorry, this content is only available in certain countries.";
 		private static var UNAUTHORIZED_IP_ADDRESS 			: String = "We're sorry, this content is only available for certain IP addresses.";
 		private static var OUT_OF_SCHEDULING    			: String = "We're sorry, this content is currently unavailable.";
-		private static var NO_KS  				 		: String = "We're sorry, access to this content is restricted. ";
+		private static var NO_VS  				 		: String = "We're sorry, access to this content is restricted. ";
 		private static var USER_AGENT_RESTRICTED  			: String = "We're sorry, this content is only available for certain user agents. ";
 		private static var ENTRY_CONVERTING     			: String = "Media is currently being converted, please try again in a few minutes.";
 		private static var ENTRY_REJECTED  	 			: String = "We're sorry, this content was removed";

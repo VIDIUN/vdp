@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.BaseFlexVo;
+	import com.vidiun.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaAssetParams extends BaseFlexVo
+	public dynamic class VidiunAssetParams extends BaseFlexVo
 	{
 		/**
 		* The id of the Flavor Params
@@ -69,7 +69,7 @@ package com.kaltura.vo
 		/**
 		* True if those Flavor Params are part of system defaults
 		* 
-		* @see com.kaltura.types.KalturaNullableBoolean
+		* @see com.vidiun.types.VidiunNullableBoolean
 		**/
 		public var isSystemDefault : int = int.MIN_VALUE;
 
@@ -86,7 +86,7 @@ package com.kaltura.vo
 		public var requiredPermissions : Array = null;
 
 		/**
-		* Id of remote storage profile that used to get the source, zero indicates Kaltura data center
+		* Id of remote storage profile that used to get the source, zero indicates Vidiun data center
 		* 
 		**/
 		public var sourceRemoteStorageProfileId : int = int.MIN_VALUE;
@@ -100,7 +100,7 @@ package com.kaltura.vo
 		/**
 		* Media parser type to be used for post-conversion validation
 		* 
-		* @see com.kaltura.types.KalturaMediaParserType
+		* @see com.vidiun.types.VidiunMediaParserType
 		**/
 		public var mediaParserType : String = null;
 
@@ -149,7 +149,7 @@ package com.kaltura.vo
 			var result:String = '';
 			switch (arrayName) {
 				case 'requiredPermissions':
-					result = 'KalturaString';
+					result = 'VidiunString';
 					break;
 			}
 			return result;

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.cuePoint
+package com.vidiun.commands.cuePoint
 {
-		import com.kaltura.vo.KalturaCuePoint;
-	import com.kaltura.delegates.cuePoint.CuePointUpdateDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunCuePoint;
+	import com.vidiun.delegates.cuePoint.CuePointUpdateDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Update cue point by id
 	* 
 	**/
-	public class CuePointUpdate extends KalturaCall
+	public class CuePointUpdate extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param id String
-		* @param cuePoint KalturaCuePoint
+		* @param cuePoint VidiunCuePoint
 		**/
-		public function CuePointUpdate( id : String,cuePoint : KalturaCuePoint )
+		public function CuePointUpdate( id : String,cuePoint : VidiunCuePoint )
 		{
 			service= 'cuepoint_cuepoint';
 			action= 'update';
@@ -53,7 +53,7 @@ package com.kaltura.commands.cuePoint
 			var keyValArr : Array = new Array();
 			keyArr.push('id');
 			valueArr.push(id);
-				keyValArr = kalturaObject2Arrays(cuePoint, 'cuePoint');
+				keyValArr = vidiunObject2Arrays(cuePoint, 'cuePoint');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

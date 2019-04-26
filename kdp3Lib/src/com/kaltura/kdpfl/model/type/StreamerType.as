@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.model.type
+package com.vidiun.vdpfl.model.type
 {
 	/**
-	 * Class StreamerType holds the constants representing the different media stream types supported by the KDP 
+	 * Class StreamerType holds the constants representing the different media stream types supported by the VDP 
 	 * 
 	 */	
 	public class StreamerType

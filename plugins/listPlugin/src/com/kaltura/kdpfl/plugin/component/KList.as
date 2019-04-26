@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
 
-import com.kaltura.kdpfl.component.IComponent;
+import com.vidiun.vdpfl.component.IComponent;
 
 import fl.controls.List;
 import fl.controls.SelectableList;
@@ -10,7 +10,7 @@ import flash.display.Sprite;
 import flash.utils.getDefinitionByName;
 
 
-public class KList extends List implements IComponent
+public class VList extends List implements IComponent
 {
 
 	private var _itemContentFactory:Function; 
@@ -18,7 +18,7 @@ public class KList extends List implements IComponent
 	
 	public var leftScrollBar:Boolean = false;
 	
-	public function KList()
+	public function VList()
 	{
 		super();
 	}

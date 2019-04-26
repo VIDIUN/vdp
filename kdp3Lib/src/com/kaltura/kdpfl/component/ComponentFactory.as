@@ -1,28 +1,28 @@
-package com.kaltura.kdpfl.component
+package com.vidiun.vdpfl.component
 {
-	import com.kaltura.kdpfl.view.controls.KButton;
+	import com.vidiun.vdpfl.view.controls.VButton;
 	
 	import fl.controls.Button;
 	import fl.core.UIComponent;
 	
-	import flash.utils.getDefinitionByName;KButton;
-	import com.kaltura.kdpfl.view.containers.KVBox;KVBox;
-	import com.kaltura.kdpfl.view.containers.KHBox;KHBox;
-	import com.kaltura.kdpfl.view.containers.KCanvas;KCanvas;
-	import com.kaltura.kdpfl.view.containers.KTile;KTile;
-	import com.kaltura.kdpfl.view.media.KMediaPlayer;KMediaPlayer;
-	import com.kaltura.kdpfl.view.controls.KScrubber;KScrubber;
-	import com.kaltura.kdpfl.view.controls.KVolumeBar;KVolumeBar;
-	import com.kaltura.kdpfl.view.controls.KTimer;KTimer;
-	import com.kaltura.kdpfl.view.controls.KLabel;KLabel;
-	import com.kaltura.kdpfl.view.controls.Screens;Screens;
-	import com.kaltura.kdpfl.view.controls.Watermark;Watermark;
-	import com.kaltura.kdpfl.view.media.KThumbnail;KThumbnail;
-	import com.kaltura.kdpfl.view.controls.KFlavorComboBox;KFlavorComboBox;
+	import flash.utils.getDefinitionByName;VButton;
+	import com.vidiun.vdpfl.view.containers.VVBox;VVBox;
+	import com.vidiun.vdpfl.view.containers.VHBox;VHBox;
+	import com.vidiun.vdpfl.view.containers.VCanvas;VCanvas;
+	import com.vidiun.vdpfl.view.containers.VTile;VTile;
+	import com.vidiun.vdpfl.view.media.VMediaPlayer;VMediaPlayer;
+	import com.vidiun.vdpfl.view.controls.VScrubber;VScrubber;
+	import com.vidiun.vdpfl.view.controls.VVolumeBar;VVolumeBar;
+	import com.vidiun.vdpfl.view.controls.VTimer;VTimer;
+	import com.vidiun.vdpfl.view.controls.VLabel;VLabel;
+	import com.vidiun.vdpfl.view.controls.Screens;Screens;
+	import com.vidiun.vdpfl.view.controls.Watermark;Watermark;
+	import com.vidiun.vdpfl.view.media.VThumbnail;VThumbnail;
+	import com.vidiun.vdpfl.view.controls.VFlavorComboBox;VFlavorComboBox;
 	import fl.core.UIComponent;
-	import com.kaltura.kdpfl.view.controls.KTextField;KTextField;
-	import com.kaltura.kdpfl.view.controls.KList;KList;
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.vidiun.vdpfl.view.controls.VTextField;VTextField;
+	import com.vidiun.vdpfl.view.controls.VList;VList;
+	import com.vidiun.vdpfl.view.controls.VTrace;
 
 
 	////////////////////////////////////////////////////////
@@ -35,28 +35,28 @@ package com.kaltura.kdpfl.component
 	public class ComponentFactory
 	{
 		/**
-		 * Map object between the config.xml tag names and the KDP associated classes. 
+		 * Map object between the config.xml tag names and the VDP associated classes. 
 		 */		
 		public static var _componentMap : Object = 
 		{
-			Button:"com.kaltura.kdpfl.view.controls.KButton",
-			VBox:"com.kaltura.kdpfl.view.containers.KVBox",
-			HBox:"com.kaltura.kdpfl.view.containers.KHBox",
-			Canvas:"com.kaltura.kdpfl.view.containers.KCanvas",
-			Tile:"com.kaltura.kdpfl.view.containers.KTile",
-			Video:"com.kaltura.kdpfl.view.media.KMediaPlayer",
-			Scrubber:"com.kaltura.kdpfl.view.controls.KScrubber",
-			VolumeBar:"com.kaltura.kdpfl.view.controls.KVolumeBar",
-			Label:"com.kaltura.kdpfl.view.controls.KLabel",
-			Timer:"com.kaltura.kdpfl.view.controls.KTimer",
-			Screens:"com.kaltura.kdpfl.view.controls.Screens",
-			Watermark:"com.kaltura.kdpfl.view.controls.Watermark",
-			Image:"com.kaltura.kdpfl.view.media.KThumbnail",
+			Button:"com.vidiun.vdpfl.view.controls.VButton",
+			VBox:"com.vidiun.vdpfl.view.containers.VVBox",
+			HBox:"com.vidiun.vdpfl.view.containers.VHBox",
+			Canvas:"com.vidiun.vdpfl.view.containers.VCanvas",
+			Tile:"com.vidiun.vdpfl.view.containers.VTile",
+			Video:"com.vidiun.vdpfl.view.media.VMediaPlayer",
+			Scrubber:"com.vidiun.vdpfl.view.controls.VScrubber",
+			VolumeBar:"com.vidiun.vdpfl.view.controls.VVolumeBar",
+			Label:"com.vidiun.vdpfl.view.controls.VLabel",
+			Timer:"com.vidiun.vdpfl.view.controls.VTimer",
+			Screens:"com.vidiun.vdpfl.view.controls.Screens",
+			Watermark:"com.vidiun.vdpfl.view.controls.Watermark",
+			Image:"com.vidiun.vdpfl.view.media.VThumbnail",
 			Spacer:"fl.core.UIComponent",
-			FlavorCombo:"com.kaltura.kdpfl.view.controls.KFlavorComboBox",
-			Text:"com.kaltura.kdpfl.view.controls.KTextField",
-			ComboBox:"com.kaltura.kdpfl.view.controls.KComboBox",
-			List:"com.kaltura.kdpfl.view.controls.KList"
+			FlavorCombo:"com.vidiun.vdpfl.view.controls.VFlavorComboBox",
+			Text:"com.vidiun.vdpfl.view.controls.VTextField",
+			ComboBox:"com.vidiun.vdpfl.view.controls.VComboBox",
+			List:"com.vidiun.vdpfl.view.controls.VList"
 		}
 		
 		/**
@@ -67,9 +67,9 @@ package com.kaltura.kdpfl.component
 		
 		
 		/**
-		 * Creates the components supported by the KDP 
+		 * Creates the components supported by the VDP 
 		 * @param UIComponent type
-		 * @return KDP UIComponent 
+		 * @return VDP UIComponent 
 		 * 
 		 */		
 		public function getComponent(type:String):UIComponent
@@ -83,7 +83,7 @@ package com.kaltura.kdpfl.component
 					var ClassReference:Class = getDefinitionByName( _componentMap[type] ) as Class;
 				}
 				catch(e:Error){
-					KTrace.getInstance().log("ComponentFactory >> getComponent >> Error: class not found, " + _componentMap[type]);
+					VTrace.getInstance().log("ComponentFactory >> getComponent >> Error: class not found, " + _componentMap[type]);
 				//	trace ("ComponentFactory >> getComponent >> Error: class not found");
 					return null;
 				}
@@ -94,7 +94,7 @@ package com.kaltura.kdpfl.component
 			}
 			else
 			{
-				KTrace.getInstance().log("ComponentFactory >> getComponent >> Error: no class is mapped for this component name.");
+				VTrace.getInstance().log("ComponentFactory >> getComponent >> Error: no class is mapped for this component name.");
 			//	trace ("ComponentFactory >> getComponent >> Error: no class is mapped for this component name.");
 			}
 			

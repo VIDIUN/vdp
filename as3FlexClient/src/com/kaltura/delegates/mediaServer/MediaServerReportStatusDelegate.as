@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,16 +25,16 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.delegates.mediaServer
+package com.vidiun.delegates.mediaServer
 {
-	import com.kaltura.config.KalturaConfig;
-	import com.kaltura.net.KalturaCall;
-	import com.kaltura.delegates.WebDelegateBase;
+	import com.vidiun.config.VidiunConfig;
+	import com.vidiun.net.VidiunCall;
+	import com.vidiun.delegates.WebDelegateBase;
 	import flash.utils.getDefinitionByName;
 
 	public class MediaServerReportStatusDelegate extends WebDelegateBase
 	{
-		public function MediaServerReportStatusDelegate(call:KalturaCall, config:KalturaConfig)
+		public function MediaServerReportStatusDelegate(call:VidiunCall, config:VidiunConfig)
 		{
 			super(call, config);
 		}

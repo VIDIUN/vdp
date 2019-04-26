@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.view.media
+package com.vidiun.vdpfl.view.media
 {
-	import com.kaltura.kdpfl.component.IComponent;
-	import com.kaltura.kdpfl.util.URLUtils;
-	import com.kaltura.kdpfl.view.controls.BufferAnimation;
+	import com.vidiun.vdpfl.component.IComponent;
+	import com.vidiun.vdpfl.util.URLUtils;
+	import com.vidiun.vdpfl.view.controls.BufferAnimation;
 	import com.yahoo.astra.fl.containers.layoutClasses.AdvancedLayoutPane;
 	
 	import flash.display.Sprite;
@@ -13,7 +13,7 @@ package com.kaltura.kdpfl.view.media
 	import org.osmf.media.MediaPlayer;
 	import org.osmf.media.MediaPlayerState;
 	
-	public dynamic class KMediaPlayer extends AdvancedLayoutPane implements IComponent
+	public dynamic class VMediaPlayer extends AdvancedLayoutPane implements IComponent
 	{
 		/**
 		 * Stretch the thumbnail to the video player dimentions even if the player 
@@ -21,7 +21,7 @@ package com.kaltura.kdpfl.view.media
 		 */		
 		public var stretchThumbnail:Boolean = false;
 		private var _player:MediaPlayer;
-		private var _thumbnail : KThumbnail = new KThumbnail(); 
+		private var _thumbnail : VThumbnail = new VThumbnail(); 
 		private var _bgSprite : Sprite = new Sprite();		
 		private var _bgColor : uint;
 		private var _bgAlpha : Number;
@@ -110,7 +110,7 @@ package com.kaltura.kdpfl.view.media
 		 * Constructor 
 		 * 
 		 */
-		public function KMediaPlayer(fileSystemMode : Boolean = false)
+		public function VMediaPlayer(fileSystemMode : Boolean = false)
 		{
 			super();
 			addChild(_bgSprite);
@@ -152,7 +152,7 @@ package com.kaltura.kdpfl.view.media
 			
 		}
 		
-		public function loadThumbnail( url : String ,thumbWidth:Number, thumbHeight:Number , ks : String = null, flashvars:Object = null) : void
+		public function loadThumbnail( url : String ,thumbWidth:Number, thumbHeight:Number , vs : String = null, flashvars:Object = null) : void
 		{
 			if(!url) return; //if someone send null we won't load it
 			
@@ -165,13 +165,13 @@ package com.kaltura.kdpfl.view.media
 			var thumbUrl:String = url;	
 			if ( url.indexOf( "thumbnail/entry_id" ) != -1 )
 			{
-				thumbUrl += "/width/" + thumbWidth+"/height/" + thumbHeight + URLUtils.getThumbURLPostfix(flashvars, ks);
+				thumbUrl += "/width/" + thumbWidth+"/height/" + thumbHeight + URLUtils.getThumbURLPostfix(flashvars, vs);
 			}
 			
 			if (!stretchThumbnail && _keepAspectRatio)
 			{
 				_thumbnail.keepAspectRatio = true;
-				_thumbnail.addEventListener(KThumbnail.THUMBNAIL_LOADED, onThumbLoaded);
+				_thumbnail.addEventListener(VThumbnail.THUMBNAIL_LOADED, onThumbLoaded);
 				//we will add the thumbnail after we receive its original aspect ratio
 			}
 			else
@@ -190,7 +190,7 @@ package com.kaltura.kdpfl.view.media
 		 * */
 		private function onThumbLoaded ( e : Event ) : void
 		{
-			_thumbnail.removeEventListener(KThumbnail.THUMBNAIL_LOADED, onThumbLoaded);
+			_thumbnail.removeEventListener(VThumbnail.THUMBNAIL_LOADED, onThumbLoaded);
 			var newDimensions : Object = getAspectratio(_thumbnail.originalWidth, _thumbnail.originalHeight );
 			_thumbnail.width = newDimensions.newWidth;
 			_thumbnail.height = newDimensions.newHeight;
@@ -466,7 +466,7 @@ package com.kaltura.kdpfl.view.media
 				
 				if ( dimensions.newHeight > this.height)
 				{
-					//trace("KMediaPlayer: 1")
+					//trace("VMediaPlayer: 1")
 					dimensions.newHeight = this.height;
 					dimensions.newWidth = this.height *mediaWidth/mediaHeight;
 				}

@@ -5,8 +5,8 @@ package  {
 	
 	import tv.freewheel.ad.behavior.IConstants;
 	import tv.freewheel.logging.Logger;
-	import tv.freewheel.playerextension.kdpanalytics.AdInfo;
-	import tv.freewheel.playerextension.kdpanalytics.CustomEvent;
+	import tv.freewheel.playerextension.vdpanalytics.AdInfo;
+	import tv.freewheel.playerextension.vdpanalytics.CustomEvent;
 	import tv.freewheel.renderer.util.ParameterParserUtil;
 	
 	
@@ -15,7 +15,7 @@ package  {
 		//private static const VERSION:String = BUILD::Version;
 		//private static const RDK_VERSION:String = BUILD::RDK_Version;
 		
-		public static const PARAM_NAMESPACE:String = "extension.kdpanalytics";
+		public static const PARAM_NAMESPACE:String = "extension.vdpanalytics";
 		public static const PARAM_LEGACY_NAMESPACE:String = "extension.foxanalytics";
 		public static const PARAM_CUSTOM_DATA:String = "customData";
 		
@@ -30,7 +30,7 @@ package  {
 		
 		public function freeWheelAnalyticsExtension(){			
 			Security.allowDomain("*");
-			//trace("new KDPAnalyticsExtension() - Version: " + VERSION + " RDK Version: " + RDK_VERSION);
+			//trace("new VDPAnalyticsExtension() - Version: " + VERSION + " RDK Version: " + RDK_VERSION);
 		}
 		
 		public function init(am:Object):void {
@@ -39,7 +39,7 @@ package  {
 			this.slots = new Array();
 			this.am = am;
 			this.constants = am.getConstants();
-			this.logger = Logger.getLogger(am, this.constants, "KDPAnalyticsExtension ");
+			this.logger = Logger.getLogger(am, this.constants, "VDPAnalyticsExtension ");
 			this.logger.debug("init()");
 			
 			this.am.addEventListener(this.constants.EVENT_RENDERER, onRendererEvent);

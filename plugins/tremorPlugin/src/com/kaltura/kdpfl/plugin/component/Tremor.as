@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	//import com.kaltura.kdpfl.component.IComponent;
+	//import com.vidiun.vdpfl.component.IComponent;
 	import com.tremormedia.acudeo.IAdManager;
 	
 	import flash.display.DisplayObject;

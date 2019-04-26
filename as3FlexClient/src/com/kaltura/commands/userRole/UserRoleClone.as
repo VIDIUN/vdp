@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,16 +25,16 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.userRole
+package com.vidiun.commands.userRole
 {
-	import com.kaltura.delegates.userRole.UserRoleCloneDelegate;
-	import com.kaltura.net.KalturaCall;
+	import com.vidiun.delegates.userRole.UserRoleCloneDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Creates a new user role object that is a duplicate of an existing role.
 	* 
 	**/
-	public class UserRoleClone extends KalturaCall
+	public class UserRoleClone extends VidiunCall
 	{
 		public var filterFields : String;
 		

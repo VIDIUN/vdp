@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.view.events
+package com.vidiun.vdpfl.view.events
 {
-	import com.kaltura.kdpfl.view.Annotation;
+	import com.vidiun.vdpfl.view.Annotation;
 	
 	import flash.events.Event;
 	

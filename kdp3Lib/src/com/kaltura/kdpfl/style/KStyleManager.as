@@ -1,28 +1,28 @@
-package com.kaltura.kdpfl.style
+package com.vidiun.vdpfl.style
 {
-	import com.kaltura.kdpfl.ApplicationFacade;
-	import com.kaltura.kdpfl.controller.IResponder;
-	import com.kaltura.kdpfl.events.StyleEvent;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.util.URLUtils;
+	import com.vidiun.vdpfl.ApplicationFacade;
+	import com.vidiun.vdpfl.controller.IResponder;
+	import com.vidiun.vdpfl.events.StyleEvent;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.LayoutProxy;
+	import com.vidiun.vdpfl.util.URLUtils;
 	
-	public class KStyleManager
+	public class VStyleManager
 	{
 		private var _facade : ApplicationFacade = ApplicationFacade.getInstance();
 		
-		private var _styleLoader:KStyleLoader;
+		private var _styleLoader:VStyleLoader;
 		
 		private var _responder:IResponder;
 		
-		public function KStyleManager(responder:IResponder)
+		public function VStyleManager(responder:IResponder)
 		{
 			_responder = responder;
 		}
 		
 		public function loadStyles():void
 		{
-			_styleLoader = KStyleLoader.getInstance();
+			_styleLoader = VStyleLoader.getInstance();
 			_styleLoader.addEventListener(StyleEvent.COMPLETE, onSkinLoaded);
 			_styleLoader.addEventListener(StyleEvent.ERROR, onSkinLoadError);
 			
@@ -38,8 +38,8 @@ package com.kaltura.kdpfl.style
 				}
 				else
 				{
-					//This check is necessary for users running the kdp from their file system, if the skin path begins with "/"
-					//the skin loader automatically loads the skin from this location, instead of the locaion which is relative to the kdp3.swf
+					//This check is necessary for users running the vdp from their file system, if the skin path begins with "/"
+					//the skin loader automatically loads the skin from this location, instead of the locaion which is relative to the vdp3.swf
 					if (skinPath.indexOf("/") == 0)
 					{
 						skinPath = skinPath.substring(1);

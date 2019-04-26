@@ -4,7 +4,7 @@
 */
 package org.puremvc.as3.patterns.observer
 {
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.vidiun.vdpfl.view.controls.VTrace;
 	
 	import org.puremvc.as3.interfaces.*;
 
@@ -108,7 +108,7 @@ package org.puremvc.as3.patterns.observer
 			}
 			catch(e : Error)
 			{
-				KTrace.getInstance().log("--Exception while notifying " + notification.getName() + ": " + e.message); 
+				VTrace.getInstance().log("--Exception while notifying " + notification.getName() + ": " + e.message); 
 				return;
 			}
 		}

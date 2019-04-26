@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.BaseFlexVo;
+	import com.vidiun.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaMetadataProfile extends BaseFlexVo
+	public dynamic class VidiunMetadataProfile extends BaseFlexVo
 	{
 		/**
 		**/
@@ -41,7 +41,7 @@ package com.kaltura.vo
 		public var partnerId : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaMetadataObjectType
+		* @see com.vidiun.types.VidiunMetadataObjectType
 		**/
 		public var metadataObjectType : String = null;
 
@@ -70,7 +70,7 @@ package com.kaltura.vo
 		public var updatedAt : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaMetadataProfileStatus
+		* @see com.vidiun.types.VidiunMetadataProfileStatus
 		**/
 		public var status : int = int.MIN_VALUE;
 
@@ -87,7 +87,7 @@ package com.kaltura.vo
 		public var xslt : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaMetadataProfileCreateMode
+		* @see com.vidiun.types.VidiunMetadataProfileCreateMode
 		**/
 		public var createMode : int = int.MIN_VALUE;
 

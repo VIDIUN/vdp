@@ -1,9 +1,9 @@
-package com.kaltura.kdpfl.controller
+package com.vidiun.vdpfl.controller
 {
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.osmf.proxy.KSwitchingProxyElement;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.osmf.proxy.VSwitchingProxyElement;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
@@ -19,9 +19,9 @@ package com.kaltura.kdpfl.controller
 		{
 			var mediaProxy : MediaProxy = facade.retrieveProxy( MediaProxy.NAME ) as MediaProxy;
 			var sequenceProxy : SequenceProxy = facade.retrieveProxy( SequenceProxy.NAME ) as SequenceProxy;
-			if ((mediaProxy.vo.media as KSwitchingProxyElement).proxiedElement != (mediaProxy.vo.media as KSwitchingProxyElement).mainMediaElement)
+			if ((mediaProxy.vo.media as VSwitchingProxyElement).proxiedElement != (mediaProxy.vo.media as VSwitchingProxyElement).mainMediaElement)
 			{
-				(mediaProxy.vo.media as KSwitchingProxyElement).switchElements();
+				(mediaProxy.vo.media as VSwitchingProxyElement).switchElements();
 			}
 			sequenceProxy.vo.midrollArr = new Array();
 			sequenceProxy.vo.midCurrentIndex = -1;

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,27 +25,27 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.report
+package com.vidiun.commands.report
 {
-		import com.kaltura.vo.KalturaReportInputFilter;
-	import com.kaltura.delegates.report.ReportGetGraphsDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunReportInputFilter;
+	import com.vidiun.delegates.report.ReportGetGraphsDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* report getGraphs action allows to get a graph data for a specific report.
 	* 
 	**/
-	public class ReportGetGraphs extends KalturaCall
+	public class ReportGetGraphs extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param reportType int
-		* @param reportInputFilter KalturaReportInputFilter
+		* @param reportInputFilter VidiunReportInputFilter
 		* @param dimension String
 		* @param objectIds String
 		**/
-		public function ReportGetGraphs( reportType : int,reportInputFilter : KalturaReportInputFilter,dimension : String = null,objectIds : String = null )
+		public function ReportGetGraphs( reportType : int,reportInputFilter : VidiunReportInputFilter,dimension : String = null,objectIds : String = null )
 		{
 			service= 'report';
 			action= 'getGraphs';
@@ -55,7 +55,7 @@ package com.kaltura.commands.report
 			var keyValArr : Array = new Array();
 			keyArr.push('reportType');
 			valueArr.push(reportType);
-				keyValArr = kalturaObject2Arrays(reportInputFilter, 'reportInputFilter');
+				keyValArr = vidiunObject2Arrays(reportInputFilter, 'reportInputFilter');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			keyArr.push('dimension');

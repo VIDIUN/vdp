@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
 	import com.hybrid.ui.ToolTip;
-	import com.kaltura.kdpfl.style.TextFormatManager;
+	import com.vidiun.vdpfl.style.TextFormatManager;
 	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;

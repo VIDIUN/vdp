@@ -1,13 +1,13 @@
-package com.kaltura.kdpfl.plugin.view
+package com.vidiun.vdpfl.plugin.view
 {
-	import com.kaltura.kdpfl.view.containers.KVBox;
-	import com.kaltura.kdpfl.view.controls.KLabel;
-	import com.kaltura.kdpfl.view.controls.KTextField;
+	import com.vidiun.vdpfl.view.containers.VVBox;
+	import com.vidiun.vdpfl.view.controls.VLabel;
+	import com.vidiun.vdpfl.view.controls.VTextField;
 	
 	import flash.events.Event;
 	import flash.utils.setTimeout;
 	
-	public class Message extends KVBox {
+	public class Message extends VVBox {
 		
 		public static const HIDE:String = "hide";
 		
@@ -33,13 +33,13 @@ package com.kaltura.kdpfl.plugin.view
 //			this.paddingTop = 5;
 			this.paddingBottom = 5;
 			
-			var lbl:KLabel = new KLabel();
+			var lbl:VLabel = new VLabel();
 			lbl.name = "windowTitle";
 			lbl.width = availableWidth;
 			lbl.text = _headerText;
 			addChild(lbl);
 			
-			var txt:KTextField = new KTextField();
+			var txt:VTextField = new VTextField();
 			txt.name = "windowText";
 			txt.truncateToFit = false;
 			txt.width = availableWidth;
@@ -84,8 +84,8 @@ package com.kaltura.kdpfl.plugin.view
 		 */		
 		override public function setSkin(styleName:String, setSkinSize:Boolean=false):void {
 			super.setSkin("Mod_darkBg");
-			(this.getChildByName("windowTitle") as KLabel).setSkin("Mod_title", setSkinSize);
-			(this.getChildByName("windowText") as KTextField).setSkin("Mod_text", setSkinSize);
+			(this.getChildByName("windowTitle") as VLabel).setSkin("Mod_title", setSkinSize);
+			(this.getChildByName("windowText") as VTextField).setSkin("Mod_text", setSkinSize);
 		}
 		
 		/**
@@ -100,7 +100,7 @@ package com.kaltura.kdpfl.plugin.view
 		 * @private
 		 */
 		public function set headerText(value:String):void {
-			(this.getChildByName("windowTitle") as KLabel).text = value;
+			(this.getChildByName("windowTitle") as VLabel).text = value;
 			_headerText = value;
 		}
 		
@@ -116,7 +116,7 @@ package com.kaltura.kdpfl.plugin.view
 		 * @private
 		 */
 		public function set windowText(value:String):void {
-			(this.getChildByName("windowText") as KTextField).text = value;
+			(this.getChildByName("windowText") as VTextField).text = value;
 			_windowText = value;
 		}
 

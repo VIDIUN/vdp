@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,19 +25,19 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.BaseFlexVo;
+	import com.vidiun.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaTrackEntry extends BaseFlexVo
+	public dynamic class VidiunTrackEntry extends BaseFlexVo
 	{
 		/**
 		**/
 		public var id : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaTrackEntryEventType
+		* @see com.vidiun.types.VidiunTrackEntryEventType
 		**/
 		public var trackEventType : int = int.MIN_VALUE;
 
@@ -83,7 +83,7 @@ package com.kaltura.vo
 
 		/**
 		**/
-		public var ks : String = null;
+		public var vs : String = null;
 
 		/**
 		**/
@@ -120,7 +120,7 @@ package com.kaltura.vo
 			arr.push('paramStr1');
 			arr.push('paramStr2');
 			arr.push('paramStr3');
-			arr.push('ks');
+			arr.push('vs');
 			arr.push('description');
 			arr.push('createdAt');
 			arr.push('updatedAt');

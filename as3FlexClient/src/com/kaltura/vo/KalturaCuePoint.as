@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.BaseFlexVo;
+	import com.vidiun.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaCuePoint extends BaseFlexVo
+	public dynamic class VidiunCuePoint extends BaseFlexVo
 	{
 		/**
 		**/
 		public var id : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaCuePointType
+		* @see com.vidiun.types.VidiunCuePointType
 		**/
 		public var cuePointType : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaCuePointStatus
+		* @see com.vidiun.types.VidiunCuePointStatus
 		**/
 		public var status : int = int.MIN_VALUE;
 
@@ -85,7 +85,7 @@ package com.kaltura.vo
 		public var partnerSortValue : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaNullableBoolean
+		* @see com.vidiun.types.VidiunNullableBoolean
 		**/
 		public var forceStop : int = int.MIN_VALUE;
 

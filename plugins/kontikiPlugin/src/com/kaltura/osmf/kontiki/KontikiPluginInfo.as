@@ -1,4 +1,4 @@
-package com.kaltura.osmf.kontiki
+package com.vidiun.osmf.kontiki
 {
 	import org.osmf.media.MediaElement;
 	import org.osmf.media.MediaFactoryItem;
@@ -11,7 +11,7 @@ package com.kaltura.osmf.kontiki
 		
 		public function KontikiPluginInfo(mediaFactoryItems:Vector.<MediaFactoryItem>=null, mediaElementCreationNotificationFunction:Function=null)
 		{
-			var mediaInfo : MediaFactoryItem = new MediaFactoryItem("com.kaltura.osmf.kontiki.KontikiElement", canHandleResource, createKontikiMediaElement );
+			var mediaInfo : MediaFactoryItem = new MediaFactoryItem("com.vidiun.osmf.kontiki.KontikiElement", canHandleResource, createKontikiMediaElement );
 			mediaFactoryItems = new Vector.<MediaFactoryItem>;
 			mediaFactoryItems.push(mediaInfo);
 			super(mediaFactoryItems, mediaElementCreationNotificationFunction);

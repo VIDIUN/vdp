@@ -1,9 +1,9 @@
-package com.kaltura.kdpfl.controller
+package com.vidiun.vdpfl.controller
 {
 	import org.puremvc.as3.patterns.command.AsyncMacroCommand;
 
 	/**
-	 * This class defines the sequence of KDP initialization.  
+	 * This class defines the sequence of VDP initialization.  
 	 */	
 	public class InitMacroCommand extends AsyncMacroCommand
 	{
@@ -13,7 +13,7 @@ package com.kaltura.kdpfl.controller
 			// save all flash vars
 			addSubCommand( SaveFVCommand ); 	
 			
-			// load all the data needed to load and display the entry form kaltura
+			// load all the data needed to load and display the entry form vidiun
 			addSubCommand( LoadConfigCommand );		
 			
 			//load skin before building the layout because some elements has default skin to use [async command]

@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.style
+package com.vidiun.vdpfl.style
 {
-	import com.kaltura.kdpfl.events.StyleEvent;
-	import com.kaltura.kdpfl.util.KdpEmbeddedData;
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.vidiun.vdpfl.events.StyleEvent;
+	import com.vidiun.vdpfl.util.VdpEmbeddedData;
+	import com.vidiun.vdpfl.view.controls.VTrace;
 	
 	import flash.display.Loader;
 	import flash.events.ErrorEvent;
@@ -16,16 +16,16 @@ package com.kaltura.kdpfl.style
 	import flash.system.SecurityDomain;
 	import flash.utils.ByteArray;
 	
-	public class KStyleLoader extends EventDispatcher
+	public class VStyleLoader extends EventDispatcher
 	{
-		private static var _instance:KStyleLoader;
+		private static var _instance:VStyleLoader;
 
 		private var _loader:Loader;
 		private var _context:LoaderContext;
 		
 		//private var _dispatcher:IEventDispatcher;
 		
-		public function KStyleLoader(sing:Singleton)
+		public function VStyleLoader(sing:Singleton)
 		{
 			if(null == sing)
 			{
@@ -34,11 +34,11 @@ package com.kaltura.kdpfl.style
 			init();
 		}
 		
-		public static function getInstance():KStyleLoader
+		public static function getInstance():VStyleLoader
 		{
 			if(!_instance)
 			{
-				_instance = new KStyleLoader(new Singleton());
+				_instance = new VStyleLoader(new Singleton());
 			}
 			return _instance;
 		} 
@@ -68,7 +68,7 @@ package com.kaltura.kdpfl.style
 				_context.checkPolicyFile = true;
 			}
 			
-			var ba:ByteArray = KdpEmbeddedData.getData(url);
+			var ba:ByteArray = VdpEmbeddedData.getData(url);
 			if (ba) // if bytes are supplied, then load the bytes instead of loading from the url.
 			{
 				_context.securityDomain = null;
@@ -99,7 +99,7 @@ package com.kaltura.kdpfl.style
 		private function onError( event : ErrorEvent ) : void
 		{
 			//TODO: Report, Log and Alert the user...
-			KTrace.getInstance().log("skin loaded error");
+			VTrace.getInstance().log("skin loaded error");
 			//trace("skin loaded error");
 			dispatchEvent( new StyleEvent(  StyleEvent.ERROR ) );
 		}

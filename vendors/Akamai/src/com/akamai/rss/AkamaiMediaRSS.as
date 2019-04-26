@@ -207,8 +207,8 @@
 					enclosure.length=Number(_rss.channel.item[i].enclosure.@length.toString());
 					enclosure.type=_rss.channel.item[i].enclosure.@type;
 
-					//kaltura patches:
-					var kalNs:Namespace = new Namespace("http://kaltura.com/playlist/1.0");
+					//vidiun patches:
+					var vidNs:Namespace = new Namespace("http://vidiun.com/playlist/1.0");
 
 
 					//patches:
@@ -219,11 +219,11 @@
 					var xmlItem:XML = _rss.channel.item[i];
 					for each (var xmlItemProperty:XML in xmlItem.children())
 					{
-						if (xmlItemProperty.namespace() == kalNs)
+						if (xmlItemProperty.namespace() == vidNs)
 							item[xmlItemProperty.localName()] = xmlItemProperty.toString();
 					}
 
-					//end of kaltura patches
+					//end of vidiun patches
 
 					item.enclosure = enclosure;
 					if (_rss.channel.item[i].mediaNs::group == undefined) {

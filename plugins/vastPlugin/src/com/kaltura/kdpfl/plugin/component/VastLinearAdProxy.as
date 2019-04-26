@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.component {
+package com.vidiun.vdpfl.plugin.component {
 
 	
 	import com.kaltura.kdpfl.ApplicationFacade;
@@ -304,7 +304,7 @@ package com.kaltura.kdpfl.plugin.component {
 		 */		
 		private function playAd () : void
 		{
-			var playerMediator:Object = facade.retrieveMediator("kMediaPlayerMediator");
+			var playerMediator:Object = facade.retrieveMediator("vMediaPlayerMediator");
 			if (_currentSequenceContext == SequenceContextType.MID)
 			{
 				playAdAsMidroll(playerMediator) ;
@@ -331,7 +331,7 @@ package com.kaltura.kdpfl.plugin.component {
 			//_playingAd.addEventListener("traitAdd", onAdPlayable);
 			
 			if (_playingAdClickThru) {
-				playerMediator["kMediaPlayer"].addEventListener(MouseEvent.CLICK, onAdClick);
+				playerMediator["vMediaPlayer"].addEventListener(MouseEvent.CLICK, onAdClick);
 			}
 			//playerMediator.player.addEventListener(TimeEvent.COMPLETE, onAdComplete);
 			//playerMediator["playContent"]();
@@ -352,11 +352,11 @@ package com.kaltura.kdpfl.plugin.component {
 		private function playAdAsMidroll (playerMediator : Object) : void
 		{
 			var mediaProxy : MediaProxy = facade.retrieveProxy( MediaProxy.NAME ) as MediaProxy;
-			(mediaProxy.vo.media as KSwitchingProxyElement).secondaryMediaElement = _playingAd;
+			(mediaProxy.vo.media as VSwitchingProxyElement).secondaryMediaElement = _playingAd;
 			(playerMediator["player"] as MediaPlayer).addEventListener(TimeEvent.DURATION_CHANGE, onAdDurationReceived,false, int.MIN_VALUE);
 
 			if (_playingAdClickThru) {
-				playerMediator["kMediaPlayer"].addEventListener(MouseEvent.CLICK, onAdClick);
+				playerMediator["vMediaPlayer"].addEventListener(MouseEvent.CLICK, onAdClick);
 			}
 			sendNotification("adStart",
 				{timeSlot: getContextString(_currentSequenceContext)});
@@ -367,11 +367,11 @@ package com.kaltura.kdpfl.plugin.component {
 			//if we're playing ad pods, don't switch elements again
 			if (sequencedAds)
 			{
-				(mediaProxy.vo.media as KSwitchingProxyElement).proxiedElement = _playingAd;
+				(mediaProxy.vo.media as VSwitchingProxyElement).proxiedElement = _playingAd;
 			}
 			else
 			{
-				(mediaProxy.vo.media as KSwitchingProxyElement).switchElements();
+				(mediaProxy.vo.media as VSwitchingProxyElement).switchElements();
 			}
 						
 			
@@ -379,7 +379,7 @@ package com.kaltura.kdpfl.plugin.component {
 		
 		private function handleVpaidElement(event:Event = null) : void
 		{
-			var playerMediator:Object = facade.retrieveMediator("kMediaPlayerMediator");
+			var playerMediator:Object = facade.retrieveMediator("vMediaPlayerMediator");
 			var vpaidMetadata:VPAIDMetadata = getVPAIDMetadata();
 			if (vpaidMetadata)
 			{
@@ -422,7 +422,7 @@ package com.kaltura.kdpfl.plugin.component {
 		//Once the ad mediaElement has a time trait, it is safe to show the notice message.
 		private function onAdPlayable (e:MediaPlayerCapabilityChangeEvent) : void
 		{
-			var playerMediator : Object = facade.retrieveMediator("kMediaPlayerMediator");
+			var playerMediator : Object = facade.retrieveMediator("vMediaPlayerMediator");
 			
 			if (e.enabled)
 			{
@@ -541,7 +541,7 @@ package com.kaltura.kdpfl.plugin.component {
 					fireBeacon(_playingAdClickTrackings[i]);
 				}
 			}
-			//var clickTrackingUrl : String = ((e.target as KMediaPlayer).player.media as VASTTrackingProxyElement).
+			//var clickTrackingUrl : String = ((e.target as VMediaPlayer).player.media as VASTTrackingProxyElement).
 			//TODO track stats
 			var sequenceProxy:Proxy = facade.retrieveProxy("sequenceProxy") as Proxy;
 			sendNotification("adClick",
@@ -648,9 +648,9 @@ package com.kaltura.kdpfl.plugin.component {
 		//todo: check if skip ad also does this function
 
 		public function removeClickThrough():void {
-			var playerMediator:Object = facade.retrieveMediator("kMediaPlayerMediator");
-			if (playerMediator["kMediaPlayer"].hasEventListener(MouseEvent.CLICK)) {
-				playerMediator["kMediaPlayer"].removeEventListener(MouseEvent.CLICK, onAdClick);
+			var playerMediator:Object = facade.retrieveMediator("vMediaPlayerMediator");
+			if (playerMediator["vMediaPlayer"].hasEventListener(MouseEvent.CLICK)) {
+				playerMediator["vMediaPlayer"].removeEventListener(MouseEvent.CLICK, onAdClick);
 				_playingAdClickThru = null;
 			}
 		}
@@ -671,7 +671,7 @@ package com.kaltura.kdpfl.plugin.component {
 				removeClickThrough();
 				sendNotification("enableGui", {guiEnabled : true, enableType : "full"});
 				dispatchEvent(new Event(VastLinearAdProxy.SIGNAL_END));
-				(facade.retrieveMediator("kMediaPlayerMediator")["player"] as MediaPlayer).removeEventListener(TimeEvent.DURATION_CHANGE, onAdDurationReceived );
+				(facade.retrieveMediator("vMediaPlayerMediator")["player"] as MediaPlayer).removeEventListener(TimeEvent.DURATION_CHANGE, onAdDurationReceived );
 				sendNotification("sequenceItemPlayEnd");
 			}
 		}
@@ -790,7 +790,7 @@ package com.kaltura.kdpfl.plugin.component {
 		}
 		
 		private function iconLoaded(e:Event):void {
-			var area:KCanvas = facade["bindObject"]["PlayerHolder"] as KCanvas;
+			var area:VCanvas = facade["bindObject"]["PlayerHolder"] as VCanvas;
 			_icon.width = parseInt(_iconObj.width);
 			_icon.height = parseInt(_iconObj.height);
 			_icon.x = getPosition(_iconObj.xPosition, 'left', 'right', area.width - _icon.width) ;
@@ -822,7 +822,7 @@ package com.kaltura.kdpfl.plugin.component {
 		 */		
 		private function addIcon():void 
 		{
-			var area:KCanvas = facade["bindObject"]["PlayerHolder"] as KCanvas;
+			var area:VCanvas = facade["bindObject"]["PlayerHolder"] as VCanvas;
 			area.addChild(_icon);
 			if (_iconObj.viewTracking)
 				fireBeacon(_iconObj.viewTracking);

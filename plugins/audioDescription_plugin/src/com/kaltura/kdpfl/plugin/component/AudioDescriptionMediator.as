@@ -1,9 +1,9 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.baseEntry.BaseEntryGet;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.vo.KalturaMediaEntry;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.commands.baseEntry.BaseEntryGet;
+	import com.vidiun.events.VidiunEvent;
+	import com.vidiun.vo.VidiunMediaEntry;
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
@@ -92,12 +92,12 @@ package com.kaltura.kdpfl.plugin.component
 						}
 						else
 						{
-							var kc:KalturaClient =  facade.retrieveProxy("servicesProxy")["kalturaClient"];
+							var vc:VidiunClient =  facade.retrieveProxy("servicesProxy")["vidiunClient"];
 							var getEntry:BaseEntryGet = new BaseEntryGet (flashvars.captions.entryID);
 
-							getEntry.addEventListener (KalturaEvent.COMPLETE, onGetEntryResult);
-							getEntry.addEventListener (KalturaEvent.FAILED, onGetEntryError);
-							kc.post (getEntry);
+							getEntry.addEventListener (VidiunEvent.COMPLETE, onGetEntryResult);
+							getEntry.addEventListener (VidiunEvent.FAILED, onGetEntryError);
+							vc.post (getEntry);
 						}
 					}
 				}
@@ -143,7 +143,7 @@ package com.kaltura.kdpfl.plugin.component
 		
 		private function onGetEntryResult(evt:Object):void
 		{
-			var me:KalturaMediaEntry = evt["data"] as KalturaMediaEntry;
+			var me:VidiunMediaEntry = evt["data"] as VidiunMediaEntry;
 			loadFile(me.downloadUrl);
 		}
 		
