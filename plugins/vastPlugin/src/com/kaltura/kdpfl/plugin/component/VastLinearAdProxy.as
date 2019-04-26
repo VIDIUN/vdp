@@ -1,12 +1,12 @@
 package com.vidiun.vdpfl.plugin.component {
 
 	
-	import com.kaltura.kdpfl.ApplicationFacade;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.kdpfl.view.containers.KCanvas;
-	import com.kaltura.osmf.proxy.KSwitchingProxyElement;
+	import com.vidiun.vdpfl.ApplicationFacade;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.SequenceContextType;
+	import com.vidiun.vdpfl.view.containers.VCanvas;
+	import com.vidiun.osmf.proxy.VSwitchingProxyElement;
 	
 	import flash.display.Loader;
 	import flash.display.Sprite;

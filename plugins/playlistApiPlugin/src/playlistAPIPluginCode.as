@@ -301,11 +301,11 @@ package {
 					}
 					
 				}
-				kalturaEntry.name = itemTo.media.title;
-				kalturaEntry.description = this.removeHtml5Chars(itemTo.media.description);
+				vidiunEntry.name = itemTo.media.title;
+				vidiunEntry.description = this.removeHtml5Chars(itemTo.media.description);
 
-				kalturaEntry['partnerLandingPage'] = itemTo.link;
-				kalturaEntry.createdAt = itemTo.createdAtInt;
+				vidiunEntry['partnerLandingPage'] = itemTo.link;
+				vidiunEntry.createdAt = itemTo.createdAtInt;
 				
 				if (!vidiunEntry.id)
 					vidiunEntry.id = contentTo.url;
