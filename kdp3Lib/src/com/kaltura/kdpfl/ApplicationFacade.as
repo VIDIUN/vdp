@@ -32,7 +32,7 @@ package com.vidiun.vdpfl
 		/**
 		 * The current version of the VDP.
 		 */		
-		public var kdpVersion : String = "v3.9.9";
+		public var vdpVersion : String = "v3.9.9";
 
 
 		/**

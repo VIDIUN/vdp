@@ -71,7 +71,7 @@ package com.vidiun.vdpfl.plugin.googleAnalytics
 		 */		
 		public var urchinCode : String;
 		
-		public var defaultCategory:String = 'Kaltura Video Events';
+		public var defaultCategory:String = 'Vidiun Video Events';
 		private var _isLive:Boolean = false;
 		/**
 		 *Constructor. 
@@ -115,14 +115,14 @@ package com.vidiun.vdpfl.plugin.googleAnalytics
 		private function getBasicStatsEntry(vc:Object) : com.vidiun.vo.VidiunStatsEvent
 		{
 			var config: Object =  facade.retrieveProxy("configProxy");
-			var mediaPlayer : KMediaPlayerMediator = facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator;
-			var kse : com.kaltura.vo.KalturaStatsEvent = new com.kaltura.vo.KalturaStatsEvent();
-			kse.partnerId = config["vo"]["flashvars"].partnerId;
-			kse.widgetId = config["vo"]["flashvars"].id;
-            kse.uiconfId = config["vo"].flashvars.uiConfId;
-            kse.entryId =  (facade.retrieveProxy("mediaProxy"))["vo"].entry.id;
+			var mediaPlayer : VMediaPlayerMediator = facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator;
+			var vse : com.vidiun.vo.VidiunStatsEvent = new com.vidiun.vo.VidiunStatsEvent();
+			vse.partnerId = config["vo"]["flashvars"].partnerId;
+			vse.widgetId = config["vo"]["flashvars"].id;
+            vse.uiconfId = config["vo"].flashvars.uiConfId;
+            vse.entryId =  (facade.retrieveProxy("mediaProxy"))["vo"].entry.id;
 			_isLive = (facade.retrieveProxy("mediaProxy"))["vo"]["isLive"];
- 		    kse.clientVer = "3.0:" + facade["kdpVersion"];
+ 		    vse.clientVer = "3.0:" + facade["vdpVersion"];
             var dt:Date = new Date();
             vse.eventTimestamp = dt.time + dt.timezoneOffset-dt.timezoneOffset*60000; // milisec UTC + users timezone offset
             if(mediaPlayer)
@@ -325,7 +325,7 @@ package com.vidiun.vdpfl.plugin.googleAnalytics
 				if (refIdStr)
 					refIdStr = refIdStr + "|";
 			} 
-			gaLabel = customObject["Label"] || ( refIdStr + (entry.name || _mediaTitle)+"|"+entry.id+"|"+kw.id );
+			gaLabel = customObject["Label"] || ( refIdStr + (entry.name || _mediaTitle)+"|"+entry.id+"|"+vw.id );
 			var	gaAction:String		= customObject["Action"] || note;
 			var	gaValue:Number		= customObject["Value"] || value;
 			log("SENDING ::: "+notification.getName() +"|"+shouldPublish);	
@@ -377,7 +377,7 @@ package com.vidiun.vdpfl.plugin.googleAnalytics
 						{
 							if(currPosition ) 
 							{
-								publishGa (defaultCategory, _percentages[s][1]+"_pct_watched",  entry.name +"|"+entry.id+"|"+kw.id, Math.round(_currentTime))
+								publishGa (defaultCategory, _percentages[s][1]+"_pct_watched",  entry.name +"|"+entry.id+"|"+vw.id, Math.round(_currentTime))
 								if(_percentages.length == s+1)
 								{
 									_percentages.splice(s,1);
