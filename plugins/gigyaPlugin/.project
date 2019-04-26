@@ -4,7 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>as3FlexClient</project>
-		<project>KDP3</project>
+		<project>VDP3</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -20,7 +20,7 @@
 		<link>
 			<name>bin-debug</name>
 			<type>2</type>
-			<locationURI>DOCUMENTS/KDP3/bin-debug/plugins</locationURI>
+			<locationURI>DOCUMENTS/VDP3/bin-debug/plugins</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

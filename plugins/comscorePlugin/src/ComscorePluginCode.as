@@ -1,9 +1,9 @@
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.KPluginEvent;
-	import com.kaltura.kdpfl.view.ComscoreMediator;
-	import com.kaltura.utils.ObjectUtil;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.VPluginEvent;
+	import com.vidiun.vdpfl.view.ComscoreMediator;
+	import com.vidiun.utils.ObjectUtil;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -32,7 +32,7 @@ package
 		protected var _cs_eidr : String;
 		protected var _cs_adid : String;
 		protected var failedFlag : Boolean;
-		protected var _comscoreVersion : String = "kdp3.6.15";
+		protected var _comscoreVersion : String = "vdp3.6.15";
 		
 		public function ComscorePluginCode()
 		{
@@ -45,7 +45,7 @@ package
 			facade.registerMediator(_comscoreMediator);
 					
 			if (!cTagsMap) {
-				dispatchEvent( new KPluginEvent (KPluginEvent.KPLUGIN_INIT_COMPLETE) );
+				dispatchEvent( new VPluginEvent (VPluginEvent.VPLUGIN_INIT_COMPLETE) );
 				return;
 			}
 				//onXmlFail();
@@ -68,7 +68,7 @@ package
 				trace("comscore plugin, failed building XML",err.message);
 				failedFlag = true;
 			}
-			dispatchEvent( new KPluginEvent (KPluginEvent.KPLUGIN_INIT_COMPLETE) );	
+			dispatchEvent( new VPluginEvent (VPluginEvent.VPLUGIN_INIT_COMPLETE) );	
 		}
 		
 		/**
@@ -78,7 +78,7 @@ package
 		{
 			
 			failedFlag = true;
-			dispatchEvent( new KPluginEvent (KPluginEvent.KPLUGIN_INIT_COMPLETE) );	
+			dispatchEvent( new VPluginEvent (VPluginEvent.VPLUGIN_INIT_COMPLETE) );	
 			trace("comscore plugin, failed loading XML ");
 		}
 		

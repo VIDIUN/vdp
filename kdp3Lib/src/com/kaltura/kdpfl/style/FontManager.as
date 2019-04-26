@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.style
+package com.vidiun.vdpfl.style
 {
 	import flash.text.Font;
 	import flash.utils.getQualifiedClassName;

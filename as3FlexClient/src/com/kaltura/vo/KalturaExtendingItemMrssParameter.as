@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,14 +25,14 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.KalturaObjectIdentifier;
+	import com.vidiun.vo.VidiunObjectIdentifier;
 
-	import com.kaltura.vo.BaseFlexVo;
+	import com.vidiun.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaExtendingItemMrssParameter extends BaseFlexVo
+	public dynamic class VidiunExtendingItemMrssParameter extends BaseFlexVo
 	{
 		/**
 		* XPath for the extending item
@@ -44,12 +44,12 @@ package com.kaltura.vo
 		* Object identifier
 		* 
 		**/
-		public var identifier : KalturaObjectIdentifier;
+		public var identifier : VidiunObjectIdentifier;
 
 		/**
 		* Mode of extension - append to MRSS or replace the xpath content.
 		* 
-		* @see com.kaltura.types.KalturaMrssExtensionMode
+		* @see com.vidiun.types.VidiunMrssExtensionMode
 		**/
 		public var extensionMode : int = int.MIN_VALUE;
 

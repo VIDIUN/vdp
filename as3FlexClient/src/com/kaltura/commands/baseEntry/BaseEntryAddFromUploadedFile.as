@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,26 +25,26 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.baseEntry
+package com.vidiun.commands.baseEntry
 {
-		import com.kaltura.vo.KalturaBaseEntry;
-	import com.kaltura.delegates.baseEntry.BaseEntryAddFromUploadedFileDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunBaseEntry;
+	import com.vidiun.delegates.baseEntry.BaseEntryAddFromUploadedFileDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Generic add entry using an uploaded file, should be used when the uploaded entry type is not known.
 	* 
 	**/
-	public class BaseEntryAddFromUploadedFile extends KalturaCall
+	public class BaseEntryAddFromUploadedFile extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param entry KalturaBaseEntry
+		* @param entry VidiunBaseEntry
 		* @param uploadTokenId String
 		* @param type String
 		**/
-		public function BaseEntryAddFromUploadedFile( entry : KalturaBaseEntry,uploadTokenId : String,type : String = null )
+		public function BaseEntryAddFromUploadedFile( entry : VidiunBaseEntry,uploadTokenId : String,type : String = null )
 		{
 			service= 'baseentry';
 			action= 'addFromUploadedFile';
@@ -52,7 +52,7 @@ package com.kaltura.commands.baseEntry
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(entry, 'entry');
+				keyValArr = vidiunObject2Arrays(entry, 'entry');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			keyArr.push('uploadTokenId');

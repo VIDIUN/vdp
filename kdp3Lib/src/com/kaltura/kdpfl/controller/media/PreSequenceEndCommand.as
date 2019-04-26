@@ -1,11 +1,11 @@
-package com.kaltura.kdpfl.controller.media
+package com.vidiun.vdpfl.controller.media
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayer;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.view.media.VMediaPlayer;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
@@ -31,9 +31,9 @@ package com.kaltura.kdpfl.controller.media
 			else
 			{
 				sendNotification(NotificationType.DO_PAUSE);	
-				var mediaMediator:KMediaPlayerMediator = facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator;
+				var mediaMediator:VMediaPlayerMediator = facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator;
 				mediaMediator.cleanMedia();
-				mediaMediator.kMediaPlayer.showThumbnail();
+				mediaMediator.vMediaPlayer.showThumbnail();
 			}
 			
 		}

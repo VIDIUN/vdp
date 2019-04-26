@@ -1,22 +1,22 @@
-package com.kaltura.kdpfl.controller
+package com.vidiun.vdpfl.controller
 {
-	import com.kaltura.kdpfl.component.ComponentData;
-	import com.kaltura.kdpfl.controller.media.PostSequenceEndCommand;
-	import com.kaltura.kdpfl.controller.media.PreSequenceEndCommand;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.controls.ComboFlavorMediator;
-	import com.kaltura.kdpfl.view.controls.FullscreenMediator;
-	import com.kaltura.kdpfl.view.controls.FuncWrapper;
-	import com.kaltura.kdpfl.view.controls.PlayMediator;
-	import com.kaltura.kdpfl.view.controls.ScreensMediator;
-	import com.kaltura.kdpfl.view.controls.ScrubberMediator;
-	import com.kaltura.kdpfl.view.controls.TimerMediator;
-	import com.kaltura.kdpfl.view.controls.VolumeMediator;
-	import com.kaltura.kdpfl.view.controls.WatermarkMediator;
-	import com.kaltura.kdpfl.view.media.KMediaPlayer;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
+	import com.vidiun.vdpfl.component.ComponentData;
+	import com.vidiun.vdpfl.controller.media.PostSequenceEndCommand;
+	import com.vidiun.vdpfl.controller.media.PreSequenceEndCommand;
+	import com.vidiun.vdpfl.model.LayoutProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.view.controls.ComboFlavorMediator;
+	import com.vidiun.vdpfl.view.controls.FullscreenMediator;
+	import com.vidiun.vdpfl.view.controls.FuncWrapper;
+	import com.vidiun.vdpfl.view.controls.PlayMediator;
+	import com.vidiun.vdpfl.view.controls.ScreensMediator;
+	import com.vidiun.vdpfl.view.controls.ScrubberMediator;
+	import com.vidiun.vdpfl.view.controls.TimerMediator;
+	import com.vidiun.vdpfl.view.controls.VolumeMediator;
+	import com.vidiun.vdpfl.view.controls.WatermarkMediator;
+	import com.vidiun.vdpfl.view.media.VMediaPlayer;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
 	
 	import flash.events.IEventDispatcher;
 	import flash.events.MouseEvent;
@@ -47,19 +47,19 @@ package com.kaltura.kdpfl.controller
 				//register mediator if needed
 				switch(comp.className)
 				{
-					case "KMediaPlayer":
-						facade.registerMediator( new KMediaPlayerMediator( KMediaPlayerMediator.NAME , comp.ui as KMediaPlayer ) );
+					case "VMediaPlayer":
+						facade.registerMediator( new VMediaPlayerMediator( VMediaPlayerMediator.NAME , comp.ui as VMediaPlayer ) );
 					break;
-					case "KScrubber":
+					case "VScrubber":
 						facade.registerMediator( new ScrubberMediator(comp.ui) );
 					break;
-					case "KTimer":
+					case "VTimer":
 						facade.registerMediator( new TimerMediator(comp.ui) );
 					break;
-					case "KVolumeBar":
+					case "VVolumeBar":
 						facade.registerMediator( new VolumeMediator( comp.ui ) );
 					break;
-					case "KFlavorComboBox":
+					case "VFlavorComboBox":
 						facade.registerMediator( new ComboFlavorMediator( comp.ui ) );
 					break
 					case "Screens":
@@ -80,19 +80,19 @@ package com.kaltura.kdpfl.controller
 						facade.registerMediator(new FullscreenMediator(comp.ui));
 					break;
 				}
-				//If the component has a "kClick" attribute, register a function to be executed when the component is clicked
-				if(comp.attr["kClick"])
+				//If the component has a "vClick" attribute, register a function to be executed when the component is clicked
+				if(comp.attr["vClick"])
 				{
 					var fw:FuncWrapper = new FuncWrapper();
-					fw.registerToEvent(comp.ui as IEventDispatcher, MouseEvent.CLICK, comp.attr["kClick"]);
+					fw.registerToEvent(comp.ui as IEventDispatcher, MouseEvent.CLICK, comp.attr["vClick"]);
 				}
 				
 				for (var att : String in comp.attr)
 				{
-					if (att.indexOf("kevent_") != -1)
+					if (att.indexOf("vevent_") != -1)
 					{
 						var eventFW:FuncWrapper = new FuncWrapper();
-						eventFW.registerToEvent(comp.ui as IEventDispatcher, att.replace("kevent_", ""), comp.attr[att]);
+						eventFW.registerToEvent(comp.ui as IEventDispatcher, att.replace("vevent_", ""), comp.attr[att]);
 					}
 					//register to notification
 					else if (att.indexOf(NOTIFICATION_PREFIX)==0) 

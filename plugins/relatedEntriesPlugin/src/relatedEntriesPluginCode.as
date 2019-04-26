@@ -1,31 +1,31 @@
 package
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.baseEntry.BaseEntryList;
-	import com.kaltura.commands.playlist.PlaylistExecute;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.ExternalInterfaceProxy;
-	import com.kaltura.kdpfl.model.FuncsProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.vo.ExternalInterfaceVO;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.RelatedEntriesMediator;
-	import com.kaltura.kdpfl.plugin.component.RelatedEntriesNotificationType;
-	import com.kaltura.kdpfl.plugin.component.RelatedEntriesSourceType;
-	import com.kaltura.kdpfl.plugin.component.RelatedEntryVO;
-	import com.kaltura.kdpfl.plugin.component.RelatedItemActionType;
-	import com.kaltura.kdpfl.plugin.component.KDataProvider;
-	import com.kaltura.kdpfl.util.Functor;
-	import com.kaltura.net.KalturaCall;
-	import com.kaltura.types.KalturaStatsFeatureType;
-	import com.kaltura.vo.KalturaBaseEntry;
-	import com.kaltura.vo.KalturaBaseEntryFilter;
-	import com.kaltura.vo.KalturaBaseEntryListResponse;
-	import com.kaltura.kdpfl.util.URLUtils;
-	import com.kaltura.vo.KalturaEntryContext;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.commands.baseEntry.BaseEntryList;
+	import com.vidiun.commands.playlist.PlaylistExecute;
+	import com.vidiun.events.VidiunEvent;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.ExternalInterfaceProxy;
+	import com.vidiun.vdpfl.model.FuncsProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.ServicesProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.vo.ExternalInterfaceVO;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.RelatedEntriesMediator;
+	import com.vidiun.vdpfl.plugin.component.RelatedEntriesNotificationType;
+	import com.vidiun.vdpfl.plugin.component.RelatedEntriesSourceType;
+	import com.vidiun.vdpfl.plugin.component.RelatedEntryVO;
+	import com.vidiun.vdpfl.plugin.component.RelatedItemActionType;
+	import com.vidiun.vdpfl.plugin.component.VDataProvider;
+	import com.vidiun.vdpfl.util.Functor;
+	import com.vidiun.net.VidiunCall;
+	import com.vidiun.types.VidiunStatsFeatureType;
+	import com.vidiun.vo.VidiunBaseEntry;
+	import com.vidiun.vo.VidiunBaseEntryFilter;
+	import com.vidiun.vo.VidiunBaseEntryListResponse;
+	import com.vidiun.vdpfl.util.URLUtils;
+	import com.vidiun.vo.VidiunEntryContext;
 	
 	import fl.core.UIComponent;
 	import fl.data.DataProvider;
@@ -72,7 +72,7 @@ package
 		 * holds the relatedEntries array
 		 * 
 		 */		
-		public var dataProvider:KDataProvider;
+		public var dataProvider:VDataProvider;
 		/**
 		 * default playlist ID. will be used when sourceType=automatic 
 		 */		
@@ -153,25 +153,25 @@ package
 		 */		
 		public function loadEntries():void
 		{			
-			var kc:KalturaClient = (_facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vo.kalturaClient;
-			var kalturaCall:KalturaCall;
+			var vc:VidiunClient = (_facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vo.vidiunClient;
+			var vidiunCall:VidiunCall;
 			var sourceData:String;
 			switch (sourceType)
 			{
 				case RelatedEntriesSourceType.AUTOMATIC:
 					sourceData = automaticPlaylistId;
-					var context:KalturaEntryContext = new KalturaEntryContext();
+					var context:VidiunEntryContext = new VidiunEntryContext();
 					var curEntry:String = (_facade.retrieveProxy(MediaProxy.NAME) as MediaProxy).vo.entry.id;
 					if (curEntry)
 					{
 						context.entryId =  curEntry;
 					}
-					kalturaCall = new PlaylistExecute(sourceData, '' , context);
+					vidiunCall = new PlaylistExecute(sourceData, '' , context);
 					break;
 				
 				case RelatedEntriesSourceType.GLOBAL_PLAYLIST:
 					sourceData = playlistSourceData;
-					kalturaCall = new PlaylistExecute(sourceData);
+					vidiunCall = new PlaylistExecute(sourceData);
 					break;
 				
 				case RelatedEntriesSourceType.ENTRY_IDS:
@@ -180,7 +180,7 @@ package
 						sourceData = entryIdsSourceData;
 					else
 						sourceData = referenceIdsSourceData;
-					var filter:KalturaBaseEntryFilter = new KalturaBaseEntryFilter();
+					var filter:VidiunBaseEntryFilter = new VidiunBaseEntryFilter();
 					if (sourceType == RelatedEntriesSourceType.ENTRY_IDS)
 					{
 						filter.idIn = sourceData;
@@ -189,19 +189,19 @@ package
 					{
 						filter.referenceIdIn = sourceData;
 					}
-					kalturaCall = new BaseEntryList(filter);
+					vidiunCall = new BaseEntryList(filter);
 					break;
 			}
 			
-			if (!sourceData || !kalturaCall)
+			if (!sourceData || !vidiunCall)
 			{
 				trace ("cannot retrieve related entries, missing information");
 			}
 			else
 			{
-				kalturaCall.addEventListener(KalturaEvent.COMPLETE, onEntriesComplete);
-				kalturaCall.addEventListener(KalturaEvent.FAILED, onEntriesFailed);
-				kc.post(kalturaCall);
+				vidiunCall.addEventListener(VidiunEvent.COMPLETE, onEntriesComplete);
+				vidiunCall.addEventListener(VidiunEvent.FAILED, onEntriesFailed);
+				vc.post(vidiunCall);
 			}	
 		}
 		
@@ -211,7 +211,7 @@ package
 		 * @param event
 		 * 
 		 */		
-		private function onEntriesComplete(event:KalturaEvent):void 
+		private function onEntriesComplete(event:VidiunEvent):void 
 		{
 			var resultArray:Array;
 			var dpArray:Array = new Array();
@@ -222,18 +222,18 @@ package
 			}
 			else
 			{
-				resultArray = (event.data as KalturaBaseEntryListResponse).objects;
+				resultArray = (event.data as VidiunBaseEntryListResponse).objects;
 			}
 			if (resultArray)
 			{
-				for each (var entry:KalturaBaseEntry in resultArray)
+				for each (var entry:VidiunBaseEntry in resultArray)
 				{
 					if (entry.id != entryId) //current entry shouldn't be part of related entries
 					{
 						if (entry.thumbnailUrl && entry.thumbnailUrl.indexOf( "thumbnail/entry_id" ) != -1)
 						{
 							entry.thumbnailUrl +=  URLUtils.getThumbURLPostfix((_facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy).vo.flashvars, 
-								(_facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vo.kalturaClient.ks);
+								(_facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vo.vidiunClient.vs);
 						}
 						var relatedEntry:RelatedEntryVO = new RelatedEntryVO(entry);
 						dpArray.push(relatedEntry);
@@ -261,7 +261,7 @@ package
 				}
 				
 			}
-			dataProvider = new KDataProvider(dpArray);
+			dataProvider = new VDataProvider(dpArray);
 			
 			_facade.sendNotification(RelatedEntriesNotificationType.RELATED_ENTRIES_LOADED);
 		}
@@ -271,7 +271,7 @@ package
 		 * @param event
 		 * 
 		 */		
-		private function onEntriesFailed(event:KalturaEvent):void 
+		private function onEntriesFailed(event:VidiunEvent):void 
 		{
 			trace ("failed to retrieve related entries");
 			//fallback to automatic playlist
@@ -317,7 +317,7 @@ package
 					}
 					else
 					{
-						_facade.sendNotification(NotificationType.CHANGE_MEDIA, {entryId: selectedRelatedVo.entry.id, originFeature: KalturaStatsFeatureType.RELATED});
+						_facade.sendNotification(NotificationType.CHANGE_MEDIA, {entryId: selectedRelatedVo.entry.id, originFeature: VidiunStatsFeatureType.RELATED});
 					}
 					break;
 				case RelatedItemActionType.CALL_JS_FUNC:

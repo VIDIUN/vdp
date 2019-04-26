@@ -1,12 +1,12 @@
 package
 {
 	import com.akamai.playeranalytics.osmf.OSMFCSMALoaderInfo;
-	import com.kaltura.KalturaClient;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.KPluginEvent;
-	import com.kaltura.kdpfl.plugin.akamaiMediaAnalyticsMediator;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.ServicesProxy;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.VPluginEvent;
+	import com.vidiun.vdpfl.plugin.akamaiMediaAnalyticsMediator;
 	
 	import fl.core.UIComponent;
 	
@@ -74,8 +74,8 @@ package
 			//Getting Static reference to Plugin.
 			var pluginInfoRef:Class = getDefinitionByName("com.akamai.playeranalytics.osmf.OSMFCSMALoaderInfo") as Class;
 			var pluginResource:MediaResourceBase = new PluginInfoResource(new pluginInfoRef);
-			var kc:KalturaClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).kalturaClient;
-			var secured:Boolean = kc.protocol == "https://";
+			var vc:VidiunClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vidiunClient;
+			var secured:Boolean = vc.protocol == "https://";
 			//Setting CSMA Plugin & Configuration data
 			pluginResource.addMetadataValue("csmaPluginPath", secured && securedSwfPath ? securedSwfPath : _swfPath);
 			pluginResource.addMetadataValue("csmaConfigPath",secured && securedConfigPath ? securedConfigPath : _configPath);
@@ -94,7 +94,7 @@ package
 		protected function onOSMFPluginLoaded (e : MediaFactoryEvent) : void
 		{
 			e.target.removeEventListener(MediaFactoryEvent.PLUGIN_LOAD, onOSMFPluginLoaded);
-			dispatchEvent( new KPluginEvent (KPluginEvent.KPLUGIN_INIT_COMPLETE) );
+			dispatchEvent( new VPluginEvent (VPluginEvent.VPLUGIN_INIT_COMPLETE) );
 		}
 		/**
 		 * Listener for the LOAD_ERROR event.
@@ -104,7 +104,7 @@ package
 		protected function onOSMFPluginLoadError (e : MediaFactoryEvent) : void
 		{
 			e.target.removeEventListener(MediaFactoryEvent.PLUGIN_LOAD_ERROR, onOSMFPluginLoaded);
-			dispatchEvent( new KPluginEvent (KPluginEvent.KPLUGIN_INIT_FAILED) );
+			dispatchEvent( new VPluginEvent (VPluginEvent.VPLUGIN_INIT_FAILED) );
 		}
 		
 		public function setSkin(styleName:String, setSkinSize:Boolean=false):void

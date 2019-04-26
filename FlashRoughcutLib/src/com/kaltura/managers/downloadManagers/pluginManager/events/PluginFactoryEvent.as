@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users 
+This file is part of the Vidiun Collaborative Media Suite which allows users 
 to do with audio, video, and animation what Wiki platfroms allow them to do with 
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,9 +20,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.managers.downloadManagers.pluginManager.events
+package com.vidiun.managers.downloadManagers.pluginManager.events
 {
-	import com.kaltura.plugin.logic.Plugin;
+	import com.vidiun.plugin.logic.Plugin;
 	
 	import flash.events.Event;
 

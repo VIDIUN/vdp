@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin.component {
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.puremvc.as3.patterns.mediator.SequenceMultiMediator;
+package com.vidiun.vdpfl.plugin.component {
+	import com.vidiun.vdpfl.model.type.SequenceContextType;
+	import com.vidiun.puremvc.as3.patterns.mediator.SequenceMultiMediator;
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
@@ -53,7 +53,7 @@ package com.kaltura.kdpfl.plugin.component {
 		 * for insertion into dynamic ad tags. </br>
 		 * Contents of the context parameter must be url encoded
 		 * */
-		public var k_adaptv_context:String = "";
+		public var v_adaptv_context:String = "";
 
 		/**
 		 * publisher key provided by Adap.tv.
@@ -93,7 +93,7 @@ package com.kaltura.kdpfl.plugin.component {
 			   companionId = "adaptvcompanion";
 			   zone = "test.flash_ads";
 			   key = "integration_test";
-			   k_adaptv_context = "key1%3Dvalue1%2Ckey2%3Dvalue2";
+			   v_adaptv_context = "key1%3Dvalue1%2Ckey2%3Dvalue2";
 			 */
 
 			super(viewComponent);
@@ -133,7 +133,7 @@ package com.kaltura.kdpfl.plugin.component {
 
 
 		override public function handleNotification(note:INotification):void {
-			var kc:Object = facade.retrieveProxy("servicesProxy")["kalturaClient"];
+			var vc:Object = facade.retrieveProxy("servicesProxy")["vidiunClient"];
 			var sequenceProxy:Object = facade.retrieveProxy("sequenceProxy");
 			var config:Object = facade.retrieveProxy("configProxy");
 			var media:Object = facade.retrieveProxy("mediaProxy");
@@ -190,7 +190,7 @@ package com.kaltura.kdpfl.plugin.component {
 					// Commas are not allowed in both keys and values
 					// Equals signs (=) are allowed in values, but not in keys
 					// In this case, we are passing 'key1=value1,key2=value2'
-					context: k_adaptv_context,
+					context: v_adaptv_context,
 
 					// parameters about the video
 

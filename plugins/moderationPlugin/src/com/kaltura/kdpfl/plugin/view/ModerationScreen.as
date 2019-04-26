@@ -1,10 +1,10 @@
-package com.kaltura.kdpfl.plugin.view {
-	import com.kaltura.kdpfl.view.containers.KHBox;
-	import com.kaltura.kdpfl.view.containers.KVBox;
-	import com.kaltura.kdpfl.view.controls.KButton;
-	import com.kaltura.kdpfl.view.controls.KComboBox;
-	import com.kaltura.kdpfl.view.controls.KLabel;
-	import com.kaltura.kdpfl.view.controls.KTextField;
+package com.vidiun.vdpfl.plugin.view {
+	import com.vidiun.vdpfl.view.containers.VHBox;
+	import com.vidiun.vdpfl.view.containers.VVBox;
+	import com.vidiun.vdpfl.view.controls.VButton;
+	import com.vidiun.vdpfl.view.controls.VComboBox;
+	import com.vidiun.vdpfl.view.controls.VLabel;
+	import com.vidiun.vdpfl.view.controls.VTextField;
 	
 	import fl.data.DataProvider;
 	
@@ -12,7 +12,7 @@ package com.kaltura.kdpfl.plugin.view {
 	import flash.events.MouseEvent;
 	import flash.utils.setTimeout;
 
-	public class ModerationScreen extends KVBox {
+	public class ModerationScreen extends VVBox {
 
 		
 		private var _headerText:String = 	'Report this content as inappropriate';
@@ -21,8 +21,8 @@ package com.kaltura.kdpfl.plugin.view {
 											"isn't appropriate for all viewers.";
 
 		private var _reasonsDataProvider:Array = [];
-		private var btnSubmit:KButton;
-		private var _combo:KComboBox;
+		private var btnSubmit:VButton;
+		private var _combo:VComboBox;
 		private var _showCombo:Boolean;
 		private var _comboSelectedIndex:Number = 0 ;
 
@@ -44,13 +44,13 @@ package com.kaltura.kdpfl.plugin.view {
 			this.verticalGap = 3;
 			var availableWidth:Number = 290; 
 
-			var lbl:KLabel = new KLabel();
+			var lbl:VLabel = new VLabel();
 			lbl.width = availableWidth;
 			lbl.name = "windowTitle";
 			lbl.text = _headerText;
 			addChild(lbl);
 
-			var txt:KTextField = new KTextField();
+			var txt:VTextField = new VTextField();
 			txt.name = "windowText";
 			txt.truncateToFit = false;
 			txt.width = availableWidth;
@@ -58,13 +58,13 @@ package com.kaltura.kdpfl.plugin.view {
 			txt.text = _windowText;
 			addChild(txt);
 
-			_combo = new KComboBox();
+			_combo = new VComboBox();
 			_combo.width = 150;
 			_combo.dataProvider = new DataProvider(_reasonsDataProvider);
 			addChild(_combo);
 
 
-			var ti:KTextField = new KTextField();
+			var ti:VTextField = new VTextField();
 			ti.name = "tiDescription";
 			ti.editable = true;
 			ti.truncateToFit = false;
@@ -76,7 +76,7 @@ package com.kaltura.kdpfl.plugin.view {
 			ti.height = 100;
 			addChild(ti);
 
-			var hbox:KHBox = new KHBox();
+			var hbox:VHBox = new VHBox();
 			hbox.name = "controlBar";
 			hbox.width = availableWidth;
 			hbox.horizontalGap = 3;
@@ -87,14 +87,14 @@ package com.kaltura.kdpfl.plugin.view {
 //			hbox.horizontalAlign = "right"; 
 			addChild(hbox);
 
-			btnSubmit = new KButton();
+			btnSubmit = new VButton();
 			btnSubmit.name = "btnSubmit";
 			btnSubmit.label = "submit";
 			btnSubmit.addEventListener(MouseEvent.CLICK, notifyClick);
 			btnSubmit.maxHeight = 20;
 			hbox.addChild(btnSubmit);
 
-			var btn:KButton = new KButton();
+			var btn:VButton = new VButton();
 			btn.name = "btnCancel";
 			btn.label = "cancel";
 			btn.addEventListener(MouseEvent.CLICK, notifyClick);
@@ -144,13 +144,13 @@ package com.kaltura.kdpfl.plugin.view {
 		 */		
 		override public function setSkin(styleName:String, setSkinSize:Boolean=false):void {
 			super.setSkin( "Mod_darkBg");
-			(this.getChildByName("windowTitle") as KLabel).setSkin("Mod_title", setSkinSize);
-			(this.getChildByName("windowText") as KTextField).setSkin( "Mod_text", setSkinSize);
+			(this.getChildByName("windowTitle") as VLabel).setSkin("Mod_title", setSkinSize);
+			(this.getChildByName("windowText") as VTextField).setSkin( "Mod_text", setSkinSize);
 			_combo.setSkin("_mod", setSkinSize);
-			(this.getChildByName("tiDescription") as KTextField).setSkin("Mod_text", setSkinSize);
-			var hbox:KHBox = this.getChildByName("controlBar") as KHBox;
-			(hbox.getChildByName("btnSubmit") as KButton).setSkin("mod", setSkinSize);
-			(hbox.getChildByName("btnCancel") as KButton).setSkin("mod", setSkinSize);
+			(this.getChildByName("tiDescription") as VTextField).setSkin("Mod_text", setSkinSize);
+			var hbox:VHBox = this.getChildByName("controlBar") as VHBox;
+			(hbox.getChildByName("btnSubmit") as VButton).setSkin("mod", setSkinSize);
+			(hbox.getChildByName("btnCancel") as VButton).setSkin("mod", setSkinSize);
 		}
 
 
@@ -162,7 +162,7 @@ package com.kaltura.kdpfl.plugin.view {
 			if(_comboSelectedIndex)
 				_combo.selectedIndex = _comboSelectedIndex;
 				
-			(this.getChildByName("tiDescription") as KTextField).text = "";
+			(this.getChildByName("tiDescription") as VTextField).text = "";
 		}
 
 
@@ -172,7 +172,7 @@ package com.kaltura.kdpfl.plugin.view {
 		 */
 		public function get data():Object {
 			var reason:Object = _combo.selectedItem.type;
-			var description:String = (this.getChildByName("tiDescription") as KTextField).text;
+			var description:String = (this.getChildByName("tiDescription") as VTextField).text;
 			return {reason: reason, comments: description};
 		}
 
@@ -208,7 +208,7 @@ package com.kaltura.kdpfl.plugin.view {
 		 * @private
 		 */
 		public function set buttonsPosition(value:String):void {
-			(this.getChildByName("controlBar") as KHBox).horizontalAlign = value;
+			(this.getChildByName("controlBar") as VHBox).horizontalAlign = value;
 		}
 
 
@@ -216,14 +216,14 @@ package com.kaltura.kdpfl.plugin.view {
 		 * alignment of submit and cancel buttons
 		 */
 		public function get buttonsPosition():String {
-			return (this.getChildByName("controlBar") as KHBox).horizontalAlign;
+			return (this.getChildByName("controlBar") as VHBox).horizontalAlign;
 		}
 
 		/**
 		 * @private
 		 */
 		public function set headerText(value:String):void {
-			(this.getChildByName("windowTitle") as KLabel).text = value;
+			(this.getChildByName("windowTitle") as VLabel).text = value;
 			_headerText = value;
 		}
 
@@ -240,7 +240,7 @@ package com.kaltura.kdpfl.plugin.view {
 		 * @private
 		 */
 		public function set windowText(value:String):void {
-			(this.getChildByName("windowText") as KTextField).text = value;
+			(this.getChildByName("windowText") as VTextField).text = value;
 			_windowText = value;
 		}
 

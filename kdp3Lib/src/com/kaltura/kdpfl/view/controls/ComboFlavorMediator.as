@@ -1,9 +1,9 @@
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.puremvc.as3.patterns.mediator.MultiMediator;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.puremvc.as3.patterns.mediator.MultiMediator;
 	
 	import flash.events.Event;
 	import flash.net.SharedObject;
@@ -11,7 +11,7 @@ package com.kaltura.kdpfl.view.controls
 	import org.puremvc.as3.interfaces.INotification;
 
 	/**
-	 * Mediator for the KDP flavor selction combo box of type KFlavorComboBox.
+	 * Mediator for the VDP flavor selction combo box of type VFlavorComboBox.
 	 * @author Hila
 	 * 
 	 */
@@ -27,7 +27,7 @@ package com.kaltura.kdpfl.view.controls
 		private var _prevMessage:String = "";
 		
 		/**
-		 * kdp flashvars 
+		 * vdp flashvars 
 		 */		
 		private var _flashvars:Object;
 		
@@ -40,7 +40,7 @@ package com.kaltura.kdpfl.view.controls
 		{
 			super(viewComponent);
 			comboBox.addEventListener( Event.CHANGE , onFlavorChange );
-			comboBox.addEventListener( KFlavorComboBox.DATA_PROVIDER_CHANGE , onDataProviderChange );
+			comboBox.addEventListener( VFlavorComboBox.DATA_PROVIDER_CHANGE , onDataProviderChange );
 			comboBox.addEventListener(Event.OPEN, onComboBoxOpen);
 			comboBox.addEventListener(Event.CLOSE, onComboBoxClose);
 		}
@@ -128,7 +128,7 @@ package com.kaltura.kdpfl.view.controls
 		 * 
 		 */		
 		private function onComboBoxOpen (e : Event) : void{
-			comboBox.kisOpen = true;
+			comboBox.visOpen = true;
 		}
 		/**
 		 * Handler for event dispatched when user closes the combo box.
@@ -136,7 +136,7 @@ package com.kaltura.kdpfl.view.controls
 		 * 
 		 */		
 		private function onComboBoxClose ( e:Event) : void{
-			comboBox.kisOpen = false;
+			comboBox.visOpen = false;
 		}
 	
 		/**
@@ -190,11 +190,11 @@ package com.kaltura.kdpfl.view.controls
 			var flavorCookie : SharedObject;
 			try
 			{
-				flavorCookie = SharedObject.getLocal("Kaltura");
+				flavorCookie = SharedObject.getLocal("Vidiun");
 			}
 			catch (e : Error)
 			{
-				KTrace.getInstance().log("No access to user's file system");
+				VTrace.getInstance().log("No access to user's file system");
 			}
 			if (flavorCookie && flavorCookie.data)
 			{
@@ -232,9 +232,9 @@ package com.kaltura.kdpfl.view.controls
 		 * @return 
 		 * 
 		 */		
-		public function get comboBox() : KFlavorComboBox
+		public function get comboBox() : VFlavorComboBox
 		{
-			return viewComponent as KFlavorComboBox;
+			return viewComponent as VFlavorComboBox;
 		}
 	}
 }

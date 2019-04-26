@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Vidiun Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,16 +20,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.base.types
+package com.vidiun.base.types
 {
 	import mx.resources.ResourceManager;
 	
 	/**
-	 * MediaTypes defines all media types avilable for the kaltura server.
+	 * MediaTypes defines all media types avilable for the vidiun server.
 	 */
 	public class MediaTypes
 	{
-		static public var localeBundleName:String = "kalturacvf";
+		static public var localeBundleName:String = "vidiuncvf";
 		static public const ANY_TYPE:uint = 0xffffffff;
 		static public const VIDEO:uint = 0x2;
 		static public const IMAGE:uint = 0x4;
@@ -211,7 +211,7 @@ package com.kaltura.base.types
 		 *<p>SDL uses string types to be maintain readability, so we need to convert it when parsing the sdl to roughcut timelines.</p>
 		 * @param strType		the string type as it is defined in the SDL.
 		 * @return 				uint type.
-		 * @see com.kaltura.common.types.MediaTypes#translateIntTypeToString
+		 * @see com.vidiun.common.types.MediaTypes#translateIntTypeToString
 		 */
 		static public function translateStringTypeToInt (str_type:String):uint
 		{
@@ -284,7 +284,7 @@ package com.kaltura.base.types
 		 *translates uint type to string type to be used in the SDL.
 		 * @param intType		uint type to be converted.
 		 * @return 				string type to be used in the sdl.
-		 * @see com.kaltura.common.types.MediaTypes#translateStringTypeToInt
+		 * @see com.vidiun.common.types.MediaTypes#translateStringTypeToInt
 		 */
 		static public function translateIntTypeToString (int_type:uint):String
 		{

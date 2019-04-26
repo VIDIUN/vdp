@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin
+package com.vidiun.vdpfl.plugin
 {
 	import com.yahoo.astra.animation.AnimationEvent;
 	import com.yahoo.astra.fl.controls.carouselClasses.SlidingCarouselRenderer;
@@ -14,9 +14,9 @@ package com.kaltura.kdpfl.plugin
 	import flash.events.MouseEvent;
 	import flash.utils.Dictionary;
 	
-	public class KSlidingCarouselRenderer extends SlidingCarouselRenderer
+	public class VSlidingCarouselRenderer extends SlidingCarouselRenderer
 	{
-		public function KSlidingCarouselRenderer()
+		public function VSlidingCarouselRenderer()
 		{
 			super();
 		}

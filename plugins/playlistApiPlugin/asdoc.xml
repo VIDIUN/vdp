@@ -11,7 +11,7 @@
 		<exec executable="C:\Program Files\Adobe\Adobe Flash Builder 4\sdks\3.5.0\bin\asdoc.exe" failonerror="true">
 			<arg line='-source-path src'/>
 			<arg line='-doc-classes playlistAPIPlugin'/>
-			<arg line='-external-library-path ../kdp3Lib/bin ../Akamai/bin '/>
+			<arg line='-external-library-path ../vdp3Lib/bin ../Akamai/bin '/>
 			<!-- "C:\Program Files\Adobe\Adobe Flash Builder 4\sdks\3.5.0\frameworks\libs\player\10" -->
 			<arg line='-main-title "Playlist API Plugin Documentation"' />
 			<arg line='-window-title "Playlist API Plugin Documentation"' />

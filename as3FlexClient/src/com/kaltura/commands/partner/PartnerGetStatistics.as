@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,17 +25,17 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.partner
+package com.vidiun.commands.partner
 {
-	import com.kaltura.delegates.partner.PartnerGetStatisticsDelegate;
-	import com.kaltura.net.KalturaCall;
+	import com.vidiun.delegates.partner.PartnerGetStatisticsDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Get usage statistics for a partner
 	* Calculation is done according to partner's package
 	* 
 	**/
-	public class PartnerGetStatistics extends KalturaCall
+	public class PartnerGetStatistics extends VidiunCall
 	{
 		public var filterFields : String;
 		

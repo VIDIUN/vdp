@@ -1,15 +1,15 @@
-package com.kaltura.kdpfl.model
+package com.vidiun.vdpfl.model
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.config.KalturaConfig;
-	import com.kaltura.kdpfl.model.vo.ServicesVO;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.config.VidiunConfig;
+	import com.vidiun.vdpfl.model.vo.ServicesVO;
 	
 	import flash.net.URLLoader;
 	
 	import org.puremvc.as3.patterns.proxy.Proxy;
 
 	/**
-	 *  Class ServicesProxy manages the parameters related to Kaltura services, i.e, creating a KalturaClient, KalturaConfig, etc.
+	 *  Class ServicesProxy manages the parameters related to Vidiun services, i.e, creating a VidiunClient, VidiunConfig, etc.
 	 * 
 	 */	
 	public class ServicesProxy extends Proxy
@@ -18,7 +18,7 @@ package com.kaltura.kdpfl.model
 		
 		
 		//DEPRECATED
-		public var kalturaClient : KalturaClient;
+		public var vidiunClient : VidiunClient;
 		
 		//public static const CONFIG_SERVICE:String = "configService";
 		private var _configService:URLLoader;
@@ -31,14 +31,14 @@ package com.kaltura.kdpfl.model
 			super(NAME, new ServicesVO());
 		}
 		/**
-		 * constructs a new KalturaClient based on a KalturaConfig object.
-		 * @param config object of type KalturaConfig used to construct the KalturaClient
+		 * constructs a new VidiunClient based on a VidiunConfig object.
+		 * @param config object of type VidiunConfig used to construct the VidiunClient
 		 * 
 		 */		
-		public function createClient( config : KalturaConfig ) : void
+		public function createClient( config : VidiunConfig ) : void
 		{
-			this.vo.kalturaClient = new KalturaClient( config );
-			kalturaClient = this.vo.kalturaClient;
+			this.vo.vidiunClient = new VidiunClient( config );
+			vidiunClient = this.vo.vidiunClient;
 			
 		}
 		

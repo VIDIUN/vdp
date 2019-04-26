@@ -1,7 +1,7 @@
-<project name="KDPAnalyticsExtension" basedir="." default="player-as3">
+<project name="VDPAnalyticsExtension" basedir="." default="player-as3">
 <property name="SDK_PLATFORM" value="as3"/>
-<property name="PLAYER_CLASS" value="tv.freewheel.playerextension.kdpanalytics.KDPAnalyticsExtension"/>
-<property name="PLAYER_TARGET" value="KDPAnalyticsExtension"/>
+<property name="PLAYER_CLASS" value="tv.freewheel.playerextension.vdpanalytics.VDPAnalyticsExtension"/>
+<property name="PLAYER_TARGET" value="VDPAnalyticsExtension"/>
 
 <import file="${basedir}/../../common/build.xml"/>
 </project>

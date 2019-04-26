@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.plugin.controller {
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.model.SoundProxy;
+package com.vidiun.vdpfl.plugin.controller {
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.plugin.model.SoundProxy;
 	
 	import org.puremvc.as3.interfaces.ICommand;
 	import org.puremvc.as3.interfaces.INotification;
@@ -17,7 +17,7 @@ package com.kaltura.kdpfl.plugin.controller {
 		override public function execute(notification:INotification):void {
 			switch (notification.getName()) {
 				case NotificationType.MEDIA_READY:
-					var mediaPlayer:Object = facade.retrieveMediator("kMediaPlayerMediator");
+					var mediaPlayer:Object = facade.retrieveMediator("vMediaPlayerMediator");
 					// we don't need the exact number, round it to make calculations simpler.
 					(facade.retrieveProxy(SoundProxy.NAME) as SoundProxy).entryDuration = Math.floor(mediaPlayer["player"].duration);
 					break;

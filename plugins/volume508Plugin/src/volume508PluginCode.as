@@ -1,8 +1,8 @@
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.Volume508;
-	import com.kaltura.kdpfl.plugin.component.Volume508Mediator;
-	import com.kaltura.kdpfl.view.controls.KButton;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.Volume508;
+	import com.vidiun.vdpfl.plugin.component.Volume508Mediator;
+	import com.vidiun.vdpfl.view.controls.VButton;
 	
 	import fl.core.UIComponent;
 	
@@ -11,9 +11,9 @@ package {
 	public class volume508PluginCode extends UIComponent implements IPlugin
 	{
 		private var _volume508Mediator : Volume508Mediator;
-		private var _backbtn:KButton;
+		private var _backbtn:VButton;
 		private var _backbtnName:String;
-		private var _fwdbtn:KButton;
+		private var _fwdbtn:VButton;
 		private var _fwdbtnName:String;
 		
 		/**

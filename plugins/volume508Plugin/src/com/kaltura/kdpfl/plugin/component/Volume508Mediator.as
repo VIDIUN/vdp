@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.view.controls.KButton;
+	import com.vidiun.vdpfl.view.controls.VButton;
 	
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
@@ -15,8 +15,8 @@ package com.kaltura.kdpfl.plugin.component
 		public static const NAME:String = "volume508Mediator";
 		private var _entryId:String = "";
 		private var _totalBytes:Number = 0;
-		private var _backbtn:KButton;
-		private var _fwdbtn:KButton;
+		private var _backbtn:VButton;
+		private var _fwdbtn:VButton;
 		private var _skipTimeout:int = 0;
 
 		public function Volume508Mediator(viewComponent:Object=null)

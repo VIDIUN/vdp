@@ -1,16 +1,16 @@
-package com.kaltura.osmf.kalturaMix
+package com.vidiun.osmf.vidiunMix
 {
-	import com.kaltura.components.players.eplayer.Eplayer;
-	import com.kaltura.components.players.events.PlayerEvent;
+	import com.vidiun.components.players.eplayer.Eplayer;
+	import com.vidiun.components.players.events.PlayerEvent;
 	
 	import org.osmf.events.SeekEvent;
 	import org.osmf.traits.TimeTrait;
 
-	public class KalturaMixTimeTrait extends TimeTrait
+	public class VidiunMixTimeTrait extends TimeTrait
 	{
 		public var eplayer:Eplayer;
 
-		public function KalturaMixTimeTrait(_eplayer:Eplayer, duration:Number=NaN)
+		public function VidiunMixTimeTrait(_eplayer:Eplayer, duration:Number=NaN)
 		{
 			super(duration);
 			eplayer = _eplayer;

@@ -1,6 +1,6 @@
-package com.kaltura.net.nonStreaming
+package com.vidiun.net.nonStreaming
 {
-	import com.kaltura.net.interfaces.IMediaSource;
+	import com.vidiun.net.interfaces.IMediaSource;
 	
 	import flash.display.BitmapData;
 	import flash.display.Sprite;
@@ -43,8 +43,8 @@ package com.kaltura.net.nonStreaming
 /* 			try {
 				var app:Object = ApplicationGlobals.application;
 				var parameters:Object;
-				if (app.hasOwnProperty('manager') && app.manager.hasOwnProperty('kdpModel')) {
-					parameters = app['manager']['kdpModel'];
+				if (app.hasOwnProperty('manager') && app.manager.hasOwnProperty('vdpModel')) {
+					parameters = app['manager']['vdpModel'];
 				} else {
 					parameters = app.parameters;
 				}

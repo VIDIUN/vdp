@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Vidiun Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,16 +20,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.base.context
+package com.vidiun.base.context
 {
-	import com.kaltura.utils.KStringUtil;
+	import com.vidiun.utils.VStringUtil;
 
 	import mx.utils.URLUtil;
 
 	//[Bindable]
 	public class PartnerInfo
 	{
-		public var ks:String = "";
+		public var vs:String = "";
 		public var uid:String = "";
 		public var partner_id:String = "";
 		public var subp_id:String = "";
@@ -47,7 +47,7 @@ package com.kaltura.base.context
 		{
 			if (partner_info)
 			{
-				ks = partner_info.ks.toString();
+				vs = partner_info.vs.toString();
 				uid = partner_info.uid.toString();
 				if (partner_info.hasOwnProperty("partner_id"))
 					partnerId = partner_info.partner_id.toString();
@@ -73,8 +73,8 @@ package com.kaltura.base.context
 				partnerInfoStr += "&subp_id=" + escape(subpId.toString());
 			if (uid != "")
 				partnerInfoStr += "&uid=" + escape(uid.toString());
-			if (ks != "")
-				partnerInfoStr += "&ks=" + escape(ks);
+			if (vs != "")
+				partnerInfoStr += "&vs=" + escape(vs);
 			if (partnerInfoStr.substr(0,1) == "&")
 				partnerInfoStr = partnerInfoStr.substr(1);
 			return partnerInfoStr;
@@ -88,10 +88,10 @@ package com.kaltura.base.context
 		public function fromUrlString (urlVars:String):Object
 		{
 			var partnerObj:Object = URLUtil.stringToObject(urlVars, "&");
-			partnerObj = KStringUtil.camelizeObjectParams(partnerObj);
-			partnerObj = KStringUtil.underscoreObjectParams(partnerObj);
-			if (partnerObj.hasOwnProperty("ks"))
-				ks = partnerObj.ks;
+			partnerObj = VStringUtil.camelizeObjectParams(partnerObj);
+			partnerObj = VStringUtil.underscoreObjectParams(partnerObj);
+			if (partnerObj.hasOwnProperty("vs"))
+				vs = partnerObj.vs;
 			if (partnerObj.hasOwnProperty("uid"))
 				uid = partnerObj.uid;
 			if (partnerObj.hasOwnProperty("partnerId"))

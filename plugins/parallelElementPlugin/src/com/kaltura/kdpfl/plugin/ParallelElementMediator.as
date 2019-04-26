@@ -1,12 +1,12 @@
-package com.kaltura.kdpfl.plugin
+package com.vidiun.vdpfl.plugin
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.StreamerType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.vo.KalturaLiveStreamEntry;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.StreamerType;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
+	import com.vidiun.vo.VidiunLiveStreamEntry;
 	
 	import org.osmf.elements.ParallelElement;
 	import org.osmf.events.MediaElementEvent;
@@ -34,7 +34,7 @@ package com.kaltura.kdpfl.plugin
 		
 		override public function listNotificationInterests():Array
 		{
-			return [NotificationType.CREATE_PARALLEL_ELEMENT, NotificationType.RESTORE_MAIN_PARALLEL_ELEMENT, NotificationType.KDP_EMPTY, NotificationType.ENTRY_READY];
+			return [NotificationType.CREATE_PARALLEL_ELEMENT, NotificationType.RESTORE_MAIN_PARALLEL_ELEMENT, NotificationType.VDP_EMPTY, NotificationType.ENTRY_READY];
 		}
 		
 		override public function handleNotification(notification:INotification):void
@@ -51,14 +51,14 @@ package com.kaltura.kdpfl.plugin
 					
 					parallel.addChild(mainMedia);
 					parallel.addChild(prerollMedia);
-					(facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).player.media = parallel;
+					(facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator).player.media = parallel;
 					_mediaProxy.vo.media  = parallel;
 					(facade.retrieveProxy(SequenceProxy.NAME) as SequenceProxy).saveMainMedia();
 					break;
 				
 				case NotificationType.RESTORE_MAIN_PARALLEL_ELEMENT:
 					//restore main media when the element is parallel element
-					var parallelMedia:ParallelElement = (facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).player.media as ParallelElement;
+					var parallelMedia:ParallelElement = (facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator).player.media as ParallelElement;
 					//remove the preroll element
 					if (parallelMedia.numChildren > 1) {
 						parallelMedia.removeChildAt(1);
@@ -69,7 +69,7 @@ package com.kaltura.kdpfl.plugin
 					audioTrait.muted = false;
 					break;
 				
-				case NotificationType.KDP_EMPTY:
+				case NotificationType.VDP_EMPTY:
 					if (_mediaProxy.vo.deliveryType == StreamerType.LIVE)
 					{
 						_mediaProxy.vo.useParallelElement = true;
@@ -77,7 +77,7 @@ package com.kaltura.kdpfl.plugin
 					break;
 				
 				case NotificationType.ENTRY_READY:
-					if (_mediaProxy.vo.entry is KalturaLiveStreamEntry || _mediaProxy.vo.deliveryType == StreamerType.LIVE)
+					if (_mediaProxy.vo.entry is VidiunLiveStreamEntry || _mediaProxy.vo.deliveryType == StreamerType.LIVE)
 					{
 						_mediaProxy.vo.useParallelElement = true;
 					}

@@ -3,7 +3,7 @@
 		<VBox id="player" width="100%" height="100%" styleName="black">
 			<Plugin id="playlistAPI"  width="0%" height="0%" includeInLayout="false" 
 				selectedDataProvider="{tabBar.selectedDataProvider}" />
-			<Plugin id="kalturaMix"  width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand" disableUrlHashing="true" />
+			<Plugin id="vidiunMix"  width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand" disableUrlHashing="true" />
 			
 			<Canvas height="100%" width="100%" id="PlayerHolder" styleName="black" >	
 				
@@ -57,18 +57,18 @@
             <Button id="fullScreenBtnControllerScreen" command="fullScreen" buttonType="iconButton" 
             height="22" styleName="controllerScreen" icon="openFullScreenIcon" selectedUpIcon="closeFullScreenIcon" 
             selectedOverIcon="closeFullScreenIcon" selectedDownIcon="closeFullScreenIcon" selectedDisabledIcon="closeFullScreenIcon" 
-            focusRectPadding="0" allowDisable="false" k_buttonType="buttonIconControllerArea" 
+            focusRectPadding="0" allowDisable="false" v_buttonType="buttonIconControllerArea" 
             tooltip="Toggle fullscreen" color1="0xFF0000" color2="0xFFFFFF" font="Arial"/>
 
 			</HBox>
 				<Spacer width="13" />	
 				<Button 
-					id="kalturaLogo" 
+					id="vidiunLogo" 
 					height="50" 
 					width="100"
-					kClick="navigate('http://www.kaltura.com')"
+					vClick="navigate('http://www.vidiun.com')"
 					styleName="controllerScreen"
-					icon ="kalturaLogo" />
+					icon ="vidiunLogo" />
 				<Spacer width="10" />	
 			</HBox>
 			

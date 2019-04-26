@@ -1,8 +1,8 @@
-package com.kaltura.net.loaders
+package com.vidiun.net.loaders
 {
-	import com.kaltura.net.interfaces.ILoadableObject;
-	import com.kaltura.net.interfaces.IMediaSource;
-	import com.kaltura.net.nonStreaming.SWFLoaderMediaSource;
+	import com.vidiun.net.interfaces.ILoadableObject;
+	import com.vidiun.net.interfaces.IMediaSource;
+	import com.vidiun.net.nonStreaming.SWFLoaderMediaSource;
 
 	import flash.events.Event;
 	import flash.events.EventDispatcher;

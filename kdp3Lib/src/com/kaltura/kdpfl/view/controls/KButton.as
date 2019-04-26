@@ -1,9 +1,9 @@
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
-	import com.kaltura.kdpfl.component.IComponent;
-	import com.kaltura.kdpfl.style.FontManager;
-	import com.kaltura.kdpfl.style.TextFormatManager;
-	import com.kaltura.kdpfl.util.KColorUtil;
+	import com.vidiun.vdpfl.component.IComponent;
+	import com.vidiun.vdpfl.style.FontManager;
+	import com.vidiun.vdpfl.style.TextFormatManager;
+	import com.vidiun.vdpfl.util.VColorUtil;
 	import com.yahoo.astra.fl.controls.containerClasses.AutoSizeButton;
 	
 	import fl.events.ComponentEvent;
@@ -19,12 +19,12 @@ package com.kaltura.kdpfl.view.controls
 	import flash.utils.getQualifiedClassName;
 	
 	/**
-	 * Class KButton is the default class for a button in the KDP GUI.
+	 * Class VButton is the default class for a button in the VDP GUI.
 	 * @author Eitan
 	 * 
 	 */	
 	[Bindable]
-	public dynamic class KButton extends AutoSizeButton implements IComponent
+	public dynamic class VButton extends AutoSizeButton implements IComponent
 	{
 		// text format 
 		private var tf:TextFormat;
@@ -78,7 +78,7 @@ package com.kaltura.kdpfl.view.controls
 		 * Constructor 
 		 * 
 		 */		
-		public function KButton()
+		public function VButton()
 		{
 			super();
 			width = 1;
@@ -322,7 +322,7 @@ package com.kaltura.kdpfl.view.controls
 					{
 						if(mouseState == "over" || mouseState == "down")
 						{
-							KColorUtil.colorDisplayObject(child,color2);
+							VColorUtil.colorDisplayObject(child,color2);
 							if (buttonType == ICON_BUTTON)
 							{
 								child.alpha =2 ;
@@ -330,7 +330,7 @@ package com.kaltura.kdpfl.view.controls
 						}
 						else
 						{
-							KColorUtil.colorDisplayObject(child,color1);
+							VColorUtil.colorDisplayObject(child,color1);
 							if (buttonType == ICON_BUTTON)
 							{
 								child.alpha = 1 ;
@@ -356,7 +356,7 @@ package com.kaltura.kdpfl.view.controls
 						// find the icon and the textfield
 						if(itemClassName.indexOf("con") > -1 || itemClassName.indexOf("ext") > -1)
 						{
-							KColorUtil.colorDisplayObject(child,color5);
+							VColorUtil.colorDisplayObject(child,color5);
 							if(itemClassName.indexOf("con") > -1)
 							{
 								child.alpha = 2;
@@ -366,9 +366,9 @@ package com.kaltura.kdpfl.view.controls
 						if(itemClassName.indexOf("kin") > -1)
 						{
 							if(mouseState == "over")
-								KColorUtil.colorDisplayObject(child,color4);
+								VColorUtil.colorDisplayObject(child,color4);
 							else
-								KColorUtil.colorDisplayObject(child,color3);
+								VColorUtil.colorDisplayObject(child,color3);
 							
 						}
 					}

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,9 +25,9 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.types
+package com.vidiun.types
 {
-	public class KalturaStatsKmcEventType
+	public class VidiunStatsVmcEventType
 	{
 		public static const CONTENT_PAGE_VIEW : int = 1001;
 		public static const CONTENT_ADD_PLAYLIST : int = 1010;
@@ -43,7 +43,7 @@ package com.kaltura.types
 		public static const CONTENT_APPROVE_MODERATION : int = 1020;
 		public static const CONTENT_REJECT_MODERATION : int = 1021;
 		public static const CONTENT_BULK_UPLOAD : int = 1022;
-		public static const CONTENT_ADMIN_KCW_UPLOAD : int = 1023;
+		public static const CONTENT_ADMIN_VCW_UPLOAD : int = 1023;
 		public static const ACCOUNT_CHANGE_PARTNER_INFO : int = 1030;
 		public static const ACCOUNT_CHANGE_LOGIN_INFO : int = 1031;
 		public static const ACCOUNT_CONTACT_US_USAGE : int = 1032;

@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.component
+package com.vidiun.vdpfl.component
 {
 	/**
-	 * Interface for the UIComponents used be the KDP. 
+	 * Interface for the UIComponents used be the VDP. 
 	 * @author Hila
 	 * 
 	 */	

@@ -1,7 +1,7 @@
-package com.kaltura.puremvc.as3.core
+package com.vidiun.puremvc.as3.core
 {
-	import com.kaltura.puremvc.as3.patterns.mediator.PriorityMediator;
-	import com.kaltura.puremvc.as3.patterns.observer.PriorityObserver;
+	import com.vidiun.puremvc.as3.patterns.mediator.PriorityMediator;
+	import com.vidiun.puremvc.as3.patterns.observer.PriorityObserver;
 	
 	import flash.sampler.getMemberNames;
 	
@@ -17,9 +17,9 @@ package com.kaltura.puremvc.as3.core
 	 * @author Hila
 	 * 
 	 */	
-	public class KView extends View
+	public class VView extends View
 	{
-		public function KView()
+		public function VView()
 		{
 			super();
 			priorityMediatorMap = new Array();
@@ -28,7 +28,7 @@ package com.kaltura.puremvc.as3.core
 		
 		public static function getInstance() : IView 
 		{
-			if ( instance == null ) instance = new KView( );
+			if ( instance == null ) instance = new VView( );
 			return instance;
 		}
 		/**

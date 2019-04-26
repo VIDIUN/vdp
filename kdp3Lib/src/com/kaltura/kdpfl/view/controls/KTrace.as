@@ -1,23 +1,23 @@
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
 	import flash.external.ExternalInterface;
 
 	/**
-	 * KTrace class enables to send the traces to javaScript. 
+	 * VTrace class enables to send the traces to javaScript. 
 	 * @author Michal
 	 * 
 	 */	
-	public class KTrace
+	public class VTrace
 	{
 		private var _jsCallback:Boolean;
 		
-		private static var _instance:KTrace;
+		private static var _instance:VTrace;
 		
 		
-		public static function getInstance() : KTrace
+		public static function getInstance() : VTrace
 		{
-			if (_instance == null) _instance = new KTrace();
-			return _instance as KTrace;
+			if (_instance == null) _instance = new VTrace();
+			return _instance as VTrace;
 		}
 		
 		/**
@@ -28,7 +28,7 @@ package com.kaltura.kdpfl.view.controls
 		public function set jsCallback(value:Boolean):void
 		{
 			if (!_jsCallback && value) {
-				ExternalInterface.call("function() {var ta = document.createElement('textarea'); ta.setAttribute('id', 'kLog'); ta.setAttribute('style', 'width: 500px; height: 400px; position: absolute; top: 0; right: 1px;'); document.getElementsByTagName('body')[0].appendChild( ta );}");
+				ExternalInterface.call("function() {var ta = document.createElement('textarea'); ta.setAttribute('id', 'vLog'); ta.setAttribute('style', 'width: 500px; height: 400px; position: absolute; top: 0; right: 1px;'); document.getElementsByTagName('body')[0].appendChild( ta );}");
 			}
 			_jsCallback = value;
 		}
@@ -41,7 +41,7 @@ package com.kaltura.kdpfl.view.controls
 			trace(args);
 			if (jsCallback) {
 				args.push("\n");
-				ExternalInterface.call("function( msg ) { document.getElementById('kLog').innerHTML += msg; }", args.join(' '));
+				ExternalInterface.call("function( msg ) { document.getElementById('vLog').innerHTML += msg; }", args.join(' '));
 			}
 		}
 	}

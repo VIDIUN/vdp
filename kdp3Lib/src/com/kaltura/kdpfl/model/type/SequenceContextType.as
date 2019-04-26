@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.model.type
+package com.vidiun.vdpfl.model.type
 {
 	/**
 	 * A class of possible sequence contexts - meaning where we are in the sequence right now. 

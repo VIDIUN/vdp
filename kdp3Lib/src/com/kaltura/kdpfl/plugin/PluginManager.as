@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin
+package com.vidiun.vdpfl.plugin
 {
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.vidiun.vdpfl.view.controls.VTrace;
 	
 	import flash.display.Loader;
 	import flash.errors.IOError;
@@ -15,7 +15,7 @@ package com.kaltura.kdpfl.plugin
 	import mx.rpc.mxml.Concurrency;
 
 	/**
-	 * Singleton class which manages the loading of the KDP plugins according to the plugin's different loading policies. 
+	 * Singleton class which manages the loading of the VDP plugins according to the plugin's different loading policies. 
 	 * @author Hila
 	 * 
 	 */	
@@ -73,12 +73,12 @@ package com.kaltura.kdpfl.plugin
 			//TODO: Check if it is loaded
 		}
 		/**
-		 * loads a single KDP plugin 
+		 * loads a single VDP plugin 
 		 * @param url the url from which the plugis is loaded
 		 * @param pluginName the name of the plugin
 		 * @param loadingPolicy the loading policy of the plugin (preInitialize, onDemand, wait, noWait).
 		 * @param asyncInit flag indicating whether the Manager should wait until the plugin itself reports its initialize process as complete (if the plugin makes an async load on its <code>initializePlugin</code> function.
-		 * @param fileSystemMode - flag indicating whether the KDP is running in the user's file system or from a remote server.
+		 * @param fileSystemMode - flag indicating whether the VDP is running in the user's file system or from a remote server.
 		 * @return Plugin
 		 * 
 		 */		
@@ -108,8 +108,8 @@ package com.kaltura.kdpfl.plugin
 			
 			if (asyncInit)
 			{
-				plugin.addEventListener(KPluginEvent.KPLUGIN_INIT_COMPLETE, onAsyncInitComplete);
-				plugin.addEventListener(KPluginEvent.KPLUGIN_INIT_FAILED, onAsyncInitFailed );
+				plugin.addEventListener(VPluginEvent.VPLUGIN_INIT_COMPLETE, onAsyncInitComplete);
+				plugin.addEventListener(VPluginEvent.VPLUGIN_INIT_FAILED, onAsyncInitFailed );
 				++_loadingQ;
 			}
 			
@@ -119,7 +119,7 @@ package com.kaltura.kdpfl.plugin
 			return plugin;
 		}
 		/**
-		 * method for unloading the plugin from the KDP. 
+		 * method for unloading the plugin from the VDP. 
 		 * @param url url which serves as a unique id of the plugin to the PluginManager.
 		 * 
 		 */		
@@ -149,7 +149,7 @@ package com.kaltura.kdpfl.plugin
 			dispatchAllPluginsLoaded();
 		}
 		/**
-		 * Handler for the KPLUGIN_INIT_COMPLETE event 
+		 * Handler for the VPLUGIN_INIT_COMPLETE event 
 		 * @param e
 		 * 
 		 */		
@@ -161,7 +161,7 @@ package com.kaltura.kdpfl.plugin
 			dispatchAllPluginsLoaded();
 		}
 		/**
-		 * Handler for the KPLUGIN_INIT_FAILED event
+		 * Handler for the VPLUGIN_INIT_FAILED event
 		 * @param e
 		 * 
 		 */		
@@ -182,7 +182,7 @@ package com.kaltura.kdpfl.plugin
 		{		
 			removeAllListeners(event);
 			//trace("error loading plug-in: " + event.text);
-			KTrace.getInstance().log("error loading plug-in: " + event.text);
+			VTrace.getInstance().log("error loading plug-in: " + event.text);
 			--_loadingQ;
 
 			//if all plugin loaded

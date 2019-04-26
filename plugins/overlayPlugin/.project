@@ -3,7 +3,7 @@
 	<name>overlayPlugin</name>
 	<comment></comment>
 	<projects>
-		<project>kdp3Lib</project>
+		<project>vdp3Lib</project>
 		<project>OSMF</project>
 	</projects>
 	<buildSpec>
@@ -20,7 +20,7 @@
 		<link>
 			<name>bin-debug</name>
 			<type>2</type>
-			<locationURI>DOCUMENTS/KDP3/bin-debug/plugins</locationURI>
+			<locationURI>DOCUMENTS/VDP3/bin-debug/plugins</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.controller.media
+package com.vidiun.vdpfl.controller.media
 {
 	import org.puremvc.as3.patterns.command.AsyncMacroCommand;
 

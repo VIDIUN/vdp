@@ -1,4 +1,4 @@
-package com.kaltura.kdfl.plugin.events {
+package com.vidiun.vdfl.plugin.events {
 	import flash.events.Event;
 
 	public class BumperEvent extends Event {

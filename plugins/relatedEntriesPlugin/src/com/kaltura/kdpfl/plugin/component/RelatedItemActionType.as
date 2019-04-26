@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
 	/**
 	 * Class represents Related Item possible actions 

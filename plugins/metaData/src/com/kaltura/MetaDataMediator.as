@@ -1,13 +1,13 @@
-package com.kaltura
+package com.vidiun
 {
-	import com.kaltura.commands.metadata.MetadataList;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.util.XMLUtils;
-	import com.kaltura.puremvc.as3.patterns.mediator.SequenceMultiMediator;
-	import com.kaltura.types.KalturaMetadataObjectType;
-	import com.kaltura.vo.KalturaMetadata;
-	import com.kaltura.vo.KalturaMetadataFilter;
-	import com.kaltura.vo.KalturaMetadataListResponse;KalturaMetadata;
+	import com.vidiun.commands.metadata.MetadataList;
+	import com.vidiun.events.VidiunEvent;
+	import com.vidiun.vdpfl.util.XMLUtils;
+	import com.vidiun.puremvc.as3.patterns.mediator.SequenceMultiMediator;
+	import com.vidiun.types.VidiunMetadataObjectType;
+	import com.vidiun.vo.VidiunMetadata;
+	import com.vidiun.vo.VidiunMetadataFilter;
+	import com.vidiun.vo.VidiunMetadataListResponse;VidiunMetadata;
 
 	
 	public class MetaDataMediator extends SequenceMultiMediator
@@ -25,21 +25,21 @@ package com.kaltura
 		
 		public function start () : void
 		{
-			var kc : KalturaClient = facade.retrieveProxy("servicesProxy")["kalturaClient"] as KalturaClient;
+			var vc : VidiunClient = facade.retrieveProxy("servicesProxy")["vidiunClient"] as VidiunClient;
 			var entryId : String = facade.retrieveProxy("mediaProxy")["vo"]["entry"]["id"];
-			var metadataFilter : KalturaMetadataFilter = new KalturaMetadataFilter();
-			metadataFilter.metadataObjectTypeEqual = KalturaMetadataObjectType.ENTRY;
+			var metadataFilter : VidiunMetadataFilter = new VidiunMetadataFilter();
+			metadataFilter.metadataObjectTypeEqual = VidiunMetadataObjectType.ENTRY;
 			metadataFilter.objectIdEqual = entryId;
 			var metaDataList : MetadataList = new MetadataList(metadataFilter);
-			metaDataList.addEventListener(KalturaEvent.COMPLETE, onMetadataReceived);
-			metaDataList.addEventListener( KalturaEvent.FAILED, onMetadataFailed );
-			kc.post( metaDataList );
+			metaDataList.addEventListener(VidiunEvent.COMPLETE, onMetadataReceived);
+			metaDataList.addEventListener( VidiunEvent.FAILED, onMetadataFailed );
+			vc.post( metaDataList );
 		}
 		
-		private function onMetadataReceived (e : KalturaEvent) : void
+		private function onMetadataReceived (e : VidiunEvent) : void
 		{
 			viewComponent["metaData"] = new Object();
-			var listResponse : KalturaMetadataListResponse = e.data as KalturaMetadataListResponse;
+			var listResponse : VidiunMetadataListResponse = e.data as VidiunMetadataListResponse;
 			if ( listResponse.objects[0])
 			{
 				var metadataXml : XMLList = XML(listResponse.objects[0]["xml"]).children();
@@ -53,7 +53,7 @@ package com.kaltura
 			sendNotification("sequenceItemPlayEnd");
 		}
 		
-		private function onMetadataFailed ( e: KalturaEvent) : void
+		private function onMetadataFailed ( e: VidiunEvent) : void
 		{
 			trace("metadata failed");
 			sendNotification("sequenceItemPlayEnd");

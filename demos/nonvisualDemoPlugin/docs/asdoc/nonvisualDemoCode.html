@@ -41,12 +41,12 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">nonvisualDemoCode <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="images/inherit-arrow.gif"> fl.core.UIComponent</td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Implements</td><td>com.kaltura.kdpfl.plugin.IPlugin</td>
+<td class="classHeaderTableLabel">Implements</td><td>com.vidiun.vdpfl.plugin.IPlugin</td>
 </tr>
 </table>
 <p></p>
   <code>nonvisualDemoCode</code> is the real plugin. 
-  KDP initializes it by calling <code>initializePlugin()</code> and then calls <code>setSkin()</code>.
+  VDP initializes it by calling <code>initializePlugin()</code> and then calls <code>setSkin()</code>.
   <p></p>
 <br>
 <hr>
@@ -72,7 +72,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#initializePlugin()">initializePlugin</a>(facade:IFacade):void</div>
 <div class="summaryTableDescription">
-   KDP calls this interface method to initialize the new plugin.</div>
+   VDP calls this interface method to initialize the new plugin.</div>
 </td><td class="summaryTableOwnerCol">nonvisualDemoCode</td>
 </tr>
 <tr class="">
@@ -80,7 +80,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#setSkin()">setSkin</a>(styleName:String, setSkinSize:Boolean = false):void</div>
 <div class="summaryTableDescription">
-   KDP calls this interface method in order to set the plugin's skin.</div>
+   VDP calls this interface method in order to set the plugin's skin.</div>
 </td><td class="summaryTableOwnerCol">nonvisualDemoCode</td>
 </tr>
 </table>
@@ -112,13 +112,13 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function initializePlugin(facade:IFacade):void</code><p>
-   KDP calls this interface method to initialize the new plugin. 
+   VDP calls this interface method to initialize the new plugin. 
    It pushes all the inialization params into the mediator.
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">facade</span>:IFacade</code> &mdash; KDP application facade
+<td width="20px"></td><td><code><span class="label">facade</span>:IFacade</code> &mdash; VDP application facade
    </td>
 </tr>
 </table>
@@ -131,7 +131,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function setSkin(styleName:String, setSkinSize:Boolean = false):void</code><p>
-   KDP calls this interface method in order to set the plugin's skin.
+   VDP calls this interface method in order to set the plugin's skin.
    This plugin isn't visual and has no skin, so the implementation is empty.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">

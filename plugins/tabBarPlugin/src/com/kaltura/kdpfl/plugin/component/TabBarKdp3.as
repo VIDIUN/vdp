@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.view.controls.KButton;
+	import com.vidiun.vdpfl.view.controls.VButton;
 	import com.yahoo.astra.fl.controls.TabBar;
 	
 	import fl.data.DataProvider;
@@ -11,11 +11,11 @@ package com.kaltura.kdpfl.plugin.component
 	import flash.geom.Rectangle;
 	
 	
-	public class TabBarKdp3 extends Sprite 
+	public class TabBarVdp3 extends Sprite 
 	{
 		public var tabBar:TabBar; 
-		public var prevBut:KButton;
-		public var nextBut:KButton;
+		public var prevBut:VButton;
+		public var nextBut:VButton;
 		public var padding:Number = 5;
 		private var _height:Number;
 		
@@ -25,10 +25,10 @@ package com.kaltura.kdpfl.plugin.component
 		private var _needToMove:Number = 0; 
 		
 		
-		public function TabBarKdp3() 
+		public function TabBarVdp3() 
 		{	
-			prevBut = new KButton();
-			nextBut = new KButton();
+			prevBut = new VButton();
+			nextBut = new VButton();
 			
 			prevBut.visible = false;
 			nextBut.visible = false;

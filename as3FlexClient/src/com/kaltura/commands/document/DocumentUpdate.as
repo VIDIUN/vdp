@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.document
+package com.vidiun.commands.document
 {
-		import com.kaltura.vo.KalturaDocumentEntry;
-	import com.kaltura.delegates.document.DocumentUpdateDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunDocumentEntry;
+	import com.vidiun.delegates.document.DocumentUpdateDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Update document entry. Only the properties that were set will be updated.
 	* 
 	**/
-	public class DocumentUpdate extends KalturaCall
+	public class DocumentUpdate extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param entryId String
-		* @param documentEntry KalturaDocumentEntry
+		* @param documentEntry VidiunDocumentEntry
 		**/
-		public function DocumentUpdate( entryId : String,documentEntry : KalturaDocumentEntry )
+		public function DocumentUpdate( entryId : String,documentEntry : VidiunDocumentEntry )
 		{
 			service= 'document';
 			action= 'update';
@@ -53,7 +53,7 @@ package com.kaltura.commands.document
 			var keyValArr : Array = new Array();
 			keyArr.push('entryId');
 			valueArr.push(entryId);
-				keyValArr = kalturaObject2Arrays(documentEntry, 'documentEntry');
+				keyValArr = vidiunObject2Arrays(documentEntry, 'documentEntry');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

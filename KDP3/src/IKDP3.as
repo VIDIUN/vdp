@@ -1,7 +1,7 @@
 package
 {
 
-	public interface IKDP3 {
+	public interface IVDP3 {
 				
 		
 		/**
@@ -20,18 +20,18 @@ package
 		
 		
 		/**
-		 * Start the KDP sequence commands to build layout, load styles and 
+		 * Start the VDP sequence commands to build layout, load styles and 
 		 * set them, add add the main built view to the stage. </br> 
-		 * this method is called automaticlly on stand alone KDP, but a KDP 
+		 * this method is called automaticlly on stand alone VDP, but a VDP 
 		 * in a Flex/Flash wrapper should call init() by itself.
-		 * @param kml	layout xml (uiconf). To inject uiconf at runtime, pass it </br>
-		 * 			 	here and set flashvars.kml=inject.
+		 * @param vml	layout xml (uiconf). To inject uiconf at runtime, pass it </br>
+		 * 			 	here and set flashvars.vml=inject.
 		 */		
-		function init( kml : XML = null ):void;
+		function init( vml : XML = null ):void;
 		
 		
 		/**
-		 * An application that loads KDP can use sendNotification to dispatch notifications.
+		 * An application that loads VDP can use sendNotification to dispatch notifications.
 		 * @param notificationName the name of the notiification to send
 		 * @param body the body of the notification (optional)
 		 * @param type the type of the notification (optional)
@@ -40,7 +40,7 @@ package
 		
 		
 		/**
-		 * KDP3 provides a way to get any data that is in the bindObject to JS
+		 * VDP3 provides a way to get any data that is in the bindObject to JS
 		 * @param expression
 		 * @return 
 		 */
@@ -48,7 +48,7 @@ package
 		
 		
 		/**
-		 * KDP3 provides a way to set any data attribute using this function </br> 
+		 * VDP3 provides a way to set any data attribute using this function </br> 
 		 * from any Flash/Flex Container.
 		 * @param componentName	the component which holds the attribute
 		 * @param prop			attribute to be changed
@@ -58,7 +58,7 @@ package
 		
 		
 		/**
-		 * Free memory and clean static vars which are used to store KDP configuration  
+		 * Free memory and clean static vars which are used to store VDP configuration  
 		 */		
 		function dispose() : void;
 				

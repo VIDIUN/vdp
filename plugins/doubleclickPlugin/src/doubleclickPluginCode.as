@@ -16,16 +16,16 @@ package
 	import com.google.ads.ima.api.ImaSdkSettings;
 	import com.google.ads.ima.api.ViewModes;
 	import com.google.ads.ima.wrappers.ImaSdkSettingsWrapper;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.kdpfl.plugin.ISequencePlugin;
-	import com.kaltura.kdpfl.plugin.component.DoubleclickMediator;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
+	import com.vidiun.vdpfl.model.LayoutProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.SequenceContextType;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.IPluginFactory;
+	import com.vidiun.vdpfl.plugin.ISequencePlugin;
+	import com.vidiun.vdpfl.plugin.component.DoubleclickMediator;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
 	
 	import fl.core.UIComponent;
 	
@@ -108,7 +108,7 @@ package
 		private var _mediaUrl:String;
 		private var _adContext:String;
 		private var _sequenceProxy:SequenceProxy;
-		private var _playerMediator:KMediaPlayerMediator;
+		private var _playerMediator:VMediaPlayerMediator;
 		private var _mediaProxy:MediaProxy;
 		private var _layoutProxy:LayoutProxy;
 		private var _mediator:DoubleclickMediator;
@@ -200,7 +200,7 @@ package
 				_sequenceProxy	= (_facade.retrieveProxy("sequenceProxy") as SequenceProxy);
 			
 			if(!_playerMediator)
-				_playerMediator	= (_facade.retrieveMediator("kMediaPlayerMediator") as KMediaPlayerMediator);
+				_playerMediator	= (_facade.retrieveMediator("vMediaPlayerMediator") as VMediaPlayerMediator);
 			
 			if(!_mediaProxy)
 				_mediaProxy		= (_facade.retrieveMediator("mediaProxy") as MediaProxy);
@@ -720,8 +720,8 @@ package
 		public function subSequenceLength () : int{return 0;}//TODO: LOOK INTO USAGE FOR AD POD
 		
 		/**
-		 * Returns whether the Sequence Plugin plays within the KDP or loads its own media over it. 
-		 * @return The function returns <code>true</code> if the plugin media plays within the KDP
+		 * Returns whether the Sequence Plugin plays within the VDP or loads its own media over it. 
+		 * @return The function returns <code>true</code> if the plugin media plays within the VDP
 		 *  and <code>false</code> otherwise.
 		 * 
 		 */		
@@ -730,7 +730,7 @@ package
 		/**
 		 * Function for retrieving the entry id of the plugin media
 		 * @return The function returns the entry id of the plugin media. If the plugin does not play
-		 * a kaltura-based entry, the return value is the URL of the media of the plugin.
+		 * a vidiun-based entry, the return value is the URL of the media of the plugin.
 		 */		
 		public function get entryId () : String
 		{
@@ -740,14 +740,14 @@ package
 		
 		/**
 		 * Function for retrieving the source type of the plugin media (url or entryId) 
-		 * @return If the plugin plays a Kaltura-Based entry the function returns <code>entryId</script>.
+		 * @return If the plugin plays a Vidiun-Based entry the function returns <code>entryId</script>.
 		 * Otherwise the return value is <code>url</script>
 		 * 
 		 */		
 		public function get sourceType () : String{return "url";}
 		/**
-		 * Function to retrieve the MediaElement the plugin will play in the KDP. 
-		 * @return returns the MediaElement that the plugin will play in the KDP. 
+		 * Function to retrieve the MediaElement the plugin will play in the VDP. 
+		 * @return returns the MediaElement that the plugin will play in the VDP. 
 		 * 
 		 */		
 		public function get mediaElement () : Object{return new Object()}

@@ -1,7 +1,7 @@
-package com.kaltura.osmf.proxy
+package com.vidiun.osmf.proxy
 {
-	import com.kaltura.osmf.events.KSwitchingProxyEvent;
-	import com.kaltura.osmf.events.KSwitchingProxySwitchContext;
+	import com.vidiun.osmf.events.VSwitchingProxyEvent;
+	import com.vidiun.osmf.events.VSwitchingProxySwitchContext;
 	
 	import org.osmf.elements.ProxyElement;
 	import org.osmf.events.MediaErrorEvent;
@@ -20,7 +20,7 @@ package com.kaltura.osmf.proxy
 	 * @author Hila
 	 * 
 	 */	
-	public class KSwitchingProxyElement extends ProxyElement 
+	public class VSwitchingProxyElement extends ProxyElement 
 	{
 		/**
 		 *  @private
@@ -36,9 +36,9 @@ package com.kaltura.osmf.proxy
 		 */		
 		private var _secondaryElementTraitsToBlock : Vector.<String> = new Vector.<String>();
 		
-		public var currentContext : String = KSwitchingProxySwitchContext.MAIN;
+		public var currentContext : String = VSwitchingProxySwitchContext.MAIN;
 		
-		public function KSwitchingProxyElement(proxiedElement:MediaElement=null)
+		public function VSwitchingProxyElement(proxiedElement:MediaElement=null)
 		{
 			super(proxiedElement);
 		}
@@ -93,7 +93,7 @@ package com.kaltura.osmf.proxy
 		
 		public function reloadAndPlaySecondaryElement () : void
 		{
-			if (currentContext == KSwitchingProxySwitchContext.SECONDARY && secondaryMediaElement != proxiedElement)
+			if (currentContext == VSwitchingProxySwitchContext.SECONDARY && secondaryMediaElement != proxiedElement)
 			{
 				var currentPlayTrait  :PlayTrait = proxiedElement.getTrait(MediaTraitType.PLAY) as PlayTrait;
 				
@@ -122,7 +122,7 @@ package com.kaltura.osmf.proxy
 			}
 			
 			// Then switch wrapped elements.
-			dispatchEvent(new KSwitchingProxyEvent( KSwitchingProxyEvent.ELEMENT_SWITCH_PERFORMED, (proxiedElement == mainMediaElement) ? KSwitchingProxySwitchContext.SECONDARY : KSwitchingProxySwitchContext.MAIN));
+			dispatchEvent(new VSwitchingProxyEvent( VSwitchingProxyEvent.ELEMENT_SWITCH_PERFORMED, (proxiedElement == mainMediaElement) ? VSwitchingProxySwitchContext.SECONDARY : VSwitchingProxySwitchContext.MAIN));
 			if (proxiedElement == _mainMediaElement && secondaryMediaElement)
 			{
 				blockedTraits = secondaryElementTraitsToBlock;
@@ -130,20 +130,20 @@ package com.kaltura.osmf.proxy
 				proxiedElement.addEventListener(MediaErrorEvent.MEDIA_ERROR, onSecondaryElementError );
 				/*var currentTimeTrait : TimeTrait = proxiedElement.getTrait(MediaTraitType.TIME) as TimeTrait;
 				currentTimeTrait.addEventListener(TimeEvent.COMPLETE, onSecondaryElementComplete);*/
-				currentContext = KSwitchingProxySwitchContext.SECONDARY;
+				currentContext = VSwitchingProxySwitchContext.SECONDARY;
 			}
 			else
 			{
 				proxiedElement = _mainMediaElement;
 				blockedTraits = new Vector.<String>();
-				currentContext = KSwitchingProxySwitchContext.MAIN;
+				currentContext = VSwitchingProxySwitchContext.MAIN;
 			}
 			currentPlayTrait = proxiedElement.getTrait(MediaTraitType.PLAY) as PlayTrait;
 			
 			//currentPlayTrait.play();
 			
 			//notify switching is done
-			dispatchEvent(new KSwitchingProxyEvent( KSwitchingProxyEvent.ELEMENT_SWITCH_COMPLETED, currentContext));
+			dispatchEvent(new VSwitchingProxyEvent( VSwitchingProxyEvent.ELEMENT_SWITCH_COMPLETED, currentContext));
 			
 		}
 		/**
@@ -161,7 +161,7 @@ package com.kaltura.osmf.proxy
 		{
 			trace ("The video cannot be displayed");
 			proxiedElement.removeEventListener(MediaErrorEvent.MEDIA_ERROR, onSecondaryElementError);
-			dispatchEvent(new KSwitchingProxyEvent( KSwitchingProxyEvent.ELEMENT_SWITCH_FAILED, currentContext));
+			dispatchEvent(new VSwitchingProxyEvent( VSwitchingProxyEvent.ELEMENT_SWITCH_FAILED, currentContext));
 			switchElements();
 		}
 

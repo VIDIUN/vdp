@@ -1,4 +1,4 @@
-package com.kaltura.roughcut.buffering.events
+package com.vidiun.roughcut.buffering.events
 {
 	import flash.events.Event;
 

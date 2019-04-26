@@ -1,20 +1,20 @@
-package com.kaltura.osmf.kalturaMix
+package com.vidiun.osmf.vidiunMix
 {
-	import com.kaltura.components.players.eplayer.Eplayer;
-	import com.kaltura.roughcut.events.RoughcutStatusEvent;
+	import com.vidiun.components.players.eplayer.Eplayer;
+	import com.vidiun.roughcut.events.RoughcutStatusEvent;
 	
 	import flash.events.Event;
 	
 	import org.osmf.traits.PlayState;
 	import org.osmf.traits.PlayTrait;
 
-	public class KalturaMixPlayTrait extends PlayTrait
+	public class VidiunMixPlayTrait extends PlayTrait
 	{
 		public var eplayer:Eplayer;
 		private var _roughCutReady : Boolean = false;
 		private var _playing : Boolean = false;
 		
-		public function KalturaMixPlayTrait(_eplayer:Eplayer)
+		public function VidiunMixPlayTrait(_eplayer:Eplayer)
 		{
 			super();
 			eplayer = _eplayer;

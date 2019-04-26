@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.view.controls.KButton;
+	import com.vidiun.vdpfl.view.controls.VButton;
 	
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
@@ -13,8 +13,8 @@ package com.kaltura.kdpfl.plugin.component
 		public static const NAME:String = "scrubber508Mediator";
 		private var _entryId:String = "";
 		private var _totalBytes:Number = 0;
-		private var _backbtn:KButton;
-		private var _fwdbtn:KButton;
+		private var _backbtn:VButton;
+		private var _fwdbtn:VButton;
 		private var _skip:String = "";
 		private var _isPlaying:Boolean = false;
 
@@ -147,14 +147,14 @@ package com.kaltura.kdpfl.plugin.component
 			(view as Scrubber508).setSize(w,h);
 		}
 
-		public function set backbtn(value:KButton):void
+		public function set backbtn(value:VButton):void
 		{
 			_backbtn = value;
 			_backbtn.addEventListener(MouseEvent.MOUSE_DOWN, onBackBtnDown);
 			_backbtn.addEventListener(MouseEvent.MOUSE_UP, onBackBtnUp);
 		}
 
-		public function set fwdbtn(value:KButton):void
+		public function set fwdbtn(value:VButton):void
 		{
 			_fwdbtn = value;
 			_fwdbtn.addEventListener(MouseEvent.MOUSE_DOWN, onFwdBtnDown);

@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.model.type.AdsNotificationTypes;
-	import com.kaltura.kdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.AdsNotificationTypes;
+	import com.vidiun.vdpfl.model.type.NotificationType;
 	
 	import fl.core.UIComponent;
 	

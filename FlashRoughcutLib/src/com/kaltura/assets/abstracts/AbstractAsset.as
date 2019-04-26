@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Vidiun Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,17 +20,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.assets.abstracts
+package com.vidiun.assets.abstracts
 {
-	import com.kaltura.assets.AssetsFactory;
-	import com.kaltura.assets.dataStructures.audio.AudioGraph;
-	import com.kaltura.assets.interfaces.IAssetable;
-	import com.kaltura.base.IDisposable;
-	import com.kaltura.base.types.MediaTypes;
-	import com.kaltura.net.loaders.interfaces.IMediaSourceLoader;
-	import com.kaltura.plugin.logic.Plugin;
-	import com.kaltura.types.KalturaEntryStatus;
-	import com.kaltura.vo.KalturaPlayableEntry;
+	import com.vidiun.assets.AssetsFactory;
+	import com.vidiun.assets.dataStructures.audio.AudioGraph;
+	import com.vidiun.assets.interfaces.IAssetable;
+	import com.vidiun.base.IDisposable;
+	import com.vidiun.base.types.MediaTypes;
+	import com.vidiun.net.loaders.interfaces.IMediaSourceLoader;
+	import com.vidiun.plugin.logic.Plugin;
+	import com.vidiun.types.VidiunEntryStatus;
+	import com.vidiun.vo.VidiunPlayableEntry;
 
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -47,7 +47,7 @@ package com.kaltura.assets.abstracts
 	public class AbstractAsset extends EventDispatcher implements IAssetable, IDisposable
 	{
 		static public const DEFAULT_TRANSITION_TYPE:String = 'None';
-		static public var noneTransitionThumbnail:String = 'http://kaldev.kaltura.com/swf/plugins/cvesdk/transitions/no_transition_thumb.swf';
+		static public var noneTransitionThumbnail:String = 'http://viddev.vidiun.com/swf/plugins/cvesdk/transitions/no_transition_thumb.swf';
 		protected var _assetUid:String = '-1'; 									//run time generated unique id
 		protected var _mediaSource:* = null; 									//Media object, can be any type of media. (NetStream, bitmapData, Sound...)
 		protected var _mediaSourceLoader:IMediaSourceLoader;					//the MediaSource loader object, this is used to get info about loading status of media Source.
@@ -82,7 +82,7 @@ package com.kaltura.assets.abstracts
 		public var startByte:uint = 0;															//the byte offset of where this asset starts in the lage stream (discreteStreams mode)
 		public var endByte:uint = 0;																//the byte offset of where this asset ends in the lage stream (discreteStreams mode)
 		public var pluginAssetXml:XML = null;
-		private var _kalturaEntry:KalturaPlayableEntry;
+		private var _vidiunEntry:VidiunPlayableEntry;
 
 		public var entrySourceLink:String;
 		public var entrySourceCode:int = 0;
@@ -132,11 +132,11 @@ package com.kaltura.assets.abstracts
 								is_focus:Boolean = false,
 								is_selected:Boolean = false,
 								media_source:* = null,
-								kaltura_entry:KalturaPlayableEntry = null ):void
+								vidiun_entry:VidiunPlayableEntry = null ):void
 		{
-			_kalturaEntry = kaltura_entry;
-/*xxx 			if (_kalturaEntry != null)
-				_kalturaEntry.addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, dispatchStatusChange, false, 0, true);
+			_vidiunEntry = vidiun_entry;
+/*xxx 			if (_vidiunEntry != null)
+				_vidiunEntry.addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, dispatchStatusChange, false, 0, true);
  */			_assetUid = asset_uid;
 			_entryId = entry_id;
 			_entryName = entry_name;
@@ -154,13 +154,13 @@ package com.kaltura.assets.abstracts
 			_audioGraph = new AudioGraph (_length);
 		}
 
-		public function get kalturaEntry ():KalturaPlayableEntry
+		public function get vidiunEntry ():VidiunPlayableEntry
 		{
-			return _kalturaEntry;
+			return _vidiunEntry;
 		}
-		public function set kalturaEntry (value:KalturaPlayableEntry):void
+		public function set vidiunEntry (value:VidiunPlayableEntry):void
 		{
-			_kalturaEntry = kalturaEntry;
+			_vidiunEntry = vidiunEntry;
 		}
 
 		[Bindable (event="propertyChange")]
@@ -168,11 +168,11 @@ package com.kaltura.assets.abstracts
 		{
 			var mediaUnChecked:uint = MediaTypes.SOLID | MediaTypes.SILENCE | MediaTypes.TRANSITION | MediaTypes.BITMAP_SOCKET | MediaTypes.EFFECT | MediaTypes.OVERLAY | MediaTypes.TEXT_OVERLAY;
 			if (mediaType & mediaUnChecked)
-				return KalturaEntryStatus.READY;
-			if (_kalturaEntry)
-				return _kalturaEntry.status;
+				return VidiunEntryStatus.READY;
+			if (_vidiunEntry)
+				return _vidiunEntry.status;
 			else
-				return KalturaEntryStatus.PENDING;
+				return VidiunEntryStatus.PENDING;
 		}
 
 /* 		private function dispatchStatusChange (event:PropertyChangeEvent):void
@@ -180,17 +180,17 @@ package com.kaltura.assets.abstracts
 			dispatchEvent (PropertyChangeEvent.createUpdateEvent (this, event.property, event.oldValue, event.newValue));
 			if (event.property == "duration")
 			{
-				_maxLength = _kalturaEntry.duration;
-				length = _kalturaEntry.duration;
-				_clipedStreamLen = _kalturaEntry.duration;
+				_maxLength = _vidiunEntry.duration;
+				length = _vidiunEntry.duration;
+				_clipedStreamLen = _vidiunEntry.duration;
 			}
 			trace ("entryId: " + entryId + " changed property " + event.property + " to: " + event.newValue);
 		}
  */
 		/**
 		 *the media source loader, this object monitors the loading of the mediaSource object.
-		 * @see com.kaltura.net.loaders.interfaces.IMediaSourceLoader
-		 * @see com.kaltura.net.interfaces.ILoadableObject
+		 * @see com.vidiun.net.loaders.interfaces.IMediaSourceLoader
+		 * @see com.vidiun.net.interfaces.ILoadableObject
 		 */
 		public function get mediaSourceLoader ():IMediaSourceLoader
 		{
@@ -275,9 +275,9 @@ package com.kaltura.assets.abstracts
 		{
 			return _transitionAsset;
 		}
-		public function set transitionAsset (k_transition:AbstractAsset):void
+		public function set transitionAsset (v_transition:AbstractAsset):void
 		{
-			_transitionAsset = k_transition;
+			_transitionAsset = v_transition;
 		}
 
 		/**
@@ -450,7 +450,7 @@ package com.kaltura.assets.abstracts
 		}
 
 		/**
-		 *the entry name as it is defined by the server (contributor in kaltura), this is not unique.
+		 *the entry name as it is defined by the server (contributor in vidiun), this is not unique.
 		 */
 		public function get entryName ():String
 		{
@@ -695,8 +695,8 @@ package com.kaltura.assets.abstracts
 			var newAsset:AbstractAsset = AssetsFactory.create (_mediaType, "", _entryId,
 															_entryName, _thumbnailURL, _mediaURL, _length,
 															_maxLength, _startTime, _audioBalance, _transitionType, _transitionLength,
-															false, false, null, _kalturaEntry);
-			newAsset.kalturaEntry = kalturaEntry;
+															false, false, null, _vidiunEntry);
+			newAsset.vidiunEntry = vidiunEntry;
 			newAsset.clipedStreamURL = _clipedStreamURL;
 			newAsset.clipedStreamStart = _clipedStreamStart;
 			newAsset.clipedStreamLen = _clipedStreamLen;

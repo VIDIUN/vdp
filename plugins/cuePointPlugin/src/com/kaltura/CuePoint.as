@@ -1,4 +1,4 @@
-package com.kaltura
+package com.vidiun
 {
 	import fl.controls.Button;
 	

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project name="KDP Builder" basedir=".">        
+<project name="VDP Builder" basedir=".">        
 	
 	<property file="build.properties" description="Load project build properties"/>
 	
@@ -15,7 +15,7 @@
 		<ant dir="faderPlugin" inheritAll="true" target="build"/>
 		<ant dir="gigyaPlugin" inheritAll="true" target="build"/>
 		<ant dir="googleAnalyticsPlugin" inheritAll="true" target="build"/>
-		<ant dir="kalturaMixPlugin" inheritAll="true" target="build"/>
+		<ant dir="vidiunMixPlugin" inheritAll="true" target="build"/>
 		<ant dir="listPlugin" inheritAll="true" target="build"/>
 		<ant dir="omniturePlugin" inheritAll="true" target="build"/>
 		<ant dir="overlayPlugin" inheritAll="true" target="build"/>

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.KalturaFilter;
+	import com.vidiun.vo.VidiunFilter;
 
 	[Bindable]
-	public dynamic class KalturaAuditTrailBaseFilter extends KalturaFilter
+	public dynamic class VidiunAuditTrailBaseFilter extends VidiunFilter
 	{
 		/**
 		**/
@@ -53,7 +53,7 @@ package com.kaltura.vo
 		public var parsedAtLessThanOrEqual : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaAuditTrailStatus
+		* @see com.vidiun.types.VidiunAuditTrailStatus
 		**/
 		public var statusEqual : int = int.MIN_VALUE;
 
@@ -62,7 +62,7 @@ package com.kaltura.vo
 		public var statusIn : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaAuditTrailObjectType
+		* @see com.vidiun.types.VidiunAuditTrailObjectType
 		**/
 		public var auditObjectTypeEqual : String = null;
 
@@ -87,7 +87,7 @@ package com.kaltura.vo
 		public var relatedObjectIdIn : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaAuditTrailObjectType
+		* @see com.vidiun.types.VidiunAuditTrailObjectType
 		**/
 		public var relatedObjectTypeEqual : String = null;
 
@@ -136,7 +136,7 @@ package com.kaltura.vo
 		public var userIdIn : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaAuditTrailAction
+		* @see com.vidiun.types.VidiunAuditTrailAction
 		**/
 		public var actionEqual : String = null;
 
@@ -146,10 +146,10 @@ package com.kaltura.vo
 
 		/**
 		**/
-		public var ksEqual : String = null;
+		public var vsEqual : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaAuditTrailContext
+		* @see com.vidiun.types.VidiunAuditTrailContext
 		**/
 		public var contextEqual : int = int.MIN_VALUE;
 
@@ -216,7 +216,7 @@ package com.kaltura.vo
 			arr.push('userIdIn');
 			arr.push('actionEqual');
 			arr.push('actionIn');
-			arr.push('ksEqual');
+			arr.push('vsEqual');
 			arr.push('contextEqual');
 			arr.push('contextIn');
 			arr.push('entryPointEqual');

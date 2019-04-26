@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.util
+package com.vidiun.vdpfl.util
 {
-	import com.kaltura.kdpfl.model.vo.MediaVO;
+	import com.vidiun.vdpfl.model.vo.MediaVO;
 	
 	import flash.sampler.getMemberNames;
 	import flash.utils.describeType;

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.flavorParams
+package com.vidiun.commands.flavorParams
 {
-		import com.kaltura.vo.KalturaFlavorParams;
-	import com.kaltura.delegates.flavorParams.FlavorParamsAddDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunFlavorParams;
+	import com.vidiun.delegates.flavorParams.FlavorParamsAddDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Add new Flavor Params
 	* 
 	**/
-	public class FlavorParamsAdd extends KalturaCall
+	public class FlavorParamsAdd extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param flavorParams KalturaFlavorParams
+		* @param flavorParams VidiunFlavorParams
 		**/
-		public function FlavorParamsAdd( flavorParams : KalturaFlavorParams )
+		public function FlavorParamsAdd( flavorParams : VidiunFlavorParams )
 		{
 			service= 'flavorparams';
 			action= 'add';
@@ -50,7 +50,7 @@ package com.kaltura.commands.flavorParams
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(flavorParams, 'flavorParams');
+				keyValArr = vidiunObject2Arrays(flavorParams, 'flavorParams');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

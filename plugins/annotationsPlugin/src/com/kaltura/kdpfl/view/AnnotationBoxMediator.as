@@ -1,24 +1,24 @@
-package com.kaltura.kdpfl.view {
+package com.vidiun.vdpfl.view {
 
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.MultiRequest;
-	import com.kaltura.commands.annotation.AnnotationAdd;
-	import com.kaltura.commands.annotation.AnnotationGet;
-	import com.kaltura.commands.annotation.AnnotationList;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.strings.MessageStrings;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.vo.MediaVO;
-	import com.kaltura.kdpfl.util.KAstraAdvancedLayoutUtil;
-	import com.kaltura.kdpfl.view.events.AnnotationEvent;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.kdpfl.view.strings.AnnotationStrings;
-	import com.kaltura.kdpfl.view.strings.Notifications;
-	import com.kaltura.vo.KalturaAnnotation;
-	import com.kaltura.vo.KalturaAnnotationFilter;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.commands.MultiRequest;
+	import com.vidiun.commands.annotation.AnnotationAdd;
+	import com.vidiun.commands.annotation.AnnotationGet;
+	import com.vidiun.commands.annotation.AnnotationList;
+	import com.vidiun.events.VidiunEvent;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.ServicesProxy;
+	import com.vidiun.vdpfl.model.strings.MessageStrings;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.vo.MediaVO;
+	import com.vidiun.vdpfl.util.VAstraAdvancedLayoutUtil;
+	import com.vidiun.vdpfl.view.events.AnnotationEvent;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
+	import com.vidiun.vdpfl.view.strings.AnnotationStrings;
+	import com.vidiun.vdpfl.view.strings.Notifications;
+	import com.vidiun.vo.VidiunAnnotation;
+	import com.vidiun.vo.VidiunAnnotationFilter;
 	import com.yahoo.astra.fl.controls.containerClasses.AutoSizeButton;
 	
 	import fl.core.UIComponent;
@@ -40,7 +40,7 @@ package com.kaltura.kdpfl.view {
 
 		protected var _unsavedAnnotationSO:Array;
 		protected var _player:MediaPlayer;
-		protected var _playerMediaMediator:KMediaPlayerMediator;
+		protected var _playerMediaMediator:VMediaPlayerMediator;
 		protected var _timelineMetadata:TimelineMetadata;
 		protected var _entryId:String = "0";
 		protected var _sessionId:String = "";
@@ -64,7 +64,7 @@ package com.kaltura.kdpfl.view {
 		/**
 		 * Saved annotations shared object prefix.
 		 */
-		public static const ANNOTATIONS_SO_PREFIX:String = "KalturaSavedAnnotations_";
+		public static const ANNOTATIONS_SO_PREFIX:String = "VidiunSavedAnnotations_";
 		
 		/**
 		 * Saves current displaying annotations, they will be removed before editing, and added back afterwards
@@ -126,7 +126,7 @@ package com.kaltura.kdpfl.view {
 					}
 					break;
 				case NotificationType.LAYOUT_READY:
-					_playerMediaMediator = facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator;
+					_playerMediaMediator = facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator;
 					_player = _playerMediaMediator.player;
 					break;
 				case NotificationType.ENTRY_READY:
@@ -160,10 +160,10 @@ package com.kaltura.kdpfl.view {
 
 				case Notifications.SUBMIT_FEEDBACK_SESSION:
 
-					var kAnnotationArray:Array = _pluginCode.annotationsBox.annotationsAsKalturaAnnotationArray;
+					var vAnnotationArray:Array = _pluginCode.annotationsBox.annotationsAsVidiunAnnotationArray;
 
-					if (kAnnotationArray && kAnnotationArray.length != 0 && _entryId && _entryId != "" && _entryId != "-1") {
-						submitFeedbackSession(kAnnotationArray);
+					if (vAnnotationArray && vAnnotationArray.length != 0 && _entryId && _entryId != "" && _entryId != "-1") {
+						submitFeedbackSession(vAnnotationArray);
 					}
 
 
@@ -210,19 +210,19 @@ package com.kaltura.kdpfl.view {
 
 				case Notifications.LOAD_FEEDBACK_SESSION:
 					_pluginCode.annotationsBox.reset();
-					if (_pluginCode.submissionTarget == AnnotationStrings.KALTURA) {
+					if (_pluginCode.submissionTarget == AnnotationStrings.VIDIUN) {
 
 						_pluginCode.userMode = AnnotationStrings.CANDIDATE;
 
 						_sessionId = notification.getBody().sessionId;
 
-						var kc:KalturaClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).kalturaClient;
+						var vc:VidiunClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vidiunClient;
 
 						var sessionParentRequest:AnnotationGet = new AnnotationGet(_sessionId);
 
-						sessionParentRequest.addEventListener(KalturaEvent.COMPLETE, onParentAcquired);
-						sessionParentRequest.addEventListener(KalturaEvent.FAILED, onParentFeedbackFailed);
-						kc.post(sessionParentRequest);
+						sessionParentRequest.addEventListener(VidiunEvent.COMPLETE, onParentAcquired);
+						sessionParentRequest.addEventListener(VidiunEvent.FAILED, onParentFeedbackFailed);
+						vc.post(sessionParentRequest);
 					}
 					else {
 						var annotationsXML:XML = new XML(notification.getBody().feedbackSession);
@@ -249,7 +249,7 @@ package com.kaltura.kdpfl.view {
 					if (savedAnnotation) {
 						index = _pluginCode.annotationsBox.findIndexByAnnotation(savedAnnotation);
 						if (index != -1) {
-							KAstraAdvancedLayoutUtil.appendToLayoutAt(_pluginCode.annotationsBox, savedAnnotation, index, 100, 100);
+							VAstraAdvancedLayoutUtil.appendToLayoutAt(_pluginCode.annotationsBox, savedAnnotation, index, 100, 100);
 							saveAnnotationsToLocalObject();
 						}
 						else {
@@ -273,7 +273,7 @@ package com.kaltura.kdpfl.view {
 					if (returnedAnnotation) {
 						index = _pluginCode.annotationsBox.findIndexByAnnotation(returnedAnnotation);
 						if (index != -1) {
-							KAstraAdvancedLayoutUtil.appendToLayoutAt(_pluginCode.annotationsBox, returnedAnnotation, index, 100, 100);
+							VAstraAdvancedLayoutUtil.appendToLayoutAt(_pluginCode.annotationsBox, returnedAnnotation, index, 100, 100);
 						}
 						_pluginCode.gotoViewMode();
 					}
@@ -352,7 +352,7 @@ package com.kaltura.kdpfl.view {
 			if (savedAnnotation) {
 				index = _pluginCode.annotationsBox.findIndexByAnnotation(savedAnnotation);
 				if (index != -1) {
-					KAstraAdvancedLayoutUtil.appendToLayoutAt(_pluginCode.annotationsBox, savedAnnotation, index, 100, 100);
+					VAstraAdvancedLayoutUtil.appendToLayoutAt(_pluginCode.annotationsBox, savedAnnotation, index, 100, 100);
 					saveAnnotationsToLocalObject();
 				}
 				else {
@@ -377,12 +377,12 @@ package com.kaltura.kdpfl.view {
 		
 		/**
 		 * Function is in charge of loading the entry associated with the loaded feedback session.
-		 * @param e - KalturaEvent
+		 * @param e - VidiunEvent
 		 *
 		 */
 		protected function onParentAcquired(data:Object):void {
-			if ((data is KalturaEvent) && _entryId != (data.data as KalturaAnnotation).entryId) {
-				sendNotification(NotificationType.CHANGE_MEDIA, {entryId: (data.data as KalturaAnnotation).entryId});
+			if ((data is VidiunEvent) && _entryId != (data.data as VidiunAnnotation).entryId) {
+				sendNotification(NotificationType.CHANGE_MEDIA, {entryId: (data.data as VidiunAnnotation).entryId});
 			}
 			else if ((data is XML) && _entryId != data.@status[0].toString()) {
 				var feedbackSessionStatus:String = data.@status[0].toString();
@@ -404,7 +404,7 @@ package com.kaltura.kdpfl.view {
 		 * @param e
 		 *
 		 */
-		protected function onParentFeedbackFailed(e:KalturaEvent):void {
+		protected function onParentFeedbackFailed(e:VidiunEvent):void {
 			trace("feedback session load failed");
 			sendNotification(NotificationType.ALERT, {message: AnnotationStrings.INVALID_FEEDBACK_SESSION_MESSAGE, title: AnnotationStrings.INVALID_FEEDBACK_SESSION_TITLE});
 		}
@@ -427,7 +427,7 @@ package com.kaltura.kdpfl.view {
 			if (e.currentTarget is AutoSizeButton) {
 				if ((e.currentTarget as AutoSizeButton).label == "Yes" && _annotationToDelete) {
 					_pluginCode.annotationsBox.removeAnnotation(_annotationToDelete);
-					if (_pluginCode.submissionTarget == AnnotationStrings.KALTURA) {
+					if (_pluginCode.submissionTarget == AnnotationStrings.VIDIUN) {
 						sendNotification(Notifications.ANNOTATION_DELETED, {annotation: _annotationToDelete});
 					}
 					else {
@@ -449,12 +449,12 @@ package com.kaltura.kdpfl.view {
 		protected function onAnnotationEdit(e:AnnotationEvent):void {
 			//fix bug: we cannot pass current edited annotation to externalInterface, so we create a copy
 			//////////////////////////////////////////////////////////////////////////
-			var annotationCopy:Annotation = new Annotation(e.annotation.viewMode,e.annotation.inTime, e.annotation.annotationText, e.annotation.entryId, e.annotation.kalturaAnnotation);
+			var annotationCopy:Annotation = new Annotation(e.annotation.viewMode,e.annotation.inTime, e.annotation.annotationText, e.annotation.entryId, e.annotation.vidiunAnnotation);
 			sendNotification(Notifications.EDIT_ANNOTATION, {annotation: annotationCopy});
 			//////////////////////////////////////////////////////////////////////////
 			
 			var editAnnotation:Annotation = e.annotation;
-			KAstraAdvancedLayoutUtil.removeFromLayout(_pluginCode.annotationsBox, editAnnotation);
+			VAstraAdvancedLayoutUtil.removeFromLayout(_pluginCode.annotationsBox, editAnnotation);
 			removeAnnotationsFromLayout();
 			_pluginCode.gotoEditMode();
 			_pluginCode.annotationEditForm.openAnnotationForEditing(editAnnotation);
@@ -484,7 +484,7 @@ package com.kaltura.kdpfl.view {
 				_annotationsArr.push(_pluginCode.annotationsBox.getChildAt(i));
 			}
 			for (var j:int = 0; j < _annotationsArr.length; j++) {
-				KAstraAdvancedLayoutUtil.removeFromLayout(_pluginCode.annotationsBox, _annotationsArr[j]);
+				VAstraAdvancedLayoutUtil.removeFromLayout(_pluginCode.annotationsBox, _annotationsArr[j]);
 			}
 		}
 		
@@ -496,7 +496,7 @@ package com.kaltura.kdpfl.view {
 				return;
 			
 			for (var i:int = 0; i < _annotationsArr.length; i++) {
-				KAstraAdvancedLayoutUtil.appendToLayoutAt(_pluginCode.annotationsBox, _annotationsArr[i], i, 100, 100);
+				VAstraAdvancedLayoutUtil.appendToLayoutAt(_pluginCode.annotationsBox, _annotationsArr[i], i, 100, 100);
 			}
 			_annotationsArr = null;
 		}
@@ -584,48 +584,48 @@ package com.kaltura.kdpfl.view {
 		/**
 		 * Function contains the logic which submits the annotations currently found in the
 		 * annotations box and submits it to the server as a feedback session.
-		 * @param kalturaAnnotationsArray - the array of the annotations currently found in the annotations box.
+		 * @param vidiunAnnotationsArray - the array of the annotations currently found in the annotations box.
 		 *
 		 */
-		protected function submitFeedbackSession(kalturaAnnotationsArray:Array):void {
-			if (_pluginCode.submissionTarget == AnnotationStrings.KALTURA) {
-				var kalturaClient:KalturaClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).kalturaClient;
+		protected function submitFeedbackSession(vidiunAnnotationsArray:Array):void {
+			if (_pluginCode.submissionTarget == AnnotationStrings.VIDIUN) {
+				var vidiunClient:VidiunClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vidiunClient;
 
-				var parentAnnotation:KalturaAnnotation = new KalturaAnnotation();
+				var parentAnnotation:VidiunAnnotation = new VidiunAnnotation();
 				parentAnnotation.entryId = _entryId;
 
 				var createParentAnnotation:AnnotationAdd = new AnnotationAdd(parentAnnotation);
 
-				createParentAnnotation.addEventListener(KalturaEvent.COMPLETE, onParentAnnotationCreated);
-				createParentAnnotation.addEventListener(KalturaEvent.FAILED, onCreateParentAnnotationFailed);
-				kalturaClient.post(createParentAnnotation);
+				createParentAnnotation.addEventListener(VidiunEvent.COMPLETE, onParentAnnotationCreated);
+				createParentAnnotation.addEventListener(VidiunEvent.FAILED, onCreateParentAnnotationFailed);
+				vidiunClient.post(createParentAnnotation);
 			}
 			else {
 				onFeedbackSaved(null);
 			}
 
-			function onParentAnnotationCreated(e:KalturaEvent):void {
-				var parentId:String = (e.data as KalturaAnnotation).id;
+			function onParentAnnotationCreated(e:VidiunEvent):void {
+				var parentId:String = (e.data as VidiunAnnotation).id;
 				var submitAnnotationsMultiRequest:MultiRequest = new MultiRequest();
 				var addAnnotationToParent:AnnotationAdd;
 
-				for (var i:int = 0; i < kalturaAnnotationsArray.length; i++) {
-					var currentAnnotationToAdd:KalturaAnnotation = kalturaAnnotationsArray[i];
+				for (var i:int = 0; i < vidiunAnnotationsArray.length; i++) {
+					var currentAnnotationToAdd:VidiunAnnotation = vidiunAnnotationsArray[i];
 					currentAnnotationToAdd.parentId = parentId;
 					addAnnotationToParent = new AnnotationAdd(currentAnnotationToAdd);
 					submitAnnotationsMultiRequest.addAction(addAnnotationToParent);
 				}
-				submitAnnotationsMultiRequest.addEventListener(KalturaEvent.COMPLETE, onFeedbackSaved);
-				submitAnnotationsMultiRequest.addEventListener(KalturaEvent.FAILED, onFeedbackSaveFailed);
-				kalturaClient.post(submitAnnotationsMultiRequest);
+				submitAnnotationsMultiRequest.addEventListener(VidiunEvent.COMPLETE, onFeedbackSaved);
+				submitAnnotationsMultiRequest.addEventListener(VidiunEvent.FAILED, onFeedbackSaveFailed);
+				vidiunClient.post(submitAnnotationsMultiRequest);
 			}
 
-			function onCreateParentAnnotationFailed(e:KalturaEvent):void {
+			function onCreateParentAnnotationFailed(e:VidiunEvent):void {
 				sendNotification(Notifications.FEEDBACK_SESSION_SUBMITTED, {error: e.error.errorMsg});
 				trace("failed");
 			}
 
-			function onFeedbackSaved(e:KalturaEvent = null):void {
+			function onFeedbackSaved(e:VidiunEvent = null):void {
 				trace("Feedback saved successfully");
 				if (e) {
 					sendNotification(Notifications.FEEDBACK_SESSION_SUBMITTED, {notificationId: e.data[0].parentId});
@@ -642,7 +642,7 @@ package com.kaltura.kdpfl.view {
 
 			}
 
-			function onFeedbackSaveFailed(e:KalturaEvent):void {
+			function onFeedbackSaveFailed(e:VidiunEvent):void {
 				sendNotification(Notifications.FEEDBACK_SESSION_SUBMITTED, {error: e.error.errorMsg});
 				trace("Feedback not saved");
 			}
@@ -672,27 +672,27 @@ package com.kaltura.kdpfl.view {
 
 
 		protected function loadFeedbackSession():void {
-			var kc:KalturaClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).kalturaClient;
+			var vc:VidiunClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vidiunClient;
 
-			var filterAnnotationsList:KalturaAnnotationFilter = new KalturaAnnotationFilter();
+			var filterAnnotationsList:VidiunAnnotationFilter = new VidiunAnnotationFilter();
 			filterAnnotationsList.parentIdEqual = _sessionId;
 			var getAnnotationsList:AnnotationList = new AnnotationList(filterAnnotationsList);
 
-			getAnnotationsList.addEventListener(KalturaEvent.COMPLETE, onSessionsAnnotationsLoaded);
-			getAnnotationsList.addEventListener(KalturaEvent.FAILED, onSessionAnnotationsFailed);
+			getAnnotationsList.addEventListener(VidiunEvent.COMPLETE, onSessionsAnnotationsLoaded);
+			getAnnotationsList.addEventListener(VidiunEvent.FAILED, onSessionAnnotationsFailed);
 
-			kc.post(getAnnotationsList);
+			vc.post(getAnnotationsList);
 		}
 
 
-		protected function onSessionsAnnotationsLoaded(e:KalturaEvent):void {
+		protected function onSessionsAnnotationsLoaded(e:VidiunEvent):void {
 			if (!_pluginCode.showAnnotationsPlugin) {
 				_pluginCode.showAnnotationsPlugin = true;
 			}
-			var kalturaAnnotationList:Array = e.data.objects as Array;
-			if (kalturaAnnotationList && kalturaAnnotationList.length) {
-				for (var i:int = 0; i < kalturaAnnotationList.length; i++) {
-					var annotations2Add:Annotation = new Annotation(AnnotationStrings.VIEW_MODE, -1, "", "", kalturaAnnotationList[i] as KalturaAnnotation, _pluginCode.annotationsBox.initialTabIndex);
+			var vidiunAnnotationList:Array = e.data.objects as Array;
+			if (vidiunAnnotationList && vidiunAnnotationList.length) {
+				for (var i:int = 0; i < vidiunAnnotationList.length; i++) {
+					var annotations2Add:Annotation = new Annotation(AnnotationStrings.VIEW_MODE, -1, "", "", vidiunAnnotationList[i] as VidiunAnnotation, _pluginCode.annotationsBox.initialTabIndex);
 					_pluginCode.annotationsBox.addAnnotation(annotations2Add);
 				}
 
@@ -701,7 +701,7 @@ package com.kaltura.kdpfl.view {
 		}
 
 
-		protected function onSessionAnnotationsFailed(e:KalturaEvent):void {
+		protected function onSessionAnnotationsFailed(e:VidiunEvent):void {
 
 		}
 

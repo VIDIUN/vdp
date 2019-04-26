@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.controller
+package com.vidiun.vdpfl.controller
 {
 	/**
 	 *  This interface provides the contract for any service

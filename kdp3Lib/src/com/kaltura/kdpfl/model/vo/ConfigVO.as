@@ -1,28 +1,28 @@
-package com.kaltura.kdpfl.model.vo
+package com.vidiun.vdpfl.model.vo
 {
-	import com.kaltura.vo.KalturaUiConf;
-	import com.kaltura.vo.KalturaWidget;
+	import com.vidiun.vo.VidiunUiConf;
+	import com.vidiun.vo.VidiunWidget;
 	
 	/**
-	 * Class ConfigVO holds parameters related to the general configuration of the KDP. 
+	 * Class ConfigVO holds parameters related to the general configuration of the VDP. 
 	 * 
 	 */	
 	public class ConfigVO
 	{
 		/**
-		 * Parameter holds the flashvars passed to the KDP.
+		 * Parameter holds the flashvars passed to the VDP.
 		 */		
 		public var flashvars:Object;
 		/**
-		 * Parameter holds the information on the current KalturaWidget
+		 * Parameter holds the information on the current VidiunWidget
 		 */		
-		public var kw : KalturaWidget; 
+		public var vw : VidiunWidget; 
 		/**
 		 * Parameter to hold the Uiconf object of the player.
 		 */		
-		public var kuiConf : KalturaUiConf;
+		public var vuiConf : VidiunUiConf;
 		/**
-		 * A unique ID for the loaded instance of the KDP. 
+		 * A unique ID for the loaded instance of the VDP. 
 		 */		
 		public var sessionId : String;
 	}

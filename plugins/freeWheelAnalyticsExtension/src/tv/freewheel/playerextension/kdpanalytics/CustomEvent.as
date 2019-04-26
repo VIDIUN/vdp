@@ -1,4 +1,4 @@
-package tv.freewheel.playerextension.kdpanalytics
+package tv.freewheel.playerextension.vdpanalytics
 {
 	import flash.events.Event;
 	
@@ -29,7 +29,7 @@ package tv.freewheel.playerextension.kdpanalytics
 		
 		public var info:Object;
 		
-		public static var logger:Logger = Logger.getSimpleLogger('KDPAnalyticsExtension: ');
+		public static var logger:Logger = Logger.getSimpleLogger('VDPAnalyticsExtension: ');
 		
 		public function CustomEvent(type:String, info:Object = null)
 		{

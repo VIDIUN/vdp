@@ -1,24 +1,24 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
 	import com.adobe.images.JPGEncoder;
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.baseEntry.BaseEntryUpdateThumbnailJpeg;
-	import com.kaltura.commands.media.MediaUpdateThumbnailFromSourceEntry;
-	import com.kaltura.commands.thumbAsset.ThumbAssetAddFromImage;
-	import com.kaltura.commands.thumbAsset.ThumbAssetGenerate;
-	import com.kaltura.commands.thumbAsset.ThumbAssetSetAsDefault;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.controls.AlertMediator;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.net.KalturaCall;
-	import com.kaltura.types.KalturaMediaType;
-	import com.kaltura.types.KalturaThumbAssetStatus;
-	import com.kaltura.vo.KalturaEntryContextDataResult;
-	import com.kaltura.vo.KalturaMediaEntry;
-	import com.kaltura.vo.KalturaMixEntry;
-	import com.kaltura.vo.KalturaThumbAsset;
-	import com.kaltura.vo.KalturaThumbParams;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.commands.baseEntry.BaseEntryUpdateThumbnailJpeg;
+	import com.vidiun.commands.media.MediaUpdateThumbnailFromSourceEntry;
+	import com.vidiun.commands.thumbAsset.ThumbAssetAddFromImage;
+	import com.vidiun.commands.thumbAsset.ThumbAssetGenerate;
+	import com.vidiun.commands.thumbAsset.ThumbAssetSetAsDefault;
+	import com.vidiun.events.VidiunEvent;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.view.controls.AlertMediator;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
+	import com.vidiun.net.VidiunCall;
+	import com.vidiun.types.VidiunMediaType;
+	import com.vidiun.types.VidiunThumbAssetStatus;
+	import com.vidiun.vo.VidiunEntryContextDataResult;
+	import com.vidiun.vo.VidiunMediaEntry;
+	import com.vidiun.vo.VidiunMixEntry;
+	import com.vidiun.vo.VidiunThumbAsset;
+	import com.vidiun.vo.VidiunThumbParams;
 	import com.yahoo.astra.fl.managers.AlertManager;
 	
 	import fl.controls.Button;
@@ -59,27 +59,27 @@ package com.kaltura.kdpfl.plugin.component
 			{
 				case "captureThumbnail":
 					var servicesProxy : Object =  facade.retrieveProxy("servicesProxy");
-					var kc : KalturaClient = servicesProxy.kalturaClient;
+					var vc : VidiunClient = servicesProxy.vidiunClient;
 					var mediaProxy : Object = facade.retrieveProxy("mediaProxy");
-					var playerMediator:KMediaPlayerMediator = facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator;
+					var playerMediator:VMediaPlayerMediator = facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator;
 					var player : Object = playerMediator.player;
 					var playerView : DisplayObject;
-					if( mediaProxy.vo.entry is KalturaMediaEntry &&
-						((mediaProxy.vo.entry as KalturaMediaEntry).mediaType == KalturaMediaType.IMAGE || 
-					    (mediaProxy.vo.entry as KalturaMediaEntry).mediaType == KalturaMediaType.AUDIO ||
-						(mediaProxy.vo.entry as KalturaMediaEntry).mediaType == KalturaMediaType.LIVE_STREAM_FLASH))
+					if( mediaProxy.vo.entry is VidiunMediaEntry &&
+						((mediaProxy.vo.entry as VidiunMediaEntry).mediaType == VidiunMediaType.IMAGE || 
+					    (mediaProxy.vo.entry as VidiunMediaEntry).mediaType == VidiunMediaType.AUDIO ||
+						(mediaProxy.vo.entry as VidiunMediaEntry).mediaType == VidiunMediaType.LIVE_STREAM_FLASH))
 					{	
 						sendNotification("alert",{message:viewComponent.capture_thumbnail_not_supported,title:viewComponent.capture_thumbnail_success_title});
 					}
 					else
 					{
 						if( player && player.displayObject)
-							 playerView = facade.retrieveMediator( "kMediaPlayerMediator" )["player"].displayObject;
+							 playerView = facade.retrieveMediator( "vMediaPlayerMediator" )["player"].displayObject;
 						else 
 							return; //can't capture the player if the view is unreachable
 						
-						var updateThumbnailJpeg : KalturaCall;
-						if (mediaProxy.vo.entry is KalturaMixEntry)
+						var updateThumbnailJpeg : VidiunCall;
+						if (mediaProxy.vo.entry is VidiunMixEntry)
 						{
 							var videoWidth : Number = playerView["videoWidth"];
 							var videoHeight : Number = playerView["videoHeight"]
@@ -95,14 +95,14 @@ package com.kaltura.kdpfl.plugin.component
 						}
 						else
 						{
-							var thumbParams : KalturaThumbParams = new KalturaThumbParams();
+							var thumbParams : VidiunThumbParams = new VidiunThumbParams();
 							thumbParams.videoOffset = playerMediator.getCurrentTime();
 							thumbParams.quality = 75;
 							updateThumbnailJpeg = new ThumbAssetGenerate(mediaProxy.vo.entry.id, thumbParams);
 						}
 						updateThumbnailJpeg.addEventListener( "complete" , result );
 						updateThumbnailJpeg.addEventListener( "failed" , fault );
-						kc.post( updateThumbnailJpeg );
+						vc.post( updateThumbnailJpeg );
 						
 						//sendNotification( NotificationType.ENABLE_GUI ,{guiEnabled: false , enableType:'full'} );
 						AlertManager.showButtonIfEmpty = false;
@@ -122,8 +122,8 @@ package com.kaltura.kdpfl.plugin.component
 			if (bitmapData)
 				bitmapData.dispose();
 			
-			var thumb:KalturaThumbAsset = data.data as KalturaThumbAsset;
-			if (thumb.status == KalturaThumbAssetStatus.ERROR)
+			var thumb:VidiunThumbAsset = data.data as VidiunThumbAsset;
+			if (thumb.status == VidiunThumbAssetStatus.ERROR)
 			{
 				sendNotification("thumbnailFailed");
 				sendNotification("alert",{message:viewComponent.error_capture_thumbnail,title:viewComponent.error_capture_thumbnail_title});
@@ -131,11 +131,11 @@ package com.kaltura.kdpfl.plugin.component
 			else if ((viewComponent as captureThumbnailPluginCode).shouldSetAsDefault == "true")
 			{
 				var servicesProxy : Object =  facade.retrieveProxy("servicesProxy");
-				var kc : KalturaClient = servicesProxy.kalturaClient;
+				var vc : VidiunClient = servicesProxy.vidiunClient;
 				var setThumbnailAsDefault : ThumbAssetSetAsDefault = new ThumbAssetSetAsDefault(thumb.id );
-				setThumbnailAsDefault.addEventListener(KalturaEvent.COMPLETE, setAsDefaultResult);
-				setThumbnailAsDefault.addEventListener( KalturaEvent.FAILED, setAsDefaultFault );
-				kc.post(setThumbnailAsDefault);
+				setThumbnailAsDefault.addEventListener(VidiunEvent.COMPLETE, setAsDefaultResult);
+				setThumbnailAsDefault.addEventListener( VidiunEvent.FAILED, setAsDefaultFault );
+				vc.post(setThumbnailAsDefault);
 			}
 			else
 			{
@@ -150,14 +150,14 @@ package com.kaltura.kdpfl.plugin.component
 			sendNotification("alert",{message:viewComponent.error_capture_thumbnail,title:viewComponent.error_capture_thumbnail_title});
 		}
 		
-		private function setAsDefaultResult (e : KalturaEvent) : void
+		private function setAsDefaultResult (e : VidiunEvent) : void
 		{
 			onServiceReturn ()
 			sendNotification("alert",{message:viewComponent.set_as_default_success,title:viewComponent.capture_thumbnail_success_title});
 			trace('set as default success!');
 		}
 		
-		private function setAsDefaultFault (e : KalturaEvent ) : void
+		private function setAsDefaultFault (e : VidiunEvent ) : void
 		{
 			onServiceReturn ()
 			trace('set as default failed!');

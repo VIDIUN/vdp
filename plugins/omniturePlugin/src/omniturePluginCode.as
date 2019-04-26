@@ -1,6 +1,6 @@
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.OmnitureMediator;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.OmnitureMediator;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -78,7 +78,7 @@ package {
 
 		/**
 		 * Initialize the mediator and the view component
-		 * @param facade	KDP application facade
+		 * @param facade	VDP application facade
 		 */
 		public function initializePlugin(facade:IFacade):void {
 

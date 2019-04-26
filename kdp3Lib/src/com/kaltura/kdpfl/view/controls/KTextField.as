@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.view.controls {
-	import com.kaltura.kdpfl.component.IComponent;
-	import com.kaltura.kdpfl.style.FontManager;
-	import com.kaltura.kdpfl.style.TextFormatManager;
+package com.vidiun.vdpfl.view.controls {
+	import com.vidiun.vdpfl.component.IComponent;
+	import com.vidiun.vdpfl.style.FontManager;
+	import com.vidiun.vdpfl.style.TextFormatManager;
 	
 	import fl.core.UIComponent;
 	
@@ -12,11 +12,11 @@ package com.kaltura.kdpfl.view.controls {
 	import flash.text.TextFormat;
 	
 	/**
-	 * Class KTextField represents the multi-line text-field used by the KDP.
+	 * Class VTextField represents the multi-line text-field used by the VDP.
 	 * @author Hila
 	 *
 	 */
-	public dynamic class KTextField extends UIComponent implements IComponent {
+	public dynamic class VTextField extends UIComponent implements IComponent {
 		/**
 		 * should the presented text be colored by color1  
 		 */		
@@ -54,7 +54,7 @@ package com.kaltura.kdpfl.view.controls {
 		 *Constructor
 		 *
 		 */
-		public function KTextField() {
+		public function VTextField() {
 			super();
 			_textField = new TextField();
 			_textField.multiline = true;
@@ -107,7 +107,7 @@ package com.kaltura.kdpfl.view.controls {
 		}
 		
 		/**
-		 * the text presented in the KTextField 
+		 * the text presented in the VTextField 
 		 */
 		public function get text():String {
 			return _textField.text;
@@ -208,7 +208,7 @@ package com.kaltura.kdpfl.view.controls {
 		
 		
 		/**
-		 * max number of lines the KTextField presents 
+		 * max number of lines the VTextField presents 
 		 */
 		public function get maxNumLines():int {
 			return _maxNumLines;
@@ -225,7 +225,7 @@ package com.kaltura.kdpfl.view.controls {
 		
 		
 		/**
-		 * determines whether user can enter text in the KTextField.
+		 * determines whether user can enter text in the VTextField.
 		 */
 		public function get editable():Boolean {
 			return _textField.type == TextFieldType.INPUT;
@@ -265,7 +265,7 @@ package com.kaltura.kdpfl.view.controls {
 		}
 		
 		/**
-		 * whether the KTextField truncates its text to fit its size 
+		 * whether the VTextField truncates its text to fit its size 
 		 */
 		public function get truncateToFit():Boolean {
 			return _truncateToFit;

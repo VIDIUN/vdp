@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.model
+package com.vidiun.vdpfl.model
 {
-	import com.kaltura.kdpfl.model.vo.ExternalInterfaceVO;
-	import com.kaltura.kdpfl.util.KTextParser;
+	import com.vidiun.vdpfl.model.vo.ExternalInterfaceVO;
+	import com.vidiun.vdpfl.util.VTextParser;
 	
 	import flash.events.TimerEvent;
 	import flash.external.ExternalInterface;
@@ -11,7 +11,7 @@ package com.kaltura.kdpfl.model
 
 	/**
 	 * ExternalInterfaceProxy wraps ExternalInterface service to allow
-	 * javascript to listen to KDP notifications and dispatch them.
+	 * javascript to listen to VDP notifications and dispatch them.
 	 */
 	public class ExternalInterfaceProxy extends Proxy
 	{
@@ -21,7 +21,7 @@ package com.kaltura.kdpfl.model
 		public static const REMOVE_JS_LISTENER : String = "removeJsListener";
 		public static const SEND_NOTIFICATION : String = "sendNotification";
 		public static const EVALUATE : String = "evaluate";
-		public static const SET_ATTRIUBUTE : String = "setKDPAttribute";
+		public static const SET_ATTRIUBUTE : String = "setVDPAttribute";
 		//public static const JS_CALLBACK_READY : String = "jsCallbackReady";
 		public var jsCallBackReadyFunc : String = "jsCallbackReady";
 		
@@ -81,11 +81,11 @@ package com.kaltura.kdpfl.model
 		/**
 		 * This function does 1 of 2 possible things:
 		 * 1. If the flashvar <code>jsInterfaceReadyFunc</code> is set to <code>true</code>, this function waits until the <body> tag of the html page surrounding the player
-		 * is ready before registering the KDP callbacks. It does so by starting the <code>callbackTimer</code>, and re-calling this funcion when the timer fires the COMPLETE event.
-		 * 2. If the flashvar <code>jsInterfaceReadyFunc</code> is set to <code>false</code>, this function simply registers the KDP callbacks, without waiting for the page to report that it's ready.
+		 * is ready before registering the VDP callbacks. It does so by starting the <code>callbackTimer</code>, and re-calling this funcion when the timer fires the COMPLETE event.
+		 * 2. If the flashvar <code>jsInterfaceReadyFunc</code> is set to <code>false</code>, this function simply registers the VDP callbacks, without waiting for the page to report that it's ready.
 		 * 
 		 */		
-		public function registerKDPCallbacks() : void
+		public function registerVDPCallbacks() : void
 		{
 			if(vo.enabled)
 			{
@@ -106,7 +106,7 @@ package com.kaltura.kdpfl.model
 			}
 		}
 		/**
-		 * Function checks whether the html <body> tag is ready, to be sure that the javascript jsListeners are ready for the KDP events.
+		 * Function checks whether the html <body> tag is ready, to be sure that the javascript jsListeners are ready for the VDP events.
 		 * @return - <code>true</code> if the <body> tag is ready, <code>false</code> otherwise.
 		 * 
 		 */		
@@ -116,7 +116,7 @@ package com.kaltura.kdpfl.model
 			return result;
 		}
 		/**
-		 * Handler for the TimerEvent.COMPLETE of the <code>callbackTimer</code>. This handler re-calls the <code>registerKDPCallbacks</code>
+		 * Handler for the TimerEvent.COMPLETE of the <code>callbackTimer</code>. This handler re-calls the <code>registerVDPCallbacks</code>
 		 * function. 
 		 * @param e TimerEvent.
 		 * 
@@ -124,10 +124,10 @@ package com.kaltura.kdpfl.model
 		private function onCallbackTimer ( e : TimerEvent) : void
 		{
 			(e.target as Timer).removeEventListener(TimerEvent.TIMER_COMPLETE, onCallbackTimer);
-			registerKDPCallbacks();
+			registerVDPCallbacks();
 		}
 		/**
-		 * Function which registers the KDP callbacks.
+		 * Function which registers the VDP callbacks.
 		 * 
 		 */		
 		private function callBackRegistration() : void
@@ -216,18 +216,18 @@ package com.kaltura.kdpfl.model
 		} 
 		
 		/**
-		 * KDP 3 Provide a way to get any data that is in the bindObject to JS
+		 * VDP 3 Provide a way to get any data that is in the bindObject to JS
 		 * @param expression
 		 * @return 
 		 * 
 		 */		
 		public function evaluate(expression:String):Object
 		{
-			return KTextParser.evaluate(facade['bindObject'], expression);
+			return VTextParser.evaluate(facade['bindObject'], expression);
 		}
 		
 		/**
-		 * KDP 3 Provide a way to set any data attribute using this function from JS
+		 * VDP 3 Provide a way to set any data attribute using this function from JS
 		 * @param componentName
 		 * @param prop
 		 * @param newValue
@@ -235,8 +235,8 @@ package com.kaltura.kdpfl.model
 		 */		
 		public function setAttribute(componentName : String , prop : String , newValue : String):void
 		{
-			var site : Object =  KTextParser.evaluate(facade['bindObject'], '{' + componentName + '}');
-			KTextParser.bind( site , prop , facade['bindObject'], newValue);
+			var site : Object =  VTextParser.evaluate(facade['bindObject'], '{' + componentName + '}');
+			VTextParser.bind( site , prop , facade['bindObject'], newValue);
 
 		}
 		

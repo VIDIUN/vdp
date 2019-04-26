@@ -41,11 +41,11 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">googleAnalytics <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="images/inherit-arrow.gif"> flash.display.Sprite</td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Implements</td><td>com.kaltura.kdpfl.plugin.IPlugin, com.kaltura.kdpfl.plugin.IPluginFactory</td>
+<td class="classHeaderTableLabel">Implements</td><td>com.vidiun.vdpfl.plugin.IPlugin, com.vidiun.vdpfl.plugin.IPluginFactory</td>
 </tr>
 </table>
 <p></p>
-  A KDP 3 Google Analytics plugin for marshalling all statistics event to Google Analytics service using the ga library.
+  A VDP 3 Google Analytics plugin for marshalling all statistics event to Google Analytics service using the ga library.
   <p></p>
 <br>
 <hr>
@@ -91,7 +91,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#initializePlugin()">initializePlugin</a>(facade:IFacade):void</div>
 <div class="summaryTableDescription">
-   After the plugin was loaded, this function is being called passing the KDP Facade.</div>
+   After the plugin was loaded, this function is being called passing the VDP Facade.</div>
 </td><td class="summaryTableOwnerCol">googleAnalytics</td>
 </tr>
 <tr class="">
@@ -99,7 +99,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#setSkin()">setSkin</a>(styleName:String, setSkinSize:Boolean = false):void</div>
 <div class="summaryTableDescription">
-   Called by the KDP during initialization of the components, this allows us plugin creators to get a handle to the skin
+   Called by the VDP during initialization of the components, this allows us plugin creators to get a handle to the skin
    We'd like to use for the plugin as defined in the uiConf.</div>
 </td><td class="summaryTableOwnerCol">googleAnalytics</td>
 </tr>
@@ -162,7 +162,7 @@ showHideInherited();
 <p>
 <span class="label">See also</span>
 </p>
-<div class="seeAlso">com.kaltura.kdpfl.plugin.Plugin</div>
+<div class="seeAlso">com.vidiun.vdpfl.plugin.Plugin</div>
 </div>
 <a name="initializePlugin()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -172,18 +172,18 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function initializePlugin(facade:IFacade):void</code><p>
-   After the plugin was loaded, this function is being called passing the KDP Facade. 
+   After the plugin was loaded, this function is being called passing the VDP Facade. 
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">facade</span>:IFacade</code> &mdash; PureMVC Facade; used to communicate with the KDP application, create mediators, listen to events, etc.
+<td width="20px"></td><td><code><span class="label">facade</span>:IFacade</code> &mdash; PureMVC Facade; used to communicate with the VDP application, create mediators, listen to events, etc.
    </td>
 </tr>
 </table>
 <p>
 <span class="label">See also</span>
 </p>
-<div class="seeAlso">com.kaltura.kdpfl.ApplicationFacade</div>
+<div class="seeAlso">com.vidiun.vdpfl.ApplicationFacade</div>
 </div>
 <a name="setSkin()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
@@ -193,7 +193,7 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>public function setSkin(styleName:String, setSkinSize:Boolean = false):void</code><p>
-   Called by the KDP during initialization of the components, this allows us plugin creators to get a handle to the skin
+   Called by the VDP during initialization of the components, this allows us plugin creators to get a handle to the skin
    We'd like to use for the plugin as defined in the uiConf.
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">

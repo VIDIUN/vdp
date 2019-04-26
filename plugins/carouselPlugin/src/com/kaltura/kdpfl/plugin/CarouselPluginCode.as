@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin {
+package com.vidiun.vdpfl.plugin {
 	import com.yahoo.astra.fl.controls.carouselClasses.SlidingCarouselRenderer;
 	
 	import fl.core.UIComponent;
@@ -18,7 +18,7 @@ package com.kaltura.kdpfl.plugin {
 
 	public class CarouselPluginCode extends UIComponent implements IPlugin {
 		protected var _facade:IFacade;
-		protected var _carousel:KCarousel;
+		protected var _carousel:VCarousel;
 		protected var _dataProvider:DataProvider;
 		protected var _itemSize:Number;
 		protected var _horizontalGap:Number;
@@ -35,15 +35,15 @@ package com.kaltura.kdpfl.plugin {
 
 		public function initializePlugin(facade:IFacade):void {
 			_facade = facade;
-			_carousel = new KCarousel();
+			_carousel = new VCarousel();
 
 			_facade.registerMediator(new CarouselMediator(this));
 
 			_carousel.labelField = "title";
 			_carousel.sourceField = "imageURL";
-			_carousel.setStyle("cellRenderer", KCarouselCellRenderer);
+			_carousel.setStyle("cellRenderer", VCarouselCellRenderer);
 			_carousel.setStyle("skin", Shape);
-			var layout:SlidingCarouselRenderer = new KSlidingCarouselRenderer();
+			var layout:SlidingCarouselRenderer = new VSlidingCarouselRenderer();
 			layout.horizontalAlign = "center";
 			layout.horizontalGap = _horizontalGap;
 
@@ -110,13 +110,13 @@ package com.kaltura.kdpfl.plugin {
 		public function set itemSize(value:Number):void {
 			if (value) {
 				_itemSize = value;
-				KCarouselCellRenderer.setDefaultStyle("itemSize", value);
+				VCarouselCellRenderer.setDefaultStyle("itemSize", value);
 			}
 		}
 
 
 		public function set imagePadding(value:Number):void {
-			KCarouselCellRenderer.setDefaultStyle("imagePadding", value);
+			VCarouselCellRenderer.setDefaultStyle("imagePadding", value);
 		}
 
 
@@ -125,7 +125,7 @@ package com.kaltura.kdpfl.plugin {
 		}
 
 
-		public function get carousel():KCarousel {
+		public function get carousel():VCarousel {
 			return _carousel;
 		}
 

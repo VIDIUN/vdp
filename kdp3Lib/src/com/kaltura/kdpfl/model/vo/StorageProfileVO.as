@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.model.vo
+package com.vidiun.vdpfl.model.vo
 {
 	/**
 	 * This class represent a remote storage profile 

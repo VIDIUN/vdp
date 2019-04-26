@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	//import com.kaltura.kdpfl.component.IComponent;
+	//import com.vidiun.vdpfl.component.IComponent;
 	
-	import com.kaltura.types.KalturaCaptionType;
+	import com.vidiun.types.VidiunCaptionType;
 	
 	import fl.core.UIComponent;
 	
@@ -185,7 +185,7 @@ package com.kaltura.kdpfl.plugin.component
 				
 				_captionsURLLoader = new URLLoader();
 				_captionsURLLoader.dataFormat = URLLoaderDataFormat.TEXT;
-				_captionsURLLoader.addEventListener(Event.COMPLETE, (fileType == "tt" || fileType == KalturaCaptionType.DFXP)? parseTimedText : parseSRT);
+				_captionsURLLoader.addEventListener(Event.COMPLETE, (fileType == "tt" || fileType == VidiunCaptionType.DFXP)? parseTimedText : parseSRT);
 				
 				_captionsURLLoader.addEventListener(ErrorEvent.ERROR, onError)
 				_captionsURLLoader.addEventListener(AsyncErrorEvent.ASYNC_ERROR, onError);

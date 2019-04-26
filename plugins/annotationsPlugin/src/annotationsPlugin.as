@@ -1,9 +1,9 @@
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.kdpfl.view.Annotation;
-	import com.kaltura.kdpfl.view.AnnotationsBox;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.IPluginFactory;
+	import com.vidiun.vdpfl.view.Annotation;
+	import com.vidiun.vdpfl.view.AnnotationsBox;
 	import com.yahoo.astra.fl.controls.containerClasses.ButtonBar;
 	import com.yahoo.astra.layout.modes.HorizontalAlignment;
 	import com.yahoo.astra.layout.modes.VerticalAlignment;

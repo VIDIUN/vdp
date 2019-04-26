@@ -1,7 +1,7 @@
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.PPTWidgetAPIMediator;
-	import com.kaltura.vo.KalturaDataEntry;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.PPTWidgetAPIMediator;
+	import com.vidiun.vo.VidiunDataEntry;
 	
 	import fl.data.DataProvider;
 	
@@ -30,7 +30,7 @@ package {
 		protected var _presentationMovieClip:MovieClip;
 		protected var _gallerySize:int;
 		protected var _decreasedBitmapSize:Number;
-		protected var _dataEntry:KalturaDataEntry;
+		protected var _dataEntry:VidiunDataEntry;
 		protected var _isMarkSelected:Boolean;
 
 		protected var _presentationPath:String;
@@ -186,12 +186,12 @@ package {
 
 
 		[Bindable]
-		public function get dataEntry():KalturaDataEntry {
+		public function get dataEntry():VidiunDataEntry {
 			return _dataEntry;
 		}
 
 
-		public function set dataEntry(value:KalturaDataEntry):void {
+		public function set dataEntry(value:VidiunDataEntry):void {
 			_dataEntry = value;
 		}
 

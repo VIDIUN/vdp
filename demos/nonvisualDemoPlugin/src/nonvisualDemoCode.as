@@ -6,11 +6,11 @@
  * @author Eitan
  */
 package {
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.controller.PlayRandomSoundCommand;
-	import com.kaltura.kdpfl.plugin.controller.TimeHandlerCommand;
-	import com.kaltura.kdpfl.plugin.model.SoundProxy;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.controller.PlayRandomSoundCommand;
+	import com.vidiun.vdpfl.plugin.controller.TimeHandlerCommand;
+	import com.vidiun.vdpfl.plugin.model.SoundProxy;
 	
 	import fl.core.UIComponent;
 	
@@ -18,7 +18,7 @@ package {
 
 	/**
 	 * <code>nonvisualDemoCode</code> is the real plugin. 
-	 * KDP initializes it by calling <code>initializePlugin()</code> and then calls <code>setSkin()</code>.
+	 * VDP initializes it by calling <code>initializePlugin()</code> and then calls <code>setSkin()</code>.
 	 * @author Atar
 	 */
 	public class nonvisualDemoCode extends UIComponent implements IPlugin {
@@ -33,10 +33,10 @@ package {
 
 
 		/**
-		 * KDP calls this interface method to initialize the new plugin. 
+		 * VDP calls this interface method to initialize the new plugin. 
 		 * 
 		 * 
-		 * @param facade	KDP application facade
+		 * @param facade	VDP application facade
 		 * @return
 		 */
 		public function initializePlugin(facade:IFacade):void {
@@ -47,7 +47,7 @@ package {
 			// register the different commands. this means an instance of the command 
 			// will be created every time the matching notification is sent. 
 			facade.registerCommand(NotificationType.VOLUME_CHANGED, PlayRandomSoundCommand);
-			facade.registerCommand(NotificationType.KDP_READY, PlayRandomSoundCommand);
+			facade.registerCommand(NotificationType.VDP_READY, PlayRandomSoundCommand);
 			facade.registerCommand(NotificationType.MEDIA_READY, TimeHandlerCommand);
 			facade.registerCommand(NotificationType.PLAYER_UPDATE_PLAYHEAD, TimeHandlerCommand);
 //			
@@ -57,7 +57,7 @@ package {
 
 
 		/**
-		 * KDP calls this interface method in order to set the plugin's skin.
+		 * VDP calls this interface method in order to set the plugin's skin.
 		 * This plugin isn't visual and has no skin, so the implementation is empty.
 		 * @param styleName		name of style to be set
 		 * @param setSkinSize

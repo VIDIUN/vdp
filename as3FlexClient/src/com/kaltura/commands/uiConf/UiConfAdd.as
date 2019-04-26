@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.uiConf
+package com.vidiun.commands.uiConf
 {
-		import com.kaltura.vo.KalturaUiConf;
-	import com.kaltura.delegates.uiConf.UiConfAddDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunUiConf;
+	import com.vidiun.delegates.uiConf.UiConfAddDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
-	* UIConf Add action allows you to add a UIConf to Kaltura DB
+	* UIConf Add action allows you to add a UIConf to Vidiun DB
 	* 
 	**/
-	public class UiConfAdd extends KalturaCall
+	public class UiConfAdd extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param uiConf KalturaUiConf
+		* @param uiConf VidiunUiConf
 		**/
-		public function UiConfAdd( uiConf : KalturaUiConf )
+		public function UiConfAdd( uiConf : VidiunUiConf )
 		{
 			service= 'uiconf';
 			action= 'add';
@@ -50,7 +50,7 @@ package com.kaltura.commands.uiConf
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(uiConf, 'uiConf');
+				keyValArr = vidiunObject2Arrays(uiConf, 'uiConf');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

@@ -4,7 +4,7 @@
  * @author Eitan Avgil
  */
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.IPlugin;
 	
 	import fl.core.UIComponent;
 	
@@ -15,7 +15,7 @@ package {
 
 	/**
 	 * <code>nonvisualDemoCode</code> is the real plugin. 
-	 * KDP initializes it by calling <code>initializePlugin()</code> and then calls <code>setSkin()</code>.
+	 * VDP initializes it by calling <code>initializePlugin()</code> and then calls <code>setSkin()</code>.
 	 * @author Atar
 	 */
 	public class ShadowFilterPluginCode extends UIComponent implements IPlugin {
@@ -42,8 +42,8 @@ package {
 
 
 		/**
-		 * KDP calls this interface method to initialize the new plugin. 
-		 * @param facade	KDP application facade
+		 * VDP calls this interface method to initialize the new plugin. 
+		 * @param facade	VDP application facade
 		 * @return
 		 */
 		public function initializePlugin(facade:IFacade):void {
@@ -73,7 +73,7 @@ package {
 
 
 		/**
-		 * KDP calls this interface method in order to set the plugin's skin.
+		 * VDP calls this interface method in order to set the plugin's skin.
 		 * This plugin isn't visual and has no skin, so the implementation is empty.
 		 * @param styleName		name of style to be set
 		 * @param setSkinSize

@@ -1,4 +1,4 @@
-package tv.freewheel.wrapper.kaltura.events
+package tv.freewheel.wrapper.vidiun.events
 {
 	import flash.events.Event;
 	

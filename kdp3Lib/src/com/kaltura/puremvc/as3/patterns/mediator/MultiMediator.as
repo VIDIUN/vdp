@@ -1,4 +1,4 @@
-package com.kaltura.puremvc.as3.patterns.mediator
+package com.vidiun.puremvc.as3.patterns.mediator
 {
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	/**

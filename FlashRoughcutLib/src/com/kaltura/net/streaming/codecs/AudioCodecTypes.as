@@ -1,4 +1,4 @@
-package com.kaltura.net.streaming.codecs
+package com.vidiun.net.streaming.codecs
 {
 	public class AudioCodecTypes
 	{

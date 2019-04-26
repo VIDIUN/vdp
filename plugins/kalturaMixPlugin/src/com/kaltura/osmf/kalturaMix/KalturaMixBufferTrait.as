@@ -1,16 +1,16 @@
-package com.kaltura.osmf.kalturaMix
+package com.vidiun.osmf.vidiunMix
 {
-	import com.kaltura.components.players.eplayer.Eplayer;
-	import com.kaltura.components.players.events.PlayerBufferEvent;
-	import com.kaltura.components.players.states.BufferStatuses;
+	import com.vidiun.components.players.eplayer.Eplayer;
+	import com.vidiun.components.players.events.PlayerBufferEvent;
+	import com.vidiun.components.players.states.BufferStatuses;
 	
 	import org.osmf.traits.BufferTrait;
 
-	public class KalturaMixBufferTrait extends BufferTrait
+	public class VidiunMixBufferTrait extends BufferTrait
 	{
 		public var eplayer:Eplayer;
 
-		public function KalturaMixBufferTrait(_eplayer:Eplayer)
+		public function VidiunMixBufferTrait(_eplayer:Eplayer)
 		{
 			eplayer = _eplayer;
 			

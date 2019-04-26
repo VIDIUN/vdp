@@ -1,8 +1,8 @@
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.ClosedCaptions;
-	import com.kaltura.kdpfl.plugin.component.ClosedCaptionsMediator;
-	import com.kaltura.kdpfl.view.containers.KHBox;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.ClosedCaptions;
+	import com.vidiun.vdpfl.plugin.component.ClosedCaptionsMediator;
+	import com.vidiun.vdpfl.view.containers.VHBox;
 	
 	import fl.core.UIComponent;
 	import fl.data.DataProvider;
@@ -333,7 +333,7 @@ package {
 		[Bindable]
 		/**
 		 * The currently selected CC file (if the selected file was set from the cookie 
-		 * or from the <code>isDefault</code> parameter found on the KalturaCaptionAsset object.
+		 * or from the <code>isDefault</code> parameter found on the VidiunCaptionAsset object.
 		 * @return 
 		 * 
 		 */	

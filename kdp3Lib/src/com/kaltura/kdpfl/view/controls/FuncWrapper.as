@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
-	import com.kaltura.kdpfl.util.KTextParser;
-	import com.kaltura.puremvc.as3.patterns.mediator.MultiMediator;
+	import com.vidiun.vdpfl.util.VTextParser;
+	import com.vidiun.puremvc.as3.patterns.mediator.MultiMediator;
 	
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
@@ -76,7 +76,7 @@ package com.kaltura.kdpfl.view.controls
 		}
 		
 		private function executeAction(action:String):void {
-			KTextParser.execute(facade['bindObject'], action);
+			VTextParser.execute(facade['bindObject'], action);
 		}
 
 	}

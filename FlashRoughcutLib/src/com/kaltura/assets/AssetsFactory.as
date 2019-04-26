@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Vidiun Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,19 +20,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.assets
+package com.vidiun.assets
 {
-	import com.kaltura.assets.abstracts.AbstractAsset;
-	import com.kaltura.assets.assets.AudioAsset;
-	import com.kaltura.assets.assets.ImageAsset;
-	import com.kaltura.assets.assets.PluginAsset;
-	import com.kaltura.assets.assets.SWFAsset;
-	import com.kaltura.assets.assets.SilenceAsset;
-	import com.kaltura.assets.assets.SolidAsset;
-	import com.kaltura.assets.assets.VideoAsset;
-	import com.kaltura.assets.assets.VoiceAsset;
-	import com.kaltura.base.types.MediaTypes;
-	import com.kaltura.vo.KalturaPlayableEntry;
+	import com.vidiun.assets.abstracts.AbstractAsset;
+	import com.vidiun.assets.assets.AudioAsset;
+	import com.vidiun.assets.assets.ImageAsset;
+	import com.vidiun.assets.assets.PluginAsset;
+	import com.vidiun.assets.assets.SWFAsset;
+	import com.vidiun.assets.assets.SilenceAsset;
+	import com.vidiun.assets.assets.SolidAsset;
+	import com.vidiun.assets.assets.VideoAsset;
+	import com.vidiun.assets.assets.VoiceAsset;
+	import com.vidiun.base.types.MediaTypes;
+	import com.vidiun.vo.VidiunPlayableEntry;
 
 	public class AssetsFactory
 	{
@@ -71,30 +71,30 @@ package com.kaltura.assets
 								is_focus:Boolean = false,
 								is_selected:Boolean = false,
 								media_source:* = null,
-								kaltura_entry:KalturaPlayableEntry = null ):AbstractAsset
+								vidiun_entry:VidiunPlayableEntry = null ):AbstractAsset
 		{
 			var asset:AbstractAsset;
 			switch (asset_type)
 			{
 				case MediaTypes.VIDEO:
 					asset = new VideoAsset(asset_uid, entry_id, entry_name, thumb_url, media_url, asset_length, maximum_length, start_time, audio_balance,
-								transition_type, transition_length, is_focus, is_selected, media_source, kaltura_entry);
+								transition_type, transition_length, is_focus, is_selected, media_source, vidiun_entry);
 					break;
 
 				case MediaTypes.AUDIO:
 					asset = new AudioAsset(asset_uid, entry_id, entry_name, thumb_url, media_url, asset_length, maximum_length, start_time, audio_balance,
-								transition_type, transition_length, is_focus, is_selected, media_source, kaltura_entry);
+								transition_type, transition_length, is_focus, is_selected, media_source, vidiun_entry);
 					break;
 
 				case MediaTypes.IMAGE:
 					asset = new ImageAsset(asset_uid, entry_id, entry_name, thumb_url, media_url, asset_length, maximum_length, start_time, audio_balance,
-								transition_type, transition_length, is_focus, is_selected, media_source, kaltura_entry);
+								transition_type, transition_length, is_focus, is_selected, media_source, vidiun_entry);
 					asset.maxLength = Number.MAX_VALUE;
 					break;
 
 				case MediaTypes.SWF:
 					asset = new SWFAsset(asset_uid, entry_id, entry_name, thumb_url, media_url, asset_length, maximum_length, start_time, audio_balance,
-								transition_type, transition_length, is_focus, is_selected, media_source, kaltura_entry);
+								transition_type, transition_length, is_focus, is_selected, media_source, vidiun_entry);
 					asset.maxLength = Number.MAX_VALUE;
 					break;
 
@@ -102,30 +102,30 @@ package com.kaltura.assets
 				case MediaTypes.OVERLAY:
 				case MediaTypes.EFFECT:
 					asset = new PluginAsset(asset_uid, entry_id, entry_name, thumb_url, media_url, asset_length, maximum_length, start_time, audio_balance,
-								transition_type, transition_length, is_focus, is_selected, media_source, kaltura_entry);
+								transition_type, transition_length, is_focus, is_selected, media_source, vidiun_entry);
 					asset.maxLength = Number.MAX_VALUE;
 					break;
 
 				case MediaTypes.SOLID:
 					asset = new SolidAsset(asset_uid, entry_id, entry_name, thumb_url, media_url, asset_length, maximum_length, start_time, audio_balance,
-								transition_type, transition_length, is_focus, is_selected, media_source, kaltura_entry);
+								transition_type, transition_length, is_focus, is_selected, media_source, vidiun_entry);
 					asset.maxLength = Number.MAX_VALUE;
 					break;
 
 				case MediaTypes.VOICE:
 					asset = new VoiceAsset(asset_uid, entry_id, entry_name, thumb_url, media_url, asset_length, maximum_length, start_time, audio_balance,
-								transition_type, transition_length, is_focus, is_selected, media_source, kaltura_entry);
+								transition_type, transition_length, is_focus, is_selected, media_source, vidiun_entry);
 					break;
 
 				case MediaTypes.SILENCE:
 					asset = new SilenceAsset(asset_uid, entry_id, entry_name, thumb_url, media_url, asset_length, maximum_length, start_time, audio_balance,
-								transition_type, transition_length, is_focus, is_selected, media_source, kaltura_entry);
+								transition_type, transition_length, is_focus, is_selected, media_source, vidiun_entry);
 					asset.maxLength = Number.MAX_VALUE;
 					break;
 
 				case MediaTypes.NULL:
 					asset = new SilenceAsset(asset_uid, entry_id, entry_name, thumb_url, media_url, asset_length, maximum_length, start_time, audio_balance,
-								transition_type, transition_length, is_focus, is_selected, media_source, kaltura_entry);
+								transition_type, transition_length, is_focus, is_selected, media_source, vidiun_entry);
 					asset.entryId = '-1000';
 					asset.maxLength = Number.MAX_VALUE;
 					break;
@@ -133,7 +133,7 @@ package com.kaltura.assets
 				default:
 					trace ("Requested type (" + asset_type + ") not found on AssetFactory class");
 					asset = new SilenceAsset(asset_uid, entry_id, entry_name, thumb_url, media_url, asset_length, maximum_length, start_time, audio_balance,
-								transition_type, transition_length, is_focus, is_selected, media_source, kaltura_entry);
+								transition_type, transition_length, is_focus, is_selected, media_source, vidiun_entry);
 					asset.entryId = '-1000';
 					asset.maxLength = Number.MAX_VALUE;
 					break;

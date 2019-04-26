@@ -1,9 +1,9 @@
-package com.kaltura.kdpfl.view
+package com.vidiun.vdpfl.view
 {
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.controls.BufferAnimation;
-	import com.kaltura.kdpfl.view.controls.BufferAnimationMediator;
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.view.controls.BufferAnimation;
+	import com.vidiun.vdpfl.view.controls.BufferAnimationMediator;
+	import com.vidiun.vdpfl.view.controls.VTrace;
 	
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Loader;
@@ -16,7 +16,7 @@ package com.kaltura.kdpfl.view
 	import org.puremvc.as3.patterns.mediator.Mediator;
 
 	/**
-	 * Mediator for the root component of the KDP. 
+	 * Mediator for the root component of the VDP. 
 	 * @author Hila
 	 * 
 	 */	
@@ -24,7 +24,7 @@ package com.kaltura.kdpfl.view
 	{
 		public static const NAME:String = 'stageMediator';
 		
-		private var _kdp3Preloader : BufferAnimation;
+		private var _vdp3Preloader : BufferAnimation;
 		
 		/**
 		 * Constructor 
@@ -71,7 +71,7 @@ package com.kaltura.kdpfl.view
 						root.stage.displayState=StageDisplayState.FULL_SCREEN;
 					} catch(e:Error)
 					{
-						KTrace.getInstance().log("fullscrren action failed. make sure you have flash tag 'allowFullScreen' with value 'true' in your embed code");
+						VTrace.getInstance().log("fullscrren action failed. make sure you have flash tag 'allowFullScreen' with value 'true' in your embed code");
 						//trace("fullscrren action failed. make sure you have flash tag 'allowFullScreen' with value 'true' in your embed code");
 					}
 					break;
@@ -90,9 +90,9 @@ package com.kaltura.kdpfl.view
 			if (root["flashvars"] && (!root["flashvars"].hasOwnProperty("disablePlayerSpinner") || root["flashvars"]["disablePlayerSpinner"]!="true"))
 			{
 				//TODO: add this child to the player continer so it will be in it's center and not in the root center
-				_kdp3Preloader = new BufferAnimation();
-				root.addChild(_kdp3Preloader);
-				facade.registerMediator(new BufferAnimationMediator(_kdp3Preloader));
+				_vdp3Preloader = new BufferAnimation();
+				root.addChild(_vdp3Preloader);
+				facade.registerMediator(new BufferAnimationMediator(_vdp3Preloader));
 			}
 		}
 	
@@ -125,7 +125,7 @@ package com.kaltura.kdpfl.view
 			}
 			else
 			{
-				//if the KDP was loaded using a flex application SWFLoader get its dimensions
+				//if the VDP was loaded using a flex application SWFLoader get its dimensions
 				if(root.parent && root.parent is Loader &&
 					getQualifiedClassName(root.parent.parent).split("::")[1] == "SWFLoader")
 				{
@@ -133,15 +133,15 @@ package com.kaltura.kdpfl.view
 				}
 				else
 				{
-					// use the requested dimensions of the KDP3 as set by the loading application	 
+					// use the requested dimensions of the VDP3 as set by the loading application	 
 					size = {width:root.width,height:root.height};
 				}
 			}
 			
-			if( _kdp3Preloader && root.contains(_kdp3Preloader) && (!_kdp3Preloader.width || !_kdp3Preloader.height) )
+			if( _vdp3Preloader && root.contains(_vdp3Preloader) && (!_vdp3Preloader.width || !_vdp3Preloader.height) )
 			{
-				_kdp3Preloader.width = size.width;
-				_kdp3Preloader.height = size.height;
+				_vdp3Preloader.width = size.width;
+				_vdp3Preloader.height = size.height;
 			} 
 			//notify whom needed that the root size have been changed
 			

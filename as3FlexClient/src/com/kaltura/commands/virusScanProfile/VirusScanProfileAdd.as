@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.virusScanProfile
+package com.vidiun.commands.virusScanProfile
 {
-		import com.kaltura.vo.KalturaVirusScanProfile;
-	import com.kaltura.delegates.virusScanProfile.VirusScanProfileAddDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunVirusScanProfile;
+	import com.vidiun.delegates.virusScanProfile.VirusScanProfileAddDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
-	* Allows you to add an virus scan profile object and virus scan profile content associated with Kaltura object
+	* Allows you to add an virus scan profile object and virus scan profile content associated with Vidiun object
 	* 
 	**/
-	public class VirusScanProfileAdd extends KalturaCall
+	public class VirusScanProfileAdd extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param virusScanProfile KalturaVirusScanProfile
+		* @param virusScanProfile VidiunVirusScanProfile
 		**/
-		public function VirusScanProfileAdd( virusScanProfile : KalturaVirusScanProfile )
+		public function VirusScanProfileAdd( virusScanProfile : VidiunVirusScanProfile )
 		{
 			service= 'virusscan_virusscanprofile';
 			action= 'add';
@@ -50,7 +50,7 @@ package com.kaltura.commands.virusScanProfile
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(virusScanProfile, 'virusScanProfile');
+				keyValArr = vidiunObject2Arrays(virusScanProfile, 'virusScanProfile');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

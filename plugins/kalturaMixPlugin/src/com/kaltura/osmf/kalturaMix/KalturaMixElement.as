@@ -1,6 +1,6 @@
-package com.kaltura.osmf.kalturaMix
+package com.vidiun.osmf.vidiunMix
 {
-	import com.kaltura.components.players.eplayer.Eplayer;
+	import com.vidiun.components.players.eplayer.Eplayer;
 	
 	import org.osmf.media.LoadableElementBase;
 	import org.osmf.media.MediaResourceBase;
@@ -11,12 +11,12 @@ package com.kaltura.osmf.kalturaMix
 	import org.osmf.traits.MediaTraitType;
 	import org.osmf.traits.TimeTrait;
 	/**
-	 * Class KalturaMixElement extends the OSMF with a unique element which is constructed from snippets of different videos. 
+	 * Class VidiunMixElement extends the OSMF with a unique element which is constructed from snippets of different videos. 
 	 * It has all the traits as a regular MediaElement
 	 * @author Hila
 	 * 
 	 */	
-	public class KalturaMixElement extends LoadableElementBase
+	public class VidiunMixElement extends LoadableElementBase
 	{
 		public var disableUrlHashing:Boolean = false;
 		/**
@@ -25,7 +25,7 @@ package com.kaltura.osmf.kalturaMix
 		 * @param resource
 		 * 
 		 */		
-		public function KalturaMixElement(loader:LoaderBase, resource:MediaResourceBase=null)
+		public function VidiunMixElement(loader:LoaderBase, resource:MediaResourceBase=null)
 		{
 			super(resource, loader);
 		}
@@ -35,7 +35,7 @@ package com.kaltura.osmf.kalturaMix
 		 */
 		override protected function createLoadTrait(resource:MediaResourceBase, loader:LoaderBase):LoadTrait
 		{
-			return new KalturaMixLoadTrait(loader, resource);
+			return new VidiunMixLoadTrait(loader, resource);
 		}
        	
 		/**
@@ -54,16 +54,16 @@ package com.kaltura.osmf.kalturaMix
 				}
 			}
 			//var loadTrait:LoadTrait = getTrait(MediaTraitType.LOAD) as LoadTrait;
-			var kalturaMixsprite:KalturaMixSprite = new KalturaMixSprite(this, 640, 480,disableUrlHashing);
-			var eplayer:Eplayer = kalturaMixsprite.eplayer;
-	    	addTrait(MediaTraitType.AUDIO, new KalturaMixAudioTrait(eplayer));
-	    	addTrait(MediaTraitType.BUFFER, new KalturaMixBufferTrait(eplayer));
-			var timeTrait:TimeTrait = new KalturaMixTimeTrait(eplayer);
+			var vidiunMixsprite:VidiunMixSprite = new VidiunMixSprite(this, 640, 480,disableUrlHashing);
+			var eplayer:Eplayer = vidiunMixsprite.eplayer;
+	    	addTrait(MediaTraitType.AUDIO, new VidiunMixAudioTrait(eplayer));
+	    	addTrait(MediaTraitType.BUFFER, new VidiunMixBufferTrait(eplayer));
+			var timeTrait:TimeTrait = new VidiunMixTimeTrait(eplayer);
 			addTrait(MediaTraitType.TIME, timeTrait);
-			var displayObjectTrait:DisplayObjectTrait = new KalturaMixViewTrait(kalturaMixsprite, 640, 480);
-    		addTrait(MediaTraitType.SEEK, new KalturaMixSeekTrait(timeTrait, eplayer));
+			var displayObjectTrait:DisplayObjectTrait = new VidiunMixViewTrait(vidiunMixsprite, 640, 480);
+    		addTrait(MediaTraitType.SEEK, new VidiunMixSeekTrait(timeTrait, eplayer));
 			addTrait(MediaTraitType.DISPLAY_OBJECT, displayObjectTrait);
-			addTrait(MediaTraitType.PLAY, new KalturaMixPlayTrait(eplayer));
+			addTrait(MediaTraitType.PLAY, new VidiunMixPlayTrait(eplayer));
 			
 		}
 		

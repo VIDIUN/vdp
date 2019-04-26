@@ -1,11 +1,11 @@
-package com.kaltura.kdfl.plugin.component {
+package com.vidiun.vdfl.plugin.component {
 
 	import com.eyewonder.instream.events.UIFControlEvent;
 	import com.eyewonder.instream.events.UIFEvent;
 	import com.eyewonder.instream.events.UIFTrackEvent;
 	import com.eyewonder.instream.players.AdTypes;
-	import com.kaltura.kdfl.plugin.type.EyewonderVideoState;
-	import com.kaltura.puremvc.as3.patterns.mediator.SequenceMultiMediator;
+	import com.vidiun.vdfl.plugin.type.EyewonderVideoState;
+	import com.vidiun.puremvc.as3.patterns.mediator.SequenceMultiMediator;
 	
 	import flash.events.Event;
 	
@@ -127,7 +127,7 @@ package com.kaltura.kdfl.plugin.component {
 
 
 		/**
-		 * Pure MVC way to listen to KDP 3 notifications
+		 * Pure MVC way to listen to VDP 3 notifications
 		 * @return	 the list of notifications this plugins listens to
 		 */
 		override public function listNotificationInterests():Array {
@@ -137,7 +137,7 @@ package com.kaltura.kdfl.plugin.component {
 
 
 		/**
-		 * Pure MVC way to handle KDP 3 notifications
+		 * Pure MVC way to handle VDP 3 notifications
 		 * @param note 	notification
 		 */
 		override public function handleNotification(note:INotification):void {

@@ -5,7 +5,7 @@
 			<Plugin id="playlistAPI" width="0%" height="0%" includeInLayout="false" 
 				selectedDataProvider="{tabBar.selectedDataProvider}" />
 
-			<Plugin id="kalturaMix" width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand" disableUrlHashing="true" />
+			<Plugin id="vidiunMix" width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand" disableUrlHashing="true" />
 			<Plugin id="download" width="0%" height="0%" includeInLayout="false"/>
 			
 			<Plugin id="captureThumbnail" width="0%" height="0%" includeInLayout="false"/>
@@ -39,8 +39,8 @@
 					endScreenOverId="startScreen" />	
 					
 				<Watermark id="watermark" width="100%" height="100%" 
-					watermarkPath="http://www.kaltura.com/content/uiconf/kaltura/generic/kaltura_watermark.png"
-					watermarkClickPath="http://www.kaltura.com/" watermarkPosition="topRight"/>
+					watermarkPath="http://www.vidiun.com/content/uiconf/vidiun/generic/vidiun_watermark.png"
+					watermarkClickPath="http://www.vidiun.com/" watermarkPosition="topRight"/>
 				
 				<Plugin id="tremor" width="100%" height="100%" preSequence="1" postSequence="1"
 					progId="4c19d3ffb12d7" />
@@ -101,7 +101,7 @@ preroll="http://cdn1.eyewonder.com/200125/754851/1149206/1149206_tag.xml?ewbust=
 					color2="0xFF00FF"									
 					height="22" 
 					label="Skip Ad" 
-					styleName="controllerScreen" allowDisable="false" kClick="sendNotification('sequenceSkipNext')"/>
+					styleName="controllerScreen" allowDisable="false" vClick="sendNotification('sequenceSkipNext')"/>
 			</Canvas>
 			
 			<HBox id="ControllerScreenHolder" 
@@ -152,7 +152,7 @@ preroll="http://cdn1.eyewonder.com/200125/754851/1149206/1149206_tag.xml?ewbust=
 				<Button id="previous" 
 					color1="0xFF0000"
 					color2="0xFF0000"
-					kClick="sendNotification('playlistPlayPrevious')"
+					vClick="sendNotification('playlistPlayPrevious')"
 					height="22" 
 					buttonType="iconButton"	
 					styleName="controllerScreen" 
@@ -161,7 +161,7 @@ preroll="http://cdn1.eyewonder.com/200125/754851/1149206/1149206_tag.xml?ewbust=
 				<Button id="next" 
 					color1="0xFF0000"
 					color2="0xFF0000"
-					kClick="sendNotification('playlistPlayNext')"
+					vClick="sendNotification('playlistPlayNext')"
 					height="22"
 					buttonType="iconButton"	
 					icon="NextIcon" 
@@ -185,14 +185,14 @@ preroll="http://cdn1.eyewonder.com/200125/754851/1149206/1149206_tag.xml?ewbust=
 					buttonType="iconButton"		
 					color1="0xFF0000"
 					color2="0xFF0000"							
-					kClick="sendNotification('doGigya')"
+					vClick="sendNotification('doGigya')"
 					focusRectPadding="0"
 					height="22"  
 					styleName="controllerScreen" 
 					icon="shareIcon"  />
 				<FlavorCombo id="flavorCombo"  width="90" streamerType="{mediaProxy.deliveryType}"
-					flavorDataProvider="{mediaProxy.kalturaMediaFlavorArray}" autoMessage="Automatically switches between bitrates"
-					styleName="_kdp" color1="0xFF0000" hdOn="hdOn" hdOff="hdOff" selectedMessage="Cheese" autoString="AutoHD"
+					flavorDataProvider="{mediaProxy.vidiunMediaFlavorArray}" autoMessage="Automatically switches between bitrates"
+					styleName="_vdp" color1="0xFF0000" hdOn="hdOn" hdOff="hdOff" selectedMessage="Cheese" autoString="AutoHD"
 					preferedFlavorBR="{mediaProxy.preferedFlavorBR}" tooltip="{flavorCombo.selectedMessage}" />
 					
 				<Button id="fullScreenBtnControllerScreen" command="fullScreen"
@@ -203,17 +203,17 @@ preroll="http://cdn1.eyewonder.com/200125/754851/1149206/1149206_tag.xml?ewbust=
 					label="FS" 
 					styleName="controllerScreen"
 				/>	
-				<Button id="captureThumbBtnControllerScreen" kClick="sendNotification('captureThumbnail')" height="22" buttonType="iconButton" icon="thumbIcon" styleName="controllerScreen" k_buttonType="buttonIconControllerArea" tooltip="Use current frame as the video thumbnail" color1="11184810" color2="16777215" color3="16777215" color4="11184810" color5="0" font="Arial" />
+				<Button id="captureThumbBtnControllerScreen" vClick="sendNotification('captureThumbnail')" height="22" buttonType="iconButton" icon="thumbIcon" styleName="controllerScreen" v_buttonType="buttonIconControllerArea" tooltip="Use current frame as the video thumbnail" color1="11184810" color2="16777215" color3="16777215" color4="11184810" color5="0" font="Arial" />
 
 			</HBox>
 				<Spacer width="9" />	
 				<Button 
-					id="kalturaLogo" 
+					id="vidiunLogo" 
 					height="50" 
 					width="100"
-					kClick="navigate('http://www.kaltura.com')"
+					vClick="navigate('http://www.vidiun.com')"
 					styleName="controllerScreen"
-					icon ="kalturaLogo" />
+					icon ="vidiunLogo" />
 				<Spacer width="10" />	
 			</HBox>
 			
@@ -269,7 +269,7 @@ preroll="http://cdn1.eyewonder.com/200125/754851/1149206/1149206_tag.xml?ewbust=
 						/>		
 						<Button id="editBtnStartScreen"
 							color5="0xFF0000"
-							kClick="jsCall('gotoEditorWindow', mediaProxy.entry.id )" 
+							vClick="jsCall('gotoEditorWindow', mediaProxy.entry.id )" 
 							label="abcdABCD" 
 							labelPlacement="top"
 							buttonType="onScreenButton" 
@@ -279,7 +279,7 @@ preroll="http://cdn1.eyewonder.com/200125/754851/1149206/1149206_tag.xml?ewbust=
 							
 						<Button id="shareBtnStartScreen" 
 							color5="0xFF0000"
-							kClick="sendNotification('doGigya')"
+							vClick="sendNotification('doGigya')"
 							buttonType="onScreenButton" 
 							labelPlacement="top"
 							label="Share" 

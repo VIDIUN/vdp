@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Vidiun Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,29 +20,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.roughcut.assets
+package com.vidiun.roughcut.assets
 {
-	import com.kaltura.application.KalturaApplication;
-	import com.kaltura.assets.AssetsFactory;
-	import com.kaltura.assets.abstracts.AbstractAsset;
-	import com.kaltura.assets.assets.PluginAsset;
-	import com.kaltura.base.IDisposable;
-	import com.kaltura.base.context.PartnerInfo;
-	import com.kaltura.base.types.MediaTypes;
-	import com.kaltura.base.types.TimelineTypes;
-	import com.kaltura.base.vo.KalturaPluginInfo;
-	import com.kaltura.managers.downloadManagers.DownloadManager;
-	import com.kaltura.managers.downloadManagers.events.DownloadManagerStatusEvent;
-	import com.kaltura.managers.downloadManagers.types.StreamingModes;
-	import com.kaltura.net.downloading.LoadingStatus;
-	import com.kaltura.net.streaming.ExNetStream;
-	import com.kaltura.net.streaming.NetClient;
-	import com.kaltura.net.streaming.StreamMetaData;
-	import com.kaltura.plugin.types.transitions.TransitionTypes;
-	import com.kaltura.roughcut.events.RoughcutChangeEvent;
-	import com.kaltura.roughcut.events.RoughcutStatusEvent;
-	import com.kaltura.roughcut.soundtrack.AudioPlayPolicy;
-	import com.kaltura.utils.url.URLProccessing;
+	import com.vidiun.application.VidiunApplication;
+	import com.vidiun.assets.AssetsFactory;
+	import com.vidiun.assets.abstracts.AbstractAsset;
+	import com.vidiun.assets.assets.PluginAsset;
+	import com.vidiun.base.IDisposable;
+	import com.vidiun.base.context.PartnerInfo;
+	import com.vidiun.base.types.MediaTypes;
+	import com.vidiun.base.types.TimelineTypes;
+	import com.vidiun.base.vo.VidiunPluginInfo;
+	import com.vidiun.managers.downloadManagers.DownloadManager;
+	import com.vidiun.managers.downloadManagers.events.DownloadManagerStatusEvent;
+	import com.vidiun.managers.downloadManagers.types.StreamingModes;
+	import com.vidiun.net.downloading.LoadingStatus;
+	import com.vidiun.net.streaming.ExNetStream;
+	import com.vidiun.net.streaming.NetClient;
+	import com.vidiun.net.streaming.StreamMetaData;
+	import com.vidiun.plugin.types.transitions.TransitionTypes;
+	import com.vidiun.roughcut.events.RoughcutChangeEvent;
+	import com.vidiun.roughcut.events.RoughcutStatusEvent;
+	import com.vidiun.roughcut.soundtrack.AudioPlayPolicy;
+	import com.vidiun.utils.url.URLProccessing;
 
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -55,10 +55,10 @@ package com.kaltura.roughcut.assets
 	/**
 	 *Manager class for managing the roughcut SDL, preforming common operations such as addEntry or setVolume...
 	 */
-	[Event(name="roughcutDurationChange", type="com.kaltura.roughcut.events.RoughcutChangeEvent")]
-	[Event(name="roughcutSoundtrackChange", type="com.kaltura.roughcut.events.RoughcutChangeEvent")]
-	[Event(name="roughcutDirty", type="com.kaltura.roughcut.events.RoughcutChangeEvent")]
-	[Event(name="firstFrameLoaded", type="com.kaltura.roughcut.events.RoughcutStatusEvent")]
+	[Event(name="roughcutDurationChange", type="com.vidiun.roughcut.events.RoughcutChangeEvent")]
+	[Event(name="roughcutSoundtrackChange", type="com.vidiun.roughcut.events.RoughcutChangeEvent")]
+	[Event(name="roughcutDirty", type="com.vidiun.roughcut.events.RoughcutChangeEvent")]
+	[Event(name="firstFrameLoaded", type="com.vidiun.roughcut.events.RoughcutStatusEvent")]
 	//xxx [Bindable]
 	public class RoughcutTimelinesAssets extends EventDispatcher implements IDisposable
 	{
@@ -82,7 +82,7 @@ package com.kaltura.roughcut.assets
 		protected var _effectsAssets:ArrayCollection = new ArrayCollection ();
 		/**
 		* all the timelines sorted and organized in one.
-		 * @see com.kaltura.roughcut.assets.RoughcutTimelinesAssets#buildRoughcutAssets
+		 * @see com.vidiun.roughcut.assets.RoughcutTimelinesAssets#buildRoughcutAssets
 		*/
 		public var roughtcutAssets:ArrayCollection = new ArrayCollection ();
 		/**
@@ -142,9 +142,9 @@ package com.kaltura.roughcut.assets
 		 * @param soundtrack_asset					the soundtrack asset, if not null, player will repeat the this asset instead playing the audio_assets array.
 		 * @param soundtrack_play_policy			whether this roughcut's soundtrack asset should play once or repeat untill video timeline finish.
 		 * @param soundtrack_volume_policy			whether the soundtrack will mute, play silently or continue as is when crossing video assets.
-		 * @see com.kaltura.assets.abstracts.AbstractAsset
-		 * @see com.kaltura.plugin.logic.Plugin
-		 * @see com.kaltura.roughcut.soundtrack.AudioPlayPolicy
+		 * @see com.vidiun.assets.abstracts.AbstractAsset
+		 * @see com.vidiun.plugin.logic.Plugin
+		 * @see com.vidiun.roughcut.soundtrack.AudioPlayPolicy
 		 */
 		public function RoughcutTimelinesAssets (entry_id:String, entry_version:int, video_assets:Array, audio_assets:Array, overlays_assets:Array, effects_assets:Array,
 												soundtrack_asset:AbstractAsset, soundtrack_play_policy:uint, soundtrack_volume_policy:uint,
@@ -356,7 +356,7 @@ package com.kaltura.roughcut.assets
 		 * @param asset_index		the index the asset is at.
 		 * @param fail_safe			if true, when given asset is beyond timeline length will return last.
 		 * @return 					the asset.
-		 * @see com.kaltura.assets.abstracts.AbstractAsset
+		 * @see com.vidiun.assets.abstracts.AbstractAsset
 		 */
 		public function getAssetAt (timeline:uint, asset_index:uint, fail_safe:Boolean = false):AbstractAsset
 		{
@@ -416,7 +416,7 @@ package com.kaltura.roughcut.assets
 		 * gets the relavent arrayCollection by the timeline type.
 		 * @param timeline_type		the timeline type.
 		 * @return 					the arraycollection of this timeline.
-		 * @see com.kaltura.roughcut.assets.TimelineTypes
+		 * @see com.vidiun.roughcut.assets.TimelineTypes
 		 */
 		public function getTimelineByType (timeline_type:uint):ArrayCollection
 		{
@@ -478,9 +478,9 @@ package com.kaltura.roughcut.assets
 		 *loads all the mediaSource objects of the assets in the timelines (ExNetStreams, Images, plugoins...).
 		 * @param types							the types of timelines to load, as defined by LoadMediaSourceType.
 		 * @param streamingMode			determine the serving method used to get the media files.
-         * @see com.kaltura.managers.downloadManagers.types.StreamingModes
-		 * @see com.kaltura.roughcut.assets.LoadMediaSourceType
-		 * @see com.kaltura.managers.downloadManagers.DownloadManager
+         * @see com.vidiun.managers.downloadManagers.types.StreamingModes
+		 * @see com.vidiun.roughcut.assets.LoadMediaSourceType
+		 * @see com.vidiun.managers.downloadManagers.DownloadManager
 		 */
 		public function loadAssetsMediaSources (types:int, streamingMode:int = 0):void
 		{
@@ -533,7 +533,7 @@ package com.kaltura.roughcut.assets
 						if (asset.transitionPluginID != TransitionTypes.NONE)
 						{
 							var transitionAsset:AbstractAsset = AssetsFactory.create (MediaTypes.TRANSITION, asset.assetUID, '0',
-												asset.entryName + ".AssetTransition", KalturaApplication.getInstance().getTransitionThumbnail(asset.transitionPluginID), asset.transitionPluginID,
+												asset.entryName + ".AssetTransition", VidiunApplication.getInstance().getTransitionThumbnail(asset.transitionPluginID), asset.transitionPluginID,
 												asset.transitionLength, asset.transitionLength, 0, 0, asset.transitionPluginID, asset.transitionLength);
 							asset.transitionAsset = transitionAsset;
 							asset.transitionAsset.transitionCross = asset.transitionCross;
@@ -583,7 +583,7 @@ package com.kaltura.roughcut.assets
 		/**
 		 * track the loading of an asset.
 		 * @param event		the event that IMediaSourceLoader dispatches.
-		 * @see com.kaltura.managers.downloadManagers.protocols.loaders.events.MediaSourceLoaderEvent
+		 * @see com.vidiun.managers.downloadManagers.protocols.loaders.events.MediaSourceLoaderEvent
 		 */
 		protected function assetCompleteLoading (event:DownloadManagerStatusEvent):void
 		{
@@ -672,7 +672,7 @@ package com.kaltura.roughcut.assets
 		/**
 		 *clears the timelines.
 		 * @param timeline		the timelines to clear, pass bitmask according to TimelineTypes.
-		 * @see com.kaltura.roughcut.assets.TimelineTypes
+		 * @see com.vidiun.roughcut.assets.TimelineTypes
 		 */
 		public function clearTimeline (timeline:uint):void
 		{
@@ -812,7 +812,7 @@ package com.kaltura.roughcut.assets
 		 * @param timeline			the timeline to add the asset to.
 		 * @param load_asset		true to load the asset's media source.
 		 * @return 					the new asset's index.
-		 * @see com.kaltura.assets.abstracts.AbstractAsset
+		 * @see com.vidiun.assets.abstracts.AbstractAsset
 		 */
 		public function addAsset (asset:AbstractAsset, asset_index:int, timeline:uint, load_asset:Boolean = true):int
 		{
@@ -918,10 +918,10 @@ package com.kaltura.roughcut.assets
 				var asset:AbstractAsset = _videoAssets.getItemAt(asset_index) as AbstractAsset;
 				asset.transitionPluginID = transition_type;
 				asset.transitionCross = cross;
-				asset.transitionLabel = KalturaApplication.getInstance().getTransitionLabel(asset.transitionPluginID);
+				asset.transitionLabel = VidiunApplication.getInstance().getTransitionLabel(asset.transitionPluginID);
 				asset.transitionLength = (transition_type != TransitionTypes.NONE) ? transition_duration : 0;
 				transitionAsset = AssetsFactory.create (MediaTypes.TRANSITION, "null", '0',
-										asset.entryName + ".AssetTransition", KalturaApplication.getInstance().getTransitionThumbnail(asset.transitionPluginID), asset.transitionPluginID,
+										asset.entryName + ".AssetTransition", VidiunApplication.getInstance().getTransitionThumbnail(asset.transitionPluginID), asset.transitionPluginID,
 										asset.transitionLength, asset.transitionLength, 0, 0, asset.transitionPluginID, asset.transitionLength);
 				asset.transitionAsset = transitionAsset;
 				asset.transitionAsset.transitionCross = asset.transitionCross;
@@ -940,13 +940,13 @@ package com.kaltura.roughcut.assets
 		 * @param timeline			the timeline this plugin should be added to.
 		 * @return 					the index of the new item.
 		 */
-		public function addPlugin (plugin:KalturaPluginInfo, time_stamp:Number, length_sec:Number, timeline:uint = 0x2):uint
+		public function addPlugin (plugin:VidiunPluginInfo, time_stamp:Number, length_sec:Number, timeline:uint = 0x2):uint
 		{
 			if (timeline & TimelineTypes.VIDEO)
 			{
 				var pluginAsset:AbstractAsset;
 				pluginAsset = AssetsFactory.create (plugin.mediaType, "null", '0',
-										plugin.label, KalturaApplication.getInstance().getPluginThumbnail(plugin.pluginId, plugin.mediaType),
+										plugin.label, VidiunApplication.getInstance().getPluginThumbnail(plugin.pluginId, plugin.mediaType),
 										plugin.pluginId, length_sec, Number.MAX_VALUE, time_stamp, 0, TransitionTypes.NONE, 0);
 				pluginAsset.seqStartPlayTime = time_stamp;
 				pluginAsset.seqEndPlayTime = time_stamp + length_sec;
@@ -1223,7 +1223,7 @@ package com.kaltura.roughcut.assets
 			{
 				asset.clipedStreamStart = 0;
 				asset.clipedStreamLen = asset.maxLength;
-				var partnerInfo:PartnerInfo = KalturaApplication.getInstance().partnerInfo;
+				var partnerInfo:PartnerInfo = VidiunApplication.getInstance().partnerInfo;
 				var pId:String = partnerInfo == null ? '-1' : partnerInfo.partnerId;
 				var subpId:String = partnerInfo == null ? '-1' : partnerInfo.subpId;
 				var partnerPart:String = URLProccessing.getPartnerPartForTracking(pId, subpId);
@@ -1371,7 +1371,7 @@ package com.kaltura.roughcut.assets
 		/**
 		 *refreshes arrayCollections of the requested timelines.
 		 * @param timelines		the timelines to refresh.
-		 * @see com.kaltura.roughcut.assets.TimelineTypes
+		 * @see com.vidiun.roughcut.assets.TimelineTypes
 		 */
 		public function refreshTimelines (timelines:uint):void
 		{
@@ -1393,8 +1393,8 @@ package com.kaltura.roughcut.assets
 		 * @param timelines			the timelines to set duration of assets to.
 		 * @param media_types		the media types of the assets to change (ie. change only images).
 		 * @param duration			the desired duration.
-		 * @see com.kaltura.roughcut.assets.TimelineTypes
-		 * @see com.kaltura.common.types.MediaTypes
+		 * @see com.vidiun.roughcut.assets.TimelineTypes
+		 * @see com.vidiun.common.types.MediaTypes
 		 */
 		public function setAllAssetsDuration (timelines:uint, media_types:uint, duration:Number):void
 		{
@@ -1436,7 +1436,7 @@ package com.kaltura.roughcut.assets
 		 * @param media_types			the media types of the assets to set transition to (ie, set only images).
 		 * @param transition_type		the type of the transition to set.
 		 * @param transition_duration	the duration of the transition.
-		 * @see com.kaltura.plugin.types.transitions.transitionPluginIDs
+		 * @see com.vidiun.plugin.types.transitions.transitionPluginIDs
 		 */
 		public function setAllAssetsTransition (media_types:uint, transition_type:String, transition_duration:Number):void
 		{

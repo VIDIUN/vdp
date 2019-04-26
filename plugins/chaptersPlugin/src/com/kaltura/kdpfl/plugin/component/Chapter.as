@@ -1,9 +1,9 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.util.KAstraAdvancedLayoutUtil;
-	import com.kaltura.kdpfl.view.controls.KButton;
-	import com.kaltura.kdpfl.view.controls.KLabel;
-	import com.kaltura.kdpfl.view.controls.KTextField;
+	import com.vidiun.vdpfl.util.VAstraAdvancedLayoutUtil;
+	import com.vidiun.vdpfl.view.controls.VButton;
+	import com.vidiun.vdpfl.view.controls.VLabel;
+	import com.vidiun.vdpfl.view.controls.VTextField;
 	import com.yahoo.astra.fl.containers.BoxPane;
 	
 	import fl.controls.ScrollPolicy;
@@ -153,7 +153,7 @@ package com.kaltura.kdpfl.plugin.component
 					}
 				}
 			}
-			else if (uicomponent is KLabel)
+			else if (uicomponent is VLabel)
 			{
 				if (uicomponent["textField"]["textWidth"] > maxWidth)
 				{
@@ -176,13 +176,13 @@ package com.kaltura.kdpfl.plugin.component
 			}
 			else
 			{
-				if (uicomponent is KLabel)
+				if (uicomponent is VLabel)
 				{
-					var textFormat : TextFormat = (uicomponent as KLabel).textField.getTextFormat();
+					var textFormat : TextFormat = (uicomponent as VLabel).textField.getTextFormat();
 					
 					textFormat.color = color;
 					
-					(uicomponent as KLabel).textField.setTextFormat(textFormat);
+					(uicomponent as VLabel).textField.setTextFormat(textFormat);
 				}
 			}
 			
@@ -200,9 +200,9 @@ package com.kaltura.kdpfl.plugin.component
 			}
 			else
 			{
-				if (uicomponent is KLabel)
+				if (uicomponent is VLabel)
 				{
-					var textFormat : TextFormat = (uicomponent as KLabel).textField.getTextFormat();
+					var textFormat : TextFormat = (uicomponent as VLabel).textField.getTextFormat();
 					
 					labelColor = textFormat.color as Number
 				}

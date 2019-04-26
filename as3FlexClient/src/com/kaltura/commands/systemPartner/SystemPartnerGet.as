@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,17 +25,17 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.systemPartner
+package com.vidiun.commands.systemPartner
 {
-	import com.kaltura.delegates.systemPartner.SystemPartnerGetDelegate;
-	import com.kaltura.net.KalturaCall;
+	import com.vidiun.delegates.systemPartner.SystemPartnerGetDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Retrieve all info about partner
 	* This service gets partner id as parameter and accessable to the admin console partner only
 	* 
 	**/
-	public class SystemPartnerGet extends KalturaCall
+	public class SystemPartnerGet extends VidiunCall
 	{
 		public var filterFields : String;
 		

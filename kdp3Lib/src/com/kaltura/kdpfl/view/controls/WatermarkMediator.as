@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
 	import flash.display.DisplayObject;
 	import flash.events.Event;

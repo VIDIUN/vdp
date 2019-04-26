@@ -1,20 +1,20 @@
-package com.kaltura.kdpfl.view
+package com.vidiun.vdpfl.view
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.AdOpportunityType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.osmf.proxy.KSwitchingProxyElement;
-	import com.kaltura.types.KalturaAdType;
-	import com.kaltura.types.KalturaCuePointType;
-	import com.kaltura.utils.ObjectUtil;
-	import com.kaltura.vo.KalturaAdCuePoint;
-	import com.kaltura.vo.KalturaAnnotation;
-	import com.kaltura.vo.KalturaCodeCuePoint;
-	import com.kaltura.vo.KalturaCuePoint;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.AdOpportunityType;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.SequenceContextType;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
+	import com.vidiun.osmf.proxy.VSwitchingProxyElement;
+	import com.vidiun.types.VidiunAdType;
+	import com.vidiun.types.VidiunCuePointType;
+	import com.vidiun.utils.ObjectUtil;
+	import com.vidiun.vo.VidiunAdCuePoint;
+	import com.vidiun.vo.VidiunAnnotation;
+	import com.vidiun.vo.VidiunCodeCuePoint;
+	import com.vidiun.vo.VidiunCuePoint;
 	
 	import org.osmf.events.TimelineMetadataEvent;
 	import org.osmf.media.MediaElement;
@@ -25,7 +25,7 @@ package com.kaltura.kdpfl.view
 	import org.puremvc.as3.patterns.mediator.Mediator;
 
 	/**
-	 * New Mediator for the cue point data of the KDP 
+	 * New Mediator for the cue point data of the VDP 
 	 * @author Hila
 	 * 
 	 */	
@@ -34,7 +34,7 @@ package com.kaltura.kdpfl.view
 		public static const NAME : String = "cuePointsMediator";
 		
 		/**
-		 * The instance of the KDP's OSMF MediaPlayer.
+		 * The instance of the VDP's OSMF MediaPlayer.
 		 */		
 		private var _mediaPlayerInst : MediaPlayer;
 		/**
@@ -55,7 +55,7 @@ package com.kaltura.kdpfl.view
 		 */		
 		private var _sessionCuePointsMap : Object = new Object();
 		/**
-		 * The KDP flashvars.
+		 * The VDP flashvars.
 		 */		
 		private var _flashvars : Object;
 		/**
@@ -104,7 +104,7 @@ package com.kaltura.kdpfl.view
 			switch (notification.getName() )
 			{
 				case NotificationType.LAYOUT_READY:
-					_mediaPlayerInst = (facade.retrieveMediator( KMediaPlayerMediator.NAME ) as KMediaPlayerMediator).player;
+					_mediaPlayerInst = (facade.retrieveMediator( VMediaPlayerMediator.NAME ) as VMediaPlayerMediator).player;
 					_flashvars = (facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy).vo.flashvars;
 					if (_flashvars.disableCuePointsMidroll && _flashvars.disableCuePointsMidroll == "true")
 						_disableCuePointsMidroll = true;
@@ -172,21 +172,21 @@ package com.kaltura.kdpfl.view
 			var startTimeInMS:Number = (startTime + _intimeOffset) * 1000;
 			
 			var shouldStartMidrollSequence : Boolean = false;
-			for each (var cuePoint : KalturaCuePoint in _sessionCuePointsMap[startTimeInMS])
+			for each (var cuePoint : VidiunCuePoint in _sessionCuePointsMap[startTimeInMS])
 			{
-				if ((cuePoint.type == KalturaCuePointType.AD || cuePoint is KalturaAdCuePoint) && !_reachedMediaEnd)
+				if ((cuePoint.type == VidiunCuePointType.AD || cuePoint is VidiunAdCuePoint) && !_reachedMediaEnd)
 				{
 					if (!_disableCuePointsMidroll)
 					{
 						sendNotification( NotificationType.AD_OPPORTUNITY , {context : SequenceContextType.MID, cuePoint : cuePoint, type: AdOpportunityType.CUE_POINT} );
 					}
 					
-					if ( ((cuePoint as KalturaAdCuePoint).adType == KalturaAdType.VIDEO) || ((cuePoint as KalturaAdCuePoint).forceStop > 0 ))
+					if ( ((cuePoint as VidiunAdCuePoint).adType == VidiunAdType.VIDEO) || ((cuePoint as VidiunAdCuePoint).forceStop > 0 ))
 					{
 						shouldStartMidrollSequence = true;
 					}
 				}
-				else if (cuePoint.type == KalturaCuePointType.CODE || cuePoint is KalturaCodeCuePoint || cuePoint is KalturaAnnotation)
+				else if (cuePoint.type == VidiunCuePointType.CODE || cuePoint is VidiunCodeCuePoint || cuePoint is VidiunAnnotation)
 				{
 					sendNotification( NotificationType.CUE_POINT_REACHED , { cuePoint : cuePoint} );
 				}
@@ -213,9 +213,9 @@ package com.kaltura.kdpfl.view
 			
 			_intimeOffset = offset;
 			
-			if ((_media as KSwitchingProxyElement).mainMediaElement)
+			if ((_media as VSwitchingProxyElement).mainMediaElement)
 			{
-				_timelineMetadata = new TimelineMetadata((_media as KSwitchingProxyElement).mainMediaElement);
+				_timelineMetadata = new TimelineMetadata((_media as VSwitchingProxyElement).mainMediaElement);
 				_timelineMetadata.addEventListener( TimelineMetadataEvent.MARKER_TIME_REACHED , onCuePointReached);
 				for (var startTime : String in _cuePointsMap)
 				{
@@ -233,22 +233,22 @@ package com.kaltura.kdpfl.view
 		}
 		
 		/**
-		 * Adds the kalturaCuePoints from the given array to the KDP cue points 
+		 * Adds the vidiunCuePoints from the given array to the VDP cue points 
 		 * should be called before MEDIA_LOADED
-		 * @param cpArray array of KalturaCuePoint
+		 * @param cpArray array of VidiunCuePoint
 		 * 
 		 */		
 		public function addCuePoints(cpArray:Array):void {
 			var sequenceProxy : SequenceProxy = facade.retrieveProxy(SequenceProxy.NAME) as SequenceProxy;
 			
 			for (var i:int = 0; i<cpArray.length; i++) {
-				var cp:KalturaCuePoint = cpArray[i] as KalturaCuePoint;
+				var cp:VidiunCuePoint = cpArray[i] as VidiunCuePoint;
 				if (!cp)
 					return;
 				
 				//preroll & postroll
 				if (cp.startTime==0 || cp.startTime==_entryDurationInMS) {
-					if (cp.type == KalturaCuePointType.AD || cp is KalturaAdCuePoint)
+					if (cp.type == VidiunCuePointType.AD || cp is VidiunAdCuePoint)
 					{
 						sendNotification( NotificationType.AD_OPPORTUNITY ,{context : (cp.startTime==0) ? SequenceContextType.PRE : SequenceContextType.POST, cuePoint : cp, type: AdOpportunityType.CUE_POINT} );	
 					}
@@ -266,7 +266,7 @@ package com.kaltura.kdpfl.view
 		//	sequenceProxy.initPostIndex();
 		}
 		
-		private function addToCPMap(cp:KalturaCuePoint):void {
+		private function addToCPMap(cp:VidiunCuePoint):void {
 			if (_cuePointsMap[cp.startTime])
 				_cuePointsMap[cp.startTime].push(cp);
 			else {
@@ -306,8 +306,8 @@ package com.kaltura.kdpfl.view
 			{
 				while ( prerollAdCuePoints.length )
 				{
-					var preCuePoint : KalturaCuePoint = prerollAdCuePoints[0];
-					if (preCuePoint.type == KalturaCuePointType.AD || preCuePoint is KalturaAdCuePoint)
+					var preCuePoint : VidiunCuePoint = prerollAdCuePoints[0];
+					if (preCuePoint.type == VidiunCuePointType.AD || preCuePoint is VidiunAdCuePoint)
 					{
 						sendNotification( NotificationType.AD_OPPORTUNITY ,{context : SequenceContextType.PRE, cuePoint : preCuePoint, type: AdOpportunityType.CUE_POINT} );
 						prerollAdCuePoints.shift();
@@ -321,8 +321,8 @@ package com.kaltura.kdpfl.view
 			{
 				while ( postrollAdCuePoints.length )
 				{
-					var postCuePoint : KalturaCuePoint = postrollAdCuePoints[0];
-					if (postCuePoint.type == KalturaCuePointType.AD || postCuePoint is KalturaAdCuePoint)
+					var postCuePoint : VidiunCuePoint = postrollAdCuePoints[0];
+					if (postCuePoint.type == VidiunCuePointType.AD || postCuePoint is VidiunAdCuePoint)
 					{
 						sendNotification( NotificationType.AD_OPPORTUNITY ,{context : SequenceContextType.POST, cuePoint : postCuePoint, type: AdOpportunityType.CUE_POINT} );
 						postrollAdCuePoints.shift();
@@ -335,14 +335,14 @@ package com.kaltura.kdpfl.view
 		
 		protected function isAdCuePoint (cuePoint : Object , index : int , array : Array) : Boolean
 		{
-			if (cuePoint is KalturaAdCuePoint)
+			if (cuePoint is VidiunAdCuePoint)
 				return true;
 			return false;
 		}
 		
 		protected function isNotAdCuePoint (cuePoint : Object , index : int , array : Array) : Boolean
 		{
-			if (!(cuePoint is KalturaAdCuePoint))
+			if (!(cuePoint is VidiunAdCuePoint))
 				return true;
 			return false;
 		}

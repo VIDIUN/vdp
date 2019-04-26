@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,26 +25,26 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.conversionProfileAssetParams
+package com.vidiun.commands.conversionProfileAssetParams
 {
-		import com.kaltura.vo.KalturaConversionProfileAssetParams;
-	import com.kaltura.delegates.conversionProfileAssetParams.ConversionProfileAssetParamsUpdateDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunConversionProfileAssetParams;
+	import com.vidiun.delegates.conversionProfileAssetParams.ConversionProfileAssetParamsUpdateDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Update asset parmas of conversion profile by ID
 	* 
 	**/
-	public class ConversionProfileAssetParamsUpdate extends KalturaCall
+	public class ConversionProfileAssetParamsUpdate extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param conversionProfileId int
 		* @param assetParamsId int
-		* @param conversionProfileAssetParams KalturaConversionProfileAssetParams
+		* @param conversionProfileAssetParams VidiunConversionProfileAssetParams
 		**/
-		public function ConversionProfileAssetParamsUpdate( conversionProfileId : int,assetParamsId : int,conversionProfileAssetParams : KalturaConversionProfileAssetParams )
+		public function ConversionProfileAssetParamsUpdate( conversionProfileId : int,assetParamsId : int,conversionProfileAssetParams : VidiunConversionProfileAssetParams )
 		{
 			service= 'conversionprofileassetparams';
 			action= 'update';
@@ -56,7 +56,7 @@ package com.kaltura.commands.conversionProfileAssetParams
 			valueArr.push(conversionProfileId);
 			keyArr.push('assetParamsId');
 			valueArr.push(assetParamsId);
-				keyValArr = kalturaObject2Arrays(conversionProfileAssetParams, 'conversionProfileAssetParams');
+				keyValArr = vidiunObject2Arrays(conversionProfileAssetParams, 'conversionProfileAssetParams');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

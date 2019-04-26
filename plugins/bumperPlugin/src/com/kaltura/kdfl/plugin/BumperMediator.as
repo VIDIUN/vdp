@@ -1,12 +1,12 @@
-package com.kaltura.kdfl.plugin {
+package com.vidiun.vdfl.plugin {
 
-	import com.kaltura.kdfl.plugin.events.BumperEvent;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.AdsNotificationTypes;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.puremvc.as3.patterns.mediator.SequenceMultiMediator;
+	import com.vidiun.vdfl.plugin.events.BumperEvent;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.AdsNotificationTypes;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.SequenceContextType;
+	import com.vidiun.puremvc.as3.patterns.mediator.SequenceMultiMediator;
 	
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
@@ -63,7 +63,7 @@ package com.kaltura.kdfl.plugin {
 		}
 
 		/**
-		 * Pure MVC way of listening to KDP3 notifications
+		 * Pure MVC way of listening to VDP3 notifications
 		 * @return	a list of notifications we want to receive.
 		 */
 		override public function listNotificationInterests():Array {
@@ -81,7 +81,7 @@ package com.kaltura.kdfl.plugin {
 
 
 		/**
-		 * Pure MVC way to handle KDP 3 events
+		 * Pure MVC way to handle VDP 3 events
 		 * @param note		a notification from the facade.
 		 */
 		override public function handleNotification(note:INotification):void {
@@ -113,7 +113,7 @@ package com.kaltura.kdfl.plugin {
 					if (_mediaProxy.vo.entry.id == bumper.bumperEntryID && _sequenceProxy.vo.isInSequence && !_playedOnce) {
 						_playedOnce = true;
 						_sequenceProxy.vo.isAdLoaded = true;
-						var playerMediator : Object = facade.retrieveMediator("kMediaPlayerMediator");
+						var playerMediator : Object = facade.retrieveMediator("vMediaPlayerMediator");
 						playerMediator.playContent();
 					}
 					break;
@@ -252,7 +252,7 @@ package com.kaltura.kdfl.plugin {
 		private function enableGUI(enable:Boolean):void {
 			sendNotification("enableGui", {guiEnabled: enable, enableType: "full"});
 		/* if we want to disable the GUI we need to send the notification twice,
-		 * this is a hack to bypass the KDP enabling the GUI on mediaReady.
+		 * this is a hack to bypass the VDP enabling the GUI on mediaReady.
 		 */
 //			if (!enable) {
 //				sendNotification("enableGui", {guiEnabled: false, enableType:"full"});
@@ -265,7 +265,7 @@ package com.kaltura.kdfl.plugin {
 		 * @param e		BumperEvent with url data
 		 */
 		private function navigate(be:BumperEvent):void {
-			//FIXME see if we can use a central KDP method (funcs proxy is not a proxy and can't be used)
+			//FIXME see if we can use a central VDP method (funcs proxy is not a proxy and can't be used)
 			sendNotification(AdsNotificationTypes.BUMPER_CLICKED);
 			var request:URLRequest = new URLRequest(be.url);
 			try {

@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.component {
+package com.vidiun.vdpfl.plugin.component {
 
 	import fl.data.DataProvider;
 	
@@ -7,14 +7,14 @@ package com.kaltura.kdpfl.plugin.component {
 
 	[Bindable]
 	/**
-	 * KDataProvider is the unique data provider for the PlaylistAPI Plugin
+	 * VDataProvider is the unique data provider for the PlaylistAPI Plugin
 	 */	
-	public class KDataProvider extends DataProvider implements IDataProvider {
+	public class VDataProvider extends DataProvider implements IDataProvider {
 
 		private var _selectedIndex:Number;
 
 
-		public function KDataProvider(value:Object = null) {
+		public function VDataProvider(value:Object = null) {
 			super(value);
 		}
 

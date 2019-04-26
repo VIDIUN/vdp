@@ -1,11 +1,11 @@
-package com.kaltura.base.types
+package com.vidiun.base.types
 {
 	public class StatisticsTypes
 	{
 		//
 		// Object types:
 		//
-		static public const STATS_OBJECT_TYPE_KSHOW:String = "kshow";
+		static public const STATS_OBJECT_TYPE_VSHOW:String = "vshow";
 		static public const STATS_OBJECT_TYPE_ENTRY:String = "entry";
 
 		//

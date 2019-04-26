@@ -346,7 +346,7 @@ The copyrights embodied in the content of this file are licensed under the BSD (
 			if(totalHeight < bounds.height)
 			{
 				var middleStart:Number = (bounds.height - totalHeight) / 2;
-				// KALTURA fix for astra - if middleStart is Infinity, adjust it to DEFAULT_MAX_HEIGHT  
+				// VIDIUN fix for astra - if middleStart is Infinity, adjust it to DEFAULT_MAX_HEIGHT  
 				middleStart = (middleStart == Infinity)?DEFAULT_MAX_HEIGHT:middleStart;				
 				var rightStart:Number = bounds.height - totalHeight - bounds.y;
 				rightStart = (rightStart == Infinity)?DEFAULT_MAX_HEIGHT:rightStart;				

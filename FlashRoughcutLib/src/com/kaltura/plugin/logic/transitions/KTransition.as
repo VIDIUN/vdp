@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users 
+This file is part of the Vidiun Collaborative Media Suite which allows users 
 to do with audio, video, and animation what Wiki platfroms allow them to do with 
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,27 +20,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.plugin.logic.transitions
+package com.vidiun.plugin.logic.transitions
 {
-	import com.kaltura.plugin.layer.LayersContainer;
-	import com.kaltura.plugin.logic.Plugin;
+	import com.vidiun.plugin.layer.LayersContainer;
+	import com.vidiun.plugin.logic.Plugin;
 	
 	import flash.display.DisplayObject;
 
-	public class KTransition extends Plugin
+	public class VTransition extends Plugin
 	{
 		protected var _layers:LayersContainer;
 		
-		public static const REFLECTION:String = "KTRANSITION";
+		public static const REFLECTION:String = "VTRANSITION";
 		
-		public function KTransition (url:String = ""):void
+		public function VTransition (url:String = ""):void
 		{
 			super (url);
 		}
 		
 		override public function get reflection ():String 
 		{
-			return KTransition.REFLECTION;
+			return VTransition.REFLECTION;
 		}
 		
 		/**

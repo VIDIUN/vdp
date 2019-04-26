@@ -1,12 +1,12 @@
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.IPluginFactory;
 	
 	import flash.display.Sprite;
 	import flash.system.Security;
 
 	/**
-	 * Overlay plugin is used to show VAST ads over the KDP video area 
+	 * Overlay plugin is used to show VAST ads over the VDP video area 
 	 */	
 	public class overlayPlugin extends Sprite implements IPluginFactory
 	{

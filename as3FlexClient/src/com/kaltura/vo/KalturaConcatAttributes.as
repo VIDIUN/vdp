@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,20 +25,20 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.KalturaDataCenterContentResource;
+	import com.vidiun.vo.VidiunDataCenterContentResource;
 
-	import com.kaltura.vo.KalturaOperationAttributes;
+	import com.vidiun.vo.VidiunOperationAttributes;
 
 	[Bindable]
-	public dynamic class KalturaConcatAttributes extends KalturaOperationAttributes
+	public dynamic class VidiunConcatAttributes extends VidiunOperationAttributes
 	{
 		/**
 		* The resource to be concatenated
 		* 
 		**/
-		public var resource : KalturaDataCenterContentResource;
+		public var resource : VidiunDataCenterContentResource;
 
 		override public function getUpdateableParamKeys():Array
 		{

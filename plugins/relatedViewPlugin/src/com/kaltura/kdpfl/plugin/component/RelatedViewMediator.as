@@ -1,10 +1,10 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.NotificationType;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
 
 	public class RelatedViewMediator extends Mediator
 	{
@@ -41,7 +41,7 @@ package com.kaltura.kdpfl.plugin.component
 			{
 				case NotificationType.PLAYER_PLAY_END:
 					if (showAfterPlayEnd &&
-						!((facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).player.loop) &&
+						!((facade.retrieveMediator(VMediaPlayerMediator.NAME) as VMediaPlayerMediator).player.loop) &&
 						(viewComponent as relatedViewPluginCode).dataProvider && 
 						(viewComponent as relatedViewPluginCode).dataProvider.length)
 					{

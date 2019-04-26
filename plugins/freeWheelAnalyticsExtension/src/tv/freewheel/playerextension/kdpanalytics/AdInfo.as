@@ -1,4 +1,4 @@
-package tv.freewheel.playerextension.kdpanalytics
+package tv.freewheel.playerextension.vdpanalytics
 {
 	import flash.display.Sprite;
 	import flash.events.TimerEvent;

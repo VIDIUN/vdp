@@ -1,8 +1,8 @@
 package {
-	//import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.Gigya;
-	import com.kaltura.kdpfl.plugin.component.GigyaMediator;
+	//import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.Gigya;
+	import com.vidiun.vdpfl.plugin.component.GigyaMediator;
 	
 	import fl.core.UIComponent;
 	import fl.managers.*;

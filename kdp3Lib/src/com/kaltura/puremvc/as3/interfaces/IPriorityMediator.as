@@ -1,4 +1,4 @@
-package com.kaltura.puremvc.as3.interfaces
+package com.vidiun.puremvc.as3.interfaces
 {
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;

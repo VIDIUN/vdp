@@ -1,6 +1,6 @@
 changes in current version:
 ---------------------------
-* new KDP sequence mechanism support
+* new VDP sequence mechanism support
 * statistics notifications:
 	- ad start
 	- ad first quartile

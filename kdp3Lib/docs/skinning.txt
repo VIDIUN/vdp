@@ -1,4 +1,4 @@
-KDP skinning
+VDP skinning
 
 button skinning:
 
@@ -9,7 +9,7 @@ some buttons uses the selected states (play pause are actually the same button w
 2 – Icons assets – the icons for the button. As the skin – the icons can appear as states icons, or one icon for all states. a button can get icon and/or  label
 3 – label is the text field that appear in the button (right/top/left/bottom according to the labelPlacement attribute). 
 
-There are more than one way to design a button in KDP3:
+There are more than one way to design a button in VDP3:
 
 Use the default style
 +++++++++++++++++++++
@@ -21,7 +21,7 @@ Applying a styleName
 
 Setting a styleName to a button is as simples as that: 
 <Button … styleName=”myStyle” />
-In this case the KDP tries to find matching assets with the same postfix.
+In this case the VDP tries to find matching assets with the same postfix.
 It will try to set these assets as skin for that button: 
 •	Button_upSkin_myStyle
 •	Button_downSkin_myStyle
@@ -50,7 +50,7 @@ It will try to set these assets as matching icons:
 •	Button_selectedDownIcon_myStyle
 •	Button_selectedDisabledIcon_myStyle
 If there are no matching icons – there will not be any default icon. In this case there should be a label. 
-It will try to set text format copied from a movieclip containing a single text field. The KDP will copy all of its attributes (size, color, bold, italic, spacing, margins, justify etc’) and set it to the label of this button. Handling the font will be elaborated next. To make that – the movieclip that holds that textfield must have this linkage: 
+It will try to set text format copied from a movieclip containing a single text field. The VDP will copy all of its attributes (size, color, bold, italic, spacing, margins, justify etc’) and set it to the label of this button. Handling the font will be elaborated next. To make that – the movieclip that holds that textfield must have this linkage: 
 Button_Label_myStyle
 
 Applying direct assets
@@ -64,19 +64,19 @@ Though this example shows one icon for all states we can set up different icons 
 Same thing goes for skin override (TODO – check)
 Type (font) 
 Setting sizes of buttons. 
-The button of the KDP is actually an autosize button. This means that if the button has a label it will set its width automatically. This means that in some cases the width/height we want, and the actual width/height are not equal. For this, we have 4 attributes that might help us getting more accurate dimensions. The attributes are minWidth, maxWidth, minHeight, maxHeight. This buttons height for example will be 22 pixels height (or less) and will have 40 pix width even if its label is short or icon is small. 
+The button of the VDP is actually an autosize button. This means that if the button has a label it will set its width automatically. This means that in some cases the width/height we want, and the actual width/height are not equal. For this, we have 4 attributes that might help us getting more accurate dimensions. The attributes are minWidth, maxWidth, minHeight, maxHeight. This buttons height for example will be 22 pixels height (or less) and will have 40 pix width even if its label is short or icon is small. 
 <Button … minWidth=”40” maxHeight=”22” />
 
 Commads & behavior
-There are 2 internals buttons commands – play and fullscreen. Both buttons are toggle buttons, means that when click they change their state to selected. This sais, when you design the skin & icons place the close full screen / pause to the selected state, and open fullscreen / play to the non selected. These 2 buttons have the code behind to command the KDP what to do in each state and click.
+There are 2 internals buttons commands – play and fullscreen. Both buttons are toggle buttons, means that when click they change their state to selected. This sais, when you design the skin & icons place the close full screen / pause to the selected state, and open fullscreen / play to the non selected. These 2 buttons have the code behind to command the VDP what to do in each state and click.
 In addition – there are 3 general click behavior:
 •	jsCall – call a JS function with or without arguments
-e.g. kClick=” jsCall('myJsFunc', mediaProxy.entry.id )"
+e.g. vClick=” jsCall('myJsFunc', mediaProxy.entry.id )"
 this click will call a js function called ‘myJsFunc’ and will pass it the current entry id
 •	navigate to an external url
-e.g. kClick="navigate('http://www.kaltura.com')"
-•	send notification to the KDP. The kdp has internal notification, like the events mechanism, and a button can send a notification with or without data 
-e.g. kClick="sendNotification('changeVolume',1)” 
+e.g. vClick="navigate('http://www.vidiun.com')"
+•	send notification to the VDP. The vdp has internal notification, like the events mechanism, and a button can send a notification with or without data 
+e.g. vClick="sendNotification('changeVolume',1)” 
 
 
 

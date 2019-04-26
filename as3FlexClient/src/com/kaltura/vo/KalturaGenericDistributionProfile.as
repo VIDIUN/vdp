@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,20 +25,20 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.vidiun.vo
 {
-	import com.kaltura.vo.KalturaGenericDistributionProfileAction;
+	import com.vidiun.vo.VidiunGenericDistributionProfileAction;
 
-	import com.kaltura.vo.KalturaGenericDistributionProfileAction;
+	import com.vidiun.vo.VidiunGenericDistributionProfileAction;
 
-	import com.kaltura.vo.KalturaGenericDistributionProfileAction;
+	import com.vidiun.vo.VidiunGenericDistributionProfileAction;
 
-	import com.kaltura.vo.KalturaGenericDistributionProfileAction;
+	import com.vidiun.vo.VidiunGenericDistributionProfileAction;
 
-	import com.kaltura.vo.KalturaDistributionProfile;
+	import com.vidiun.vo.VidiunDistributionProfile;
 
 	[Bindable]
-	public dynamic class KalturaGenericDistributionProfile extends KalturaDistributionProfile
+	public dynamic class VidiunGenericDistributionProfile extends VidiunDistributionProfile
 	{
 		/**
 		**/
@@ -46,19 +46,19 @@ package com.kaltura.vo
 
 		/**
 		**/
-		public var submitAction : KalturaGenericDistributionProfileAction;
+		public var submitAction : VidiunGenericDistributionProfileAction;
 
 		/**
 		**/
-		public var updateAction : KalturaGenericDistributionProfileAction;
+		public var updateAction : VidiunGenericDistributionProfileAction;
 
 		/**
 		**/
-		public var deleteAction : KalturaGenericDistributionProfileAction;
+		public var deleteAction : VidiunGenericDistributionProfileAction;
 
 		/**
 		**/
-		public var fetchReportAction : KalturaGenericDistributionProfileAction;
+		public var fetchReportAction : VidiunGenericDistributionProfileAction;
 
 		/**
 		**/

@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin
+package com.vidiun.vdpfl.plugin
 {
-	import com.kaltura.kdpfl.model.strings.MessageStrings;
+	import com.vidiun.vdpfl.model.strings.MessageStrings;
 
 	public class PPTWidgetStrings 
 	{

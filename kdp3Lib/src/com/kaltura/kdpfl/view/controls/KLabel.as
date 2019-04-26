@@ -1,9 +1,9 @@
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
 	
-	import com.kaltura.kdpfl.component.IComponent;
-	import com.kaltura.kdpfl.style.FontManager;
-	import com.kaltura.kdpfl.style.TextFormatManager;
+	import com.vidiun.vdpfl.component.IComponent;
+	import com.vidiun.vdpfl.style.FontManager;
+	import com.vidiun.vdpfl.style.TextFormatManager;
 	
 	import fl.controls.Label;
 	
@@ -11,11 +11,11 @@ package com.kaltura.kdpfl.view.controls
 	import flash.text.TextFormat;
 
 	/**
-	 * Class representing the Label used by the KDP. 
+	 * Class representing the Label used by the VDP. 
 	 * @author Hila
 	 * 
 	 */	
-	public dynamic class KLabel extends Label implements IComponent
+	public dynamic class VLabel extends Label implements IComponent
 	{
 		public var color1:Number = -1;
 		public var dynamicColor:Boolean = false;
@@ -41,7 +41,7 @@ package com.kaltura.kdpfl.view.controls
 		internal static const TEXT_WIDTH_PADDING:int = 5;
 		
 		
-		public function KLabel()
+		public function VLabel()
 		{
 			super();
 			this.text = ""; //clear the default "Label"

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.partner
+package com.vidiun.commands.partner
 {
-		import com.kaltura.vo.KalturaPartnerFilter;
-	import com.kaltura.delegates.partner.PartnerCountDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunPartnerFilter;
+	import com.vidiun.delegates.partner.PartnerCountDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Count partner's existing sub-publishers (count includes the partner itself).
 	* 
 	**/
-	public class PartnerCount extends KalturaCall
+	public class PartnerCount extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param filter KalturaPartnerFilter
+		* @param filter VidiunPartnerFilter
 		**/
-		public function PartnerCount( filter : KalturaPartnerFilter=null )
+		public function PartnerCount( filter : VidiunPartnerFilter=null )
 		{
 			service= 'partner';
 			action= 'count';
@@ -51,7 +51,7 @@ package com.kaltura.commands.partner
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
 			if (filter) { 
-				keyValArr = kalturaObject2Arrays(filter, 'filter');
+				keyValArr = vidiunObject2Arrays(filter, 'filter');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

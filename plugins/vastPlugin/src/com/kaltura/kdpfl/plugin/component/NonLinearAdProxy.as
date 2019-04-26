@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.plugin.component
+package com.vidiun.vdpfl.plugin.component
 {
 	
-	import com.kaltura.kdpfl.plugin.model.UniformVastNonLinearAd;
-	import com.kaltura.kdpfl.util.Cloner;
+	import com.vidiun.vdpfl.plugin.model.UniformVastNonLinearAd;
+	import com.vidiun.vdpfl.util.Cloner;
 	
 	import flash.events.Event;
 	

@@ -1,10 +1,10 @@
-package com.kaltura.kdpfl.plugin.component {
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.AdsNotificationTypes;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.puremvc.as3.patterns.mediator.SequenceMultiMediator;
+package com.vidiun.vdpfl.plugin.component {
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.vdpfl.model.type.AdsNotificationTypes;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.model.type.SequenceContextType;
+	import com.vidiun.puremvc.as3.patterns.mediator.SequenceMultiMediator;
 	import com.tremormedia.acudeo.IAdManager;
 	import com.tremormedia.acudeo.content.Content;
 	import com.tremormedia.acudeo.events.AcudeoEvent;
@@ -52,7 +52,7 @@ package com.kaltura.kdpfl.plugin.component {
 		private var _clickUrl:String;
 		private var _loader:Loader;
 		//flash object id to be used with companion ads
-		private var _kdpObjectId:String;
+		private var _vdpObjectId:String;
 		public var hideInternalCompanion:Boolean;
 		public var internalCompanionX:Number;
 		public var internalCompanionY:Number;
@@ -128,7 +128,7 @@ package com.kaltura.kdpfl.plugin.component {
 		private var _managerInit:Boolean = false;
 
 		/**
-		 * since the new enableGui mechanism in KDP counts calls to
+		 * since the new enableGui mechanism in VDP counts calls to
 		 * enable/disable gui, use this to not call too many of any of them.
 		 */
 		private var _controlsEnabled:Boolean = true;
@@ -202,7 +202,7 @@ package com.kaltura.kdpfl.plugin.component {
 			//the try is in case we dont have external interface
 			try
 			{
-				_kdpObjectId = ExternalInterface.objectID;
+				_vdpObjectId = ExternalInterface.objectID;
 			}
 			catch(error:Error)
 			{
@@ -244,8 +244,8 @@ package com.kaltura.kdpfl.plugin.component {
 			{
 				if (ExternalInterface.available)
 				{
-					if(_kdpObjectId)
-						ExternalInterface.call("hideCompanionBanners" , _kdpObjectId);
+					if(_vdpObjectId)
+						ExternalInterface.call("hideCompanionBanners" , _vdpObjectId);
 					else
 						ExternalInterface.call("hideCompanionBanners");
 				}
@@ -375,8 +375,8 @@ package com.kaltura.kdpfl.plugin.component {
 			{
 				if (ExternalInterface.available)
 				{
-					if(_kdpObjectId)
-						ExternalInterface.call("displayCompanionBanners", event.ad.banners,{playerIndex: event.data.player.playerIndex} , _kdpObjectId );
+					if(_vdpObjectId)
+						ExternalInterface.call("displayCompanionBanners", event.ad.banners,{playerIndex: event.data.player.playerIndex} , _vdpObjectId );
 					else
 						ExternalInterface.call("displayCompanionBanners", event.ad.banners,{playerIndex: event.data.player.playerIndex});
 

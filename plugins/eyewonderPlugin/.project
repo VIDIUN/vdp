@@ -4,7 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>Eyewonder_Instream_Framework_v2_8_2</project>
-		<project>kdp3Lib</project>
+		<project>vdp3Lib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -20,7 +20,7 @@
 		<link>
 			<name>bin-debug</name>
 			<type>2</type>
-			<locationURI>DOCUMENTS/KDP3/html-template/plugins</locationURI>
+			<locationURI>DOCUMENTS/VDP3/html-template/plugins</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

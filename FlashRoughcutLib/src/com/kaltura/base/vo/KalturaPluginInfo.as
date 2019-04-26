@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users 
+This file is part of the Vidiun Collaborative Media Suite which allows users 
 to do with audio, video, and animation what Wiki platfroms allow them to do with 
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Vidiun Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,14 +20,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.base.vo
+package com.vidiun.base.vo
 {
-	import com.kaltura.base.types.MediaTypes;
+	import com.vidiun.base.types.MediaTypes;
 
 	import flash.events.EventDispatcher;
 
 	//[Bindable]
-	public class KalturaPluginInfo extends EventDispatcher
+	public class VidiunPluginInfo extends EventDispatcher
 	{
 		/**
 		*the mediaType (Overlay, Effect, Transition).
@@ -48,7 +48,7 @@ package com.kaltura.base.vo
 		/**
 		* the creator of this plugin.
 		*/
-		public var creator:String = 'Kaltura';
+		public var creator:String = 'Vidiun';
 		/**
 		* the name that should apear on the view to describe the plugin.
 		*/
@@ -67,14 +67,14 @@ package com.kaltura.base.vo
 		 * @param plugin_label				the label of this plugin (this name should be used in UI).
 		 * @param plugin_creator			the name of the plugin creator.
 		 * @param plugin_description		the description for this plugin.
-		 * @see com.kaltura.common.types.MediaTypes
+		 * @see com.vidiun.common.types.MediaTypes
 		 */
-		public function KalturaPluginInfo (media_type:uint,
+		public function VidiunPluginInfo (media_type:uint,
 											plugin_id:String,
 											thumbnail_url:String,
 											plugin_category:String,
 											plugin_label:String,
-											plugin_creator:String = 'Kaltura',
+											plugin_creator:String = 'Vidiun',
 											plugin_description:String = ''):void
 		{
 			mediaType = media_type;

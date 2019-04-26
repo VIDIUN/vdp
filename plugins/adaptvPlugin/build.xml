@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="adaptvPlugin Builder" basedir=".">    
 
-	<import file="${flex-build}" description="Import common kaltura build targets like flex-extract-classes"/>      	
+	<import file="${flex-build}" description="Import common vidiun build targets like flex-extract-classes"/>      	
 	<property file="build.properties" description="Load project build properties"/>
 	
 	<target name="build" depends="clean, init, compile">
@@ -22,7 +22,7 @@
 
 			<!-- Every directory should have a different compiler.library-path tag -->
 			<compiler.library-path dir="${solution.bin}" append="true">
-				<include name="kdp3Lib.swc" />
+				<include name="vdp3Lib.swc" />
             </compiler.library-path>		
         </mxmlc>
     </target>

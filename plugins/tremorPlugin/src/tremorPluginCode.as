@@ -1,9 +1,9 @@
 package {
-	//import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.ISequencePlugin;
-	import com.kaltura.kdpfl.plugin.component.Tremor;
-	import com.kaltura.kdpfl.plugin.component.TremorMediator;
+	//import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.ISequencePlugin;
+	import com.vidiun.vdpfl.plugin.component.Tremor;
+	import com.vidiun.vdpfl.plugin.component.TremorMediator;
 	import com.tremormedia.acudeo.IAdManager;
 	import com.tremormedia.acudeo.admanager.AdManager;
 	
@@ -137,7 +137,7 @@ package {
 		 * 	http://ad.doubleclick.net/client/ibs.[site]/topic.[topic]
 		 * 	
 		 * 	paramKey1="site" //name of param as it appears on the Tremor URL 
-		 *  paramValue1="{mediaProxy.entryMetadata.site}" //where to take the data from. static String or a KDP expression 
+		 *  paramValue1="{mediaProxy.entryMetadata.site}" //where to take the data from. static String or a VDP expression 
 		 *  paramDefaultValue1="defaultSite" //what to place if there is no return value on the value (paramValueN)
 		 *  removeIfNullParam1="false" 	// if there is no value should this param be ommited from the dynamic list. 
 		 * 							   	// if this is set to true this will override the paramDefaultValueN attribute 

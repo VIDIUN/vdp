@@ -1,10 +1,10 @@
-package com.kaltura.kdpfl.plugin.component {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.MultiRequest;
-	import com.kaltura.commands.baseEntry.BaseEntryFlag;
-	import com.kaltura.commands.baseEntry.BaseEntryGet;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.vo.KalturaModerationFlag;
+package com.vidiun.vdpfl.plugin.component {
+	import com.vidiun.VidiunClient;
+	import com.vidiun.commands.MultiRequest;
+	import com.vidiun.commands.baseEntry.BaseEntryFlag;
+	import com.vidiun.commands.baseEntry.BaseEntryGet;
+	import com.vidiun.events.VidiunEvent;
+	import com.vidiun.vo.VidiunModerationFlag;
 
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -52,23 +52,23 @@ package com.kaltura.kdpfl.plugin.component {
 		 * */
 		public function postModeration(comments:String, type:int):void {
 			var mediaProxy:Proxy = (facade.retrieveProxy("mediaProxy") as Proxy);
-			var kClient:KalturaClient = facade.retrieveProxy("servicesProxy")["kalturaClient"] as KalturaClient;
+			var vClient:VidiunClient = facade.retrieveProxy("servicesProxy")["vidiunClient"] as VidiunClient;
 			var entryId:String = mediaProxy["vo"]["entry"]["id"];
-			var flag:KalturaModerationFlag = new KalturaModerationFlag();
+			var flag:VidiunModerationFlag = new VidiunModerationFlag();
 			flag.comments = comments;
 			flag.flaggedEntryId = entryId;
 			flag.flagType = type;
 			var flagCommand:BaseEntryFlag = new BaseEntryFlag(flag);
-			flagCommand.addEventListener(KalturaEvent.COMPLETE, moderationComplete);
-			flagCommand.addEventListener(KalturaEvent.FAILED, moderationFailed);
-			kClient.post(flagCommand);
+			flagCommand.addEventListener(VidiunEvent.COMPLETE, moderationComplete);
+			flagCommand.addEventListener(VidiunEvent.FAILED, moderationFailed);
+			vClient.post(flagCommand);
 		}
 
 
 		/**
 		 * notify user success
 		 * */
-		private function moderationComplete(e:KalturaEvent):void {
+		private function moderationComplete(e:VidiunEvent):void {
 			mod.flagComplete(true);
 		}
 
@@ -76,7 +76,7 @@ package com.kaltura.kdpfl.plugin.component {
 		/**
 		 * notify user failure
 		 * */
-		private function moderationFailed(e:KalturaEvent):void {
+		private function moderationFailed(e:VidiunEvent):void {
 			mod.flagComplete(false);
 		}
 

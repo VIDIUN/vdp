@@ -1,25 +1,25 @@
-package com.kaltura.osmf.kalturaMix {
+package com.vidiun.osmf.vidiunMix {
 
-	import com.kaltura.KalturaClient;
-	import com.kaltura.application.KalturaApplication;
-	import com.kaltura.assets.AssetsFactory;
-	import com.kaltura.assets.abstracts.AbstractAsset;
-	import com.kaltura.base.context.PartnerInfo;
-	import com.kaltura.base.types.MediaTypes;
-	import com.kaltura.base.types.TimelineTypes;
-	import com.kaltura.base.vo.KalturaPluginInfo;
-	import com.kaltura.commands.mixing.MixingGetReadyMediaEntries;
-	import com.kaltura.components.players.eplayer.Eplayer;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.managers.downloadManagers.types.StreamingModes;
-	import com.kaltura.model.KalturaModelLocator;
-	import com.kaltura.osmf.kaltura.KalturaBaseEntryResource;
-	import com.kaltura.plugin.types.transitions.TransitionTypes;
-	import com.kaltura.roughcut.Roughcut;
-	import com.kaltura.types.KalturaEntryStatus;
-	import com.kaltura.utils.url.URLProccessing;
-	import com.kaltura.vo.KalturaMediaEntry;
-	import com.kaltura.vo.KalturaMixEntry;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.application.VidiunApplication;
+	import com.vidiun.assets.AssetsFactory;
+	import com.vidiun.assets.abstracts.AbstractAsset;
+	import com.vidiun.base.context.PartnerInfo;
+	import com.vidiun.base.types.MediaTypes;
+	import com.vidiun.base.types.TimelineTypes;
+	import com.vidiun.base.vo.VidiunPluginInfo;
+	import com.vidiun.commands.mixing.MixingGetReadyMediaEntries;
+	import com.vidiun.components.players.eplayer.Eplayer;
+	import com.vidiun.events.VidiunEvent;
+	import com.vidiun.managers.downloadManagers.types.StreamingModes;
+	import com.vidiun.model.VidiunModelLocator;
+	import com.vidiun.osmf.vidiun.VidiunBaseEntryResource;
+	import com.vidiun.plugin.types.transitions.TransitionTypes;
+	import com.vidiun.roughcut.Roughcut;
+	import com.vidiun.types.VidiunEntryStatus;
+	import com.vidiun.utils.url.URLProccessing;
+	import com.vidiun.vo.VidiunMediaEntry;
+	import com.vidiun.vo.VidiunMixEntry;
 	import com.quasimondo.geom.ColorMatrix;
 	
 	import flash.display.Sprite;
@@ -35,7 +35,7 @@ package com.kaltura.osmf.kalturaMix {
 	import org.puremvc.as3.interfaces.IFacade;
 
 
-	public class KalturaMixSprite extends Sprite {
+	public class VidiunMixSprite extends Sprite {
 		// must have these classes compiled into code
 		private var m:MovieClipAsset;
 		private var f:SpriteAsset;
@@ -46,7 +46,7 @@ package com.kaltura.osmf.kalturaMix {
 		 */		
 		static public var facade:IFacade;
 		
-		private var kc:KalturaClient;
+		private var vc:VidiunClient;
 
 		/**
 		 * mix player 
@@ -61,9 +61,9 @@ package com.kaltura.osmf.kalturaMix {
 		private var _width:Number;
 		private var _height:Number;
 
-		private var kapp:KalturaApplication;
-		private var mediaElement:KalturaMixElement;
-		private var mixEntry:KalturaMixEntry;
+		private var vapp:VidiunApplication;
+		private var mediaElement:VidiunMixElement;
+		private var mixEntry:VidiunMixEntry;
 		private var roughcut:Roughcut = null;
 
 		static private var mixPluginsLoaded:Boolean = false;
@@ -80,31 +80,31 @@ package com.kaltura.osmf.kalturaMix {
 		 * @param data plugins data
 		 */		
 		public function loadPlugins(data:Object):void {
-			var model:KalturaModelLocator = KalturaModelLocator.getInstance();
+			var model:VidiunModelLocator = VidiunModelLocator.getInstance();
 			var pluginsProvider:Array = data as Array;
 			//var pluginsProvider:Array = data.result;
 			/* pluginsProvider:   [transitionsArray, overlaysArray, textOverlaysArray, effectsArray] */
-			var pinfo:KalturaPluginInfo;
+			var pinfo:VidiunPluginInfo;
 			var baseUrl:String;
 			var thumbUrl:String;
-			var debugFromIDE:Boolean = kapp.applicationConfig.debugFromIDE;
+			var debugFromIDE:Boolean = vapp.applicationConfig.debugFromIDE;
 			var pluginsUrl:String = URLProccessing.prepareURL(model.applicationConfig.pluginsFolder + "/", !debugFromIDE, false);
 			for (var i:int = 0; i < pluginsProvider.length; ++i) {
 				for (var j:int = 0; j < pluginsProvider[i].length; ++j) {
-					pinfo = pluginsProvider[i].getItemAt(j) as KalturaPluginInfo;
+					pinfo = pluginsProvider[i].getItemAt(j) as VidiunPluginInfo;
 					baseUrl = pluginsUrl + model.applicationConfig.transitionsFolder + "/" + pinfo.pluginId + "/";
 					thumbUrl = pinfo.thumbnailUrl == '' ? baseUrl + "thumbnail.swf" : pinfo.thumbnailUrl;
 					pinfo.thumbnailUrl = thumbUrl;
 				}
 			}
-			kapp.transitions = pluginsProvider[0];
-			kapp.overlays = pluginsProvider[1];
-			kapp.textOverlays = pluginsProvider[2];
-			kapp.effects = pluginsProvider[3];
+			vapp.transitions = pluginsProvider[0];
+			vapp.overlays = pluginsProvider[1];
+			vapp.textOverlays = pluginsProvider[2];
+			vapp.effects = pluginsProvider[3];
 			thumbUrl = model.applicationConfig.pluginsFolder + "/" + model.applicationConfig.transitionsFolder + "/thumbnail.swf";
-			KalturaApplication.nullAsset.transitionThumbnail = URLProccessing.prepareURL(thumbUrl, true, false);
+			VidiunApplication.nullAsset.transitionThumbnail = URLProccessing.prepareURL(thumbUrl, true, false);
 			model.logStatus = "plugins loaded and instantiated.";
-			var nonePlugin:KalturaPluginInfo = model.transitions.getItemAt(0) as KalturaPluginInfo;
+			var nonePlugin:VidiunPluginInfo = model.transitions.getItemAt(0) as VidiunPluginInfo;
 			AbstractAsset.noneTransitionThumbnail = nonePlugin.thumbnailUrl;
 		}
 
@@ -113,9 +113,9 @@ package com.kaltura.osmf.kalturaMix {
 		 * @param data plugin data
 		 */
 		public function loadPlugingList(data:Object):void {
-			var buildPlugin:Function = function(p:XML, media_type:uint):KalturaPluginInfo {
-					var kpinf:KalturaPluginInfo = new KalturaPluginInfo(media_type, p.@plugin_id, p.@thumbnail, p.parent().@type, p.@label, p.@creator, p.description);
-					return kpinf;
+			var buildPlugin:Function = function(p:XML, media_type:uint):VidiunPluginInfo {
+					var vpinf:VidiunPluginInfo = new VidiunPluginInfo(media_type, p.@plugin_id, p.@thumbnail, p.parent().@type, p.@label, p.@creator, p.description);
+					return vpinf;
 				}
 
 			var pluginsXml:XML = data as XML;
@@ -123,8 +123,8 @@ package com.kaltura.osmf.kalturaMix {
 			var overlaysArray:ArrayCollection = new ArrayCollection();
 			var textOverlaysArray:ArrayCollection = new ArrayCollection();
 			var effectsArray:ArrayCollection = new ArrayCollection();
-			var pinf:KalturaPluginInfo;
-			var noneTransition:KalturaPluginInfo;
+			var pinf:VidiunPluginInfo;
+			var noneTransition:VidiunPluginInfo;
 			var pluginXml:XML;
 			for each (pluginXml in pluginsXml..transitions..plugin) {
 				pinf = buildPlugin(pluginXml, MediaTypes.TRANSITION);
@@ -157,20 +157,20 @@ package com.kaltura.osmf.kalturaMix {
 		public function getReadyEntries():void {
 			var getMixReadyEntries:MixingGetReadyMediaEntries = new MixingGetReadyMediaEntries(mixEntry.id, mixEntry.version);
 
-			getMixReadyEntries.addEventListener(KalturaEvent.COMPLETE, complete);
-			getMixReadyEntries.addEventListener(KalturaEvent.FAILED, failed);
-			kc.post(getMixReadyEntries);
+			getMixReadyEntries.addEventListener(VidiunEvent.COMPLETE, complete);
+			getMixReadyEntries.addEventListener(VidiunEvent.FAILED, failed);
+			vc.post(getMixReadyEntries);
 		}
 
 
-		private function failed(event:KalturaEvent):void {
+		private function failed(event:VidiunEvent):void {
 			trace("getMixReadyEntries", event.toString());
 		}
 
 
-		private function complete(event:KalturaEvent):void {
+		private function complete(event:VidiunEvent):void {
 			roughcut = new Roughcut(mixEntry);
-			kapp.addRoughcut(roughcut);
+			vapp.addRoughcut(roughcut);
 
 			var readyEntriesResult:* = event.data;
 			if (readyEntriesResult is Array) {
@@ -178,17 +178,17 @@ package com.kaltura.osmf.kalturaMix {
 				var asset:AbstractAsset;
 				var thumbUrl:String;
 				var mediaUrl:String;
-				for each (var entry:KalturaMediaEntry in readyEntries) {
+				for each (var entry:VidiunMediaEntry in readyEntries) {
 					entry.mediaType = MediaTypes.translateServerType(entry.mediaType);
 					asset = roughcut.associatedAssets.getValue(entry.id);
 					if (asset)
 						continue;
-					kapp.addEntry(entry);
-					if (entry.status != KalturaEntryStatus.BLOCKED && entry.status != KalturaEntryStatus.DELETED && entry.status != KalturaEntryStatus.ERROR_CONVERTING) {
+					vapp.addEntry(entry);
+					if (entry.status != VidiunEntryStatus.BLOCKED && entry.status != VidiunEntryStatus.DELETED && entry.status != VidiunEntryStatus.ERROR_CONVERTING) {
 						//thumbUrl = URLProccessing.hashURLforMultipalDomains (entry.thumbnailUrl, entry.id);
 						mediaUrl = entry.mediaUrl;
 						asset = AssetsFactory.create(entry.mediaType, 'null', entry.id, entry.name, thumbUrl, mediaUrl, entry.duration, entry.duration, 0, 0, TransitionTypes.NONE, 0, false, false, null, entry);
-						asset.kalturaEntry = entry;
+						asset.vidiunEntry = entry;
 						asset.mediaURL = entry.dataUrl;
 						asset.entryContributor = entry.creditUserName;
 						asset.entrySourceCode = parseInt(entry.sourceType);
@@ -200,7 +200,7 @@ package com.kaltura.osmf.kalturaMix {
 				}
 			}
 			isReady = true;
-			if ((mediaElement.getTrait(MediaTraitType.PLAY) as KalturaMixPlayTrait).playState == "playing") {
+			if ((mediaElement.getTrait(MediaTraitType.PLAY) as VidiunMixPlayTrait).playState == "playing") {
 				loadAssets();
 			}
 		/* var sdl:XML = new XML (mixEntry.dataContent);
@@ -211,7 +211,7 @@ package com.kaltura.osmf.kalturaMix {
 		   roughcut.loadAssetsMediaSources (Timelines2Load, roughcut.streamingMode);
 
 		   eplayer.roughcut = roughcut;
-		 (mediaElement.getTrait(MediaTraitType.TIME) as KalturaMixTimeTrait).setSuperDuration(roughcut.roughcutDuration); */
+		 (mediaElement.getTrait(MediaTraitType.TIME) as VidiunMixTimeTrait).setSuperDuration(roughcut.roughcutDuration); */
 		}
 
 		/**
@@ -226,8 +226,8 @@ package com.kaltura.osmf.kalturaMix {
 			roughcut.loadAssetsMediaSources(Timelines2Load, roughcut.streamingMode);
 
 			eplayer.roughcut = roughcut;
-			(mediaElement.getTrait(MediaTraitType.TIME) as KalturaMixTimeTrait).setSuperDuration(roughcut.roughcutDuration);
-			(mediaElement.getTrait(MediaTraitType.DISPLAY_OBJECT) as KalturaMixViewTrait).isSpriteLoaded = true;
+			(mediaElement.getTrait(MediaTraitType.TIME) as VidiunMixTimeTrait).setSuperDuration(roughcut.roughcutDuration);
+			(mediaElement.getTrait(MediaTraitType.DISPLAY_OBJECT) as VidiunMixViewTrait).isSpriteLoaded = true;
 		}
 
 		/**
@@ -254,35 +254,35 @@ package com.kaltura.osmf.kalturaMix {
 		 * @param _height
 		 * @param isHashDisabled
 		 */		
-		public function KalturaMixSprite(_mediaElement:KalturaMixElement, _width:Number, _height:Number, isHashDisabled:Boolean) {
+		public function VidiunMixSprite(_mediaElement:VidiunMixElement, _width:Number, _height:Number, isHashDisabled:Boolean) {
 			disableUrlHashing = isHashDisabled;
 			URLProccessing.disable_hashURLforMultipalDomains = disableUrlHashing;
-			kapp = KalturaApplication.getInstance();
+			vapp = VidiunApplication.getInstance();
 			mediaElement = _mediaElement;
-			mixEntry = KalturaBaseEntryResource(mediaElement.resource).entry as KalturaMixEntry;
+			mixEntry = VidiunBaseEntryResource(mediaElement.resource).entry as VidiunMixEntry;
 			setupSprite(_width, _height);
 
 			var servicesProxy:Object = facade.retrieveProxy("servicesProxy");
-			kc = servicesProxy.kalturaClient;
+			vc = servicesProxy.vidiunClient;
 
 			var configProxy:Object = facade.retrieveProxy("configProxy");
 			var flashvars:Object = configProxy.getData().flashvars;
 
-			var app:KalturaApplication = KalturaApplication.getInstance();
+			var app:VidiunApplication = VidiunApplication.getInstance();
 			var partnerInfo:PartnerInfo = new PartnerInfo();
-			partnerInfo.partner_id = kc.partnerId;
+			partnerInfo.partner_id = vc.partnerId;
 			partnerInfo.subp_id = "0";
-			app.initKalturaApplication("", null);
-			kapp.partnerInfo = partnerInfo;
+			app.initVidiunApplication("", null);
+			vapp.partnerInfo = partnerInfo;
 
 			URLProccessing.serverURL = flashvars.httpProtocol + flashvars.host;
 			URLProccessing.cdnURL = flashvars.httpProtocol + flashvars.cdnHost;
 
 			if (!mixPluginsLoaded) {
-				var baseUrl:String = kalturaMixPlugin.mixPluginsBaseUrl;
-				kapp.applicationConfig.pluginsFolder = URLProccessing.completeUrl(baseUrl, URLProccessing.BINDING_CDN_SERVER_URL);
+				var baseUrl:String = vidiunMixPlugin.mixPluginsBaseUrl;
+				vapp.applicationConfig.pluginsFolder = URLProccessing.completeUrl(baseUrl, URLProccessing.BINDING_CDN_SERVER_URL);
 
-				var url:String = kapp.applicationConfig.pluginsFolder + "/" + (flashvars.mixPluginsListFile ? flashvars.mixPluginsListFile : "plugins.xml");
+				var url:String = vapp.applicationConfig.pluginsFolder + "/" + (flashvars.mixPluginsListFile ? flashvars.mixPluginsListFile : "plugins.xml");
 				var urlRequest:URLRequest = new URLRequest(url);
 				pluginListLoader = new URLLoader();
 				pluginListLoader.addEventListener(Event.COMPLETE, loadedPluginsList);

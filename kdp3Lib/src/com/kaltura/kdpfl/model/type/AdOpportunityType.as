@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.model.type
+package com.vidiun.vdpfl.model.type
 {
 	/**
 	 * Represents triger types for the AD_OPPORTUNITY notification 

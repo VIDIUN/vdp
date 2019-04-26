@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin
+package com.vidiun.vdpfl.plugin
 {
 	import org.osmf.media.MediaElement;
 	
@@ -25,8 +25,8 @@ package com.kaltura.kdpfl.plugin
 		function subSequenceLength () : int
 		
 		/**
-		 * Returns whether the Sequence Plugin plays within the KDP or loads its own media over it. 
-		 * @return The function returns <code>true</code> if the plugin media plays within the KDP
+		 * Returns whether the Sequence Plugin plays within the VDP or loads its own media over it. 
+		 * @return The function returns <code>true</code> if the plugin media plays within the VDP
 		 *  and <code>false</code> otherwise.
 		 * 
 		 */		
@@ -35,20 +35,20 @@ package com.kaltura.kdpfl.plugin
 		/**
 		 * Function for retrieving the entry id of the plugin media
 		 * @return The function returns the entry id of the plugin media. If the plugin does not play
-		 * 			a kaltura-based entry, the return value is the URL of the media of the plugin.
+		 * 			a vidiun-based entry, the return value is the URL of the media of the plugin.
 		 */		
 		function get entryId () : String
 		
 		/**
 		 * Function for retrieving the source type of the plugin media (url or entryId) 
-		 * @return If the plugin plays a Kaltura-Based entry the function returns <code>entryId</script>.
+		 * @return If the plugin plays a Vidiun-Based entry the function returns <code>entryId</script>.
 		 * Otherwise the return value is <code>url</script>
 		 * 
 		 */		
 		function get sourceType () : String
 		/**
-		 * Function to retrieve the MediaElement the plugin will play in the KDP. 
-		 * @return returns the MediaElement that the plugin will play in the KDP. 
+		 * Function to retrieve the MediaElement the plugin will play in the VDP. 
+		 * @return returns the MediaElement that the plugin will play in the VDP. 
 		 * 
 		 */		
 		function get mediaElement () : Object

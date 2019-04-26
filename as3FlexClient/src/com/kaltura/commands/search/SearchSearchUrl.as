@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,18 +25,18 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.search
+package com.vidiun.commands.search
 {
-	import com.kaltura.delegates.search.SearchSearchUrlDelegate;
-	import com.kaltura.net.KalturaCall;
+	import com.vidiun.delegates.search.SearchSearchUrlDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Search for media given a specific URL
-	* Kaltura supports a searchURL action on some of the media providers.
-	* This action will return a KalturaSearchResult object based on a given URL (assuming the media provider is supported)
+	* Vidiun supports a searchURL action on some of the media providers.
+	* This action will return a VidiunSearchResult object based on a given URL (assuming the media provider is supported)
 	* 
 	**/
-	public class SearchSearchUrl extends KalturaCall
+	public class SearchSearchUrl extends VidiunCall
 	{
 		public var filterFields : String;
 		

@@ -1,94 +1,94 @@
-package com.kaltura.kdpfl.controller.media
+package com.vidiun.vdpfl.controller.media
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.MultiRequest;
-	import com.kaltura.commands.baseEntry.BaseEntryGet;
-	import com.kaltura.commands.baseEntry.BaseEntryGetContextData;
-	import com.kaltura.commands.flavorAsset.FlavorAssetGetWebPlayableByEntryId;
-	import com.kaltura.errors.KalturaError;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.strings.MessageStrings;
-	import com.kaltura.kdpfl.model.type.SourceType;
-	import com.kaltura.types.KalturaEntryModerationStatus;
-	import com.kaltura.types.KalturaEntryStatus;
-	import com.kaltura.vo.KalturaBaseEntry;
-	import com.kaltura.vo.KalturaEntryContextDataParams;
-	import com.kaltura.vo.KalturaLiveStreamEntry;KalturaLiveStreamEntry;
-	import com.kaltura.vo.KalturaLiveStreamAdminEntry; KalturaLiveStreamAdminEntry;
-	import com.kaltura.vo.KalturaLiveStreamBitrate; KalturaLiveStreamBitrate;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.commands.MultiRequest;
+	import com.vidiun.commands.baseEntry.BaseEntryGet;
+	import com.vidiun.commands.baseEntry.BaseEntryGetContextData;
+	import com.vidiun.commands.flavorAsset.FlavorAssetGetWebPlayableByEntryId;
+	import com.vidiun.errors.VidiunError;
+	import com.vidiun.events.VidiunEvent;
+	import com.vidiun.vdpfl.model.ConfigProxy;
+	import com.vidiun.vdpfl.model.MediaProxy;
+	import com.vidiun.vdpfl.model.ServicesProxy;
+	import com.vidiun.vdpfl.model.strings.MessageStrings;
+	import com.vidiun.vdpfl.model.type.SourceType;
+	import com.vidiun.types.VidiunEntryModerationStatus;
+	import com.vidiun.types.VidiunEntryStatus;
+	import com.vidiun.vo.VidiunBaseEntry;
+	import com.vidiun.vo.VidiunEntryContextDataParams;
+	import com.vidiun.vo.VidiunLiveStreamEntry;VidiunLiveStreamEntry;
+	import com.vidiun.vo.VidiunLiveStreamAdminEntry; VidiunLiveStreamAdminEntry;
+	import com.vidiun.vo.VidiunLiveStreamBitrate; VidiunLiveStreamBitrate;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.AsyncCommand;
-	import com.kaltura.vo.KalturaFlavorAsset;
-	import com.kaltura.vo.KalturaWidevineFlavorAsset; KalturaWidevineFlavorAsset;
-	import com.kaltura.kdpfl.model.type.StreamerType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayer;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.kdpfl.model.type.EnableType;
+	import com.vidiun.vo.VidiunFlavorAsset;
+	import com.vidiun.vo.VidiunWidevineFlavorAsset; VidiunWidevineFlavorAsset;
+	import com.vidiun.vdpfl.model.type.StreamerType;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.view.media.VMediaPlayer;
+	import com.vidiun.vdpfl.view.media.VMediaPlayerMediator;
+	import com.vidiun.vdpfl.model.type.EnableType;
 	import flash.events.Event;
-	import com.kaltura.vo.KalturaMetadataListResponse;
-	import com.kaltura.vo.KalturaMetadataFilter;
-	import com.kaltura.types.KalturaMetadataObjectType;
-	import com.kaltura.commands.metadata.MetadataList;
-	import com.kaltura.net.KalturaCall;
-	import com.kaltura.commands.metadata.MetadataGet;
-	import com.kaltura.kdpfl.model.PlayerStatusProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.types.KalturaMetadataOrderBy;
-	import com.kaltura.vo.KalturaFilterPager;
-	import com.kaltura.vo.KalturaCuePointFilter;
-	import com.kaltura.commands.cuePoint.CuePointList;
-	import com.kaltura.vo.KalturaCuePointListResponse;
-	import com.kaltura.vo.KalturaCuePoint;
-	import com.kaltura.vo.KalturaAdCuePoint;KalturaAdCuePoint;
-	import com.kaltura.vo.KalturaCodeCuePoint;KalturaCodeCuePoint;
-	import com.kaltura.vo.KalturaCaptionAsset;
-	import com.kaltura.types.KalturaAdProtocolType;
-	import com.kaltura.types.KalturaAdType;
-	import com.kaltura.vo.KalturaAnnotation; KalturaAnnotation;
+	import com.vidiun.vo.VidiunMetadataListResponse;
+	import com.vidiun.vo.VidiunMetadataFilter;
+	import com.vidiun.types.VidiunMetadataObjectType;
+	import com.vidiun.commands.metadata.MetadataList;
+	import com.vidiun.net.VidiunCall;
+	import com.vidiun.commands.metadata.MetadataGet;
+	import com.vidiun.vdpfl.model.PlayerStatusProxy;
+	import com.vidiun.vdpfl.model.SequenceProxy;
+	import com.vidiun.types.VidiunMetadataOrderBy;
+	import com.vidiun.vo.VidiunFilterPager;
+	import com.vidiun.vo.VidiunCuePointFilter;
+	import com.vidiun.commands.cuePoint.CuePointList;
+	import com.vidiun.vo.VidiunCuePointListResponse;
+	import com.vidiun.vo.VidiunCuePoint;
+	import com.vidiun.vo.VidiunAdCuePoint;VidiunAdCuePoint;
+	import com.vidiun.vo.VidiunCodeCuePoint;VidiunCodeCuePoint;
+	import com.vidiun.vo.VidiunCaptionAsset;
+	import com.vidiun.types.VidiunAdProtocolType;
+	import com.vidiun.types.VidiunAdType;
+	import com.vidiun.vo.VidiunAnnotation; VidiunAnnotation;
 	import flash.external.ExternalInterface;
 	import flash.net.URLRequest;
 	import flash.net.URLRequestMethod;
 	import flash.net.URLRequestHeader;
-	import com.kaltura.vo.BaseFlexVo;
-	import com.kaltura.vo.KalturaMetadata;
+	import com.vidiun.vo.BaseFlexVo;
+	import com.vidiun.vo.VidiunMetadata;
 	import org.osmf.net.StreamType;
-	import com.kaltura.kdpfl.model.vo.StorageProfileVO;
-	import com.kaltura.kdpfl.view.controls.KTrace;
-	import com.kaltura.commands.baseEntry.BaseEntryList;
-	import com.kaltura.vo.KalturaBaseEntryFilter;
-	import com.kaltura.vo.KalturaEntryContextDataResult;
-	import com.kaltura.commands.baseEntry.BaseEntryListByReferenceId;
-	import com.kaltura.commands.metadataProfile.MetadataProfileGet;
-	import com.kaltura.vo.KalturaAccessControlBlockAction;
-	import com.kaltura.vo.KalturaString;
-	import com.kaltura.commands.flavorAsset.FlavorAssetList;
-	import com.kaltura.vo.KalturaFlavorAssetListResponse;
-	import com.kaltura.vo.KalturaAssetFilter;
-	import com.kaltura.vo.KalturaFlavorAssetFilter;
-	import com.kaltura.types.KalturaFlavorAssetStatus;
-	import com.kaltura.kdpfl.util.SharedObjectUtil;
-	import com.kaltura.kdpfl.plugin.Plugin;
+	import com.vidiun.vdpfl.model.vo.StorageProfileVO;
+	import com.vidiun.vdpfl.view.controls.VTrace;
+	import com.vidiun.commands.baseEntry.BaseEntryList;
+	import com.vidiun.vo.VidiunBaseEntryFilter;
+	import com.vidiun.vo.VidiunEntryContextDataResult;
+	import com.vidiun.commands.baseEntry.BaseEntryListByReferenceId;
+	import com.vidiun.commands.metadataProfile.MetadataProfileGet;
+	import com.vidiun.vo.VidiunAccessControlBlockAction;
+	import com.vidiun.vo.VidiunString;
+	import com.vidiun.commands.flavorAsset.FlavorAssetList;
+	import com.vidiun.vo.VidiunFlavorAssetListResponse;
+	import com.vidiun.vo.VidiunAssetFilter;
+	import com.vidiun.vo.VidiunFlavorAssetFilter;
+	import com.vidiun.types.VidiunFlavorAssetStatus;
+	import com.vidiun.vdpfl.util.SharedObjectUtil;
+	import com.vidiun.vdpfl.plugin.Plugin;
 	import flash.events.IOErrorEvent;
 	import flash.events.SecurityErrorEvent;
 	import flash.events.ErrorEvent;
 	import flash.events.AsyncErrorEvent;
-	import com.kaltura.kdpfl.plugin.PluginManager;
+	import com.vidiun.vdpfl.plugin.PluginManager;
 	import mx.utils.URLUtil;
-	import com.kaltura.kdpfl.util.URLUtils;
-	import com.kaltura.types.KalturaPlaybackProtocol;
+	import com.vidiun.vdpfl.util.URLUtils;
+	import com.vidiun.types.VidiunPlaybackProtocol;
 	import mx.controls.Text;
-	import com.kaltura.kdpfl.util.KTextParser;
-	import com.kaltura.vo.KalturaLiveChannel;KalturaLiveChannel;
+	import com.vidiun.vdpfl.util.VTextParser;
+	import com.vidiun.vo.VidiunLiveChannel;VidiunLiveChannel;
 
  
 
 
 	/**
-	 * This is the class for the command used to retrieve the entry object and its related data from the Kaltura CMS. 
+	 * This is the class for the command used to retrieve the entry object and its related data from the Vidiun CMS. 
 	 * @author Hila
 	 * 
 	 */	
@@ -106,8 +106,8 @@ package com.kaltura.kdpfl.controller.media
 		private var _waitForAkamaiLoad:Boolean;
 		
 		/**
-		 * The command's execution involves using the Kaltura Client to construct a multi-tiered call to the
-		 * Kaltura CMS (a MultiRequest) and populating it with single-tier calls to get the Entry object, the Flavors array,
+		 * The command's execution involves using the Vidiun Client to construct a multi-tiered call to the
+		 * Vidiun CMS (a MultiRequest) and populating it with single-tier calls to get the Entry object, the Flavors array,
 		 * the Entry Context Data and the Custom Metadata.
 		 * @param notification - the notifcation which triggered the command.
 		 * 
@@ -119,7 +119,7 @@ package com.kaltura.kdpfl.controller.media
 			var configProxy : ConfigProxy = facade.retrieveProxy( ConfigProxy.NAME ) as ConfigProxy;
 			_flashvars = configProxy.vo.flashvars;
 			_mediaProxy.vo.isMediaDisabled = false;
-			// for urls dont fetch entry from kaltura;
+			// for urls dont fetch entry from vidiun;
 			if (_flashvars.sourceType == SourceType.URL || _flashvars.sourceType == SourceType.F4M)
 			{
 				if (!_mediaProxy.vo.entry.id || _mediaProxy.vo.entry.id == "" || _mediaProxy.vo.entry.id== "-1" )
@@ -135,14 +135,14 @@ package com.kaltura.kdpfl.controller.media
 				_mediaProxy.vo.entryLoadedBeforeChangeMedia = false;
 				_mediaProxy.vo.selectedFlavorId = _flashvars.flavorId;
 				
-				//If this is the first time that the player is running WITHOUT A KDP3WRAPPER, bypass this call, as the entry was retrieved in the LoadConfigCommand stage.
-				result({data:[_mediaProxy.vo.entry,_mediaProxy.vo.kalturaMediaFlavorArray,_mediaProxy.vo.entryExtraData, (_flashvars.requiredMetadataFields ? _mediaProxy.vo.entryMetadata : null)]});
+				//If this is the first time that the player is running WITHOUT A VDP3WRAPPER, bypass this call, as the entry was retrieved in the LoadConfigCommand stage.
+				result({data:[_mediaProxy.vo.entry,_mediaProxy.vo.vidiunMediaFlavorArray,_mediaProxy.vo.entryExtraData, (_flashvars.requiredMetadataFields ? _mediaProxy.vo.entryMetadata : null)]});
 			}
 			else //else call to the get entry service again
 			{
 				//To do : make multirequest just fetching a new entryId .
 				
-				var kc : KalturaClient = ( facade.retrieveProxy( ServicesProxy.NAME ) as ServicesProxy ).kalturaClient;
+				var vc : VidiunClient = ( facade.retrieveProxy( ServicesProxy.NAME ) as ServicesProxy ).vidiunClient;
 				var entryId : String = _mediaProxy.vo.entry.id;	// assuming InitMediaChangeProcessCommand put it there
 				var refid : String = notification.getBody().referenceId;
 				
@@ -152,7 +152,7 @@ package com.kaltura.kdpfl.controller.media
 					var mr : MultiRequest = new MultiRequest();
 					
 					// get entry by refid / redirectEntryId / entryId
-					var baseEntryFilter:KalturaBaseEntryFilter = new KalturaBaseEntryFilter();	
+					var baseEntryFilter:VidiunBaseEntryFilter = new VidiunBaseEntryFilter();	
 					if (refid) {
 						baseEntryFilter.referenceIdEqual = refid;
 					} else if ( !_flashvars.disableEntryRedirect || _flashvars.disableEntryRedirect == "false" ) {
@@ -167,33 +167,33 @@ package com.kaltura.kdpfl.controller.media
 
 					ind ++;
 					
-					var keedp : KalturaEntryContextDataParams = new KalturaEntryContextDataParams();
-					keedp.referrer = _flashvars.referrer;	
-					keedp.streamerType = _flashvars.streamerType;
+					var veedp : VidiunEntryContextDataParams = new VidiunEntryContextDataParams();
+					veedp.referrer = _flashvars.referrer;	
+					veedp.streamerType = _flashvars.streamerType;
 					if (_flashvars.flavorTags)
 					{
-						keedp.flavorTags = 	_flashvars.flavorTags;
+						veedp.flavorTags = 	_flashvars.flavorTags;
 					}
 					
 					if (_flashvars.flavorId)
 					{
-						keedp.flavorAssetId = _flashvars.flavorId;
+						veedp.flavorAssetId = _flashvars.flavorId;
 					}
 					
-					var getExtraData : BaseEntryGetContextData = new BaseEntryGetContextData( _mediaProxy.vo.entry.id , keedp );
+					var getExtraData : BaseEntryGetContextData = new BaseEntryGetContextData( _mediaProxy.vo.entry.id , veedp );
 					mr.addRequestParam(ind + ":entryId","{1:result:objects:0:id}");
 					mr.addAction(getExtraData); 
 					ind ++;
 					
 					if (_flashvars.requiredMetadataFields)
 					{
-						var metadataAction : KalturaCall;
+						var metadataAction : VidiunCall;
 						
-						var metadataFilter : KalturaMetadataFilter = new KalturaMetadataFilter();
+						var metadataFilter : VidiunMetadataFilter = new VidiunMetadataFilter();
 						
-						metadataFilter.metadataObjectTypeEqual = KalturaMetadataObjectType.ENTRY;
+						metadataFilter.metadataObjectTypeEqual = VidiunMetadataObjectType.ENTRY;
 						
-						metadataFilter.orderBy = KalturaMetadataOrderBy.CREATED_AT_ASC;
+						metadataFilter.orderBy = VidiunMetadataOrderBy.CREATED_AT_ASC;
 						
 						metadataFilter.objectIdEqual = _mediaProxy.vo.entry.id;
 						
@@ -202,7 +202,7 @@ package com.kaltura.kdpfl.controller.media
 							metadataFilter.metadataProfileIdEqual = _flashvars.metadataProfileId;
 						}
 						
-						var metadataPager : KalturaFilterPager = new KalturaFilterPager();
+						var metadataPager : VidiunFilterPager = new VidiunFilterPager();
 						
 						metadataPager.pageSize = 1;
 						
@@ -216,7 +216,7 @@ package com.kaltura.kdpfl.controller.media
 					
 					if ( _flashvars.getCuePointsData == "true" && !_mediaProxy.vo.isFlavorSwitching && !_sequenceProxy.vo.isInSequence)
 					{
-						var cuePointFilter : KalturaCuePointFilter = new KalturaCuePointFilter();
+						var cuePointFilter : VidiunCuePointFilter = new VidiunCuePointFilter();
 						
 						cuePointFilter.entryIdEqual = _mediaProxy.vo.entry.id;
 						
@@ -229,9 +229,9 @@ package com.kaltura.kdpfl.controller.media
 					}
 					
 					
-					mr.addEventListener( KalturaEvent.COMPLETE , result );
-					mr.addEventListener( KalturaEvent.FAILED , fault );
-					kc.post( mr );
+					mr.addEventListener( VidiunEvent.COMPLETE , result );
+					mr.addEventListener( VidiunEvent.FAILED , fault );
+					vc.post( mr );
 				}
 				else
 				{
@@ -252,34 +252,34 @@ package com.kaltura.kdpfl.controller.media
 			var i : int = 0;
 			var arr : Array = data.data as Array;
 			
-			var entry:KalturaBaseEntry; 
+			var entry:VidiunBaseEntry; 
 			
 			// get entry result:
 			// -------------------------
 			// check for API error
-			if(arr[i] is KalturaError || (arr[i].hasOwnProperty("error")))
+			if(arr[i] is VidiunError || (arr[i].hasOwnProperty("error")))
 			{
 				_mediaProxy.vo.isMediaDisabled = true;
-				KTrace.getInstance().log("Error in Get Entry");
+				VTrace.getInstance().log("Error in Get Entry");
 				sendNotification( NotificationType.ENTRY_FAILED );
 				sendNotification( NotificationType.ALERT , {message: MessageStrings.getString('SERVICE_GET_ENTRY_ERROR'), title: MessageStrings.getString('SERVICE_ERROR')} );
 			}
 			// save the received value
 			else
 			{
-				// arr[i] is KalturaBaseEntryListResponse, take the first entry in the result array
+				// arr[i] is VidiunBaseEntryListResponse, take the first entry in the result array
 				if (arr[i].objects.length) {
 					entry = arr[i].objects[0];
 				}
 				else {
-					KTrace.getInstance().log("Error in Get Entry: No Entry with given filter");
+					VTrace.getInstance().log("Error in Get Entry: No Entry with given filter");
 					sendNotification( NotificationType.ENTRY_FAILED );
 					sendNotification( NotificationType.ALERT , {message: MessageStrings.getString('SERVICE_GET_ENTRY_ERROR'), title: MessageStrings.getString('SERVICE_ERROR')} );
 				}
 					
 				_mediaProxy.vo.entry = entry;
 				
-				if(entry is KalturaLiveStreamEntry || _flashvars.streamerType == StreamerType.LIVE)
+				if(entry is VidiunLiveStreamEntry || _flashvars.streamerType == StreamerType.LIVE)
 				{
 					_mediaProxy.vo.deliveryType = StreamerType.LIVE;
 					_mediaProxy.vo.isLive = true;
@@ -306,19 +306,19 @@ package com.kaltura.kdpfl.controller.media
 	
 			// get ContextData result:
 			// -------------------------
-			if(arr[i] is KalturaError || (arr[i].hasOwnProperty("error")))
+			if(arr[i] is VidiunError || (arr[i].hasOwnProperty("error")))
 			{
 				//TODO: Trace, Report, and notify the user
-				KTrace.getInstance().log("Warning : Empty Extra Params");
+				VTrace.getInstance().log("Warning : Empty Extra Params");
 			}
 			else
 			{
 				_mediaProxy.vo.entryExtraData = arr[i];	
 					
-				if (_flashvars.streamerType == KalturaPlaybackProtocol.AUTO && _mediaProxy.vo.entryExtraData.streamerType && _mediaProxy.vo.entryExtraData.streamerType != "")
+				if (_flashvars.streamerType == VidiunPlaybackProtocol.AUTO && _mediaProxy.vo.entryExtraData.streamerType && _mediaProxy.vo.entryExtraData.streamerType != "")
 				{
 					_mediaProxy.vo.deliveryType = _mediaProxy.vo.entryExtraData.streamerType;
-					if (_mediaProxy.vo.entryExtraData.streamerType == KalturaPlaybackProtocol.AKAMAI_HDS || _mediaProxy.vo.entryExtraData.streamerType == KalturaPlaybackProtocol.AKAMAI_HD)
+					if (_mediaProxy.vo.entryExtraData.streamerType == VidiunPlaybackProtocol.AKAMAI_HDS || _mediaProxy.vo.entryExtraData.streamerType == VidiunPlaybackProtocol.AKAMAI_HD)
 					{
 						//load akamaiHD plugin, if it wasn't already loaded
 						var akamaiHdPlugin:Object = facade['bindObject']['Plugin_akamaiHD'];
@@ -346,7 +346,7 @@ package com.kaltura.kdpfl.controller.media
 						}
 					}
 					
-					if (_mediaProxy.vo.entryExtraData.streamerType == KalturaPlaybackProtocol.HDS || _mediaProxy.vo.entryExtraData.streamerType == KalturaPlaybackProtocol.AKAMAI_HDS)
+					if (_mediaProxy.vo.entryExtraData.streamerType == VidiunPlaybackProtocol.HDS || _mediaProxy.vo.entryExtraData.streamerType == VidiunPlaybackProtocol.AKAMAI_HDS)
 					{
 						_mediaProxy.vo.isHds = true;
 					}
@@ -384,16 +384,16 @@ package com.kaltura.kdpfl.controller.media
 				//flavors
 				if(!_mediaProxy.vo.entryExtraData.flavorAssets || !_mediaProxy.vo.entryExtraData.flavorAssets.length)
 				{
-					KTrace.getInstance().log("Warning : Empty Flavors");
-					_mediaProxy.vo.kalturaMediaFlavorArray = null;
+					VTrace.getInstance().log("Warning : Empty Flavors");
+					_mediaProxy.vo.vidiunMediaFlavorArray = null;
 					
 					//if this is live entry we will create the flavors using 
-					if( entry is KalturaLiveStreamEntry )
+					if( entry is VidiunLiveStreamEntry )
 					{
 						var flavorAssetArray : Array = new Array(); 
 						for(var j:int=0; j<entry.bitrates.length; j++)
 						{
-							var flavorAsset : KalturaFlavorAsset = new KalturaFlavorAsset();
+							var flavorAsset : VidiunFlavorAsset = new VidiunFlavorAsset();
 							flavorAsset.bitrate = entry.bitrates[j].bitrate;
 							flavorAsset.height = entry.bitrates[j].height;
 							flavorAsset.width = entry.bitrates[j].width;
@@ -405,23 +405,23 @@ package com.kaltura.kdpfl.controller.media
 						}
 						
 						if(j>0)
-							_mediaProxy.vo.kalturaMediaFlavorArray = flavorAssetArray;
+							_mediaProxy.vo.vidiunMediaFlavorArray = flavorAssetArray;
 						else
-							_mediaProxy.vo.kalturaMediaFlavorArray = null;
+							_mediaProxy.vo.vidiunMediaFlavorArray = null;
 					}
 					else
 					{
-						_mediaProxy.vo.kalturaMediaFlavorArray = null;
+						_mediaProxy.vo.vidiunMediaFlavorArray = null;
 					}
 				}
 				else
 				{
-					_mediaProxy.vo.kalturaMediaFlavorArray = _mediaProxy.vo.entryExtraData.flavorAssets;
+					_mediaProxy.vo.vidiunMediaFlavorArray = _mediaProxy.vo.entryExtraData.flavorAssets;
 										
 					//save the highest bitrate available to cookie. This will be used to determine whether we should perform
 					//bandwidth check in the future
-					if (_mediaProxy.vo.kalturaMediaFlavorArray.length)
-						SharedObjectUtil.writeToCookie("Kaltura", "lastHighestBR", (_mediaProxy.vo.kalturaMediaFlavorArray[_mediaProxy.vo.kalturaMediaFlavorArray.length - 1] as KalturaFlavorAsset).bitrate, _flashvars.allowCookies);
+					if (_mediaProxy.vo.vidiunMediaFlavorArray.length)
+						SharedObjectUtil.writeToCookie("Vidiun", "lastHighestBR", (_mediaProxy.vo.vidiunMediaFlavorArray[_mediaProxy.vo.vidiunMediaFlavorArray.length - 1] as VidiunFlavorAsset).bitrate, _flashvars.allowCookies);
 				} 
 				
 				
@@ -432,10 +432,10 @@ package com.kaltura.kdpfl.controller.media
 			// -------------------------
 			if (_flashvars.requiredMetadataFields)
 			{
-				if(arr[i] is KalturaError || (arr[i].hasOwnProperty("error")))
+				if(arr[i] is VidiunError || (arr[i].hasOwnProperty("error")))
 				{
 					//TODO: Trace, Report, and notify the user
-					KTrace.getInstance().log("Warning : Meta data error");
+					VTrace.getInstance().log("Warning : Meta data error");
 					//sendNotification( NotificationType.ALERT , {message: MessageStrings.getString('SERVICE_GET_CUSTOM_METADATA_ERROR_MESSAGE'), title: MessageStrings.getString('SERVICE_ERROR')} );
 				}
 				else
@@ -446,9 +446,9 @@ package com.kaltura.kdpfl.controller.media
 					{
 						mediaProxy.vo.entryMetadata = new Object();
 						var serviceResponse : BaseFlexVo;
-						if (arr[i] is KalturaMetadataListResponse)
+						if (arr[i] is VidiunMetadataListResponse)
 						{
-							var listResponse:KalturaMetadataListResponse = arr[i] as KalturaMetadataListResponse;
+							var listResponse:VidiunMetadataListResponse = arr[i] as VidiunMetadataListResponse;
 							//take the latest profile
 							if (listResponse.objects && listResponse.objects.length)
 							{
@@ -457,7 +457,7 @@ package com.kaltura.kdpfl.controller.media
 						}
 						else //if we requested a specific profile id
 						{
-							serviceResponse = arr[i] as KalturaMetadata;
+							serviceResponse = arr[i] as VidiunMetadata;
 						}
 						if ( serviceResponse )
 						{
@@ -496,14 +496,14 @@ package com.kaltura.kdpfl.controller.media
 			// -------------------------
 			if ( _flashvars.getCuePointsData == "true" && !_mediaProxy.vo.isFlavorSwitching && !_sequenceProxy.vo.isInSequence)
 			{
-				if(arr[i] is KalturaError 
+				if(arr[i] is VidiunError 
 					|| (arr[i].hasOwnProperty("error")))
 				{
-					KTrace.getInstance().log("Warning : No cue points");
+					VTrace.getInstance().log("Warning : No cue points");
 				}
 				else
 				{
-					var cuePointListResponse : KalturaCuePointListResponse = arr[i] as KalturaCuePointListResponse;
+					var cuePointListResponse : VidiunCuePointListResponse = arr[i] as VidiunCuePointListResponse;
 					
 					_mediaProxy.vo.entryCuePoints = new Object();
 					
@@ -511,11 +511,11 @@ package com.kaltura.kdpfl.controller.media
 					
 					var cuePointsArray : Array = cuePointListResponse.objects;
 					
-					for each (var cuePoint : KalturaCuePoint in cuePointsArray)
+					for each (var cuePoint : VidiunCuePoint in cuePointsArray)
 					{
-						if (cuePoint is KalturaAdCuePoint && (cuePoint as KalturaAdCuePoint).sourceUrl)
+						if (cuePoint is VidiunAdCuePoint && (cuePoint as VidiunAdCuePoint).sourceUrl)
 						{
-							(cuePoint as KalturaAdCuePoint).sourceUrl = KTextParser.evaluate(facade["bindObject"], (cuePoint as KalturaAdCuePoint).sourceUrl ) as String;
+							(cuePoint as VidiunAdCuePoint).sourceUrl = VTextParser.evaluate(facade["bindObject"], (cuePoint as VidiunAdCuePoint).sourceUrl ) as String;
 						}
 							
 						// map cue point according to start time.
@@ -543,29 +543,29 @@ package com.kaltura.kdpfl.controller.media
 				//switch the entry status to print the right error to the screen
 				switch( entry.status )
 				{
-					case KalturaEntryStatus.BLOCKED: 
+					case VidiunEntryStatus.BLOCKED: 
 						sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('ENTRY_REJECTED'), title: MessageStrings.getString('ENTRY_REJECTED_TITLE')}); sendEntryCannotBePlayed();
 						break;	
-					case KalturaEntryStatus.DELETED: 
+					case VidiunEntryStatus.DELETED: 
 						sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('ENTRY_DELETED'), title: MessageStrings.getString('ENTRY_DELETED_TITLE')}); sendEntryCannotBePlayed(); 
 						break;	
-					case KalturaEntryStatus.ERROR_CONVERTING: 
+					case VidiunEntryStatus.ERROR_CONVERTING: 
 						sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('ERROR_PROCESSING_MEDIA'), title: MessageStrings.getString('ERROR_PROCESSING_MEDIA_TITLE')}); sendEntryCannotBePlayed(); 
 						break;	
-					case KalturaEntryStatus.ERROR_IMPORTING: 
+					case VidiunEntryStatus.ERROR_IMPORTING: 
 						sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('ERROR_PROCESSING_MEDIA'), title: MessageStrings.getString('ERROR_PROCESSING_MEDIA_TITLE')}); sendEntryCannotBePlayed(); 
 						break;	
-					case KalturaEntryStatus.IMPORT: 
+					case VidiunEntryStatus.IMPORT: 
 						sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('ENTRY_CONVERTING'), title: MessageStrings.getString('ENTRY_CONVERTING_TITLE')}); sendEntryCannotBePlayed(); 
 						break;	
-					case KalturaEntryStatus.PRECONVERT: 
+					case VidiunEntryStatus.PRECONVERT: 
 						sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('ENTRY_CONVERTING'), title: MessageStrings.getString('ENTRY_CONVERTING_TITLE')}); sendEntryCannotBePlayed(); 
 						break;
-					case KalturaEntryStatus.NO_CONTENT:
+					case VidiunEntryStatus.NO_CONTENT:
 						sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('NO_CONTENT'), title: MessageStrings.getString('NO_CONTENT_TITLE')}); sendEntryCannotBePlayed(); 
 						break;
 					
-					case KalturaEntryStatus.READY: 
+					case VidiunEntryStatus.READY: 
 						break;
 					
 					default: 
@@ -576,7 +576,7 @@ package com.kaltura.kdpfl.controller.media
 				//if this entry is not old and has extra data
 				if(_mediaProxy.vo.entryExtraData)
 				{
-					var entryExtraData:KalturaEntryContextDataResult = _mediaProxy.vo.entryExtraData;
+					var entryExtraData:VidiunEntryContextDataResult = _mediaProxy.vo.entryExtraData;
 					
 					// If the requesting user is not the admin:
 					if( !entryExtraData.isAdmin)
@@ -584,11 +584,11 @@ package com.kaltura.kdpfl.controller.media
 						//check if a moderation status alert should be raised
 						switch( entry.moderationStatus )
 						{
-							case KalturaEntryModerationStatus.REJECTED:
+							case VidiunEntryModerationStatus.REJECTED:
 								sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('ENTRY_REJECTED'), title: MessageStrings.getString('ENTRY_REJECTED_TITLE')});
 								sendEntryCannotBePlayed();
 								break;
-							case KalturaEntryModerationStatus.PENDING_MODERATION:
+							case VidiunEntryModerationStatus.PENDING_MODERATION:
 								sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('ENTRY_MODERATE'), title: MessageStrings.getString('ENTRY_MODERATE_TITLE')});
 								sendEntryCannotBePlayed();
 								break;
@@ -626,9 +626,9 @@ package com.kaltura.kdpfl.controller.media
 							sendNotification(NotificationType.CANCEL_ALERTS);
 							sendEntryCannotBePlayed();
 						}
-						// The entry is restricted and the KS is not valid.
+						// The entry is restricted and the VS is not valid.
 						if(entryExtraData.isSessionRestricted && entryExtraData.previewLength <= 0){
-							sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('NO_KS'), title: MessageStrings.getString('NO_KS_TITLE')});
+							sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('NO_VS'), title: MessageStrings.getString('NO_VS_TITLE')});
 							retrictionFound = true;
 							sendEntryCannotBePlayed();
 						}
@@ -645,14 +645,14 @@ package com.kaltura.kdpfl.controller.media
 							for (var k:int = 0; k<entryExtraData.accessControlActions.length; k++)
 							{
 								//if we have at least one block, display all access control messages
-								if (entryExtraData.accessControlActions[k] is KalturaAccessControlBlockAction)
+								if (entryExtraData.accessControlActions[k] is VidiunAccessControlBlockAction)
 								{
 									if (entryExtraData.accessControlMessages && entryExtraData.accessControlMessages.length)
 									{
 										var errString:String = '';
 										for (var l:int = 0; l<entryExtraData.accessControlMessages.length; l++)
 										{
-											errString += (entryExtraData.accessControlMessages[l] as KalturaString).value + '\n';
+											errString += (entryExtraData.accessControlMessages[l] as VidiunString).value + '\n';
 										}
 									}
 									//no messages- display generic access control message
@@ -706,8 +706,8 @@ package com.kaltura.kdpfl.controller.media
 			//TODO: Send more information on the Error
 			sendNotification(NotificationType.ENTRY_FAILED );
 
-		 if (data && data.error && (data.error is KalturaError)) 
-			KTrace.getInstance().log(data.error.errorMsg);
+		 if (data && data.error && (data.error is VidiunError)) 
+			VTrace.getInstance().log(data.error.errorMsg);
 		}
 		
 		/**
@@ -720,7 +720,7 @@ package com.kaltura.kdpfl.controller.media
 			var plugin : Plugin = ( event.target as Plugin );
 			removePluginListeners(plugin);
 			///TODO: alert here?
-			KTrace.getInstance().log("Failed to load AkamaiHD plugin");
+			VTrace.getInstance().log("Failed to load AkamaiHD plugin");
 			_mediaProxy.vo.isMediaDisabled = true;
 			_waitForAkamaiLoad = false;
 			commandComplete();

@@ -1,7 +1,7 @@
 package {
-	//import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.StatisticsMediator;
+	//import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.StatisticsMediator;
 	
 	import fl.managers.*;
 	
@@ -54,7 +54,7 @@ package {
 		{
 			var embeddedData:ByteArray = new EmbeddedDomainData() as ByteArray;
 			var embeddedString:String = embeddedData.toString();
-			if (!statsDomain && embeddedString != "\x00\x00\x00\x00KALTURA_STATSDOMAIN_DATA")
+			if (!statsDomain && embeddedString != "\x00\x00\x00\x00VIDIUN_STATSDOMAIN_DATA")
 				statsDomain = embeddedString;
 			_statisticsMediator = new StatisticsMediator(statsDis);
 			_statisticsMediator.statsDomain = statsDomain;

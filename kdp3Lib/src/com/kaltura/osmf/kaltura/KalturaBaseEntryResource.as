@@ -1,14 +1,14 @@
-package com.kaltura.osmf.kaltura
+package com.vidiun.osmf.vidiun
 {
-	import com.kaltura.vo.KalturaBaseEntry;
+	import com.vidiun.vo.VidiunBaseEntry;
 	
 	import org.osmf.media.MediaResourceBase;
 
-	public class KalturaBaseEntryResource extends MediaResourceBase
+	public class VidiunBaseEntryResource extends MediaResourceBase
 	{
-		public var entry:KalturaBaseEntry;
+		public var entry:VidiunBaseEntry;
 		
-		public function KalturaBaseEntryResource(_entry:KalturaBaseEntry)
+		public function VidiunBaseEntryResource(_entry:VidiunBaseEntry)
 		{
 			entry = _entry;
 		}

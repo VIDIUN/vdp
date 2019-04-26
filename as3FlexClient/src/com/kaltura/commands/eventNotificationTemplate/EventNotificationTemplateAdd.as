@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.eventNotificationTemplate
+package com.vidiun.commands.eventNotificationTemplate
 {
-		import com.kaltura.vo.KalturaEventNotificationTemplate;
-	import com.kaltura.delegates.eventNotificationTemplate.EventNotificationTemplateAddDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunEventNotificationTemplate;
+	import com.vidiun.delegates.eventNotificationTemplate.EventNotificationTemplateAddDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Allows you to add a new event notification template object
 	* 
 	**/
-	public class EventNotificationTemplateAdd extends KalturaCall
+	public class EventNotificationTemplateAdd extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param eventNotificationTemplate KalturaEventNotificationTemplate
+		* @param eventNotificationTemplate VidiunEventNotificationTemplate
 		**/
-		public function EventNotificationTemplateAdd( eventNotificationTemplate : KalturaEventNotificationTemplate )
+		public function EventNotificationTemplateAdd( eventNotificationTemplate : VidiunEventNotificationTemplate )
 		{
 			service= 'eventnotification_eventnotificationtemplate';
 			action= 'add';
@@ -50,7 +50,7 @@ package com.kaltura.commands.eventNotificationTemplate
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(eventNotificationTemplate, 'eventNotificationTemplate');
+				keyValArr = vidiunObject2Arrays(eventNotificationTemplate, 'eventNotificationTemplate');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

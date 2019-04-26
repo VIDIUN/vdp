@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.type
+package com.vidiun.vdpfl.plugin.type
 {
 	public class DataProviderNotification
 	{

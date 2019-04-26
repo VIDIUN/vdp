@@ -1,20 +1,20 @@
 package
 {
 	import com.addthis.share.ShareAPI;
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.widget.WidgetAdd;
-	import com.kaltura.delegates.widget.WidgetAddDelegate;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.kdpfl.view.containers.KHBox;
-	import com.kaltura.kdpfl.view.containers.KVBox;
-	import com.kaltura.kdpfl.view.controls.KButton;
-	import com.kaltura.kdpfl.view.controls.KLabel;
-	import com.kaltura.types.KalturaWidgetSecurityType;
-	import com.kaltura.vo.KalturaWidget;
+	import com.vidiun.VidiunClient;
+	import com.vidiun.commands.widget.WidgetAdd;
+	import com.vidiun.delegates.widget.WidgetAddDelegate;
+	import com.vidiun.events.VidiunEvent;
+	import com.vidiun.vdpfl.model.type.EnableType;
+	import com.vidiun.vdpfl.model.type.NotificationType;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.IPluginFactory;
+	import com.vidiun.vdpfl.view.containers.VHBox;
+	import com.vidiun.vdpfl.view.containers.VVBox;
+	import com.vidiun.vdpfl.view.controls.VButton;
+	import com.vidiun.vdpfl.view.controls.VLabel;
+	import com.vidiun.types.VidiunWidgetSecurityType;
+	import com.vidiun.vo.VidiunWidget;
 	import com.yahoo.astra.layout.modes.HorizontalAlignment;
 	import com.yahoo.astra.layout.modes.VerticalAlignment;
 	
@@ -25,7 +25,7 @@ package
 	
 	import org.puremvc.as3.interfaces.IFacade;
 	
-	public class kalturaSharePlugin extends KVBox implements IPluginFactory, IPlugin 
+	public class vidiunSharePlugin extends VVBox implements IPluginFactory, IPlugin 
 	{
 		
 		
@@ -45,7 +45,7 @@ package
 		
 		private var _refferencer:Object = new Object();
 		[Bindable]
-		public var via:String = "Kaltura";
+		public var via:String = "Vidiun";
 		
 		public var facebookLabel:String = "Facebook";
 		public var diggLabel:String = "Digg";
@@ -73,7 +73,7 @@ package
 		public var dynamicLink:String;
 		[Bindable]
 		public var directEmbed:String;
-		//with this attribute you can override the default Kaltura embed code wuth custom embed. 
+		//with this attribute you can override the default Vidiun embed code wuth custom embed. 
 		//The value must be encoded E.G. %3Cscript%20src%3D%27http%3A%2F%2Fwww instead of <script src='http://www 
 		[Bindable]
 		public var dynamicEmbed:String;	
@@ -91,7 +91,7 @@ package
 		public var widgetId:String;
 		public var uiconfId:String;
 		private var _hadError:Boolean;
-		public var kc:KalturaClient;
+		public var vc:VidiunClient;
 		
 		public var customSnippetAfter:String;
 		
@@ -104,7 +104,7 @@ package
 		
 		
 		
-		public function kalturaSharePlugin()
+		public function vidiunSharePlugin()
 		{
 		}
 		/**
@@ -133,7 +133,7 @@ package
 		
 		private function getWidget(entry_id:String,player_id:String):void
 		{
-			var kw:KalturaWidget = new KalturaWidget();
+			var vw:VidiunWidget = new VidiunWidget();
 			
 			var media:Object = facade.retrieveProxy("mediaProxy");
 			var config:Object = facade.retrieveProxy("configProxy");
@@ -145,31 +145,31 @@ package
 			
 			landingPagePrefix = basePath;
 			
-			kw.entryId = entry_id;
+			vw.entryId = entry_id;
 			// the uiconf that will be the new widget uiconf
-			kw.uiConfId = int(player_id); //kw.uiConfId = int(uiconfId); 
+			vw.uiConfId = int(player_id); //vw.uiConfId = int(uiconfId); 
 			try
 			{
-				kw.sourceWidgetId = config["vo"]["kw"]["id"]; //"_1";// 
+				vw.sourceWidgetId = config["vo"]["vw"]["id"]; //"_1";// 
 			} 
 			catch(error:Error) 
 			{
 			}
 			try
 			{
-				kw.partnerData = createWidgetPartnerData(fv);
+				vw.partnerData = createWidgetPartnerData(fv);
 			} 
 			catch(error:Error) 
 			{
 				
 			}
-			kw.securityType = KalturaWidgetSecurityType.NONE;
-			kw.addEmbedHtml5Support = addEmbedHtml5Support;
+			vw.securityType = VidiunWidgetSecurityType.NONE;
+			vw.addEmbedHtml5Support = addEmbedHtml5Support;
 			//add widget			
-			var addWidget:WidgetAdd = new WidgetAdd(kw);
-			addWidget.addEventListener(KalturaEvent.COMPLETE, onWidgetComplete);
-			addWidget.addEventListener(KalturaEvent.FAILED, onWidgetFailed);
-			kc.post(addWidget);
+			var addWidget:WidgetAdd = new WidgetAdd(vw);
+			addWidget.addEventListener(VidiunEvent.COMPLETE, onWidgetComplete);
+			addWidget.addEventListener(VidiunEvent.FAILED, onWidgetFailed);
+			vc.post(addWidget);
 		}
 		
 		private function createWidgetPartnerData(flashvars:Object):String {
@@ -199,12 +199,12 @@ package
 			return null;
 		}
 		
-		private var widget:KalturaWidget
+		private var widget:VidiunWidget
 		
 		private function onWidgetComplete(evt:Object):void {
 			//retrive 
 			_hadError = false;
-			widget = evt.data as KalturaWidget;
+			widget = evt.data as VidiunWidget;
 			
 			widgetId = widget.id; //evt.data.object.idvar widthHeightString:String = ""
 			
@@ -242,7 +242,7 @@ package
 
 
 			if(_refferencer.hasOwnProperty("directEmbed"))
-				(_refferencer["directEmbed"] as KLabel).text = directEmbed;
+				(_refferencer["directEmbed"] as VLabel).text = directEmbed;
 			
 						
 			if(landingPagePrefix)
@@ -259,7 +259,7 @@ package
 			
 			
 			if(_refferencer.hasOwnProperty("directLink"))
-				(_refferencer["directLink"] as KLabel).text = directLink;
+				(_refferencer["directLink"] as VLabel).text = directLink;
 
 		}
 		
@@ -267,10 +267,10 @@ package
 		private function onWidgetFailed(evt:Object):void {
 			_hadError = true;
 			if(_refferencer.hasOwnProperty("directEmbed"))
-				(_refferencer["directEmbed"] as KLabel).text = error;
+				(_refferencer["directEmbed"] as VLabel).text = error;
 		
 			if(_refferencer.hasOwnProperty("directLink"))
-				(_refferencer["directLink"] as KLabel).text = error;
+				(_refferencer["directLink"] as VLabel).text = error;
 			
 			
 		}
@@ -305,7 +305,7 @@ package
 			//build UI once 
 			uiReady = true;
 			//close button 
-			var headerHbox:KHBox = new KHBox();
+			var headerHbox:VHBox = new VHBox();
 			headerHbox.horizontalAlign = HorizontalAlignment.RIGHT;
 			headerHbox.name = "headerHbox";
 			headerHbox.paddingLeft = paddingLeft;
@@ -314,8 +314,8 @@ package
 			headerHbox.width = width - paddingLeft;
 			addChild(headerHbox);
 			
-			var btn:KButton;
-			btn = new KButton();
+			var btn:VButton;
+			btn = new VButton();
 			btn.name = "closeBtn";
 			btn.height = 15;
 			btn.minHeight = 15;
@@ -328,46 +328,46 @@ package
 			//link
 			if (showLink)
 			{
-				var linkBox:KVBox = buildOneBox("directLink",linkLabel );
+				var linkBox:VVBox = buildOneBox("directLink",linkLabel );
 				addChild(linkBox);
 			}
 			
 			if (showEmbed)
 			{
-				var embedBox:KVBox = buildOneBox("directEmbed",embedLabel );
+				var embedBox:VVBox = buildOneBox("directEmbed",embedLabel );
 				addChild(embedBox);
 			}
 			
 			if(showNetworks)
 			{
-				var buttonsBox: KVBox = buildNetworksButtons();
+				var buttonsBox: VVBox = buildNetworksButtons();
 				addChild(buttonsBox);
 			}
 		}
 		
-		private function buildNetworksButtons():KVBox
+		private function buildNetworksButtons():VVBox
 		{
-			var vbox:KVBox = new KVBox(); 
+			var vbox:VVBox = new VVBox(); 
 			vbox.horizontalAlign = HorizontalAlignment.CENTER;
 			vbox.verticalAlign = VerticalAlignment.TOP;
 			vbox.horizontalGap = 10;
 			vbox.verticalGap = 10;
 			vbox.width = width   ;
 			
-			var label:KLabel = new KLabel();
+			var label:VLabel = new VLabel();
 			label.setSkin("bolded"); 
 			label.width = vbox.width  - 20;
 			label.text = networksLabel;
 			vbox.addChild(label); 
 			
 			
-			var hbox:KHBox = new KHBox(); 
+			var hbox:VHBox = new VHBox(); 
 			hbox.horizontalAlign = HorizontalAlignment.CENTER;
 			hbox.verticalAlign = VerticalAlignment.MIDDLE;
 			hbox.horizontalGap = 10;
 			hbox.width = width  - 20  ;
 			 
-			var hbox2:KHBox = new KHBox(); 
+			var hbox2:VHBox = new VHBox(); 
 			hbox2.horizontalAlign = HorizontalAlignment.CENTER;
 			hbox2.verticalAlign = VerticalAlignment.MIDDLE;
 			hbox2.horizontalGap = 10;
@@ -408,15 +408,15 @@ package
 			
 			
 			//actual share action with addThis
-			_addThisAPI.share(directLink,(event.target as KButton)["id"],options);
+			_addThisAPI.share(directLink,(event.target as VButton)["id"],options);
 			
 			event.stopImmediatePropagation();
 			event.stopPropagation();
 		}
-		private function createButton(label:String,icon:String , notification:String  ):KButton
+		private function createButton(label:String,icon:String , notification:String  ):VButton
 		{
 			
-			var button:KButton = new KButton();
+			var button:VButton = new VButton();
 			button.label = label;
 			button.minWidth = 100;
 			//button.maxWidth = 50;
@@ -433,10 +433,10 @@ package
 		}
 		
 		
-		private function buildOneBox(id:String , title:String):KVBox
+		private function buildOneBox(id:String , title:String):VVBox
 		{
 			
-			var vbox:KVBox = new KVBox(); 
+			var vbox:VVBox = new VVBox(); 
 			vbox.horizontalAlign = HorizontalAlignment.LEFT;
 			vbox.verticalAlign = VerticalAlignment.TOP;
 			vbox.verticalGap = -2;
@@ -444,13 +444,13 @@ package
 			vbox.height = 60;
 			vbox.width = width;
 			
-			var label:KLabel = new KLabel();
+			var label:VLabel = new VLabel();
 			label.setSkin("bolded"); 
 			label.width = vbox.width  - 20;
 			label.text = title;
 			vbox.addChild(label);
 			
-			var hbox:KHBox = new KHBox(); 
+			var hbox:VHBox = new VHBox(); 
 			hbox.horizontalAlign = HorizontalAlignment.LEFT;
 			hbox.verticalAlign = VerticalAlignment.MIDDLE;
 			hbox.horizontalGap = 5;
@@ -458,12 +458,12 @@ package
 			vbox.addChild(hbox);
 			
 			//copy box
-			var copyBg:KHBox = new KHBox();
+			var copyBg:VHBox = new VHBox();
 			copyBg.width = hbox.width - copyButtonWidth - (paddingLeft*2) - 5;
 			copyBg.setSkin("copyBg");
 			hbox.addChild(copyBg)
 			
-			var copyText:KLabel = new KLabel();
+			var copyText:VLabel = new VLabel();
 			copyText.name = id;
 				
 			_refferencer[id] = copyText;
@@ -478,7 +478,7 @@ package
 			copyBg.addChild(copyText);
 			
 			
-			var copyButton:KButton = new KButton();
+			var copyButton:VButton = new VButton();
 			copyButton.maxWidth = copyButtonWidth;
 			copyButton.setSkin("grayBtn" );
 			copyButton.id = id;
@@ -499,8 +499,8 @@ package
 
 		public function onCopy(event:MouseEvent):void
 		{
-			var klabel:KLabel = _refferencer[event.target.id] as KLabel;
-			System.setClipboard(klabel.text);
+			var vlabel:VLabel = _refferencer[event.target.id] as VLabel;
+			System.setClipboard(vlabel.text);
 			
 			
 			event.stopImmediatePropagation();

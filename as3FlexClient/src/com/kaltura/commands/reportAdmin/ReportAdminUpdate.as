@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,23 +25,23 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.reportAdmin
+package com.vidiun.commands.reportAdmin
 {
-		import com.kaltura.vo.KalturaReport;
-	import com.kaltura.delegates.reportAdmin.ReportAdminUpdateDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunReport;
+	import com.vidiun.delegates.reportAdmin.ReportAdminUpdateDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	**/
-	public class ReportAdminUpdate extends KalturaCall
+	public class ReportAdminUpdate extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param id int
-		* @param report KalturaReport
+		* @param report VidiunReport
 		**/
-		public function ReportAdminUpdate( id : int,report : KalturaReport )
+		public function ReportAdminUpdate( id : int,report : VidiunReport )
 		{
 			service= 'adminconsole_reportadmin';
 			action= 'update';
@@ -51,7 +51,7 @@ package com.kaltura.commands.reportAdmin
 			var keyValArr : Array = new Array();
 			keyArr.push('id');
 			valueArr.push(id);
-				keyValArr = kalturaObject2Arrays(report, 'report');
+				keyValArr = vidiunObject2Arrays(report, 'report');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

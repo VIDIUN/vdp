@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Vidiun Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Vidiun Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.permissionItem
+package com.vidiun.commands.permissionItem
 {
-		import com.kaltura.vo.KalturaPermissionItem;
-	import com.kaltura.delegates.permissionItem.PermissionItemAddDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.vidiun.vo.VidiunPermissionItem;
+	import com.vidiun.delegates.permissionItem.PermissionItemAddDelegate;
+	import com.vidiun.net.VidiunCall;
 
 	/**
 	* Adds a new permission item object to the account.
-	* This action is available only to Kaltura system administrators.
+	* This action is available only to Vidiun system administrators.
 	* 
 	**/
-	public class PermissionItemAdd extends KalturaCall
+	public class PermissionItemAdd extends VidiunCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param permissionItem KalturaPermissionItem
+		* @param permissionItem VidiunPermissionItem
 		**/
-		public function PermissionItemAdd( permissionItem : KalturaPermissionItem )
+		public function PermissionItemAdd( permissionItem : VidiunPermissionItem )
 		{
 			service= 'permissionitem';
 			action= 'add';
@@ -51,7 +51,7 @@ package com.kaltura.commands.permissionItem
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(permissionItem, 'permissionItem');
+				keyValArr = vidiunObject2Arrays(permissionItem, 'permissionItem');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

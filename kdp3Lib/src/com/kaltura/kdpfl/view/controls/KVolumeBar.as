@@ -1,12 +1,12 @@
 /**
- * KVolumeBar
+ * VVolumeBar
  */
-package com.kaltura.kdpfl.view.controls
+package com.vidiun.vdpfl.view.controls
 {
 	
-	import com.kaltura.kdpfl.component.IComponent;
-	import com.kaltura.kdpfl.view.containers.KHBox;
-	import com.kaltura.kdpfl.view.containers.KVBox;
+	import com.vidiun.vdpfl.component.IComponent;
+	import com.vidiun.vdpfl.view.containers.VHBox;
+	import com.vidiun.vdpfl.view.containers.VVBox;
 	import com.yahoo.astra.fl.containers.layoutClasses.AdvancedLayoutPane;
 	
 	import fl.controls.ScrollPolicy;
@@ -26,11 +26,11 @@ package com.kaltura.kdpfl.view.controls
 	
 	import mx.binding.utils.BindingUtils;
 	/**
-	 * Class representing the Volume Bar in the KDP. 
+	 * Class representing the Volume Bar in the VDP. 
 	 * @author Hila
 	 * 
 	 */
-	public dynamic class KVolumeBar extends UIComponent implements IComponent
+	public dynamic class VVolumeBar extends UIComponent implements IComponent
 	{
 		
 		//--------------------------------------
@@ -81,7 +81,7 @@ package com.kaltura.kdpfl.view.controls
 		public var forceInitialValue:Boolean;
 		
 		static public var SLIDER_TIMER_DELAY:Number = 600; // ms
-		protected var _slider:KSlider;
+		protected var _slider:VSlider;
 		protected var _sliderBackground:DisplayObject;
 		/**
 		 * Slider of the volume bar.  
@@ -90,7 +90,7 @@ package com.kaltura.kdpfl.view.controls
 		/**
 		 * Volume button. Clicking this button mutes/unmutes the player. 
 		 */	
-		protected var _button:KButton;
+		protected var _button:VButton;
 		protected var _sliderContainer:UIComponent;
 		
 		protected var _setSkinSize:Boolean;
@@ -187,7 +187,7 @@ package com.kaltura.kdpfl.view.controls
 		 * Constructor.
 		 * 
 		 */	
-		public function KVolumeBar()
+		public function VVolumeBar()
 		{
 			super();
 		}
@@ -277,12 +277,12 @@ package com.kaltura.kdpfl.view.controls
 			}
 			if (_layoutMode == LAYOUT_MODE_VERTICAL)
 			{
-				_volumeBarContainer = new KVBox();
+				_volumeBarContainer = new VVBox();
 			}
 				
 			else
 			{
-				_volumeBarContainer = new KHBox();
+				_volumeBarContainer = new VHBox();
 			}
 			_volumeBarContainer.verticalScrollPolicy = ScrollPolicy.OFF;
 			this.addChild(_volumeBarContainer);
@@ -295,7 +295,7 @@ package com.kaltura.kdpfl.view.controls
 			if (_shouldHideSlider)
 				_volumeSlider.visible = false;
 			
-			_slider = new KSlider();
+			_slider = new VSlider();
 			
 			_slider.maximum = 1;
 			_slider.minimum = 0;
@@ -313,7 +313,7 @@ package com.kaltura.kdpfl.view.controls
 			});
 			_volumeSlider.addChild( _slider );
 			
-			_button = new KButton();
+			_button = new VButton();
 			//if there is a button type definition - use dynamic appstudio colors
 			_button.label = "";
 			_button.toggle = true;
@@ -378,7 +378,7 @@ package com.kaltura.kdpfl.view.controls
 				changeVolume( _volume );			
 			}
 			
-			dispatchEvent(new Event( KVolumeBar.EVENT_CHANGE_END, true, true ));
+			dispatchEvent(new Event( VVolumeBar.EVENT_CHANGE_END, true, true ));
 		}
 		
 		/**
@@ -587,7 +587,7 @@ package com.kaltura.kdpfl.view.controls
 			super.visible = value;
 			
 			//trace ("foreground visibility: " + _sliderContainer.visible)
-			KTrace.getInstance().log("foreground visibility: " + _sliderContainer.visible)
+			VTrace.getInstance().log("foreground visibility: " + _sliderContainer.visible)
 			//_volumeSlider.visible = value;
 		}
 		
@@ -628,7 +628,7 @@ package com.kaltura.kdpfl.view.controls
 				_button.selected = false;
 			
 			if (dispatchEventChange) {
-				var evt:Event = new Event( KVolumeBar.EVENT_CHANGE, true, true );
+				var evt:Event = new Event( VVolumeBar.EVENT_CHANGE, true, true );
 				this.dispatchEvent( evt );	
 			}
 		}
@@ -669,7 +669,7 @@ package com.kaltura.kdpfl.view.controls
 			if(_saveValue || evt.clickTarget == "track")
 			{
 				_saveValue = false;
-				dispatchEvent(new Event( KVolumeBar.EVENT_CHANGE_END, true, true ));
+				dispatchEvent(new Event( VVolumeBar.EVENT_CHANGE_END, true, true ));
 			}
 		}
 		/**
@@ -719,7 +719,7 @@ package com.kaltura.kdpfl.view.controls
 		}
 		[Bindable]
 		/**
-		 * Height of the volume button. Default value - height of the whole KVolumeBar. 
+		 * Height of the volume button. Default value - height of the whole VVolumeBar. 
 		 * @return 
 		 * 
 		 */	
@@ -734,7 +734,7 @@ package com.kaltura.kdpfl.view.controls
 		}
 		[Bindable]
 		/**
-		 * Width of the volumebutton. Default value - width of the whole KVolumeBar. 
+		 * Width of the volumebutton. Default value - width of the whole VVolumeBar. 
 		 * @return 
 		 * 
 		 */	
@@ -773,7 +773,7 @@ package com.kaltura.kdpfl.view.controls
 			}
 		}
 		/**
-		 * The volume slider component of the KVoumeBar component.
+		 * The volume slider component of the VVoumeBar component.
 		 * @return 
 		 * 
 		 */
@@ -811,7 +811,7 @@ package com.kaltura.kdpfl.view.controls
 		 * @return the volume button 
 		 * 
 		 */		
-		public function get button():KButton {
+		public function get button():VButton {
 			return _button;
 		}
 		

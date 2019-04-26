@@ -1,10 +1,10 @@
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.Chapter;
-	import com.kaltura.kdpfl.plugin.component.ChapterList;
-	import com.kaltura.kdpfl.plugin.component.ChapterListMediator;
-	import com.kaltura.kdpfl.util.KAstraAdvancedLayoutUtil;
+	import com.vidiun.vdpfl.plugin.IPlugin;
+	import com.vidiun.vdpfl.plugin.component.Chapter;
+	import com.vidiun.vdpfl.plugin.component.ChapterList;
+	import com.vidiun.vdpfl.plugin.component.ChapterListMediator;
+	import com.vidiun.vdpfl.util.VAstraAdvancedLayoutUtil;
 	import com.yahoo.astra.fl.containers.layoutClasses.AdvancedLayoutPane;
 	
 	import fl.controls.ScrollBarDirection;
